@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="footer-menu">
-                    <img src="{{ asset('logobanner.png') }}" alt="logo">
+                    <img src="images/logo.png" alt="logo">
                     <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand
                         offers.</p>
                     <div class="social-links">
