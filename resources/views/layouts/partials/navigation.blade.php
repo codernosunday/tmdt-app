@@ -59,7 +59,6 @@
 
     <div class="container">
         <nav class="main-menu d-flex navbar navbar-expand-lg ">
-
             <div class="d-flex d-lg-none align-items-end mt-3">
                 <ul class="d-flex justify-content-end list-unstyled m-0">
                     <li>
@@ -108,12 +107,14 @@
                 <div class="offcanvas-body justify-content-between">
                     <select class="filter-categories border-0 mb-0 me-5">
                         <option>Shop by Category</option>
-                        <option>Clothes</option>
+                        @foreach ($danhMucSp as $i)
+                            <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
+                        @endforeach
+                        {{-- <option>Clothes</option>
                         <option>Food</option>
                         <option>Food</option>
-                        <option>Toy</option>
+                        <option>Toy</option> --}}
                     </select>
-
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
                             <a href="index.html" class="nav-link active">Home</a>

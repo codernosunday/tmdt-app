@@ -1,0 +1,28 @@
+INSERT INTO `bangdanhmuc` (`id_ctdm`, `id_dm`, `ten`, `ghichu`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Pin thiết bị', 'Pin thiết bị', '2025-02-28 04:48:30', NULL),
+(2, 2, 'Bút dạ quang', 'Bút dạ quang', '2025-02-28 04:48:30', NULL),
+(3, 3, 'Kẹp', 'Kẹp', '2025-02-28 04:49:25', NULL),
+(4, 4, 'Cặp', 'Cặp ', '2025-02-28 04:49:25', NULL),
+(5, 3, 'Kéo', 'Kéo', '2025-02-28 04:50:19', NULL),
+(6, 3, 'Dây thẻ đeo', 'Dây thẻ đeo', '2025-02-28 04:50:19', NULL),
+(7, 3, 'Bấm kim', 'Bấm kim', '2025-02-28 04:51:23', NULL),
+(8, 6, 'Ly giữ nhiệt', 'Ly giữ nhiệt', '2025-02-28 04:51:23', NULL),
+(9, 3, 'Khay đựng đồ', 'Khay đựng đồ', '2025-02-28 04:55:00', NULL),
+(10, 1, 'Sổ ghi chú', 'Sổ ghi chú', '2025-02-28 04:55:00', NULL),
+(11, 5, 'Máy hút bụi', 'Máy hút bụi', '2025-02-28 04:56:02', NULL),
+(12, 5, 'Máy tuốt bút chì', 'Máy tuốt bút chì', '2025-02-28 04:56:02', NULL),
+(13, 1, 'Giấy', 'Giấy', '2025-02-28 04:58:59', NULL),
+(14, 3, 'Mực bút lông', 'Mực bút lông', '2025-02-28 04:58:59', NULL),
+(15, 3, 'Băng keo', 'Băng keo', '2025-02-28 04:59:53', NULL),
+(16, 3, 'Dao rọc giấy', 'Dao rọc giấy', '2025-02-28 04:59:53', NULL),
+(17, 3, 'Tẩy xoá', 'Tẩy xoá', '2025-02-28 05:02:14', NULL);
+
+
+INSERT INTO `danhmucsanpham` (`id_dm`, `tendanhmuc`, `ghichu`, `created_at`, `updated_at`) VALUES
+(1, 'Giấy và Sổ sách', 'Giấy in, giấy photocopy\r\nSổ tay, sổ lò xo, sổ ghi chép\r\nGiấy note, giấy nhớ, giấy decal\r\nBao thư, bìa hồ sơ, kẹp tài liệu', '2025-02-28 04:29:20', NULL),
+(2, 'Bút và Dụng cụ Viết', 'Bút bi, bút mực, bút gel\r\nBút chì, bút chì bấm\r\nBút dạ quang, bút lông bảng, bút xóa\r\nMực bút máy, ngòi bút', '2025-02-28 04:29:20', NULL),
+(3, ' Dụng cụ Văn phòng', 'Kẹp giấy, ghim bấm, kẹp bướm\r\nDập ghim, gỡ ghim, đồ bấm lỗ\r\nBăng keo, keo dán, hồ dán\r\nThước kẻ, dao rọc giấy', '2025-02-28 04:33:59', NULL),
+(4, 'File Hồ sơ và Lưu trữ', 'Bìa còng, bìa lá, bìa trình ký\r\nTúi hồ sơ, hộp đựng tài liệu\r\nKệ đựng giấy tờ, hộc tủ di động', '2025-02-28 04:33:59', NULL),
+(5, 'Thiết bị Văn phòng', 'Máy in, máy photocopy, máy scan\r\nMáy hủy tài liệu, máy đóng sách\r\nMáy tính cầm tay, máy chấm công\r\nUSB, ổ cứng di động', '2025-02-28 04:39:37', NULL),
+(6, 'Sản phẩm Dùng hàng ngày', 'Bấm móng tay, kéo, gương nhỏ\r\nBình nước, ly cốc văn phòng\r\nCà phê, trà, bánh kẹo cho văn phòng', '2025-02-28 04:39:54', NULL),
+(7, 'Điện tử', 'Pin, thiết bị điện tử', '2025-02-28 04:47:15', NULL);
