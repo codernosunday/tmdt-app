@@ -2,76 +2,7 @@
 @section('content')
 @vite(['resources/css/vendor.css', 'resources/css/normalize.css'])
 @section('title', 'Trang chủ')
-    <section id="banner" style="background: #F9F3EC;">
-        <div class="container">
-            <div class="swiper main-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide py-5">
-                        <div class="row banner-content align-items-center">
-                            <div class="img-wrapper col-md-5">
-                                <img src="images/banner-img.png" class="img-fluid">
-                            </div>
-                            <div class="content-wrapper col-md-7 p-5 mb-5">
-                                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                                <h2 class="banner-title display-1 fw-normal">Best destination for <span
-                                        class="text-primary">your
-                                        pets</span>
-                                </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                    shop now
-                                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                        <use xlink:href="#arrow-right"></use>
-                                    </svg></a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="swiper-slide py-5">
-                        <div class="row banner-content align-items-center">
-                            <div class="img-wrapper col-md-5">
-                                <img src="images//banner-img3.png" class="img-fluid">
-                            </div>
-                            <div class="content-wrapper col-md-7 p-5 mb-5">
-                                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                                <h2 class="banner-title display-1 fw-normal">Best destination for <span
-                                        class="text-primary">your
-                                        pets</span>
-                                </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                    shop now
-                                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                        <use xlink:href="#arrow-right"></use>
-                                    </svg></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide py-5">
-                        <div class="row banner-content align-items-center">
-                            <div class="img-wrapper col-md-5">
-                                <img src="images/banner-img4.png" class="img-fluid">
-                            </div>
-                            <div class="content-wrapper col-md-7 p-5 mb-5">
-                                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                                <h2 class="banner-title display-1 fw-normal">Best destination for <span
-                                        class="text-primary">your
-                                        pets</span>
-                                </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                    shop now
-                                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                        <use xlink:href="#arrow-right"></use>
-                                    </svg></a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-pagination mb-5"></div>
-
-            </div>
-        </div>
-    </section>
+    @include('components.banner')
     <section id="clothing" class="my-5 overflow-hidden">
         <div class="container pb-5">
 
@@ -129,8 +60,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item2.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -204,8 +135,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -242,8 +173,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item7.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -280,8 +211,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -351,8 +282,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                        New
-                                      </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item9.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -429,8 +360,8 @@
 
                 <div class="item dog col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                        New
-                                      </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item11.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -507,8 +438,8 @@
 
                 <div class="item bird col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                        New
-                                      </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item13.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -546,8 +477,8 @@
 
                 <div class="item bird col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                        New
-                                      </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item14.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -624,8 +555,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                        New
-                                      </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item16.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -772,8 +703,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item5.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -810,8 +741,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item6.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -885,8 +816,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -961,8 +892,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                          New
-                                        </div> -->
+                                                          New
+                                                        </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
