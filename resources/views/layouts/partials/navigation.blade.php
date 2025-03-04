@@ -10,7 +10,7 @@
             </h4>
             <div class="search-bar border rounded-2 border-dark-subtle">
                 <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Tìm kiếm sản phẩm" />
+                    <input type="text" class="form-control border-0 bg-transparent " placeholder="Tìm kiếm sản phẩm" />
                     <iconify-icon icon="tabler: search" class="fs-4 me-3"></iconify-icon>
                 </form>
             </div>
@@ -118,7 +118,7 @@
                     </select>
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link active">Home</a>
+                            <a href="{{ route('home') }}" class="nav-link active">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
@@ -141,16 +141,16 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Shop</a>
+                            <a href="{{ route('shop') }}" class="nav-link">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Blog</a>
+                            <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Contact</a>
+                            <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Others</a>
+                            <a href="/" class="nav-link">Others</a>
                         </li>
                     </ul>
 
