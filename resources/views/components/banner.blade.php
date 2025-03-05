@@ -21,7 +21,7 @@
 
                     </div>
                 </div>
-                {{-- <div class="swiper-slide py-5">
+                <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
                             <img src="images//banner-img3.png" class="img-fluid">
@@ -59,7 +59,7 @@
                         </div>
 
                     </div>
-                </div> --}}
+                </div>
             </div>
             <div class="swiper-pagination mb-5"></div>
         </div>

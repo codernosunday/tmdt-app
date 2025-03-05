@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@vite(['resources/css/vendor.css', 'resources/css/normalize.css'])
+@vite(['resources/scss/app.scss', 'resources/scss/style.scss'])
 
 <head>
     <title>@yield('title', 'Shopen')</title>
@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <div class="preloader-wrapper">
+    {{-- <div class="preloader-wrapper">
         <div class="preloader">
         </div>
-    </div>
+    </div> --}}
     @include('layouts.partials.navigation')
     <div>@yield('content')</div>
     @include('layouts.partials.footer')
