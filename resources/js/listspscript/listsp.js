@@ -1,28 +1,15 @@
-function scrollCategories(direction) {
+document.addEventListener("DOMContentLoaded", function () {
+    let position = 0;
     const categoryList = document.getElementById('categoryList');
-    const scrollAmount = 200;
+    const items = document.querySelectorAll('.category-item');
+    const itemWidth = items[0].offsetWidth;
+    const visibleItems = 5;
+    const maxPosition = (items.length - visibleItems) * itemWidth;
 
-    if (direction === 1) {
-        categoryList.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    } else if (direction === -1) {
-        categoryList.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
-}
-function updateArrows() {
-    const categoryList = document.getElementById('categoryList');
-    const arrows = document.querySelectorAll('.arrow');
-
-    if (categoryList.scrollLeft === 0) {
-        arrows[0].style.display = 'none';
-    } else {
-        arrows[0].style.display = 'flex';
-    }
-
-    if (categoryList.scrollLeft + categoryList.clientWidth >= categoryList.scrollWidth) {
-        arrows[1].style.display = 'none';
-    } else {
-        arrows[1].style.display = 'flex';
-    }
-}
-document.getElementById('categoryList').addEventListener('scroll', updateArrows);
-window.addEventListener('load', updateArrows);
+    window.scrollCategories = function (direction) {
+        position += direction * itemWidth;
+        if (position < 0) position = 0;
+        if (position > maxPosition) position = maxPosition;
+        categoryList.style.transform = `translateX(-${position}px)`;
+    };
+});

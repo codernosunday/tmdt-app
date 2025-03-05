@@ -3,7 +3,6 @@
 @section('title', 'Trang chủ')
     @include('components.banner')
     @include('components.listsanpham')
-
     <section id="banner-2" class="my-3" style="background: #F9F3EC;">
         <div class="container">
             <div class="row flex-row-reverse banner-content align-items-center">
@@ -108,8 +107,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                          New
-                                                                        </div> -->
+                                                                                  New
+                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item5.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -146,8 +145,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                          New
-                                                                        </div> -->
+                                                                                  New
+                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item6.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -221,8 +220,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                          New
-                                                                        </div> -->
+                                                                                  New
+                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -297,8 +296,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                          New
-                                                                        </div> -->
+                                                                                  New
+                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>

@@ -8,7 +8,7 @@
 .category-wrapper {
     overflow: hidden;
     width: 300px;
-    /* Điều chỉnh kích thước theo nhu cầu */
+    /* Chỉ hiển thị 5 mục */
 }
 
 .category-list {
@@ -17,18 +17,19 @@
     padding: 0;
     margin: 0;
     transition: transform 0.3s ease-in-out;
-    min-width: max-content;
-    /* Đảm bảo danh sách không bị thu nhỏ */
+    min-width: fit-content;
+    gap: 20px;
 }
 
 .category-item {
     flex: 0 0 auto;
-    /* Đảm bảo không co lại */
     width: 60px;
-    /* Kích thước cố định */
+    /* Định nghĩa chiều rộng cố định */
     text-align: center;
     cursor: pointer;
     padding: 10px;
+    white-space: nowrap;
+    /* Ngăn chữ xuống dòng */
 }
 
 .arrow {

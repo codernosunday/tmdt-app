@@ -1,7 +1,7 @@
-@vite(['resources/scss/listsp.scss', 'resources/js/listspscript/listsp.js'])
+@vite(['resources/js/listspscript/listsp.js'])
+@vite(['resources/scss/listsp.scss'])
 <section id="foodies" class="my-5">
     <div class="container my-5 py-5">
-
         <div class="section-header d-md-flex justify-content-between align-items-center">
             <h2 class="display-3 fw-normal">Văn phòng phẩm</h2>
             <div class="mb-4 mb-md-0">
@@ -11,25 +11,29 @@
                     <button class="filter-button me-4 " data-filter=".dog">DOG</button>
                     <button class="filter-button me-4 " data-filter=".bird">BIRD</button>
                 </p> --}}
-                <div class="category-container">
-                    <span class="arrow me-3" onclick="scrollCategories(-1)">&#9665;</span>
-                    <div class="category-wrapper">
-                        <ul class="category-list" id="categoryList">
-                            <li class="category-item">ALL</li>
-                            <li class="category-item">CAT</li>
-                            <li class="category-item">DOG</li>
-                            <li class="category-item">BIRD</li>
-                            <li class="category-item">FISH</li>
-                            <li class="category-item">RABBIT</li>
-                            <li class="category-item">TURTLE</li>
-                            <li class="category-item">HORSE</li>
-                            <li class="category-item">HAMSTER</li>
-                            <li class="category-item">FERRET</li>
-                            <li class="category-item">SNAKE</li>
-                            <li class="category-item">LIZARD</li>
-                        </ul>
+                <div class="container mt-3 text-center">
+                    <div class="container mt-3 text-center">
+                        <div class="category-container">
+                            <span class="arrow me-3" onclick="scrollCategories(-1)">&#9665;</span>
+                            <div class="category-wrapper">
+                                <ul class="category-list" id="categoryList">
+                                    <li class="category-item">ALL</li>
+                                    <li class="category-item">CAT</li>
+                                    <li class="category-item">DOG</li>
+                                    <li class="category-item">BIRD</li>
+                                    <li class="category-item">FISH</li>
+                                    <li class="category-item">RABBIT</li>
+                                    <li class="category-item">TURTLE</li>
+                                    <li class="category-item">HORSE</li>
+                                    <li class="category-item">HAMSTER</li>
+                                    <li class="category-item">FERRET</li>
+                                    <li class="category-item">SNAKE</li>
+                                    <li class="category-item">LIZARD</li>
+                                </ul>
+                            </div>
+                            <span class="arrow ms-3" onclick="scrollCategories(1)">&#9655;</span>
+                        </div>
                     </div>
-                    <span class="arrow ms-3" onclick="scrollCategories(1)">&#9655;</span>
                 </div>
             </div>
             <div>
@@ -68,20 +72,10 @@
                                     <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                                 </a>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-{{-- <span class="rating secondary-font">
-    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-    5.0</span> --}}
