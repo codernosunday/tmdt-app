@@ -1,0 +1,38 @@
+.category-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.category-wrapper {
+    overflow: hidden;
+    width: 300px;
+    /* Điều chỉnh kích thước theo nhu cầu */
+}
+
+.category-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
+    min-width: max-content;
+    /* Đảm bảo danh sách không bị thu nhỏ */
+}
+
+.category-item {
+    flex: 0 0 auto;
+    /* Đảm bảo không co lại */
+    width: 60px;
+    /* Kích thước cố định */
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+}

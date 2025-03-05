@@ -3,7 +3,7 @@
 @vite(['resources/scss/app.scss', 'resources/scss/style.scss'])
 
 <head>
-    <title>@yield('title', 'Shopen')</title>
+    <title>@yield('title', default: 'Shopen')</title>
     @include('layouts.partials.meta')
 </head>
 </head>

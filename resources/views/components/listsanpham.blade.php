@@ -1,15 +1,36 @@
+@vite(['resources/scss/listsp.scss', 'resources/js/listspscript/listsp.js'])
 <section id="foodies" class="my-5">
     <div class="container my-5 py-5">
 
         <div class="section-header d-md-flex justify-content-between align-items-center">
             <h2 class="display-3 fw-normal">Văn phòng phẩm</h2>
             <div class="mb-4 mb-md-0">
-                <p class="m-0">
+                {{-- <p class="m-0">
                     <button class="filter-button me-4  active" data-filter="*">ALL</button>
                     <button class="filter-button me-4 " data-filter=".cat">CAT</button>
                     <button class="filter-button me-4 " data-filter=".dog">DOG</button>
                     <button class="filter-button me-4 " data-filter=".bird">BIRD</button>
-                </p>
+                </p> --}}
+                <div class="category-container">
+                    <span class="arrow me-3" onclick="scrollCategories(-1)">&#9665;</span>
+                    <div class="category-wrapper">
+                        <ul class="category-list" id="categoryList">
+                            <li class="category-item">ALL</li>
+                            <li class="category-item">CAT</li>
+                            <li class="category-item">DOG</li>
+                            <li class="category-item">BIRD</li>
+                            <li class="category-item">FISH</li>
+                            <li class="category-item">RABBIT</li>
+                            <li class="category-item">TURTLE</li>
+                            <li class="category-item">HORSE</li>
+                            <li class="category-item">HAMSTER</li>
+                            <li class="category-item">FERRET</li>
+                            <li class="category-item">SNAKE</li>
+                            <li class="category-item">LIZARD</li>
+                        </ul>
+                    </div>
+                    <span class="arrow ms-3" onclick="scrollCategories(1)">&#9655;</span>
+                </div>
             </div>
             <div>
                 <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
