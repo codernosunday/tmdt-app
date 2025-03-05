@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomePagesController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShopController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +18,9 @@ use App\Http\Controllers\HomePagesController;
 |
 */
 
-Route::get('/', [HomePagesController::class, 'homepage']);
+Route::get('/', [HomePagesController::class, 'home']) -> name('home');
+Route::get('/blog', [BlogController::class, 'blog']) -> name('blog');
+Route::get('/contact', [ContactController::class, 'contact']) -> name('contact');
+Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
+Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
+

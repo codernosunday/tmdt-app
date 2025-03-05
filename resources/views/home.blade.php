@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-@vite(['resources/css/vendor.css', 'resources/css/normalize.css'])
 @section('title', 'Trang chủ')
     @include('components.banner')
     <section id="clothing" class="my-5 overflow-hidden">
