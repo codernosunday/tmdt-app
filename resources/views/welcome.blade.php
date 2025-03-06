@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/app.scss'])
 
 <head>
     <meta charset="UTF-8">
