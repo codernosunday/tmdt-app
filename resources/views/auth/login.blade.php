@@ -1,4 +1,4 @@
-@vite(['resources/css/auth/login.css', 'resources/css/app.css', 'resources/css/custom.css'])
+@vite(['resources/css/auth/login.css', 'resources/css/custom.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 

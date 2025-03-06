@@ -8,7 +8,9 @@ export default defineConfig({
                 'resources/js/*.js',
                 'resources/js/**/*.js',
                 'resources/scss/*.scss',
-                'resources/scss/**/*.scss'
+                'resources/scss/**/*.scss',
+                'resources/css/**/*.css',
+                'resources/css/*.css'
             ],
             refresh: true,
         }),

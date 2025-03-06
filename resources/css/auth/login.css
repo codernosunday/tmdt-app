@@ -1,5 +1,6 @@
 /* Xóa border cho input và button */
-.form-control, .btn {
+.form-control,
+.btn {
     border: none !important;
     box-shadow: none !important;
 }
@@ -23,7 +24,8 @@
 }
 
 /* Đảm bảo toàn bộ layout full height */
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
