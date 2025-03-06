@@ -1,7 +1,8 @@
-@vite(['resources/css/vendor.css', 'resources/css/normalize.css', 'resources/css/app.css', 'resources/css/custom.css'])
+@vite(['resources/css/auth/login.css', 'resources/css/app.css', 'resources/css/custom.css'])
 @section('title', 'Đăng nhập')
+@include('layouts.partials.meta')
 
-<main>
+<body>
     <div class="container-fluid">
         <div class="row">
             <!-- Cột trái -->
@@ -23,7 +24,8 @@
                             <img src="{{ asset('img/login/google-icon.png') }}" alt="Google"> Log in with Google
                         </button>
                         <button class="btn text-white border-0 w-100" style="background-color: #3b5998;">
-                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="16px" alt="Facebook"> Log in with Facebook
+                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="16px" alt="Facebook"> Log in
+                            with Facebook
                         </button>
                     </div>
 
@@ -35,7 +37,8 @@
                             <label for="email" class="form-label">Email address</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input type="email" class="form-control border-0 shadow-none" name="email" placeholder="example@gmail.com" required>
+                                <input type="email" class="form-control border-0 shadow-none" name="email"
+                                    placeholder="example@gmail.com" required>
                             </div>
                         </div>
 
@@ -43,14 +46,16 @@
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                <input type="password" class="form-control border-0 shadow-none" name="password" placeholder="Your password" required>
+                                <input type="password" class="form-control border-0 shadow-none" name="password"
+                                    placeholder="Your password" required>
                             </div>
                         </div>
 
                         <div class="form-check mb-3">
                             <input type="checkbox" class="form-check-input" id="terms">
                             <label class="form-check-label" for="terms">
-                                I agree to Platform's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                I agree to Platform's <a href="#">Terms of Service</a> and <a href="#">Privacy
+                                    Policy</a>
                             </label>
                         </div>
 
@@ -60,4 +65,4 @@
             </div>
         </div>
     </div>
-</main>
+</body>

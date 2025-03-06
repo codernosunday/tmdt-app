@@ -18,12 +18,9 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-Route::get('/', [HomePagesController::class, 'home']) -> name('home');
-Route::get('/blog', [BlogController::class, 'blog']) -> name('blog');
-Route::get('/contact', [ContactController::class, 'contact']) -> name('contact');
-Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
-Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
-
-Route::get('/', [HomePagesController::class, 'homepage']);
+Route::get('/', [HomePagesController::class, 'home'])->name('home');
+Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/login', [HomePagesController::class, 'loginPage']);
-

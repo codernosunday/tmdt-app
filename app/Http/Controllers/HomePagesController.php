@@ -12,8 +12,8 @@ class HomePagesController extends Controller
         return view('home');
     }
 
-     public function loginPage()
+    public function loginPage()
     {
-        return view('/auth/login');
+        return view('auth.login');
     }
 }
