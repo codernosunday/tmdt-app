@@ -1,0 +1,170 @@
+/* Reset cơ bản */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Căn giữa nội dung theo chiều dọc */
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Thiết lập kích thước cho hàng */
+.row {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 500px;
+}
+
+/* Bên trái - Hình ảnh và tiêu đề */
+.col-md-6:first-child {
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.col-md-6:first-child h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Hình ảnh */
+.img-fluid {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Form container */
+.col-md-6:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Form */
+.w-75 {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Tiêu đề form */
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Button đăng nhập với Google & Facebook */
+.btn-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+}
+
+.btn-google {
+    background-color: #db4437;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+}
+
+/* Form Input */
+.input-group {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    color: #555;
+}
+
+.input-group input {
+    border: none;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+}
+
+/* Checkbox */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+}
+
+/* Nút đăng nhập */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .col-md-6:first-child {
+        padding: 20px;
+    }
+
+    .col-md-6:last-child {
+        padding: 20px;
+    }
+
+    .w-75 {
+        width: 100%;
+    }
+}

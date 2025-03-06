@@ -24,3 +24,6 @@ Route::get('/contact', [ContactController::class, 'contact']) -> name('contact')
 Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
 Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
 
+Route::get('/', [HomePagesController::class, 'homepage']);
+Route::get('/login', [HomePagesController::class, 'loginPage']);
+

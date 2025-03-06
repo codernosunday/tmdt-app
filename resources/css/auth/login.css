@@ -1,0 +1,98 @@
+/* Xóa border cho input và button */
+.form-control, .btn {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Khi input được focus */
+.form-control:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Nút đăng nhập với màu sắc rõ ràng */
+.btn-google {
+    background-color: #db4437 !important;
+    color: white !important;
+}
+
+.btn-facebook {
+    background-color: #3b5998 !important;
+    color: white !important;
+}
+
+/* Đảm bảo toàn bộ layout full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Căn giữa nội dung */
+.container-fluid {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chia 2 cột đều nhau */
+.row {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+/* Cột trái chứa hình ảnh */
+.col-md-6.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Định dạng hình ảnh */
+.image-container img {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Cột phải chứa form */
+.col-md-6.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Form login */
+.form-container form {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Button đăng nhập */
+.btn-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Google Button */
+.btn-google {
+    background-color: #db4437;
+    color: white;
+}
+
+/* Facebook Button */
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
