@@ -17,18 +17,11 @@
                             <span class="arrow me-3" onclick="scrollCategories(-1)">&#9665;</span>
                             <div class="category-wrapper">
                                 <ul class="category-list" id="categoryList">
-                                    <li class="category-item">ALL</li>
-                                    <li class="category-item">CAT</li>
-                                    <li class="category-item">DOG</li>
-                                    <li class="category-item">BIRD</li>
-                                    <li class="category-item">FISH</li>
-                                    <li class="category-item">RABBIT</li>
-                                    <li class="category-item">TURTLE</li>
-                                    <li class="category-item">HORSE</li>
-                                    <li class="category-item">HAMSTER</li>
-                                    <li class="category-item">FERRET</li>
-                                    <li class="category-item">SNAKE</li>
-                                    <li class="category-item">LIZARD</li>
+                                    <li class="category-item"><a href="#">ALL</a></li>
+                                    @foreach ($danhmuccon as $i)
+                                        <li class="category-item"><a href="#">{{$i->ten}}</a></li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                             <span class="arrow ms-3" onclick="scrollCategories(1)">&#9655;</span>
