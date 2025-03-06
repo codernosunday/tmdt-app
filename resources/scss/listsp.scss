@@ -42,3 +42,34 @@
 a {
     text-decoration: none;
 }
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 5px;
+}
+
+.pagination .active span {
+    background-color: #a00;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}

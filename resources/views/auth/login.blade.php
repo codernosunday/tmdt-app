@@ -12,7 +12,6 @@
                     <h1 class="mt-4">Start for free and get attractive offers.</h1>
                 </div>
             </div>
-
             <!-- Cột phải -->
             <div class="col-md-6 d-flex align-items-center justify-content-center">
                 <div class="w-75">
