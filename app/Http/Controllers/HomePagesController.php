@@ -19,10 +19,11 @@ class HomePagesController extends Controller
     }
     public function locSPtheoDanhmuc($danhmuc)
     {
-        $sp = SanphamModel::find($danhmuc);
-        if ($sp->count() > 8) {
-            $sp = $sp->paginate(8);
+        if ($danhmuc != 0) {
+            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(8)->get();;
+        } else {
+            $sp = SanphamModel::limit(8)->get();
         }
-        return view('components.listsanpham', compact('sp'));
+        return view('components.sanpham', compact('sp'));
     }
 }

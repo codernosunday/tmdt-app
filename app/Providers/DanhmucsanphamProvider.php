@@ -30,15 +30,21 @@ class DanhmucsanphamProvider extends ServiceProvider
         //
         View::composer('layouts.partials.navigation', function ($view) {
             $danhMucSp = DanhmucsanphamModel::all();
-            $view->with('danhMucSp', $danhMucSp);
-        });
-        View::composer('components.listsanpham', function ($view) {
-            $danhmuccon = DanhmucconModel::paginate(8);
-            $sp = SanphamModel::all();
+            $danhmuccon = DanhmucconModel::all();
             $view->with([
-                'danhmuccon' => $danhmuccon,
-                'sp' => $sp
+                'danhMucSp' => $danhMucSp,
+                'danhmuccon' => $danhmuccon
             ]);
+        });
+        // View::composer('components.sanpham', function ($view) {
+
+        //     $sp = SanphamModel::paginate(8);
+        //     $view->with('sp', $sp);
+        // });
+        View::composer('components.listsanpham', function ($view) {
+
+            $danhmuccon = DanhmucconModel::all();
+            $view->with('danhmuccon', $danhmuccon);
         });
     }
 }

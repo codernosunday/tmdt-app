@@ -1,15 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let position = 0;
-    const categoryList = document.getElementById('categoryList');
-    const items = document.querySelectorAll('.category-item');
-    const itemWidth = items[0].offsetWidth;
-    const visibleItems = 5;
-    const maxPosition = (items.length - visibleItems) * itemWidth;
-
-    window.scrollCategories = function (direction) {
-        position += direction * itemWidth;
-        if (position < 0) position = 0;
-        if (position > maxPosition) position = maxPosition;
-        categoryList.style.transform = `translateX(-${position}px)`;
-    };
+    fetch(`/danhmuc/0`)
+        .then(response => response.text()) // Nhận nội dung HTML
+        .then(html => {
+            // Hiển thị nội dung trong một phần tử trên trang
+            document.getElementById('sanpham').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+        });
+    const selectBox = document.getElementById('Danhmuc');
+    selectBox.addEventListener('change', function () {
+        const selectedValue = selectBox.value;
+        fetch(`/danhmuc/${selectedValue}`)
+            .then(response => response.text()) // Nhận nội dung HTML
+            .then(html => {
+                // Hiển thị nội dung trong một phần tử trên trang
+                document.getElementById('sanpham').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Lỗi:', error);
+            });
+    });
 });
