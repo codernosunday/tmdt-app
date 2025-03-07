@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
+                <div class="search-bar border rounded-2 px-auto border-dark-subtle">
                     <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
                         <input type="text" class="form-control border-0 bg-transparent search-input"
                             placeholder="Tìm kiếm sản phẩm" />
