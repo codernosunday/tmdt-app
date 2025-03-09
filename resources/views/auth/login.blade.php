@@ -1,6 +1,7 @@
-@vite(['resources/css/auth/login.css','resources/css/app.css'])
+@vite(['resources/css/auth/login.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -18,11 +19,15 @@
                     <p style="font-size: 1.2rem;">Already have an account? <a href="#">Sign up</a></p>
 
                     <div class="d-flex gap-3 mt-3">
-                        <button class="btn text-black border w-100" style="background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Log in with Google</span>
+                        <button class="btn text-black border w-100"
+                            style="background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Log in
+                                with Google</span>
                         </button>
-                        <button class="btn text-white border-0 w-100" style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Log in with Facebook</span> 
+                        <button class="btn text-white border-0 w-100"
+                            style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Log
+                                in with Facebook</span>
                         </button>
                     </div>
 

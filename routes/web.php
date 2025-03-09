@@ -6,6 +6,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SanphamController;
+use App\Http\Controllers\QLsanphamComtroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +28,9 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/login', [HomePagesController::class, 'loginPage']);
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+
+
+//admin 
+Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
