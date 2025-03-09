@@ -6,8 +6,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\OfferController;
+use App\Http\Controllers\SanphamController;
+use App\Http\Controllers\QLsanphamComtroller;
 
 
 /*
