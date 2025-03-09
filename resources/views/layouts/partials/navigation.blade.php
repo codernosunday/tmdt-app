@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border rounded-2 px-auto border-dark-subtle">
+                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
                     <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
                         <input type="text" class="form-control border-0 bg-transparent search-input"
                             placeholder="Tìm kiếm sản phẩm" />
@@ -41,10 +41,10 @@
                 </div>
             </div>
             <div
-                class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-                <div class="support-box text-end d-none d-xl-block">
+                class="col-sm-8 col-lg-4 d-flex justify-content-end gap-4 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+                <div class="support-box text-end d-none d-xl-block d-xxl-none">
                     <span class="fs-6 secondary-font text-muted">Hotline:</span>
-                    <h5 class="mb-0">0939968999</h5>
+                    <h5 class=" mb-0">09399689919</h5>
                 </div>
                 <div class="support-box text-end d-none d-xl-block">
                     <span class="fs-6 secondary-font text-muted">Email</span>
