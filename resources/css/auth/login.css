@@ -31,52 +31,115 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Căn giữa nội dung */
-.container-fluid {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+/* Reset cơ bản */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Chia 2 cột đều nhau */
+/* Căn giữa nội dung theo chiều dọc */
+.container-fluid {
+    width: 100%;
+    height: 100%;
+}
+
+/* Thiết lập kích thước cho hàng */
 .row {
     width: 100%;
-    max-width: 1200px;
-    display: flex;
-    align-items: center;
+    height: 100%;
 }
 
-/* Cột trái chứa hình ảnh */
-.col-md-6.image-container {
+/* Bên trái - Hình ảnh và tiêu đề */
+.col-md-6:first-child {
+    width: 50%;
+    backgroundr: #ded8ef;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 20px;
-}
-
-/* Định dạng hình ảnh */
-.image-container img {
-    max-width: 80%;
-    height: auto;
-}
-
-/* Cột phải chứa form */
-.col-md-6.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     flex-direction: column;
+    padding: 40px;
 }
 
-/* Form login */
-.form-container form {
+.col-md-6:first-child h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Hình ảnh */
+.img-fluid {
+    width: 700px;
+    height: 700px;
+}
+
+/* Form container */
+.col-md-6:last-child {
+    width: 50%;
+    height: 100%;
+}
+
+/* Form */
+.w-75 {
     width: 100%;
-    max-width: 400px;
 }
 
-/* Button đăng nhập */
+/* Tiêu đề form */
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+i {
+    font-size: 1.5rem;
+}
+
+.socials-divider {
+  text-align: center;
+  position: relative;
+  margin: 1.6rem 1.6rem;
+}
+.socials-divider::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 45%;
+  height: 0.1rem;
+  background-color: #d0d3d7;
+}
+
+.socials-divider::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 45%;
+  height: 0.1rem;
+  background-color: #d0d3d7;
+}
+
+/* Button đăng nhập với Google & Facebook */
 .btn-auth {
     display: flex;
     align-items: center;
@@ -85,16 +148,83 @@ body {
     padding: 10px;
     font-weight: bold;
     border-radius: 8px;
-}
-
-/* Google Button */
-.btn-google {
-    background-color: #db4437;
     color: white;
 }
 
-/* Facebook Button */
-.btn-facebook {
-    background-color: #3b5998;
-    color: white;
+.btn {
+    width: 100px;
+    height: 75px;
+}
+
+.btn span {
+    margin-left: 10px;
+}
+
+/* Form Input */
+.input-group {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.input-group-text {
+    height: 75px;
+    border: none;
+    color: #555;
+}
+
+.input-group input {
+    border: none;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+/* Checkbox */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+}
+
+/* Nút đăng nhập */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .col-md-6:first-child {
+        padding: 20px;
+    }
+
+    .col-md-6:last-child {
+        padding: 20px;
+    }
+
+    .w-75 {
+        width: 100%;
+    }
 }
