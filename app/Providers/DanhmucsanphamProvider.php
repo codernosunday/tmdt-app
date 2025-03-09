@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\DanhmucsanphamModel;
+use App\Models\DanhmucconModel;
+use App\Models\SanphamModel;
 
 class DanhmucsanphamProvider extends ServiceProvider
 {
@@ -28,7 +30,21 @@ class DanhmucsanphamProvider extends ServiceProvider
         //
         View::composer('layouts.partials.navigation', function ($view) {
             $danhMucSp = DanhmucsanphamModel::all();
-            $view->with('danhMucSp', $danhMucSp);
+            $danhmuccon = DanhmucconModel::all();
+            $view->with([
+                'danhMucSp' => $danhMucSp,
+                'danhmuccon' => $danhmuccon
+            ]);
+        });
+        // View::composer('components.sanpham', function ($view) {
+
+        //     $sp = SanphamModel::paginate(8);
+        //     $view->with('sp', $sp);
+        // });
+        View::composer('components.listsanpham', function ($view) {
+
+            $danhmuccon = DanhmucconModel::all();
+            $view->with('danhmuccon', $danhmuccon);
         });
     }
 }

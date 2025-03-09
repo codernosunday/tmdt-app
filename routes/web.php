@@ -29,3 +29,5 @@ Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
 Route::get('/aboutus', [AboutusController::class, 'aboutus']) -> name('aboutus');
 Route::get('/offer', [AboutusController::class, 'offer']) -> name('offer');
 Route::get('/service', [AboutusController::class, 'service']) -> name('service');
+Route::get('/login', [HomePagesController::class, 'loginPage']);
+Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);

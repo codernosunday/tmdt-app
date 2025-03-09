@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SanphamModel;
 use Illuminate\Http\Request;
 
 class HomePagesController extends Controller
@@ -10,6 +11,19 @@ class HomePagesController extends Controller
     public function home()
     {
         return view('home');
-        // return "hello";
+    }
+
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+    public function locSPtheoDanhmuc($danhmuc)
+    {
+        if ($danhmuc != 0) {
+            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(8)->get();;
+        } else {
+            $sp = SanphamModel::limit(8)->get();
+        }
+        return view('components.sanpham', compact('sp'));
     }
 }
