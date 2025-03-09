@@ -6,6 +6,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\OfferController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +26,6 @@ Route::get('/blog', [BlogController::class, 'blog']) -> name('blog');
 Route::get('/contact', [ContactController::class, 'contact']) -> name('contact');
 Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
 Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
-
+Route::get('/aboutus', [AboutusController::class, 'aboutus']) -> name('aboutus');
+Route::get('/offer', [AboutusController::class, 'offer']) -> name('offer');
+Route::get('/service', [AboutusController::class, 'service']) -> name('service');

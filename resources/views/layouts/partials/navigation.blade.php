@@ -43,7 +43,7 @@
             <div
                 class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
                 <div class="support-box text-end d-none d-xl-block">
-                    <span class="fs-6 secondary-font text-muted">Hotline</span>
+                    <span class="fs-6 secondary-font text-muted">Hotline:</span>
                     <h5 class="mb-0">0939968999</h5>
                 </div>
                 <div class="support-box text-end d-none d-xl-block">
@@ -116,43 +116,7 @@
                         <option>Food</option>
                         <option>Toy</option> --}}
                     </select>
-                    <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
-                        <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link active">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                                aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu" aria-labelledby="pages">
-                                <li><a href="index.html" class="dropdown-item">About Us</a></li>
-                                <li><a href="index.html" class="dropdown-item">Shop</a></li>
-                                <li><a href="index.html" class="dropdown-item">Single Product</a></li>
-                                <li><a href="index.html" class="dropdown-item">Cart</a></li>
-                                <li><a href="index.html" class="dropdown-item">Wishlist</a></li>
-                                <li><a href="index.html" class="dropdown-item">Checkout</a></li>
-                                <li><a href="index.html" class="dropdown-item">Blog</a></li>
-                                <li><a href="index.html" class="dropdown-item">Single Post</a></li>
-                                <li><a href="index.html" class="dropdown-item">Contact</a></li>
-                                <li><a href="index.html" class="dropdown-item">FAQs</a></li>
-                                <li><a href="index.html" class="dropdown-item">Account</a></li>
-                                <li><a href="index.html" class="dropdown-item">Thankyou</a></li>
-                                <li><a href="index.html" class="dropdown-item">Error 404</a></li>
-                                <li><a href="index.html" class="dropdown-item">Styles</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('shop') }}" class="nav-link">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('blog') }}" class="nav-link">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('contact') }}" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Others</a>
-                        </li>
-                    </ul>
+                    
 
                     <div class="d-none d-lg-flex align-items-end">
                         <ul class="d-flex justify-content-end list-unstyled m-0">

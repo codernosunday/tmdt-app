@@ -7,7 +7,7 @@
                         <div class="img-wrapper col-md-5">
                             <img src="images/banner-img.png" class="img-fluid">
                         </div>
-                        <div class="content-wrapper col-md-7 p-5 mb-5">
+                        <div class="content-wrapper col-md-7 p-5 mb-5 ">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
                             <h2 class="banner-title display-1 fw-normal">Văn phòng phẩm <span class="text-primary">giá
                                     rẻ</span>

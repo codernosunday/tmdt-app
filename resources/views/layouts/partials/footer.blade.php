@@ -43,19 +43,17 @@
                     <h3>Quick Links</h3>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="{{ Route('shop') }}" class="nav-link">Trang chủ</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">About us</a>
+                            <a href="{{ route('aboutus') }}" class="nav-link">Về chúng tôi</a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a href="{{ route('service') }}" class="nav-link">Dich vụ</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">Offer</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Services</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Contact Us</a>
+                            <a href="{{ route('contact') }}" class="nav-link">Liên hệ chúng tôi</a>
                         </li>
                     </ul>
                 </div>
