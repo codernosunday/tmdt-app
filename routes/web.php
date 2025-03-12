@@ -38,9 +38,10 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 
 
+
+
+
+//admin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-
-//admin 
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamComtroller::class, 'pagesQLchitietsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);

@@ -15,8 +15,8 @@ class QLsanphamComtroller extends Controller
     }
     function pagesQLchitietsanpham($id_sp)
     {
-        $sp = SanphamModel::limit(8)->get();
-        return view('admin.chitietsanpham', compact('sp'));
+        // $sp = SanphamModel::limit(8)->get();
+        return view('admin.chitietsanpham');
     }
     function postQLchitietsanpham() {}
 }

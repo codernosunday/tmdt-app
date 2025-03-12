@@ -25,9 +25,10 @@
                             <td>{{$i->created_at}}</td>
                             <td>{{$i->updated_at}}</td>
                             <td>
-                                <button class="btn btn-warning btn-sm me-1">Sửa</button>
+                                {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
                                 <button class="btn btn-danger btn-sm">Xóa</button>
-                                <button class="btn btn-info btn-sm">Chi tiết sản phẩm</button>
+                                <button class="btn btn-info btn-sm"><a href="quanlysanpham/{{$i->id_sp}}">Sửa
+                                        sản phẩm</a></button>
                             </td>
                         </tr>
                     @endforeach

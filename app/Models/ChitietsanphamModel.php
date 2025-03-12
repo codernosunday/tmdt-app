@@ -13,9 +13,11 @@ class ChitietsanphamModel extends Model
         'id_sp',
         'id-thuoctinh',
         'giasp',
+        'anhsp',
         'gianhap',
         'giasale',
         'soluong',
+        'mota',
         'nhasanxuat'
     ];
     public $timestamps = true;
