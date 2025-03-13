@@ -9,23 +9,23 @@
             <div class="col-md-6 d-flex align-items-center justify-content-center bg-light p-5">
                 <div class="text-center">
                     <img class="img-fluid" src="{{ asset('img/login/cart-illustration.png') }}" alt="Cart Illustration">
-                    <h1 class="mt-4">Bắt đầu miễn phí và nhận nhiều ưu đãi hấp dẫn</h1>
+                    <h1 class="mt-4">Bắt đầu miễn phí và nhận nhiều ưu đãi hấp dẫn.</h1>
                 </div>
             </div>
             <!-- Cột phải -->
             <div class="col-md-6 d-flex align-items-center justify-content-center">
                 <div class="w-75">
-                    <h1>Đăng nhập.</h1>
-                    <p style="font-size: 1.2rem;">Bạn chưa có tài khoản? <a href="/register">Đăng kí</a></p>
+                    <h1>Đăng kí.</h1>
+                    <p style="font-size: 1.2rem;">Bạn đã có tài khoản? <a href="/login">Đăng nhập</a></p>
 
                     <div class="d-flex gap-3 mt-3">
                         <button class="btn text-black border w-100"
                             style="background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng nhập với Google</span>
+                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng kí với Google</span>
                         </button>
                         <button class="btn text-white border-0 w-100"
                             style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Đăng nhập với Facebook</span>
+                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Đăng kí với Facebook</span>
                         </button>
                     </div>
 
@@ -39,16 +39,7 @@
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                                 <input type="email" class="form-control border-0 shadow-none" name="email"
-                                    placeholder="Nhập email của bạn" required>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Mật khẩu</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-                                <input type="password" class="form-control border-0 shadow-none" name="password"
-                                    placeholder="Nhập mật khẩu của bạn" required>
+                                    placeholder="Nhập địa chỉ email" required>
                             </div>
                         </div>
 
@@ -59,7 +50,7 @@
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-danger w-100">Đăng nhập</button>
+                        <button type="submit" class="btn btn-danger w-100">Đăng kí</button>
                     </form>
                 </div>
             </div>
