@@ -17,13 +17,16 @@ return new class extends Migration
             $table->increments('id_ctsp');
             $table->unsignedInteger('id_sp');
             $table->unsignedInteger('id_thuoctinh')->nullable();
-            $table->float('giasp')->nullable();
-            $table->float('gianhap')->nullable();
-            $table->float('giasale')->nullable();
+            $table->float('chieurong')->nullable();
+            $table->float('chieucao')->nullable();
+            $table->float('doday')->nullable();
             $table->integer('soluong')->nullable();
-            $table->string('nhasanxuat')->nullable();
+            $table->integer('sotrang')->nullable();
+            $table->string('thuonghieu')->nullable();
+            $table->string('mausac')->nullable();
+            $table->string('mammau')->nullable();
             $table->string('anhsp')->nullable();
-            $table->string('mota', 500)->nullable();
+            $table->string('dattinh', 500)->nullable();
             $table->timestamps();
             $table->foreign('id_sp')
                 ->references('id_sp')

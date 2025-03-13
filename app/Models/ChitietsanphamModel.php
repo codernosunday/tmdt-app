@@ -12,13 +12,16 @@ class ChitietsanphamModel extends Model
     protected $fillable = [
         'id_sp',
         'id-thuoctinh',
-        'giasp',
-        'anhsp',
-        'gianhap',
-        'giasale',
+        'chieurong',
+        'chieucao',
+        'doday',
         'soluong',
-        'mota',
-        'nhasanxuat'
+        'sotrang',
+        'thuonghieu',
+        'mausac',
+        'mammau',
+        'anhsp',
+        'dattinh'
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';

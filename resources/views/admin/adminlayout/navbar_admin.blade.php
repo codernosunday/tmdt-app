@@ -94,7 +94,8 @@
                             <ul class="dropdown-menu" aria-labelledby="pages">
                                 <li><a href="/administrator/quanlysanpham" class="dropdown-item">Quản lý sản phẩm</a>
                                 </li>
-                                <li><a href="index.html" class="dropdown-item">Thêm mới sản phẩm</a></li>
+                                <li><a href="/administrator/themsanpham" class="dropdown-item">Thêm mới sản phẩm</a>
+                                </li>
                                 <li><a href="index.html" class="dropdown-item">Quản lý danh mục sản phẩm</a></li>
                                 <li><a href="index.html" class="dropdown-item">Quản lý danh mục con</a></li>
                                 <li><a href="index.html" class="dropdown-item">Thống kê</a></li>

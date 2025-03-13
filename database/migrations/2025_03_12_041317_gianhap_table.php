@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('id_sp');
             $table->unsignedInteger('id_nhacungcap')->nullable();
             $table->float('gianhap')->nullable();
+            $table->integer('soluong')->nullable();
             $table->timestamps();
             $table->foreign('id_nhacungcap')
                 ->references('id_nhacungcap')

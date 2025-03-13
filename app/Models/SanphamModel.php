@@ -9,6 +9,7 @@ class SanphamModel extends Model
 {
     use HasFactory;
     protected $table = 'sanpham';
+    protected $primaryKey = 'id_sp';
     protected $fillable = [
         'id_ctdm',
         'tensp',
