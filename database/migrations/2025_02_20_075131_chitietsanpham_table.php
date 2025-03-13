@@ -16,12 +16,17 @@ return new class extends Migration
         Schema::create('chitietsanpham', function (Blueprint $table) {
             $table->increments('id_ctsp');
             $table->unsignedInteger('id_sp');
-            $table->unsignedInteger('id_thuoctinh');
-            $table->float('giasp')->nullable();
-            $table->float('gianhap')->nullable();
-            $table->float('giasale')->nullable();
-            $table->integer('soluong');
-            $table->string('nhasanxuat');
+            $table->unsignedInteger('id_thuoctinh')->nullable();
+            $table->float('chieurong')->nullable();
+            $table->float('chieucao')->nullable();
+            $table->float('doday')->nullable();
+            $table->integer('soluong')->nullable();
+            $table->integer('sotrang')->nullable();
+            $table->string('thuonghieu')->nullable();
+            $table->string('mausac')->nullable();
+            $table->string('mammau')->nullable();
+            $table->string('anhsp')->nullable();
+            $table->string('dattinh', 500)->nullable();
             $table->timestamps();
             $table->foreign('id_sp')
                 ->references('id_sp')

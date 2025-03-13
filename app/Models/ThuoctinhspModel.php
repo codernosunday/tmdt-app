@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SanphamModel extends Model
+class ThuoctinhspModel extends Model
 {
     use HasFactory;
-    protected $table = 'sanpham';
-    protected $primaryKey = 'id_sp';
+    protected $table = 'thuoctinh';
     protected $fillable = [
-        'id_ctdm',
-        'tensp',
-        'anh',
-        'tomtatsp'
+        'loai',
+        'mota'
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';

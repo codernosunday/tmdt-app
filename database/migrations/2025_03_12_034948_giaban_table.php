@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('giohang', function (Blueprint $table) {
-            $table->increments('id_giohang');
+        Schema::create('giaban', function (Blueprint $table) {
+            $table->increments('id_giaban');
+            $table->unsignedInteger('id_sp');
+            $table->float('giaban')->nullable();
             $table->timestamps();
-            $table->foreign('id_giohang')
-                ->references('id_nd')
-                ->on('nguoidung')
+            $table->foreign('id_sp')
+                ->references('id_sp')
+                ->on('sanpham')
                 ->onDelete('cascade');
         });
     }
@@ -32,5 +34,6 @@ return new class extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('giaban');
     }
 };

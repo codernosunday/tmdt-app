@@ -11,9 +11,6 @@ use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +33,6 @@ Route::get('/register', [HomePagesController::class, 'registerPage']);
 Route::get('/verify', [HomePagesController::class, 'verifyPage']);
 
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
-
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -44,4 +40,19 @@ Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 //admin 
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+
+
+
+
+
+
+
+//admin
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamComtroller::class, 'pagesQLchitietsanpham']);
+
 Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
+Route::get('/administrator/themsanpham', [QLsanphamComtroller::class, 'pagesthemsanpham']);
+Route::post('/administrator/themspmoi', [QLsanphamComtroller::class, 'postthemsanpham']);

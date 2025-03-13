@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('tensp')->nullable();
             $table->string('anh')->nullable();
             $table->string('tomtatsp')->nullable();
+            $table->boolean('tinhtrang')->nullable();
             $table->timestamps();
-
             $table->foreign('id_ctdm')
                 ->references('id_ctdm')
                 ->on('bangdanhmuc')

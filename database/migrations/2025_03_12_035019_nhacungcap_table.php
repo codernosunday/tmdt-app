@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('giohang', function (Blueprint $table) {
-            $table->increments('id_giohang');
+        Schema::create('nhacungcap', function (Blueprint $table) {
+            $table->increments('id_nhacungcap');
+            $table->string('ten')->nullable();
+            $table->string('lienhe')->nullable();
             $table->timestamps();
-            $table->foreign('id_giohang')
-                ->references('id_nd')
-                ->on('nguoidung')
-                ->onDelete('cascade');
         });
     }
 
@@ -32,5 +30,6 @@ return new class extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('nhacungcap');
     }
 };

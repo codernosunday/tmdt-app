@@ -1,0 +1,73 @@
+.product-image {
+    max-width: 100px;
+    height: auto;
+}
+
+.table-responsive {
+    margin: 20px 0;
+}
+
+.summary {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* CSS cho hiệu ứng hover */
+.table tbody tr:hover {
+    background-color: #d5d5d5;
+    /* Đổi màu chữ thành trắng để dễ đọc */
+    transition: background-color 0.2s ease;
+    /* Hiệu ứng chuyển màu mượt mà */
+}
+
+//chi tiet san phẩm
+.form-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}
