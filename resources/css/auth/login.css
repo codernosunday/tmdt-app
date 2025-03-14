@@ -228,3 +228,24 @@ i {
         width: 100%;
     }
 }
+
+.resend-code {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.resend-code:hover{
+    color: #007bff;
+}
+
+.resend-code:hover span{
+    text-decoration: underline;
+}
+
+
+.resend-code i{
+    margin-right: 5px;
+}

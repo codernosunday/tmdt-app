@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\BlogController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamComtroller;
-
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,30 @@ Route::get('/aboutus', [AboutusController::class, 'aboutus']) -> name('aboutus')
 Route::get('/offer', [AboutusController::class, 'offer']) -> name('offer');
 Route::get('/service', [AboutusController::class, 'service']) -> name('service');
 Route::get('/login', [HomePagesController::class, 'loginPage']);
+Route::get('/register', [HomePagesController::class, 'registerPage']);
+Route::get('/verify', [HomePagesController::class, 'verifyPage']);
+
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+//admin 
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+
+
+
+
+
+
+
+//admin
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamComtroller::class, 'pagesQLchitietsanpham']);
+
+Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
+Route::get('/administrator/themsanpham', [QLsanphamComtroller::class, 'pagesthemsanpham']);
+Route::post('/administrator/themspmoi', [QLsanphamComtroller::class, 'postthemsanpham']);

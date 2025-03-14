@@ -4,8 +4,7 @@
             <div class="col-md-3">
                 <div class="footer-menu">
                     <img src="{{asset('logobannermain.png')}}" alt="logo">
-                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand
-                        offers.</p>
+                    <p class="blog-paragraph fs-6 mt-3">Đăng ký nhận bản tin của chúng tôi để cập nhật những ưu đãi hấp dẫn.</p>
                     <div class="social-links">
                         <ul class="d-flex list-unstyled gap-2">
                             <li class="social">
@@ -33,14 +32,13 @@
                                     <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="footer-menu">
-                    <h3>Quick Links</h3>
+                    <h3>Liên kết nhanh</h3>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
                             <a href="{{ Route('shop') }}" class="nav-link">Trang chủ</a>
@@ -60,41 +58,39 @@
             </div>
             <div class="col-md-3">
                 <div class="footer-menu">
-                    <h3>Help Center</h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="menu-item">
-                                <a href="#" class="nav-link">FAQs</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="nav-link">Payment</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="nav-link">Returns & Refunds</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="nav-link">Checkout</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="nav-link">Delivery Information</a>
-                            </li>
-                        </ul>
+                    <h3>Trung tâm hỗ trợ</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Câu hỏi thường gặp</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Thanh toán</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Hoàn trả & hoàn tiền</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Thanh toán đơn hàng</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Thông tin giao hàng</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-3">
                 <div>
-                    <h3>Our Newsletter</h3>
-                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand
-                        offers.</p>
+                    <h3>Bản tin của chúng tôi</h3>
+                    <p class="blog-paragraph fs-6">Đăng ký nhận bản tin để không bỏ lỡ các ưu đãi đặc biệt.</p>
                     <div class="search-bar border rounded-pill border-dark-subtle px-2">
                         <form class="text-center d-flex align-items-center" action="" method="">
                             <input type="text" class="form-control border-0 bg-transparent"
-                                placeholder="Enter your email here" />
+                                placeholder="Nhập email của bạn" />
                             <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </footer>
