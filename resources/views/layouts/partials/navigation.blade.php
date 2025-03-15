@@ -42,7 +42,7 @@
             </div>
             <div
                 class="col-sm-8 col-lg-4 d-flex justify-content-end gap-4 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-                <div class="support-box text-end d-none d-xl-block d-xxl-none">
+                <div class="support-box text-end d-none d-xl-block">
                     <span class="fs-6 secondary-font text-muted">Hotline:</span>
                     <h5 class=" mb-0">09399689919</h5>
                 </div>
@@ -107,7 +107,7 @@
 
                 <div class="offcanvas-body justify-content-between">
                     <select class="filter-categories border-0 mb-0 me-5">
-                        <option>Shop by Category</option>
+                        <option>Danh mục</option>
                         @foreach ($danhMucSp as $i)
                             <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
                         @endforeach

@@ -62,16 +62,3 @@
 <!-- Include Swiper.js -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<script>
-    var swiper = new Swiper('.main-swiper', {
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        autoplay: {
-            delay: 5000,
-        },
-        loop: true,
-    });
-</script>

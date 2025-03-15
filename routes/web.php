@@ -10,6 +10,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,8 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 //admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-
+// New route for danhmuc category
+Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
 
 
 
