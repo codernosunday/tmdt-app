@@ -11,8 +11,8 @@ use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
 
 
+use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +30,19 @@ Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+
 Route::get('/login', [HomePagesController::class, 'loginPage']);
+Route::get('/register', [HomePagesController::class, 'registerPage']);
+Route::get('/verify', [HomePagesController::class, 'verifyPage']);
+
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+//admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 
