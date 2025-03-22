@@ -117,8 +117,8 @@ CSS STRUCTURE:
 
 /* Fonts */
 :root {
-    --body-font: 'Chilanka', cursive;
-    --heading-font: 'Chilanka', cursive;
+    --body-font: 'Arial';
+    --heading-font: 'Arial';
     --secondary-font: 'Montserrat', sans-serif;
 }
 
@@ -135,7 +135,7 @@ body {
 
     --bs-light-rgb: 248, 248, 248;
 
-    --bs-font-sans-serif: 'Chilanka', cursive;
+    --bs-font-sans-serif: 'Arial';
     --bs-body-font-family: var(--bs-font-sans-serif);
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;

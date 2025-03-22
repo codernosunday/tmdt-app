@@ -8,7 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
-use App\Http\Controllers\QLsanphamComtroller;
+use App\Http\Controllers\QLsanphamController;
 
 
 use App\Http\Controllers\AdminController;
@@ -43,7 +43,7 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 //admin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamComtroller::class, 'pagesQLchitietsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
-Route::get('/administrator/themsanpham', [QLsanphamComtroller::class, 'pagesthemsanpham']);
-Route::post('/administrator/themspmoi', [QLsanphamComtroller::class, 'postthemsanpham']);
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
+Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);

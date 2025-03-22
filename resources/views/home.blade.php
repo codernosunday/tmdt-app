@@ -3,7 +3,7 @@
 @section('title', 'Trang chủ')
     @include('components.banner')
     @include('components.listsanpham')
-    <section id="foodies" class="my-5">
+    {{-- <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
             <div class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
@@ -28,8 +28,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                    New
-                                                  </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item9.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -106,8 +106,8 @@
 
                 <div class="item dog col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                    New
-                                                  </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item11.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -184,8 +184,8 @@
 
                 <div class="item bird col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                    New
-                                                  </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item13.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -223,8 +223,8 @@
 
                 <div class="item bird col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                    New
-                                                  </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item14.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -301,8 +301,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                    New
-                                                  </div> -->
+                                                        New
+                                                      </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="images/item16.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
@@ -449,8 +449,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                              New
-                                                                                            </div> -->
+                                                                                                  New
+                                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item5.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -487,8 +487,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                              New
-                                                                                            </div> -->
+                                                                                                  New
+                                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item6.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -562,8 +562,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                              New
-                                                                                            </div> -->
+                                                                                                  New
+                                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -638,8 +638,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                              New
-                                                                                            </div> -->
+                                                                                                  New
+                                                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4"
                                     alt="image"></a>
@@ -908,5 +908,5 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
