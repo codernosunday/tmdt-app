@@ -1,9 +1,19 @@
-@vite('resources/scss/quanlysanpham.scss', 'resources/js/adminscript/qlsanpham.js')
+@vite(['resources/scss/quanlysanpham.scss', 'resources/js/adminscript/updateSanpham.js'])
 @include('admin.adminlayout.meta_admin')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="form-container">
     <h2>Chỉnh sửa sản phẩm</h2>
     <form>
         <img src="{{$sp->anh}}" alt="{{$sp->tensp}}" width="100" height="100">
+        <div class="form-group">
+            <label for="danhmuc">Danh mục</label>
+            <select id="danhmuc" name="danhmuc">
+                @foreach ($danhmuc as $dmc)
+                    <option value="{{$dmc->id_ctdm}}" {{$sp->id_ctdm == $dmc->id_ctdm ? 'selected' : '' }}>{{$dmc->ten}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <div class="form-group">
             <label for="anh">Hình ảnh sản phẩm</label>
             <input type="text" id="anh" name="anh" value="{{$sp->anh}}">
@@ -28,14 +38,15 @@
         <h2>Chỉnh sửa Chi tiết sản phẩm</h2>
         <div class="form-group">
             <label for="productWidth">Thương hiệu</label>
-            <input type="text" id="thuonghieu" name="thuonghieu" placeholder="Thiên Long" value="{{$ctsp->thuonghieu}}">
+            <input type="text" id="thuonghieu" name="thuonghieu" value="{{$ctsp->thuonghieu}}" placeholder="Thiên Long">
         </div>
         <div class="form-group">
-            <label for="productWidth">Số lượng trong kho</label>
-            <input type="text" id="soluong" name="soluong" placeholder="Số lượng có trong kho" value={{$nhap->soluong}}>
+            <label for="soluong">Số lượng trong kho</label>
+            <input type="number" id="soluong" name="soluong" value="{{$nhap->soluong}}"
+                placeholder="Số lượng có trong kho">
         </div>
         <div class="form-group">
-            <label for="productColor">Màu sắc</label>
+            <label for="mausac">Màu sắc</label>
             @php
                 $colors = [
                     'red' => 'Đỏ',
@@ -48,59 +59,56 @@
                 ];
                 $selectedColor = $ctsp->mausac; // Giá trị được chọn
             @endphp
-            <select id="productColor" name="productColor">
+            <select id="mausac" name="mausac">
                 @foreach($colors as $value => $label)
                     <option value="{{ $value }}" {{ $selectedColor == $value ? 'selected' : '' }}>{{ $label }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="productWidth">Mã màu sắc</label>
+            <label for="mamau">Mã màu sắc</label>
             <input type="text" id="mamau" name="mamau" placeholder="#FFFFFF,#00000">
         </div>
         <div class="form-group">
-            <label for="productDescription">Đặt tính sản phẩm</label>
-            <textarea id="productDescription" name="productDescription" rows="7"
-                placeholder="Nhập mô tả sản phẩm"></textarea>
+            <label for="dattinh">Đặt tính sản phẩm</label>
+            <textarea id="dattinh" name="dattinh" rows="7" placeholder="Nhập mô tả sản phẩm"></textarea>
         </div>
         <div class="form-group">
-            <label for="productWidth">Kích thước</label>
-            <input type="text" id="kichthuoc" name="productWidth" placeholder="100mmx200mm">
+            <label for="kichthuoc">Kích thước</label>
+            <input type="text" id="kichthuoc" name="kichthuoc" placeholder="100mmx200mm">
         </div>
         <div class="form-group">
-            <label for="productWidth">Độ dày (mm)</label>
-            <input type="number" id="doday" name="productWidth" placeholder="0.03mm">
+            <label for="doday">Độ dày (mm)</label>
+            <input type="number" id="doday" name="doday" placeholder="0.03mm">
         </div>
         <div class="form-group">
-            <label for="productWidth">Trọng lượng (gram)</label>
-            <input type="number" id="trongluong" name="productWidth" placeholder="3 gram">
+            <label for="trongluong">Trọng lượng (gram)</label>
+            <input type="number" id="trongluong" name="trongluong" placeholder="3 gram">
         </div>
         <div class="form-group">
-            <label for="productWidth">Số trang</label>
-            <input type="number" id="sotrang" name="productWidth" placeholder="Số trang">
+            <label for="sotrang">Số trang</label>
+            <input type="number" id="sotrang" name="sotrang" placeholder="Số trang">
         </div>
         <div class="form-group">
-            <label for="productWidth">Chiều rộng (cm)</label>
-            <input type="number" id="productWidth" name="productWidth" placeholder="Nhập chiều rộng">
+            <label for="chieurong">Chiều rộng (cm)</label>
+            <input type="number" id="chieurong" name="chieurong" placeholder="Nhập chiều rộng">
         </div>
         <div class="form-group">
-            <label for="productHeight">Chiều cao (cm)</label>
-            <input type="number" id="productHeight" name="productHeight" placeholder="Nhập chiều cao">
+            <label for="chieucao">Chiều cao (cm)</label>
+            <input type="number" id="chieucao" name="chieucao" placeholder="Nhập chiều cao">
         </div>
         <div class="form-group">
-            <label for="productPrice">Giá bán sản phẩm (VND)</label>
-            <input type="number" id="productPrice" name="productPrice" value="{{$ban->giaban}}"
-                placeholder="Nhập giá bán">
+            <label for="gianhap">Giá nhập kho (VND)</label>
+            <input type="number" id="gianhap" name="gianhap" value="{{$nhap->gianhap}}" placeholder="Nhập giá nhập kho">
         </div>
         <div class="form-group">
-            <label for="productCost">Giá nhập kho (VND)</label>
-            <input type="number" id="productCost" name="productCost" value="{{$nhap->gianhap}}"
-                placeholder="Nhập giá nhập kho">
+            <label for="giaban">Giá bán sản phẩm (VND)</label>
+            <input type="number" id="giaban" name="giaban" value="{{$ban->giaban}}" placeholder="Nhập giá bán">
         </div>
         <div class="form-group">
-            <label for="productDiscount">Giá khuyến mãi (VND)</label>
-            <input type="number" id="productDiscount" name="productDiscount" placeholder="Nhập giá khuyến mãi">
+            <label for="giasale">Giá khuyến mãi (VND)</label>
+            <input type="number" id="giasale" name="giasale" placeholder="Nhập giá khuyến mãi">
         </div>
-        <button type="button" class="btn-submit">Cập nhật</button>
+        <button type="button" onclick="updateData()" class="btn-submit">Cập nhật</button>
     </form>
 </div>

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('sotrang')->nullable();
             $table->string('thuonghieu')->nullable();
             $table->string('mausac')->nullable();
-            $table->string('mammau')->nullable();
+            $table->string('mamau')->nullable();
             $table->string('anhsp')->nullable();
             $table->string('dattinh', 500)->nullable();
             $table->timestamps();

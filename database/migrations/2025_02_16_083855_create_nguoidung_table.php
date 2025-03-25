@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('hovaten')->nullable();
             $table->string('username', 50)->unique(); // Username 50 ký tự, unique
             $table->string('password', 255);          // Password 50 ký tự
+            $table->string('maxacnhan', 10);
             $table->date('ngaysinh')->nullable();
             $table->string('soDT', 10)->nullable();  // SĐT tối đa 10 ký tự
             $table->string('mail')->unique();

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->increments('id_gianhap');
             $table->unsignedInteger('id_sp');
             $table->unsignedInteger('id_nhacungcap')->nullable();
+            $table->unsignedInteger('id_ctsp')->nullable();
             $table->float('gianhap')->nullable();
             $table->integer('soluong')->nullable();
             $table->timestamps();
@@ -28,6 +29,10 @@ return new class extends Migration
             $table->foreign('id_sp')
                 ->references('id_sp')
                 ->on('sanpham')
+                ->onDelete('cascade');
+            $table->foreign('id_ctsp')
+                ->references('id_ctsp')
+                ->on('chitietsanpham')
                 ->onDelete('cascade');
         });
     }

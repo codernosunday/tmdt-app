@@ -9,6 +9,7 @@ class gianhapModel extends Model
 {
     use HasFactory;
     protected $table = 'gianhap';
+    protected $primaryKey = 'id_gianhap';
     protected $fillable = [
         'id_sp',
         'id_nhacungcap',

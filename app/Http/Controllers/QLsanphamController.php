@@ -21,14 +21,113 @@ class QLsanphamController extends Controller
     }
     function pagesQLchitietsanpham($id_sp)
     {
+        $danhmuc = DanhmucconModel::all();
         $sp = SanphamModel::where('id_sp', $id_sp)->first();
         $ban = giabanModel::where('id_sp', $id_sp)->first();
         $nhap = gianhapModel::where('id_sp', $id_sp)->first();
         $ctsp = ChitietsanphamModel::where('id_sp', $id_sp)->first();
-        return view('admin.chitietsanpham', compact('sp', 'ban', 'nhap', 'ctsp'));
+        return view('admin.chitietsanpham', compact('sp', 'ban', 'nhap', 'ctsp', 'danhmuc'));
     }
 
-    function postQLchitietsanpham() {}
+    public function postcapnhatsanpham(Request $request)
+    {
+        try {
+            // Kiểm tra đầu vào
+            $validated = $request->validate([
+                'danhmuc' => 'required|integer',
+                'id_sp' => 'required|exists:sanpham,id_sp',
+                'tensp' => 'required|string|max:255',
+                'anh' => 'nullable|string|max:255',
+                'tomtatsp' => 'nullable|string',
+                'tinhtrang' => 'nullable|boolean',
+                'gianhap' => 'nullable|numeric|min:0',
+                'soluong' => 'nullable|integer|min:0',
+                'giaban' => 'nullable|numeric|min:0',
+            ]);
+
+            DB::beginTransaction();
+
+            // Kiểm tra sản phẩm tồn tại
+            $sanpham = SanphamModel::find($validated['id_sp']);
+            if (!$sanpham) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Sản phẩm không tồn tại!',
+                    'errors' => ['id_sp' => 'ID sản phẩm không hợp lệ.']
+                ], 404);
+            }
+            // Cập nhật sản phẩm
+            $sanpham->update([
+                'id_ctdm' => $validated['danhmuc'],
+                'tensp' => $validated['tensp'],
+                'anh' => $validated['anh'] ?? $sanpham->anh,
+                'tomtatsp' => $validated['tomtatsp'],
+                'tinhtrang' => $validated['tinhtrang']
+            ]);
+
+            // Cập nhật giá nhập
+            gianhapModel::updateOrCreate(
+                ['id_sp' => $validated['id_sp']],
+                [
+                    'gianhap' => $validated['gianhap'] ?? null,
+                    'soluong' => $validated['soluong'] ?? null
+                ]
+            );
+
+            // Cập nhật giá bán
+            giabanModel::updateOrCreate(
+                ['id_sp' => $validated['id_sp']],
+                ['giaban' => $validated['giaban'] ?? null]
+            );
+
+            // Cập nhật chi tiết sản phẩm
+            ChitietsanphamModel::updateOrCreate(
+                ['id_sp' => $validated['id_sp']],
+                [
+                    'chieurong' => $request->input('chieurong'),
+                    'chieucao' => $request->input('chieucao'),
+                    'doday' => $request->input('doday'),
+                    'soluong' => $validated['soluong'] ?? 0,
+                    'sotrang' => $request->input('sotrang'),
+                    'thuonghieu' => $request->input('thuonghieu'),
+                    'anhsp' => $validated['anh'] ?? $sanpham->anh,
+                    'mausac' => $request->input('mausac'),
+                    'mammau' => $request->input('mamau'),
+                    'dattinh' => $request->input('dattinh')
+                ]
+            );
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Sản phẩm được cập nhật thành công!',
+                'data' => $sanpham
+            ], 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Lỗi xác thực dữ liệu!',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Lỗi truy vấn database!',
+                'errors' => ['database' => $e->getMessage()]
+            ], 500);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Lỗi hệ thống!',
+                'errors' => ['system' => config('app.debug') ? $e->getMessage() : 'Có lỗi xảy ra, vui lòng thử lại.']
+            ], 500);
+        }
+    }
+
+
 
     function pagesthemsanpham()
     {

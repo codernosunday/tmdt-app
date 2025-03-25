@@ -1,5 +1,6 @@
 @vite(['resources/scss/quanlysanpham.scss', 'resources/js/adminscript/qlsanpham.js'])
 @include('admin.adminlayout.meta_admin')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="form-container">
     <h2>Chỉnh sửa sản phẩm</h2>
     <form>
@@ -37,7 +38,7 @@
             <input type="number" id="soluong" name="soluong" placeholder="Số lượng có trong kho">
         </div>
         <div class="form-group">
-            <label for="productColor">Màu sắc</label>
+            <label for="mausac">Màu sắc</label>
             <select id="mausac" name="mausac">
                 <option value="red">Đỏ</option>
                 <option value="blue">Xanh dương</option>

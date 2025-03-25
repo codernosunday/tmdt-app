@@ -52,9 +52,10 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 
 
-//admin
+//admin- Vo Thanh Tin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
 Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
 Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
+Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
