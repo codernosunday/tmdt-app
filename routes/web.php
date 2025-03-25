@@ -13,6 +13,7 @@ use App\Http\Controllers\QLsanphamController;
 
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,14 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', [HomePagesController::class, 'home'])->name('home');
-Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
-Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
-
+Route::get('/', [HomePagesController::class, 'home']) -> name('home');
+Route::get('/blog', [BlogController::class, 'blog']) -> name('blog');
+Route::get('/contact', [ContactController::class, 'contact']) -> name('contact');
+Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
+Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
+Route::get('/aboutus', [AboutusController::class, 'aboutus']) -> name('aboutus');
+Route::get('/offer', [AboutusController::class, 'offer']) -> name('offer');
+Route::get('/service', [AboutusController::class, 'service']) -> name('service');
 Route::get('/login', [HomePagesController::class, 'loginPage']);
 Route::get('/register', [HomePagesController::class, 'registerPage']);
 Route::get('/verify', [HomePagesController::class, 'verifyPage']);
@@ -45,7 +48,8 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 //admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-
+// New route for danhmuc category
+Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
 
 
 
