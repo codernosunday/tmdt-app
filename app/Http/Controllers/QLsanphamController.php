@@ -146,16 +146,7 @@ class QLsanphamController extends Controller
                 'tinhtrang' => $request->input('tinhtrang')
             ]);
             $id_sp = $sanpham->id_sp;
-            gianhapModel::create([
-                'id_sp' => $id_sp,
-                'gianhap' => $request->input('gianhap'),
-                'soluong' => $request->input('soluong')
-            ]);
-            giabanModel::create([
-                'id_sp' => $id_sp,
-                'giaban' => $request->input('giaban')
-            ]);
-            ChitietsanphamModel::create([
+            $ctsp = ChitietsanphamModel::create([
                 'id_sp' => $id_sp,
                 'chieurong' => $request->input('chieurong'),
                 'chieucao' => $request->input('chieucao'),
@@ -167,6 +158,16 @@ class QLsanphamController extends Controller
                 'mausac' => $request->input('mausac'),
                 'mammau' => $request->input('mamau'),
                 'dattinh' => $request->input('mamau')
+            ]);
+            $id_ctsp = $ctsp->id_ctsp;
+            gianhapModel::create([
+                'id_sp' => $id_sp,
+                'gianhap' => $request->input('gianhap'),
+                'soluong' => $request->input('soluong')
+            ]);
+            giabanModel::create([
+                'id_sp' => $id_sp,
+                'giaban' => $request->input('giaban')
             ]);
             DB::commit();
             return response()->json([
