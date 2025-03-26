@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('thuoctinhsanpham', function (Blueprint $table) {
             $table->increments('id_thuoctinh');
             $table->string('loai');
+            $table->string('danhsachspgoiy');
             $table->string('mota')->nullable();
             $table->timestamps();
         });

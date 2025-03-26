@@ -1,9 +1,9 @@
+//
 const danhmuc = document.getElementById('danhmuc');
-let chondm = 1;
+let chondm = danhmuc.value;
 danhmuc.addEventListener('change', function () {
     chondm = danhmuc.value;
 });
-//
 const anh = document.getElementById('anh');
 const tensp = document.getElementById('tensp');
 const tomtatsp = document.getElementById('tomtatsp');
@@ -24,11 +24,22 @@ const chieucao = document.getElementById('chieucao');
 const gianhap = document.getElementById('gianhap');
 const giaban = document.getElementById('giaban');
 const giasale = document.getElementById('giasale')
-console.log(tensp.value)
-//object san pham
-window.sendData = function () {
+
+window.updateData = function () {
+    // Lấy id từ URL
+    const path = window.location.pathname;
+    const parts = path.split('/');
+    const id = parts[parts.length - 1];
+
+    // Kiểm tra xem id có hợp lệ không
+    if (!id || isNaN(id)) {
+        console.error('ID không hợp lệ');
+        alert('ID không hợp lệ');
+        return;
+    }
     const sanpham = {
         danhmuc: chondm,
+        id_sp: id,
         tensp: tensp.value,
         tomtatsp: tomtatsp.value,
         tinhtrang: tinhtrang.checked,
@@ -40,7 +51,7 @@ window.sendData = function () {
         mamau: mamau.value,
         dattinh: dattinh.value,
         kichthuoc: kichthuoc.value,
-        doday: doday.doday,
+        doday: doday.value,
         trongluong: trongluong.value,
         sotrang: sotrang.value,
         chieurong: chieurong.value,
@@ -48,7 +59,9 @@ window.sendData = function () {
         giasale: giasale.value,
         giaban: giaban.value,
     };
-    fetch('/administrator/themspmoi', {
+    console.log(JSON.stringify(sanpham))
+    // Gửi yêu cầu POST
+    fetch('/administrator/capnhatsp/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -56,11 +69,22 @@ window.sendData = function () {
         },
         body: JSON.stringify(sanpham),
     })
-        .then(response => response.json())
-        .then(data => {
-            window.location.reload();
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            if (status !== 200) {
+                console.error("Lỗi từ server:", body);
+                let errorMessage = body.message || "Có lỗi xảy ra!";
+                if (body.errors) {
+                    errorMessage += "\n" + Object.values(body.errors).flat().join("\n");
+                }
+                alert(errorMessage);
+                throw new Error(errorMessage);
+            }
+
+            alert(body.message);
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error("Lỗi:", error);
+            alert(error.message || "Đã xảy ra lỗi không xác định!");
         });
-}
+};

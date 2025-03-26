@@ -16,9 +16,14 @@ return new class extends Migration
         //
         Schema::create('giaban', function (Blueprint $table) {
             $table->increments('id_giaban');
-            $table->unsignedInteger('id_sp');
+            $table->unsignedInteger('id_sp')->nullable();
             $table->float('giaban')->nullable();
+            $table->unsignedInteger('id_ctsp')->nullable();
             $table->timestamps();
+            $table->foreign('id_ctsp')
+                ->references('id_ctsp')
+                ->on('chitietsanpham')
+                ->onDelete('cascade');
             $table->foreign('id_sp')
                 ->references('id_sp')
                 ->on('sanpham')
