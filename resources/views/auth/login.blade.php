@@ -1,4 +1,4 @@
-@vite(['resources/css/auth/auth.css'])
+@vite(['resources/css/auth/login.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 
@@ -25,8 +25,7 @@
                         </button>
                         <button class="btn text-white border-0 w-100"
                             style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Log
-                                in with Facebook</span>
+                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Đăng nhập với Facebook</span>
                         </button>
                     </div>
 

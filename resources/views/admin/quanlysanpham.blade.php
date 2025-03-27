@@ -1,4 +1,3 @@
-
 @vite('resources/scss/quanlysanpham.scss')
 @extends('admin.adminlayout.layout_admin')
 @section('content')
@@ -37,8 +36,4 @@
             </table>
         </div>
     </div>
-@extends('admin.adminlayout.layout_admin')
-@section('content')
-@section('title', 'Quản lý sản phẩm')
-    <h1>asssssssssssssssssssss</h1>
 @endsection

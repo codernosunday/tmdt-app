@@ -20,7 +20,6 @@ class NguoidungModel extends Model
         'mail',
         'ngaytao',
         'quyentruycap',
-        'maxacnhan'
     ];
     public $timestamps = true;
     protected $dates = ['ngaysinh', 'ngaytao'];

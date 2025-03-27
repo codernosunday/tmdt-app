@@ -13,6 +13,21 @@ class HomePagesController extends Controller
         return view('home');
     }
 
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+
+    public function registerPage()
+    {
+        return view('auth.register');
+    }
+
+    public function verifyPage()
+    {
+        return view('auth.verify');
+    }
+
     public function locSPtheoDanhmuc($danhmuc)
     {
         if ($danhmuc != 0) {
