@@ -9,10 +9,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
-
-
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,18 +32,22 @@ Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
-Route::get('/login', [HomePagesController::class, 'loginPage']);
-Route::get('/register', [HomePagesController::class, 'registerPage']);
-Route::get('/verify', [HomePagesController::class, 'verifyPage']);
+Route::get('/login', [AuthController::class, 'loginPage']);
+Route::get('/register', [AuthController::class, 'registerPage']);
+Route::get('/verify', [AuthController::class, 'verifyPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+// Route::get('/verify', [AuthController::class, 'verifyPage']);
 
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
+
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-//admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 
@@ -59,3 +64,6 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
 Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
+
+Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -77,5 +78,6 @@ class QLsanphamComtroller extends Controller
                 'message' => $e,
             ], 500);
         }
+        return view('admin.quanlysanpham');
     }
 }
