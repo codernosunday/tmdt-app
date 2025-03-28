@@ -44,9 +44,7 @@ class QLsanphamController extends Controller
                 'soluong' => 'nullable|integer|min:0',
                 'giaban' => 'nullable|numeric|min:0',
             ]);
-
             DB::beginTransaction();
-
             // Kiểm tra sản phẩm tồn tại
             $sanpham = SanphamModel::find($validated['id_sp']);
             if (!$sanpham) {
@@ -64,22 +62,6 @@ class QLsanphamController extends Controller
                 'tomtatsp' => $validated['tomtatsp'],
                 'tinhtrang' => $validated['tinhtrang']
             ]);
-
-            // Cập nhật giá nhập
-            gianhapModel::updateOrCreate(
-                ['id_sp' => $validated['id_sp']],
-                [
-                    'gianhap' => $validated['gianhap'] ?? null,
-                    'soluong' => $validated['soluong'] ?? null
-                ]
-            );
-
-            // Cập nhật giá bán
-            giabanModel::updateOrCreate(
-                ['id_sp' => $validated['id_sp']],
-                ['giaban' => $validated['giaban'] ?? null]
-            );
-
             // Cập nhật chi tiết sản phẩm
             ChitietsanphamModel::updateOrCreate(
                 ['id_sp' => $validated['id_sp']],
@@ -92,9 +74,22 @@ class QLsanphamController extends Controller
                     'thuonghieu' => $request->input('thuonghieu'),
                     'anhsp' => $validated['anh'] ?? $sanpham->anh,
                     'mausac' => $request->input('mausac'),
-                    'mammau' => $request->input('mamau'),
+                    'mamau' => $request->input('mamau'),
                     'dattinh' => $request->input('dattinh')
                 ]
+            );
+            // Cập nhật giá nhập
+            gianhapModel::updateOrCreate(
+                ['id_sp' => $validated['id_sp']],
+                [
+                    'gianhap' => $validated['gianhap'] ?? null,
+                    'soluong' => $validated['soluong'] ?? null
+                ]
+            );
+            // Cập nhật giá bán
+            giabanModel::updateOrCreate(
+                ['id_sp' => $validated['id_sp']],
+                ['giaban' => $validated['giaban'] ?? null]
             );
 
             DB::commit();
@@ -156,16 +151,18 @@ class QLsanphamController extends Controller
                 'thuonghieu' => $request->input('thuonghieu'),
                 'anhsp' => $request->input('anh'),
                 'mausac' => $request->input('mausac'),
-                'mammau' => $request->input('mamau'),
+                'mamau' => $request->input('mamau'),
                 'dattinh' => $request->input('mamau')
             ]);
             $id_ctsp = $ctsp->id_ctsp;
             gianhapModel::create([
+                'id_ctsp' => $id_ctsp,
                 'id_sp' => $id_sp,
                 'gianhap' => $request->input('gianhap'),
                 'soluong' => $request->input('soluong')
             ]);
             giabanModel::create([
+                'id_ctsp' => $id_ctsp,
                 'id_sp' => $id_sp,
                 'giaban' => $request->input('giaban')
             ]);
