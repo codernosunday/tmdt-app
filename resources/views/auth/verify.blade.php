@@ -1,4 +1,4 @@
-@vite(['resources/css/auth/login.css', 'resources/css/app.css'])
+@vite(['resources/css/auth/auth.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 
@@ -20,11 +20,14 @@
                     <form method="POST" action="">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Mã xác nhận</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                                <input type="email" class="form-control border-0 shadow-none" name="email"
-                                    placeholder="Nhập mã xác nhận" required>
+                            <div class="otp-inputs">
+                                <input type="text" maxlength="1" class="otp-input"/>
+                                <input type="text" maxlength="1" class="otp-input" />
+                                <input type="text" maxlength="1" class="otp-input" />
+                                <input type="text" maxlength="1" class="otp-input" />
+                                <input type="text" maxlength="1" class="otp-input" />
+                                <input type="text" maxlength="1" class="otp-input" />
+                                <!-- <input type="hidden" maxlength="1" class="otp-input" /> -->
                             </div>
                         </div>
 
@@ -36,4 +39,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const otpInputs = document.querySelectorAll('.otp-input');
+        otpInputs[0].focus();
+        let fullInput = false;
+        otpInputs.forEach((otpInput, index) => {
+            otpInput.addEventListener('input', (e) => { 
+                if (!Number.isInteger(parseInt(e.data))) {
+                    otpInput.value='';
+                    return;
+                }
+
+                if (index === otpInputs.length - 1) {
+                    fullInput = true;
+                    return;
+                }
+
+                otpInputs[index + 1].focus();
+            });
+
+            otpInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace') {
+                    if (index === 0) {
+                        return;
+                    }
+
+                    if(fullInput) {
+                        console.log(index);
+                        otpInputs[otpInputs.length - 1].focus();
+                        fullInput = false;
+                        return;
+                    }else{
+                        otpInputs[index].value = '';
+                        otpInputs[index - 1].focus();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
