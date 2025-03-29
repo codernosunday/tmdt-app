@@ -35,9 +35,18 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::get('/register', [AuthController::class, 'registerPage']);
 Route::get('/verify', [AuthController::class, 'verifyPage']);
+
 // Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/register', [AuthController::class, 'register']);
 // Route::get('/verify', [AuthController::class, 'verifyPage']);
+Route::get('/password', [AuthController::class, 'passwordPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/verify', [AuthController::class, 'verify']);
+Route::post('/password', [AuthController::class, 'password']);
+Route::post('/login', [AuthController::class, 'login']);
+
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');

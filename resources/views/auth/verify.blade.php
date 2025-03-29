@@ -2,7 +2,12 @@
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 
-<body>
+@if (!session('email'))
+    <script>
+        window.location.href = "register";
+    </script>
+@else
+    <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Cột trái -->
@@ -13,27 +18,39 @@
                 </div>
             </div>
             <!-- Cột phải -->
-            <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="col-md-6 d-flex align-items-center justify-content-center col-right">
+                @if (session('success'))
+                    <div class="success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="error">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="w-75">
                     <h1>Nhập mã xác nhận.</h1>
+
+                    <span class="email">Kiểm tra email <span>{{ session('email') }}</span> để lấy mã xác nhận</span>
 
                     <form method="POST" action="">
                         @csrf
                         <div class="mb-3">
                             <div class="otp-inputs">
-                                <input type="text" maxlength="1" class="otp-input"/>
-                                <input type="text" maxlength="1" class="otp-input" />
-                                <input type="text" maxlength="1" class="otp-input" />
-                                <input type="text" maxlength="1" class="otp-input" />
-                                <input type="text" maxlength="1" class="otp-input" />
-                                <input type="text" maxlength="1" class="otp-input" />
-                                <!-- <input type="hidden" maxlength="1" class="otp-input" /> -->
+                                <input type="hidden" name="email" value="{{ session('email')  }}"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_1"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_2"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_3"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_4"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_5"/>
+                                <input type="text" maxlength="1" class="otp-input" name="number_6"/>
                             </div>
                         </div>
 
                         <p class="resend-code"><i class="fa-solid fa-arrow-right"></i><span>Gửi lại mã</span></p>
 
-                        <button type="submit" class="btn btn-danger w-100">Đăng kí</button>
+                        <button type="submit" class="btn btn-danger w-100">Gửi mã xác nhận</button>
                     </form>
                 </div>
             </div>
@@ -78,4 +95,18 @@
             });
         });
     </script>
+    <script>
+        var err = document.querySelector(".error");
+        var suc = document.querySelector(".success");
+        const timeout = setTimeout(()=>{
+            if(err){
+                err.style.display = "none";
+            }
+            if(suc){
+                suc.style.display = "none";
+            }
+        },3000);
+    </script>
 </body>
+@endif
+
