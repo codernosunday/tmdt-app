@@ -14,6 +14,16 @@
             </div>
             <!-- Cột phải -->
             <div class="col-md-6 d-flex align-items-center justify-content-center">
+                  @if (session('success'))
+                        <div class="success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="error">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 <div class="w-75">
                     <h1>Đăng nhập.</h1>
                     <p style="font-size: 1.2rem;">Bạn chưa có tài khoản? <a href="/register">Đăng kí</a></p>
@@ -66,4 +76,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var err = document.querySelector(".error");
+        var suc = document.querySelector(".success");
+        const timeout = setTimeout(()=>{
+            if(err){
+                err.style.display = "none";
+            }
+            if(suc){
+                suc.style.display = "none";
+            }
+        },3000);
+    </script>
 </body>
