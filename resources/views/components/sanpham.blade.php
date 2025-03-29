@@ -2,9 +2,7 @@
 <div class="isotope-container row">
     @foreach ($sp as $s)
         <div class="col-md-4 col-lg-3 my-4">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                                                                        New
-                                                                                                                                      </div> -->
+            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">New</div>
             <div class="card position-relative">
                 <a href="/sanpham/{{$s->tensp}}/{{$s->id_sp}}"><img src="{{$s->anh}}" class="img-fluid rounded-4 w-50 h-50"
                         alt="image"></a>

@@ -1,0 +1,76 @@
+.category-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.category-wrapper {
+    overflow: hidden;
+    width: 500px;
+    /* Chỉ hiển thị 5 mục */
+}
+
+.category-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
+    min-width: fit-content;
+    // gap: auto;
+}
+
+.category-item {
+    flex: 0 0 auto;
+    width: 70px;
+    /* Định nghĩa chiều rộng cố định */
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    white-space: nowrap;
+    /* Ngăn chữ xuống dòng */
+    margin-left: 20px;
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+////
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 5px;
+}
+
+.pagination .active span {
+    background-color: #a00;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
