@@ -18,7 +18,17 @@ class ShopController extends Controller
     {
         $dm = DanhmucsanphamModel::all();
         $danhmuccon = DanhmucconModel::all();
-        $sp = SanphamModel::all();
+        $sp = SanphamModel::with('giaban')->get();
         return view('shop', compact('dm', 'danhmuccon', 'sp'));
+    }
+    //loc theo danh muc
+    public function locSP($danhmuc)
+    {
+        if ($danhmuc != 0) {
+            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(8)->get();;
+        } else {
+            $sp = SanphamModel::limit(8)->get();
+        }
+        return view('components.sanpham', compact('sp'));
     }
 }

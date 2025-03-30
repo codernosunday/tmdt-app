@@ -1,56 +1,122 @@
-@vite(['resources/js/listspscript/listsp.js'])
+@vite(['resources/js/shop.js'])
 @vite(['resources/scss/shop.scss'])
 @extends('layouts.app')
 @section('content')
 @section('title', 'Văn Phòng Phẩm')
-    <section id="foodies" class="my-5">
-        <div class="container my-5 py-5">
+    <section id="sp">
+        <div class="container">
             <div class="section-header d-md-flex justify-content-between align-items-center">
                 <div class="mb-4 mb-md-0">
                     <div class="container mt-3 text-center">
-                        <div class="container mt-3 text-center">
-                            <select id="Danhmuc" class="form-select" aria-label="Default select example">
-                                <option selected value={{0}}>All</option>
+                        <div class="d-flex align-items-center gap-2">
+                            <select id="danhmuc" name="danhmuc" class="custom-select" aria-label="Default select example">
+                                <option selected value="0">Tất cả</option>
                                 @foreach ($danhmuccon as $dmc)
-                                    <option value="{{$dmc->id_ctdm}}">{{$dmc->ten}}</option>
+                                    <option value="{{ $dmc->id_ctdm }}">{{ $dmc->ten }}</option>
                                 @endforeach
                             </select>
+                            <!-- Nút lọc -->
+                            <div class="container  text-center">
+                                <button class="btn btn-outline-primary" id="toggleFilter"> <i class="bi bi-funnel-fill"></i>
+                                    Lọc
+                                    sản phẩm</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-            <div class="isotope-container row">
-                @foreach ($sp as $s)
-                        <div class="col-md-4 col-lg-3 my-4"> </div>
-                        <div class="card position-relative">
-                            <a href="/sanpham/{{$s->tensp}}/{{$s->id_sp}}"><img src="{{$s->anh}}"
-                                    class="img-fluid rounded-4 w-50 h-50" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="/sanpham/{{$s->tensp}}/{{$s->id_sp}}">
-                                    <h5 class="card-title pt-4 m-0">{{$s->tensp}}</h5>
-                                </a>
-                                <div class="card-text">
-                                    <h3 class="secondary-font text-primary">{{$s->tomtatsp}} VNĐ</h3>
+        </div>
+        <!-- Bộ lọc sản phẩm (Ẩn mặc định) -->
+        <div class="container mt-4 filter-box" id="filterBox">
+            <div class="card p-3">
+                <h4 class="mb-3">Lọc sản phẩm</h4>
 
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="/sanpham/{{$s->tensp}}/{{$s->id_sp}}" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Xem sản phẩm</h5>
-                                        </a>
-                                        <a href="/sanpham/{{$s->tensp}}/{{$s->id_sp}}" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Lọc theo giá -->
+                <div class="mb-3">
+                    <h5>Giá</h5>
+                    <div class="form-check">
+                        <input class="check-input" type="radio" name="locgia" id="priceLowHigh">
+                        <label class="form-check-label" for="priceLowHigh">Thấp → Cao</label>
                     </div>
-                @endforeach
-            @if ($sp instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                <div class="d-flex justify-content-center">
-                    {{ $sp->links('pagination::bootstrap-4') }}
+                    <div class="form-check">
+                        <input class="check-input" type="radio" name="locgia" id="priceHighLow">
+                        <label class="form-check-label" for="priceHighLow">Cao → Thấp</label>
+                    </div>
                 </div>
-            @endif
+
+                <!-- Lọc theo chữ cái -->
+                <div class="mb-3">
+                    <h5>Tên sản phẩm</h5>
+                    <div class="form-check">
+                        <input class="check-input" type="radio" name="Tensanpham" id="nameAZ">
+                        <label class="form-check-label" for="nameAZ">A → Z</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="radio" name="Tensanpham" id="nameZA">
+                        <label class="form-check-label" for="nameZA">Z → A</label>
+                    </div>
+                </div>
+                <!-- Gía bán sản phẩm -->
+                <div class="mb-3">
+                    <h5>Phân khúc giá</h5>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="gia1">
+                        <label class="form-check-label" for="gia1">Dưới 50.000 VNĐ</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="gia2">
+                        <label class="form-check-label" for="brand2">Từ 50.000 VNĐ - 200.000 VNĐ</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="gia3">
+                        <label class="form-check-label" for="gia3">Từ 200.000 VNĐ - 1.000.000 VNĐ</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="gia4">
+                        <label class="form-check-label" for="gia4">Trên 1.000.000 VNĐ </label>
+                    </div>
+                </div>
+                <!-- Lọc theo thương hiệu -->
+                <div class="mb-3">
+                    <h5>Thương hiệu</h5>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="brand1">
+                        <label class="form-check-label" for="brand1">Thiên Long</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="brand2">
+                        <label class="form-check-label" for="brand2">Flex Office</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="check-input" type="checkbox" id="brand3">
+                        <label class="form-check-label" for="brand3">Color Kid</label>
+                    </div>
+                </div>
+
+                <!-- Lọc theo màu sắc -->
+                <div class="mb-3">
+                    <h5>Màu sắc</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <label class="color-box" style="background: red;">
+                            <input type="checkbox" hidden>
+                        </label>
+                        <label class="color-box" style="background: blue;">
+                            <input type="checkbox" hidden>
+                        </label>
+                        <label class="color-box" style="background: green;">
+                            <input type="checkbox" hidden>
+                        </label>
+                        <label class="color-box" style="background: black;">
+                            <input type="checkbox" hidden>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
+
+        <div id="listsanpham"></div>
     </section>
+
+
 @endsection

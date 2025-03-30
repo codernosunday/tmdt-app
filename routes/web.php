@@ -58,5 +58,7 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
 Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamComtroller::class, 'pagesQLsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+//shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
