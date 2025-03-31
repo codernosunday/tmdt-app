@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('bangdanhmuc', function (Blueprint $table) {
             $table->increments('id_ctdm');
-            $table->unsignedInteger('id_dm');
+            $table->unsignedInteger('id_dm')->nullable();
             // Các cột khác
             $table->string('ten')->nullable();
-            $table->string('ghichu')->nullable();
+            $table->text('ghichu')->nullable();
             // created_at & updated_at:
             $table->timestamps();
             //
