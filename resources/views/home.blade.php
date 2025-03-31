@@ -3,7 +3,7 @@
 @section('title', 'Trang chủ')
     @include('components.banner')
     @include('components.listsanpham')
-    {{-- <section id="foodies" class="my-5">
+    <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
             <div class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
@@ -907,5 +907,5 @@
                 </a>
             </div>
         </div>
-    </section> --}}
+    </section>
 @endsection

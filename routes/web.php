@@ -38,7 +38,8 @@ Route::get('/login', [HomePagesController::class, 'loginPage']);
 Route::get('/register', [HomePagesController::class, 'registerPage']);
 Route::get('/verify', [HomePagesController::class, 'verifyPage']);
 
-Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
+//Phuc: change the category route
+Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');

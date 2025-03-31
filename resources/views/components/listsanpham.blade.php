@@ -10,6 +10,7 @@
         background: #fff;
         border-radius: 10px;
     }
+
     .category-item {
         display: flex;
         flex-direction: column;
@@ -22,15 +23,18 @@
         transition: transform 0.3s;
         background: #fff;
     }
+
     .category-item:hover {
         transform: scale(1.05);
     }
+
     .category-item img {
         max-width: 100%;
         height: auto;
         border-radius: 50%;
         margin-bottom: 10px;
     }
+
     .category-item span {
         display: block;
         font-size: 1rem;
@@ -44,9 +48,12 @@
         <h2 class="display-3 fw-normal text-center mb-5">DANH MỤC</h2>
         <div class="category-grid">
             @foreach ($danhmuccon as $dmc)
-                <a href="{{ route('danhmuc', ['slug' => $dmc->slug]) }}" class="category-item d-flex flex-column align-items-center justify-content-center" onclick="event.preventDefault(); changeCategory('{{ $dmc->slug }}');">
-                    <img src="{{ $dmc->image_url }}" alt="{{ $dmc->ten }}">
-                    <span>{{ $dmc->ten }}</span>
+                <a href="{{ $dmc->slug ? route('danhmuc', ['slug' => $dmc->slug]) : '#' }}"
+                    class="category-item d-flex flex-column align-items-center justify-content-center"
+                    onclick="{{ $dmc->slug ? "event.preventDefault(); changeCategory('$dmc->slug');" : 'return false;' }}">
+                    <img src="{{ $dmc->image_url ?? 'default-image.jpg' }}" alt="{{ $dmc->ten ?? 'No Name' }}"
+                        loading="lazy">
+                    <span>{{ $dmc->ten ?? 'Unnamed Category' }}</span>
                 </a>
             @endforeach
         </div>
