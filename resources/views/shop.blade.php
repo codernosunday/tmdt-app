@@ -61,36 +61,36 @@
                 <div class="mb-3">
                     <h5>Phân khúc giá</h5>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="gia1">
-                        <label class="form-check-label" for="gia1">Dưới 50.000 VNĐ</label>
+                        <input class="check-input" type="checkbox" id="duoi50k">
+                        <label class="form-check-label" for="duoi50k">Dưới 50.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="gia2">
-                        <label class="form-check-label" for="brand2">Từ 50.000 VNĐ - 200.000 VNĐ</label>
+                        <input class="check-input" type="checkbox" id="50k_200k">
+                        <label class="form-check-label" for="50k_200k">Từ 50.000 VNĐ - 200.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="gia3">
-                        <label class="form-check-label" for="gia3">Từ 200.000 VNĐ - 1.000.000 VNĐ</label>
+                        <input class="check-input" type="checkbox" id="200k_100m">
+                        <label class="form-check-label" for="100m">Từ 200.000 VNĐ - 1.000.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="gia4">
-                        <label class="form-check-label" for="gia4">Trên 1.000.000 VNĐ </label>
+                        <input class="check-input" type="checkbox" id="100m">
+                        <label class="form-check-label" for="100m">Trên 1.000.000 VNĐ </label>
                     </div>
                 </div>
                 <!-- Lọc theo thương hiệu -->
                 <div class="mb-3">
                     <h5>Thương hiệu</h5>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="brand1">
-                        <label class="form-check-label" for="brand1">Thiên Long</label>
+                        <input class="check-input" type="checkbox" id="thienlong">
+                        <label class="form-check-label" for="thienlong">Thiên Long</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="brand2">
-                        <label class="form-check-label" for="brand2">Flex Office</label>
+                        <input class="check-input" type="checkbox" id="FlexOffice">
+                        <label class="form-check-label" for="FlexOffice">Flex Office</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="brand3">
-                        <label class="form-check-label" for="brand3">Color Kid</label>
+                        <input class="check-input" type="checkbox" id="ColorKid">
+                        <label class="form-check-label" for="ColorKid">Color Kid</label>
                     </div>
                 </div>
 

@@ -22,10 +22,14 @@ return new class extends Migration
             $table->float('doday')->nullable();
             $table->integer('soluong')->nullable();
             $table->integer('sotrang')->nullable();
+            $table->string('tenchitiet')->nullable();
             $table->string('thuonghieu')->nullable();
+            $table->string('xuatsu')->nullable();
+            $table->string('sanxuat')->nullable();
+            $table->string('khuyencao')->nullable();
             $table->string('mausac')->nullable();
             $table->string('mamau')->nullable();
-            $table->string('anhsp')->nullable();
+            $table->text('anhsp')->nullable();
             $table->string('dattinh', 500)->nullable();
             $table->timestamps();
             $table->foreign('id_sp')

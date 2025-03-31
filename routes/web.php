@@ -74,3 +74,4 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
+//shop-locsanpham-------
