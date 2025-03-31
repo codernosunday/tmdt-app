@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
@@ -9,11 +10,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
-
-
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,27 +27,35 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [HomePagesController::class, 'home']) -> name('home');
-Route::get('/blog', [BlogController::class, 'blog']) -> name('blog');
-Route::get('/contact', [ContactController::class, 'contact']) -> name('contact');
-Route::get('/cart', [CartController::class, 'cart']) -> name('cart');
-Route::get('/shop', [ShopController::class, 'shop']) -> name('shop');
-Route::get('/aboutus', [AboutusController::class, 'aboutus']) -> name('aboutus');
-Route::get('/offer', [AboutusController::class, 'offer']) -> name('offer');
-Route::get('/service', [AboutusController::class, 'service']) -> name('service');
-Route::get('/login', [HomePagesController::class, 'loginPage']);
-Route::get('/register', [HomePagesController::class, 'registerPage']);
-Route::get('/verify', [HomePagesController::class, 'verifyPage']);
+Route::get('/', [HomePagesController::class, 'home'])->name('home');
+Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+
+
+Route::get('/login', [AuthController::class, 'loginPage']);
+Route::get('/register', [AuthController::class, 'registerPage']);
+Route::get('/verify', [AuthController::class, 'verifyPage']);
+Route::get('/password', [AuthController::class, 'passwordPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+
+// Route::get('/verify', [AuthController::class, 'verifyPage']);
+Route::get('/password', [AuthController::class, 'passwordPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/verify', [AuthController::class, 'verify']);
+Route::post('/password', [AuthController::class, 'password']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //Phuc: change the category route
 Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-
-//admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 // New route for danhmuc category
@@ -64,3 +73,8 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
 Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+//shop - Vo Thanh Tin
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
+//shop-locsanpham-------

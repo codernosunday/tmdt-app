@@ -32,11 +32,8 @@ body {
 }
 
 /* Reset cơ bản */
-html,
 body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
+    position: relative;
 }
 
 /* Căn giữa nội dung theo chiều dọc */
@@ -194,6 +191,54 @@ i {
     height: 16px;
 }
 
+.error {
+    display: block;
+    position: absolute;
+    max-width: 600px;
+    min-width: 400px;
+    height: auto;
+    border: 2px solid #f00;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    text-align: center;
+    background: #f00;
+    padding: 10px;
+    color: #fff;
+    right: 0;
+    top: 50;
+    transform: translateX(-50%);
+}
+
+.success {
+    display: block;
+    position: absolute;
+    max-width: 600px;
+    min-width: 400px;
+    height: auto;
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    text-align: center;
+    background: #0f0;
+    padding: 10px;
+    color: #fff;
+    top: 50;
+}
+
+.col-right {
+    position: relative;
+}
+
+.email {
+    font-size: 1.15rem;
+    color: #a5a5a5;
+}
+
+.email > span {
+    color: #777;
+    font-weight: bold;
+}
+
 /* Nút đăng nhập */
 .btn-danger {
     background-color: #dc3545;
@@ -235,6 +280,7 @@ i {
     align-items: center;
     margin-bottom: 15px;
     cursor: pointer;
+    font-size: 1.05rem;
 }
 
 .resend-code:hover{
@@ -248,4 +294,30 @@ i {
 
 .resend-code i{
     margin-right: 5px;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 20px;
+}
+
+.otp-input {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

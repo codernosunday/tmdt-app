@@ -13,18 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('gianhap', function (Blueprint $table) {
-            $table->increments('id_gianhap');
+        Schema::create('giasale', function (Blueprint $table) {
+            $table->increments('id_giasale');
+            $table->unsignedInteger('id_giaban')->nullable();
             $table->unsignedInteger('id_sp')->nullable();
-            $table->unsignedInteger('id_nhacungcap')->nullable();
+            $table->unsignedInteger('id_dm')->nullable();
+            $table->unsignedInteger('id_ctdm')->nullable();
             $table->unsignedInteger('id_ctsp')->nullable();
-            $table->decimal('gianhap', 12, 2)->nullable();;
-            $table->integer('soluong')->nullable();
+            $table->decimal('giasale', 12, 3)->nullable();;
+            $table->timestamp('ketthuc')->nullable();
             $table->timestamps();
-            $table->foreign('id_nhacungcap')
-                ->references('id_nhacungcap')
-                ->on('nhacungcap')
+            $table->foreign('id_dm')
+                ->references('id_dm')
+                ->on('danhmucsanpham')
+                ->onDelete('cascade');
+            $table->foreign('id_ctdm')
+                ->references('id_ctdm')
+                ->on('bangdanhmuc')
                 ->onDelete('cascade');
             $table->foreign('id_sp')
                 ->references('id_sp')
@@ -32,8 +37,10 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreign('id_ctsp')
                 ->references('id_ctsp')
-                ->on('chitietsanpham')
-                ->onDelete('cascade');
+                ->on('chitietsanpham');
+            $table->foreign('id_giaban')
+                ->references('id_giaban')
+                ->on('giaban');
         });
     }
 
@@ -45,6 +52,5 @@ return new class extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('gianhap');
     }
 };

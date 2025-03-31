@@ -22,8 +22,7 @@
         <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a class="nav-link {{ request() -> is('welcome') ? 'active' : '' }}" 
-                     href="/">
+                    <a class="nav-link {{ request()->is('welcome') ? 'active' : '' }}" href="/">
                         <img src="{{asset('logobannermain.png')}}" alt="logo" class="img-fluid">
                     </a>
                 </div>
@@ -78,7 +77,7 @@
                             aria-controls="offcanvasCart">
                             <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                             <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                03
+                                0
                             </span>
                         </a>
                     </li>
@@ -111,10 +110,6 @@
                         @foreach ($danhMucSp as $i)
                             <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
                         @endforeach
-                        {{-- <option>Clothes</option>
-                        <option>Food</option>
-                        <option>Food</option>
-                        <option>Toy</option> --}}
                     </select>
                     
 
@@ -136,17 +131,13 @@
                                     data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                                     <span
-                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2"
-                                    >
-                                        03
+                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                        0
                                     </span>
                                 </a>
                                 <div class="list-shopping-cart">
-                                    <img   
-                                        src="{{ asset('img/shopping-cart/shopping-cart.png') }}" 
-                                        alt="Giỏ hàng trống"
-                                        class="img-no-cart"
-                                    >
+                                    <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
+                                        alt="Giỏ hàng trống" class="img-no-cart">
                                     <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
                                 </div>
                             </li>
