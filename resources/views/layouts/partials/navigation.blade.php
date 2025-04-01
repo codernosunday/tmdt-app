@@ -1,20 +1,24 @@
+@vite(['resources/css/navigation/navigation.css'])
+
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
     <div class="offcanvas-header justify-content-center">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
 
-        <div class="order-md-last">
+        {{-- <div class="order-md-last">
             <h4 class="text-primary text-uppercase mb-3">
                 Tìm kiếm
             </h4>
-            <div class="search-bar border rounded-2 border-dark-subtle">
-                <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent " placeholder="Tìm kiếm sản phẩm" />
-                    <iconify-icon icon="tabler: search" class="fs-4 me-3"></iconify-icon>
-                </form>
+            <div class="search-bar border border-success mb-2 rounded-2 overflow-hidden d-flex p-2">
+                <input type="text" class="form-control border-0 " placeholder="Tìm kiếm sản phẩm..." />
+                <button class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zm-5.442.656a5.5 5.5 5.5 0 1 1 0-11 5.5 5.5 5.5 0 0 1 0 11z"/>
+                    </svg>
+                </button>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 <header>
@@ -22,21 +26,17 @@
         <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a class="nav-link {{ request()->is('welcome') ? 'active' : '' }}" href="/">
+                    <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="/">
                         <img src="{{asset('logobannermain.png')}}" alt="logo" class="img-fluid">
                     </a>
                 </div>
             </div>
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-                    <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                        <input type="text" class="form-control border-0 bg-transparent search-input"
-                            placeholder="Tìm kiếm sản phẩm" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-                        </svg>
-                    </form>
+                <div class="search-bar border border-black rounded-2 overflow-hidden d-flex custom-border hover-effect">
+                    <input type="text" class="form-control border-0 px-3" placeholder="Tìm kiếm sản phẩm..." />
+                    <button class="btn btn-outline-success d-flex align-items-center justify-content-center">
+                        <span class="iconify" data-icon="mdi:search" style="font-size: 20px;"></span>
+                    </button>
                 </div>
             </div>
 
