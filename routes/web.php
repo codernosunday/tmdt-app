@@ -13,6 +13,7 @@ use App\Http\Controllers\QLsanphamController;
 use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 
 
@@ -66,7 +67,7 @@ Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmu
 Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
 Route::get('/service', [HomePagesController::class, 'service'])->name('service');
 Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
-
+Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
 
 //admin- Vo Thanh Tin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');

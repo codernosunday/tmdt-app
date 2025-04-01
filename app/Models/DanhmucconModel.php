@@ -9,9 +9,12 @@ class DanhmucconModel extends Model
 {
     use HasFactory;
     protected $table = 'bangdanhmuc';
+
+    protected $primaryKey = 'id_ctdm';
     protected $fillable = [
         'id_dm',
-        'ten',
+        'id_ctdm',
+        'tendanhmuc',
         'ghichu',
     ];
     public $timestamps = true;

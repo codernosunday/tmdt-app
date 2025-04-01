@@ -6,7 +6,7 @@
     <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
             <div class="section-header d-md-flex justify-content-between align-items-center">
-                <h2 class="display-3 fw-normal">Pet Foodies</h2>
+                <h2 class="display-3 fw-normal">Gợi ý hôm nay</h2>
 
                 <div>
                     <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
@@ -17,15 +17,14 @@
                 </div>
             </div>
 
-            {{-- --}}
+            
 
             <div class="isotope-container row">
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
                                                                         New
-                                                                      </div> -->
-                    <div class="card position-relative">
+                                             <div class="card position-relative h-100">
                         <a href="single-product.html"><img src="images/item9.jpg" class="img-fluid rounded-4"
                                 alt="image"></a>
                         <div class="card-body p-0">
