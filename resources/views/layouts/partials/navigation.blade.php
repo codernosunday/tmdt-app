@@ -39,6 +39,8 @@
                     </form>
                 </div>
             </div>
+
+
             <div
                 class="col-sm-8 col-lg-4 d-flex justify-content-end gap-4 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
                 <div class="support-box text-end d-none d-xl-block">
@@ -58,92 +60,34 @@
     </div>
 
     <div class="container">
-        <nav class="main-menu d-flex navbar navbar-expand-lg ">
-            <div class="d-flex d-lg-none align-items-end mt-3">
-                <ul class="d-flex justify-content-end list-unstyled m-0">
-                    <li>
-                        <a href="account.html" class="mx-3">
-                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishlist.html" class="mx-3">
-                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                        </a>
-                    </li>
+        <nav class="main-menu d-flex navbar navbar-expand-lg justify-content-between align-items-center">
+            <select class="filter-categories border-0 mb-0 me-3">
+                <option>Danh mục</option>
+                @foreach ($danhMucSp as $i)
+                    <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
+                @endforeach
+            </select>
 
-                    <li>
-                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                            aria-controls="offcanvasCart">
-                            <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                            <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                0
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                            aria-controls="offcanvasSearch">
-                            <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-
-                <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-
-                <div class="offcanvas-body justify-content-between">
-                    <select class="filter-categories border-0 mb-0 me-5">
-                        <option>Danh mục</option>
-                        @foreach ($danhMucSp as $i)
-                            <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
-                        @endforeach
-                    </select>
-                    
-
-                    <div class="d-none d-lg-flex align-items-end">
-                        <ul class="d-flex justify-content-end list-unstyled m-0">
-                            <li>
-                                <a href="index.html" class="mx-3">
-                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html" class="mx-3">
-                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-
-                            <li class="shopping-cart">
-                                <a href="index.html" class="mx-3" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                    <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                    <span
-                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                        0
-                                    </span>
-                                </a>
-                                <div class="list-shopping-cart">
-                                    <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
-                                        alt="Giỏ hàng trống" class="img-no-cart">
-                                    <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            {{-- Navigate to the other site via this  --}}
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ route('shop') }}">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin') }}">Administrator</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html">
+                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                </a>
+                <a href="index.html">
+                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                </a>
+                <a href="index.html" class="position-relative">
+                    <iconify-icon icon="mdi:cart" class="fs-4"></iconify-icon>
+                    <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">0</span>
+                </a>
             </div>
         </nav>
     </div>
