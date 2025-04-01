@@ -16,7 +16,7 @@ class HomePagesController extends Controller
     public function locSPtheoDanhmuc($danhmuc)
     {
         if ($danhmuc != 0) {
-            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(8)->get();;
+            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(8)->get();
         } else {
             $sp = SanphamModel::limit(8)->get();
         }

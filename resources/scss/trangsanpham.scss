@@ -43,3 +43,24 @@
 .product-details ul li {
     margin-bottom: 10px;
 }
+
+.policy-box {
+    background-color: #e6f0ff;
+    /* Màu nền xanh nhạt */
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed blue;
+    width: 300px;
+}
+
+.policy-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.policy-item i {
+    font-size: 22px;
+}

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\NguoidungModel;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-         // Xác thực dữ liệu đầu vào
+        // Xác thực dữ liệu đầu vào
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -38,8 +39,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Đăng nhập thành công, chuyển hướng tới dashboard
-            dd($request->input('email'), $request->input('password'), "Đăng nhập thành công!");
-        }else{
+            return redirect('shop');
+        } else {
             dd($request->input('email'), $request->input('password'), "Đăng nhập thất bại!");
         }
 
@@ -51,7 +52,7 @@ class AuthController extends Controller
     {
         if (NguoidungModel::where('mail', $request->email)->exists()) {
             return redirect()->back()
-                ->with('error','Email đã tồn tại, vui lòng nhập email mới!')
+                ->with('error', 'Email đã tồn tại, vui lòng nhập email mới!')
                 ->with('email', $request->email);
         }
 
@@ -61,7 +62,7 @@ class AuthController extends Controller
             'mail' => $request->email,
             'username' => $request->email,
             'password' => "",
-            'maxacnhan' => $code,
+            'maxacnhan' => $code
         ]);
 
         $MailService = new MailController();
@@ -74,23 +75,23 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $code = $request->number_1 . 
-                $request->number_2 . 
-                $request->number_3 . 
-                $request->number_4 . 
-                $request->number_5 . 
-                $request->number_6;
+        $code = $request->number_1 .
+            $request->number_2 .
+            $request->number_3 .
+            $request->number_4 .
+            $request->number_5 .
+            $request->number_6;
         $email = $request->email;
 
-        $user = NguoidungModel::where('mail', $email)->where('maxacnhan',$code)->first();
+        $user = NguoidungModel::where('mail', $email)->where('maxacnhan', $code)->first();
 
-        if($user) {
+        if ($user) {
             return redirect('password')
                 ->with('success', 'Xác nhận thành công. Hãy tạo mật khẩu để tiếp tục!')
                 ->with('email', $request->email);
-        }else{
-            return redirect()->back()->with('error','Mã xác nhận không chính xác, vui lòng thử lại')
-            ->with('email', $request->email);
+        } else {
+            return redirect()->back()->with('error', 'Mã xác nhận không chính xác, vui lòng thử lại')
+                ->with('email', $request->email);
         }
     }
 
@@ -100,9 +101,9 @@ class AuthController extends Controller
         $password = $request->password;
         $password_confirmation = $request->password_confirmation;
 
-        if($password != $password_confirmation) {
+        if ($password != $password_confirmation) {
             return redirect()->back()
-                ->with('error','Xác nhận mật khẩu không khớp, vui lòng thử lại!')
+                ->with('error', 'Xác nhận mật khẩu không khớp, vui lòng thử lại!')
                 ->with('email', $request->email);
         }
 
@@ -110,12 +111,12 @@ class AuthController extends Controller
             'password' => bcrypt($password)
         ]);
 
-        if($user) {
+        if ($user) {
             return redirect('login')
                 ->with('success', 'Tạo mật khẩu thành công. Hãy đăng nhập ngay!');
-        }else{
-            return redirect()->back()->with('error','Tạo mật khẩu không thành công, vui lòng thử lại')
-            ->with('email', $email);
+        } else {
+            return redirect()->back()->with('error', 'Tạo mật khẩu không thành công, vui lòng thử lại')
+                ->with('email', $email);
         }
     }
 

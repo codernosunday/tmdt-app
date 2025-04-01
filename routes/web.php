@@ -9,11 +9,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
-use App\Http\Controllers\QLsanphamComtroller;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +51,12 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+//admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 
@@ -74,4 +77,5 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
-//shop-locsanpham-------
+//shop-locsanpham-------Vo Thanh Tin
+Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
