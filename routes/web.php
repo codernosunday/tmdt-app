@@ -62,8 +62,10 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
 
 
-
-
+// Route - Phuc
+Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
+Route::get('/service', [HomePagesController::class, 'service'])->name('service');
+Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
 
 
 //admin- Vo Thanh Tin

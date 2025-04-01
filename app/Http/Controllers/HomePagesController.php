@@ -13,6 +13,18 @@ class HomePagesController extends Controller
         return view('home');
     }
 
+    public function services(){
+        return view('service');
+    }
+    
+    public function contact(){
+        return view('contact');
+    }
+
+    public function aboutus(){
+        return view('aboutus');
+    }
+
     public function locSPtheoDanhmuc($slug)
     {
         // Fetch the category by slug

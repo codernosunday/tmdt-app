@@ -60,7 +60,7 @@
     </div>
 </section>
 
-<script>
+{{-- <script>
     function changeCategory(slug) {
         fetch(`/api/categories/${slug}`)
             .then(response => response.json())
@@ -72,4 +72,4 @@
             })
             .catch(error => console.error('Error:', error));
     }
-</script>
+</script> --}}
