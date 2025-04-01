@@ -1,4 +1,4 @@
-@vite(['resources/css/auth/login.css'])
+@vite(['resources/css/auth/auth.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 
@@ -13,7 +13,12 @@
                 </div>
             </div>
             <!-- Cột phải -->
-            <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="relative col-md-6 d-flex align-items-center justify-content-center col-right">
+                @if (session('error'))
+                    <div class="error">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="w-75">
                     <h1>Đăng kí.</h1>
                     <p style="font-size: 1.2rem;">Bạn đã có tài khoản? <a href="/login">Đăng nhập</a></p>
@@ -28,7 +33,6 @@
                             <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Đăng kí với Facebook</span>
                         </button>
                     </div>
-
 
                     <p class="socials-divider"><span class="text-center my-3" style="font-size: 1.2rem;">hoặc</span></p>
 
@@ -56,4 +60,14 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        var col = document.querySelector(".error");
+        const timeout = setTimeout(()=>{
+            if(col){
+                col.style.display = "none";
+            }
+        },3000);
+    </script>
 </body>

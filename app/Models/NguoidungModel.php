@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Đổi từ Model thành Authenticatable
+use Illuminate\Notifications\Notifiable;
 
-class NguoidungModel extends Model
+class NguoidungModel extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
 
     protected $table = 'nguoidung';
 
@@ -20,8 +20,16 @@ class NguoidungModel extends Model
         'mail',
         'ngaytao',
         'quyentruycap',
+        'maxacnhan'
     ];
+
     public $timestamps = true;
     protected $dates = ['ngaysinh', 'ngaytao'];
     protected $hidden = ['password'];
+
+    // Nếu cột lưu mật khẩu không phải là "password", thêm phương thức sau:
+    public function getAuthPassword()
+    {
+        return $this->password; // Nếu tên cột mật khẩu là khác, cập nhật đúng tên cột ở đây
+    }
 }

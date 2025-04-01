@@ -6,14 +6,16 @@
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-6">
-                <img src="https://via.placeholder.com/600x600" class="product-image" alt="Bút chì 6-12 màu">
+                <img src="{{$sp->anh}}" class="product-image" alt="Bút chì 6-12 màu">
             </div>
             <!-- Thông tin sản phẩm -->
             <div class="col-md-6">
                 <div class="product-info">
-                    <h1>Bút chì 6-12 màu Retractable Fiber Pens</h1>
-                    <p class="text-muted">Thương hiệu: Thiên Long</p>
-                    <p class="text-danger fw-bold">50.000 VNĐ</p>
+                    <h1>{{$sp->tensp}}</h1>
+                    <p class="text-muted">Thương hiệu: {{$ctsp->thuonghieu}}</p>
+                    <p class="text-danger fw-bold">
+                        {{ isset($i->giaban) ? number_format($giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
+                    </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="color-select" class="form-label">Chọn màu sắc:</label>
@@ -37,17 +39,46 @@
                 </div>
 
                 <!-- Thông tin bổ sung -->
-                <div class="product-details mt-4">
-                    <h5>Thông tin sản phẩm</h5>
-                    <ul>
-                        <li>Bút chì 6-12 màu, thiết kế Kawaii dễ thương.</li>
-                        <li>Chất liệu an toàn, không độc hại.</li>
-                        <li>Phù hợp cho học sinh, văn phòng, và họa sĩ.</li>
-                    </ul>
-                </div>
+
             </div>
         </div>
-
+        <div class="row">
+            <div class="product-details mt-4">
+                <h5>Thông tin sản phẩm</h5>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Thương hiệu</th>
+                            <td>{{$ctsp->thuonghieu}}</td>
+                        </tr>
+                        <tr>
+                            <th>Đường kính viên bi</th>
+                            <td>0.5 mm</td>
+                        </tr>
+                        <tr>
+                            <th>Kích thước ruột bút</th>
+                            <td>127.4 mm</td>
+                        </tr>
+                        <tr>
+                            <th>Phụ kiện</th>
+                            <td>Thay thế cho Gel-027, Gel-031, Gel-018, FO-Gel018/VN, TP-Gel01, TP-Gel03.</td>
+                        </tr>
+                        <tr>
+                            <th>Xuất xứ</th>
+                            <td>Việt Nam</td>
+                        </tr>
+                        <tr>
+                            <th>Sản xuất</th>
+                            <td>Việt Nam</td>
+                        </tr>
+                        <tr>
+                            <th>Khuyến cáo</th>
+                            <td>Tránh nguồn nhiệt, hóa chất. Không thích hợp cho trẻ dưới 3 tuổi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Đánh giá sản phẩm -->
         <div class="row mt-5">
             <div class="col">

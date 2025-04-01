@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('id_ctdm');
             $table->string('tensp')->nullable();
             $table->string('anh')->nullable();
-            $table->string('tomtatsp')->nullable();
+            $table->text('tomtatsp')->nullable();
             $table->boolean('tinhtrang')->nullable();
             $table->timestamps();
             $table->foreign('id_ctdm')

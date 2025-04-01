@@ -1,0 +1,162 @@
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-height: 180px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.premium-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.product-name {
+    font-size: 14px;
+    margin-top: 10px;
+    min-height: 40px;
+    /* Đảm bảo tất cả ô có cùng chiều cao */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Giới hạn tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    /* Giới hạn chiều rộng */
+    padding: 10px 40px 10px 12px;
+    /* Dành chỗ cho mũi tên */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Mũi tên tùy chỉnh */
+.custom-select::after {
+    content: "▼";
+    /* Ký tự Unicode cho mũi tên */
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Ẩn mũi tên mặc định của IE */
+.custom-select::-ms-expand {
+    display: none;
+}
+
+/* Khi focus */
+.custom-select:focus {
+    border-color: #bbbbbb;
+    box-shadow: 0 0 5px rgba(170, 170, 170, 0.5);
+}
+
+/* Lọc */
+
+.filter-box {
+    display: none;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    transition: 0.3s;
+}
+
+.color-box:hover {
+    border: 2px solid #000;
+}
+
+.form-check-input {
+    width: 16px;
+    /* Kích thước checkbox */
+    height: 16px;
+    margin-right: 5px;
+    /* Khoảng cách giữa checkbox và nhãn */
+    visibility: visible !important;
+    /* Đảm bảo không bị ẩn */
+    opacity: 1 !important;
+    /* Đảm bảo không bị mờ */
+}
+
+//
+#toggleFilter {
+    background-color: #007bff;
+    /* Màu nền xanh dương */
+    color: white;
+    /* Chữ màu trắng */
+    border: none;
+    /* Xóa viền */
+    padding: 10px 20px;
+    /* Tăng khoảng cách trong nút */
+    font-size: 16px;
+    /* Cỡ chữ */
+    font-weight: 600;
+    /* Chữ đậm hơn */
+    border-radius: 8px;
+    /* Bo góc mềm mại */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Khoảng cách giữa icon và chữ */
+    transition: all 0.3s ease-in-out;
+    /* Hiệu ứng hover */
+    width: 180px;
+}
+
+#toggleFilter i {
+    font-size: 18px;
+    /* Cỡ icon */
+}
+
+#toggleFilter:hover {
+    background-color: #0056b3;
+    /* Màu xanh đậm hơn khi hover */
+    transform: scale(1.05);
+    /* Hiệu ứng phóng to nhẹ */
+}
+
+#toggleFilter:active {
+    transform: scale(0.98);
+    /* Nhấn vào thì co nhẹ lại */
+}

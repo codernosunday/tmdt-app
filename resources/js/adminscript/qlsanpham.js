@@ -58,7 +58,7 @@ window.sendData = function () {
     })
         .then(response => response.json())
         .then(data => {
-            window.location.reload();
+            console.error(data.message)
         })
         .catch(error => {
             console.error('Error:', error);
