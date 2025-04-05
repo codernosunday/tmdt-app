@@ -4,7 +4,7 @@
 
 @if (!session('email'))
     <script>
-        window.location.href = "register";
+        window.location.href = "forgot";
     </script>
 @else
     <body>

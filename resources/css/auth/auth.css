@@ -209,6 +209,17 @@ i {
     transform: translateX(-50%);
 }
 
+.forgot {
+    font-size: 1.15rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+    color: #007bff;
+}
+
 .success {
     display: block;
     position: absolute;
@@ -321,3 +332,14 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.fail {
+    display: none;
+    color: #f00;
+    font-size: 1.15rem;
+}
+
+.border-red {
+    border: 1px solid #f00 !important;
+}
+

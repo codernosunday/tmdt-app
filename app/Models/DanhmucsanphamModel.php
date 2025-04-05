@@ -22,3 +22,4 @@ class DanhmucsanphamModel extends Model
         return $this->hasOne(DanhmucconModel::class, 'id_dm');
     }
 }
+
