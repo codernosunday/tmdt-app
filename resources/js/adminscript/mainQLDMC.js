@@ -28,7 +28,7 @@ window.editCell = function (cell) {
     input.focus();
 }
 
-window.saveRow = function (button) {
+window.saveRow = function (button, id) {
     let row = button.closest("tr");
     let rowId = row.getAttribute("data-id");
 
@@ -38,23 +38,24 @@ window.saveRow = function (button) {
     }
 
     let requestData = editedData[rowId];
+    requestData.id_dm = id
     console.log(JSON.stringify(requestData));
 
-    // fetch(`/postdanhmuccha/${rowId}`, {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
-    //     },
-    //     body: JSON.stringify(requestData),
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log("Cập nhật thành công:", data);
-    //         alert("Cập nhật thành công!");
-    //         delete editedData[rowId];
-    //     })
-    //     .catch(error => console.error("Lỗi cập nhật:", error));
+    fetch(`/administrator/updatedmcha`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
+        },
+        body: JSON.stringify(requestData),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Cập nhật thành công:", data);
+            alert("Cập nhật thành công!");
+            delete editedData[rowId];
+        })
+        .catch(error => console.error("Lỗi cập nhật:", error));
 }
 window.postthemmoi = function () {
     const tendanhmuc = document.getElementById("themtendanhmuc");
@@ -134,6 +135,6 @@ window.deleteDanhmuc = function (id) {
         })
         .catch(error => {
             console.error("Chi tiết lỗi:", error);
-            alert(`Lỗi khi xóa sản phẩm: ${error.message}`);
+            alert(`Lỗi khi xóa: ${error.message}`);
         });
 }

@@ -44,7 +44,7 @@ Route::get('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerif
 Route::post('/verify', [AuthController::class, 'verify']);
 Route::post('/password', [AuthController::class, 'password']);
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forgot', [AuthController::class, 'forgot']);
 Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
@@ -81,6 +81,12 @@ Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmucc
 //danh muc cha
 Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
 Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
+Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
+//danh muc con
+Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
+Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
+Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
+Route::post('/administrator/updatedmcon', [QLDMController::class, 'postUpdateDMcon']);
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);

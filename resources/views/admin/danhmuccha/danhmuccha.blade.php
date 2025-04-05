@@ -26,7 +26,7 @@
                                 {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
                                 <button class="btn btn-danger btn-sm" onclick="deleteDanhmuc({{$i->id_dm}}) "><a
                                         class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
-                                <button class="btn btn-info btn-sm" onclick="saveRow(this)">
+                                <button class="btn btn-info btn-sm" onclick="saveRow(this,{{$i->id_dm}})">
                                     <div class="edit_btn"><i class="bi bi-pencil-square"></i> Sửa</div>
                                 </button>
                             </td>
