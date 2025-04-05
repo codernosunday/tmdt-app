@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QLDMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,8 +75,15 @@ Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthem
 Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
+//admin danh muc san pham - Vo Thanh Tin
+Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
+Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
+//danh muc cha
+Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
+Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
-//shop-locsanpham-------Vo Thanh Tin
+//shop-locsanpham ------- Vo Thanh Tin
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);

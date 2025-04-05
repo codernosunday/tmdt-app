@@ -97,9 +97,11 @@
                                     <a class="nav-link dropdown-toggle" role="button" id="pages"
                                         data-bs-toggle="dropdown" aria-expanded="false">Danh mục và khuyến mãi</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
-                                        <li><a href="#" class="dropdown-item">Quản lý danh mục con</a>
+                                        <li><a href="/administrator/quanlydanhmuccha" class="dropdown-item">Quản lý danh
+                                                mục cha</a>
                                         </li>
-                                        <li><a href="#" class="dropdown-item">Quản lý danh mục cha</a>
+                                        <li><a href="/administrator/quanlydanhmucccon" class="dropdown-item">Quản lý
+                                                danh mục con</a>
                                         </li>
                                         <li><a href="#" class="dropdown-item">Thêm mới danh mục con</a>
                                         </li>

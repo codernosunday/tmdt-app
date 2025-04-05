@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('mail')->unique();
             $table->boolean('xacnhanmail')->nullable();
             $table->date('ngaytao')->nullable();
+            $table->integer('solannhapsai')->nullable();
+            $table->string('tinhtrantk')->nullable();
             $table->string('quyentruycap')->nullable();
             // created_at & updated_at:
             $table->timestamps();

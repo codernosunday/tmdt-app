@@ -177,4 +177,20 @@ class QLsanphamController extends Controller
             ], 500);
         }
     }
+    function deleteSP($id)
+    {
+        try {
+            $sanpham = SanphamModel::find($id);
+            if ($sanpham) {
+                $sanpham->delete();
+            }
+            return response()->json([
+                'message' => 'Sản phẩm đã được xoá',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e,
+            ], 500);
+        }
+    }
 }
