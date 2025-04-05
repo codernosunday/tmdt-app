@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\SanphamModel;
+use App\Models\DanhmucconModel;
 use Illuminate\Http\Request;
 
 class HomePagesController extends Controller
 {
-    //
     public function home()
     {
-        return view('home');
+        $products = SanphamModel::with('giaban')->paginate(8);
+        return view('home', compact('products'));
     }
 
     public function services(){

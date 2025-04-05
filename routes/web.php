@@ -1,8 +1,6 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
@@ -10,74 +8,75 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
-use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 
+// Home and Basic Pages
+Route::get('/', [HomePagesController::class, 'home'])->name('home');
+Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
+Route::get('/service', [HomePagesController::class, 'service'])->name('service');
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+
+// Shop and Product Routes
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/sanpham/{tensp}/{id_sp}', [SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/sanpham/{tensp}/{id_sp}', [SanphamController::class, 'chitietsanpham'])
+    ->name('sanpham.show');
+
+// Category Routes
+Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
+
+// Blog Routes
+Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Authentication Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', [HomePagesController::class, 'home'])->name('home');
-Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
-Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::group(['prefix' => 'auth'], function () {
+    // Login Routes
+    Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 
+    // Register Routes
+    Route::get('/register', [AuthController::class, 'registerPage'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', [AuthController::class, 'loginPage']);
-Route::get('/register', [AuthController::class, 'registerPage']);
-Route::get('/verify', [AuthController::class, 'verifyPage']);
-Route::get('/password', [AuthController::class, 'passwordPage']);
+    // Verification Routes
+    Route::get('/verify', [AuthController::class, 'verifyPage'])->name('verify');
+    Route::post('/verify', [AuthController::class, 'verify']);
 
-// Route::get('/login', [AuthController::class, 'loginPage']);
-Route::post('/register', [AuthController::class, 'register']);
+    // Password Routes
+    Route::get('/password', [AuthController::class, 'passwordPage'])->name('password');
+    Route::post('/password', [AuthController::class, 'password']);
+});
 
-// Route::get('/verify', [AuthController::class, 'verifyPage']);
-Route::get('/password', [AuthController::class, 'passwordPage']);
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
 
-// Route::get('/login', [AuthController::class, 'loginPage']);
-Route::post('/register', [AuthController::class, 'register']);
-
-Route::post('/verify', [AuthController::class, 'verify']);
-Route::post('/password', [AuthController::class, 'password']);
-Route::post('/login', [AuthController::class, 'login']);
-
-//Phuc: change the category route
-Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-
-// New route for danhmuc category
-Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
-
-
-// Route - Phuc
-Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
-Route::get('/service', [HomePagesController::class, 'service'])->name('service');
-Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
-Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
-
-//admin- Vo Thanh Tin
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
-Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
-Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
-Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
-//shop - Vo Thanh Tin
-Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
-Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
-//shop-locsanpham-------
+Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function () {
+    Route::get('/', [AdminController::class, 'admin'])->name('admin');
+    
+    // Product Management Routes
+    Route::group(['prefix' => 'quanlysanpham'], function () {
+        Route::get('/', [QLsanphamController::class, 'pagesQLsanpham'])->name('admin.products.index');
+        Route::get('/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham'])->name('admin.products.show');
+        Route::get('/them', [QLsanphamController::class, 'pagesthemsanpham'])->name('admin.products.create');
+        Route::post('/them', [QLsanphamController::class, 'postthemsanpham'])->name('admin.products.store');
+        Route::post('/capnhat', [QLsanphamController::class, 'postcapnhatsanpham'])->name('admin.products.update');
+    });
+});

@@ -19,9 +19,16 @@ class SanphamModel extends Model
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';
+
     public function giaban()
     {
         return $this->hasOne(GiabanModel::class, 'id_sp')
             ->latest('updated_at');
+    }
+
+    // Add this relationship
+    public function chitietsp()
+    {
+        return $this->hasOne(ChitietsanphamModel::class, 'id_sp');
     }
 }
