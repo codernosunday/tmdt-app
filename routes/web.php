@@ -36,18 +36,17 @@ Route::get('/register', [AuthController::class, 'registerPage']);
 Route::get('/verify', [AuthController::class, 'verifyPage']);
 Route::get('/password', [AuthController::class, 'passwordPage']);
 
-// Route::get('/login', [AuthController::class, 'loginPage']);
-Route::post('/register', [AuthController::class, 'register']);
-
-// Route::get('/verify', [AuthController::class, 'verifyPage']);
-Route::get('/password', [AuthController::class, 'passwordPage']);
-
-// Route::get('/login', [AuthController::class, 'loginPage']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/forgot', [AuthController::class, 'forgotPage']);
+Route::get('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChangePage']);
+Route::get('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerifyPage']);
 
 Route::post('/verify', [AuthController::class, 'verify']);
 Route::post('/password', [AuthController::class, 'password']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/forgot', [AuthController::class, 'forgot']);
+Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
+Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
 
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);

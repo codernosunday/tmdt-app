@@ -16,9 +16,10 @@ class ShopController extends Controller
     //
     public function shop()
     {
+        // dd(session('email'));
         $dm = DanhmucsanphamModel::all();
         $danhmuccon = DanhmucconModel::all();
-        // $sp = SanphamModel::with('giaban')->get();
+        $sp = SanphamModel::with('giaban')->get();
         return view('shop', compact('dm', 'danhmuccon'));
     }
     //loc theo danh muc
