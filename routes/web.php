@@ -44,6 +44,7 @@ Route::get('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerif
 Route::post('/verify', [AuthController::class, 'verify']);
 Route::post('/password', [AuthController::class, 'password']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/forgot', [AuthController::class, 'forgot']);
 Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
