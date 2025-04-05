@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('id_dm')->nullable();
             // Các cột khác
             $table->string('ten')->nullable();
+            $table->string('trangthai')->nullable();
             $table->text('ghichu')->nullable();
             // created_at & updated_at:
             $table->timestamps();
