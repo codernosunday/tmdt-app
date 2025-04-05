@@ -126,6 +126,6 @@ class AuthController extends Controller
 
     public function randomString()
     {
-        return $test = sprintf('%06d', rand(1, 1000000));
+        return sprintf('%06d', rand(1, 1000000));
     }
 }

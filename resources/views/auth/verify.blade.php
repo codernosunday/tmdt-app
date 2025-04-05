@@ -31,9 +31,7 @@
                 @endif
                 <div class="w-75">
                     <h1>Nhập mã xác nhận.</h1>
-
                     <span class="email">Kiểm tra email <span>{{ session('email') }}</span> để lấy mã xác nhận</span>
-
                     <form method="POST" action="">
                         @csrf
                         <div class="mb-3">

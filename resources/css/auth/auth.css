@@ -179,6 +179,17 @@ i {
     font-size: 1.2rem;
 }
 
+.border-red {
+    border-color: #f00 !important;
+}
+
+.warning_password_confirmation {
+    display: none;
+    font-size: 1.15rem;
+    padding-bottom: 8px;
+    color: #f00;
+}
+
 /* Checkbox */
 .form-check {
     display: flex;
