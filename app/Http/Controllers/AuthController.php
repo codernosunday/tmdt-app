@@ -148,13 +148,27 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        if (NguoidungModel::where('mail', $request->email)->exists()) {
-            return redirect()->back()
+        $user = NguoidungModel::where('mail', $request->email)->first();
+        $code = $this->randomString();
+        if ($user->exists()) {
+            if($user->where('password', null)) {
+                $MailService = new MailController();
+                $MailService->basic_email($request->email, $code);
+
+                NguoidungModel::where('mail', $request->email)->update([
+                    'maxacnhan' => $code
+                ]);
+
+                return redirect('verify')
+                    ->with('success', 'Email đã tồn tại nhưng chưa được kích hoạt, hãy lấy mã và kích hoạt tài khoản')
+                    ->with('email', $request->email);
+
+            }else{
+                return redirect()->back()
                 ->with('error', 'Email đã tồn tại, vui lòng nhập email mới!')
                 ->with('email', $request->email);
+            }
         }
-
-        $code = $this->randomString();
 
         $user = NguoidungModel::create([
             'mail' => $request->email,
@@ -213,6 +227,8 @@ class AuthController extends Controller
         $user = NguoidungModel::where('mail', $email)->update([
             'password' => bcrypt($password)
         ]);
+
+        $giohang = new GioHangController();
 
         if ($user) {
             return redirect('login')
