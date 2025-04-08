@@ -18,8 +18,12 @@ const kichthuoc = document.getElementById('kichthuoc');
 const doday = document.getElementById('doday');
 const trongluong = document.getElementById('trongluong');
 const sotrang = document.getElementById('sotrang');
-const chieurong = document.getElementById('chieurong');
-const chieucao = document.getElementById('chieucao');
+//moi
+const xuatsu = document.getElementById('xuatsu');
+const sanxuat = document.getElementById('sanxuat');
+const tieuchuan = document.getElementById('tieuchuan');
+const loiich = document.getElementById('loiich');
+const tinhnang = document.getElementById('tinhnang');
 // giá
 const gianhap = document.getElementById('gianhap');
 const giaban = document.getElementById('giaban');
@@ -54,12 +58,14 @@ window.updateData = function () {
         doday: doday.value,
         trongluong: trongluong.value,
         sotrang: sotrang.value,
-        chieurong: chieurong.value,
-        chieucao: chieucao.value,
         giasale: giasale.value,
         giaban: giaban.value,
+        xuatsu: xuatsu.value,
+        sanxuat: sanxuat.value,
+        tieuchuan: tieuchuan.value,
+        loiich: loiich.value,
+        tinhnang: tinhnang.value
     };
-    console.log(JSON.stringify(sanpham))
     // Gửi yêu cầu POST
     fetch('/administrator/capnhatsp/', {
         method: 'POST',

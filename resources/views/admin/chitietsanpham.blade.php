@@ -29,11 +29,28 @@
         </div>
         <div class="">
             <label for="productInStock"><b>Còn hàng</b></label>
-            @if($sp->tinhtrang == true)
+            @if($sp->tinhtrang == 1)
                 <input type="checkbox" id="tinhtrang" name="tinhtrang" value="1" checked>
             @else
                 <input type="checkbox" id="tinhtrang" name="tinhtrang" value="0">
             @endif
+        </div>
+        <div class="form-group">
+            <label for="soluong">Số lượng trong kho</label>
+            <input type="number" id="soluong" name="soluong" value="{{$nhap->soluong}}"
+                placeholder="Số lượng có trong kho">
+        </div>
+        <div class="form-group">
+            <label for="gianhap">Giá nhập kho (VND)</label>
+            <input type="number" id="gianhap" name="gianhap" value="{{$nhap->gianhap}}" placeholder="Nhập giá nhập kho">
+        </div>
+        <div class="form-group">
+            <label for="giaban">Giá bán sản phẩm (VND)</label>
+            <input type="number" id="giaban" name="giaban" value="{{$ban->giaban}}" placeholder="Nhập giá bán">
+        </div>
+        <div class="form-group">
+            <label for="giasale">Giá khuyến mãi (VND)</label>
+            <input type="number" id="giasale" name="giasale" placeholder="Nhập giá khuyến mãi">
         </div>
         <h2>Chỉnh sửa Chi tiết sản phẩm</h2>
         <div class="form-group">
@@ -41,9 +58,16 @@
             <input type="text" id="thuonghieu" name="thuonghieu" value="{{$ctsp->thuonghieu}}" placeholder="Thiên Long">
         </div>
         <div class="form-group">
-            <label for="soluong">Số lượng trong kho</label>
-            <input type="number" id="soluong" name="soluong" value="{{$nhap->soluong}}"
-                placeholder="Số lượng có trong kho">
+            <label for="productWidth">Xuất sứ</label>
+            <input type="text" id="xuatsu" name="xuatsu" value="{{$ctsp->xuatsu}}">
+        </div>
+        <div class="form-group">
+            <label for="productWidth">Sản xuất</label>
+            <input type="text" id="sanxuat" name="sanxuat" value="{{$ctsp->sanxuat}}">
+        </div>
+        <div class="form-group">
+            <label for="tieuchuan">Tiêu chuẩn</label>
+            <input type="text" id="tieuchuan" name="tieuchuan" value="{{$ctsp->tieuchuan}}">
         </div>
         <div class="form-group">
             <label for="mausac">Màu sắc</label>
@@ -71,11 +95,21 @@
         </div>
         <div class="form-group">
             <label for="dattinh">Đặt tính sản phẩm</label>
-            <textarea id="dattinh" name="dattinh" rows="7" placeholder="Nhập mô tả sản phẩm"></textarea>
+            <textarea id="dattinh" name="dattinh" rows="7"
+                placeholder="Nhập mô tả sản phẩm">{{$ctsp->dattinh}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="loiich">Lợi ích</label>
+            <textarea id="loiich" name="loiich" placeholder="Nhập lợi ích sản phẩm">{{$ctsp->loiich}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="tinhnang">Tính năng nổi bật</label>
+            <textarea id="tinhnang" name="tinhnang"
+                placeholder="Nhập tính năng sản phẩm">{{$ctsp->tinhnangnoibat}}</textarea>
         </div>
         <div class="form-group">
             <label for="kichthuoc">Kích thước</label>
-            <input type="text" id="kichthuoc" name="kichthuoc" placeholder="100mmx200mm">
+            <input type="text" id="kichthuoc" name="kichthuoc" value="{{$ctsp->kichthuoc}}" placeholder="100mmx200mm">
         </div>
         <div class="form-group">
             <label for="doday">Độ dày (mm)</label>
@@ -88,26 +122,6 @@
         <div class="form-group">
             <label for="sotrang">Số trang</label>
             <input type="number" id="sotrang" name="sotrang" placeholder="Số trang">
-        </div>
-        <div class="form-group">
-            <label for="chieurong">Chiều rộng (cm)</label>
-            <input type="number" id="chieurong" name="chieurong" placeholder="Nhập chiều rộng">
-        </div>
-        <div class="form-group">
-            <label for="chieucao">Chiều cao (cm)</label>
-            <input type="number" id="chieucao" name="chieucao" placeholder="Nhập chiều cao">
-        </div>
-        <div class="form-group">
-            <label for="gianhap">Giá nhập kho (VND)</label>
-            <input type="number" id="gianhap" name="gianhap" value="{{$nhap->gianhap}}" placeholder="Nhập giá nhập kho">
-        </div>
-        <div class="form-group">
-            <label for="giaban">Giá bán sản phẩm (VND)</label>
-            <input type="number" id="giaban" name="giaban" value="{{$ban->giaban}}" placeholder="Nhập giá bán">
-        </div>
-        <div class="form-group">
-            <label for="giasale">Giá khuyến mãi (VND)</label>
-            <input type="number" id="giasale" name="giasale" placeholder="Nhập giá khuyến mãi">
         </div>
         <button type="button" onclick="updateData()" class="btn-submit">Cập nhật</button>
     </form>

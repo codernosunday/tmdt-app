@@ -28,7 +28,7 @@ class ShopController extends Controller
         if ($danhmuc != 0) {
             $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(16)->get();
         } else {
-            $sp = SanphamModel::limit(16)->get();
+            $sp = SanphamModel::limit(40)->get();
         }
         return view('components.sanpham', compact('sp'));
     }

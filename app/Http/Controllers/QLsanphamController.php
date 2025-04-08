@@ -43,6 +43,12 @@ class QLsanphamController extends Controller
                 'gianhap' => 'nullable|numeric|min:0',
                 'soluong' => 'nullable|integer|min:0',
                 'giaban' => 'nullable|numeric|min:0',
+                'tieuchuan' => 'nullable|string',
+                'loiich' => 'nullable|string',
+                'sanxuat' => 'nullable|string',
+                'xuatsu' => 'nullable|string',
+                'tinhnang' => 'nullable|string',
+                'kichthuoc' => 'nullable|string'
             ]);
             DB::beginTransaction();
             // Kiểm tra sản phẩm tồn tại
@@ -66,8 +72,6 @@ class QLsanphamController extends Controller
             ChitietsanphamModel::updateOrCreate(
                 ['id_sp' => $validated['id_sp']],
                 [
-                    'chieurong' => $request->input('chieurong'),
-                    'chieucao' => $request->input('chieucao'),
                     'doday' => $request->input('doday'),
                     'soluong' => $validated['soluong'] ?? 0,
                     'sotrang' => $request->input('sotrang'),
@@ -75,7 +79,12 @@ class QLsanphamController extends Controller
                     'anhsp' => $validated['anh'] ?? $sanpham->anh,
                     'mausac' => $request->input('mausac'),
                     'mamau' => $request->input('mamau'),
-                    'dattinh' => $request->input('dattinh')
+                    'dattinh' => $request->input('dattinh'),
+                    'tieuchuan' => $validated['tieuchuan'],
+                    'loiich' => $validated['loiich'],
+                    'xuatsu' => $validated['xuatsu'],
+                    'tinhnangnoibat' => $validated['tinhnang'],
+                    'kichthuoc' => $validated['kichthuoc']
                 ]
             );
             // Cập nhật giá nhập
@@ -131,20 +140,34 @@ class QLsanphamController extends Controller
     }
     function postthemsanpham(Request $request)
     {
+        $validated = $request->validate([
+            'danhmuc' => 'required|integer',
+            'tensp' => 'required|string|max:255',
+            'anh' => 'nullable|string|max:255',
+            'tomtatsp' => 'nullable|string',
+            'tinhtrang' => 'nullable|boolean',
+            'gianhap' => 'nullable|numeric|min:0',
+            'soluong' => 'nullable|integer|min:0',
+            'giaban' => 'nullable|numeric|min:0',
+            'kichthuoc' => 'nullable|string',
+            'sanxuat' => 'nullable|string',
+            'tieuchuan' => 'nullable|string',
+            'loiich' => 'nullable|string',
+            'xuatsu' => 'nullable|string',
+            'tinhnang' => 'nullable|string'
+        ]);
         DB::beginTransaction();
         try {
             $sanpham = SanphamModel::create([
-                'id_ctdm' => $request->input('danhmuc'),
-                'tensp' => $request->input('tensp'),
-                'anh' => $request->input('anh'),
-                'tomtatsp' => $request->input('tomtatsp'),
-                'tinhtrang' => $request->input('tinhtrang')
+                'id_ctdm' => $validated['danhmuc'],
+                'tensp' => $validated['tensp'],
+                'anh' => $validated['anh'],
+                'tomtatsp' => $validated['tomtatsp'],
+                'tinhtrang' => $validated['tinhtrang']
             ]);
             $id_sp = $sanpham->id_sp;
             $ctsp = ChitietsanphamModel::create([
                 'id_sp' => $id_sp,
-                'chieurong' => $request->input('chieurong'),
-                'chieucao' => $request->input('chieucao'),
                 'doday' => $request->input('doday'),
                 'soluong' => $request->input('soluong'),
                 'sotrang' => $request->input('sotrang'),
@@ -152,7 +175,13 @@ class QLsanphamController extends Controller
                 'anhsp' => $request->input('anh'),
                 'mausac' => $request->input('mausac'),
                 'mamau' => $request->input('mamau'),
-                'dattinh' => $request->input('mamau')
+                'dattinh' => $request->input('mamau'),
+                'sanxuat' => $validated['sanxuat'],
+                'tieuchuan' => $validated['tieuchuan'],
+                'loiich' => $validated['loiich'],
+                'kichthuoc' => $validated['kichthuoc'],
+                'xuatsu' => $validated['xuatsu'],
+                'tinhnangnoibat' => $validated['tinhnang']
             ]);
             $id_ctsp = $ctsp->id_ctsp;
             gianhapModel::create([
@@ -173,7 +202,7 @@ class QLsanphamController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
-                'message' => $e,
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

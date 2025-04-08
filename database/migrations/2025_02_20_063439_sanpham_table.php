@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('anh')->nullable();
             $table->text('tomtatsp')->nullable();
             $table->boolean('tinhtrang')->nullable();
-            $table->boolean('trangthai')->nullable();
+            $table->enum('trangthai', ['conhang', 'hethang', 'an'])->nullable();
             $table->timestamps();
             $table->foreign('id_ctdm')
                 ->references('id_ctdm')

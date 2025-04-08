@@ -20,6 +20,12 @@ const trongluong = document.getElementById('trongluong');
 const sotrang = document.getElementById('sotrang');
 const chieurong = document.getElementById('chieurong');
 const chieucao = document.getElementById('chieucao');
+// mới
+const xuatsu = document.getElementById('xuatsu');
+const sanxuat = document.getElementById('sanxuat');
+const tieuchuan = document.getElementById('tieuchuan');
+const loiich = document.getElementById('loiich');
+const tinhnang = document.getElementById('tinhnang');
 // giá
 const gianhap = document.getElementById('gianhap');
 const giaban = document.getElementById('giaban');
@@ -30,6 +36,8 @@ window.sendData = function () {
     const sanpham = {
         danhmuc: chondm,
         tensp: tensp.value,
+        giasale: giasale.value,
+        giaban: giaban.value,
         tomtatsp: tomtatsp.value,
         tinhtrang: tinhtrang.checked,
         gianhap: gianhap.value,
@@ -43,10 +51,11 @@ window.sendData = function () {
         doday: doday.doday,
         trongluong: trongluong.value,
         sotrang: sotrang.value,
-        chieurong: chieurong.value,
-        chieucao: chieucao.value,
-        giasale: giasale.value,
-        giaban: giaban.value,
+        xuatsu: xuatsu.value,
+        sanxuat: sanxuat.value,
+        tieuchuan: tieuchuan.value,
+        loiich: loiich.value,
+        tinhnang: tinhnang.value
     };
     fetch('/administrator/themspmoi', {
         method: 'POST',
@@ -58,7 +67,9 @@ window.sendData = function () {
     })
         .then(response => response.json())
         .then(data => {
-            console.error(data.message)
+            alert(data.message);
+            console.log(data.message);
+            location.reload();
         })
         .catch(error => {
             console.error('Error:', error);
