@@ -12,15 +12,25 @@ class ChitietsanphamModel extends Model
     protected $primaryKey = 'id_ctsp';
     protected $fillable = [
         'id_sp',
-        'id-thuoctinh',
-        'chieurong',
-        'chieucao',
-        'doday',
-        'soluong',
-        'sotrang',
+        'id_thuoctinh',
+        'kichthuoc',
         'thuonghieu',
+        'xuatsu',
+        'sanxuat',
+        'khuyencao',
+        'loiich',
+        'tieuchuan',
+        'loiich',
+        'tinhnangnoibat',
+        'trangthai',
+
+        'soluong',
+        'tenchitiet',
+        'sotrang',
+
         'mausac',
-        'mammau',
+        'doday',
+        'mamau',
         'anhsp',
         'dattinh'
     ];

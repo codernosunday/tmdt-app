@@ -13,8 +13,9 @@
                 <div class="product-info">
                     <h1>{{$sp->tensp}}</h1>
                     <p class="text-muted">Thương hiệu: {{$ctsp->thuonghieu}}</p>
+                    <p class="text-muted">Còn hàng: {{$ctsp->soluong}}</p>
                     <p class="text-danger fw-bold">
-                        {{ isset($i->giaban) ? number_format($giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
+                        {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
                     </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
@@ -52,32 +53,28 @@
                             <td>{{$ctsp->thuonghieu}}</td>
                         </tr>
                         <tr>
-                            <th>Đường kính viên bi</th>
-                            <td>0.5 mm</td>
-                        </tr>
-                        <tr>
-                            <th>Kích thước ruột bút</th>
-                            <td>127.4 mm</td>
-                        </tr>
-                        <tr>
-                            <th>Phụ kiện</th>
-                            <td>Thay thế cho Gel-027, Gel-031, Gel-018, FO-Gel018/VN, TP-Gel01, TP-Gel03.</td>
-                        </tr>
-                        <tr>
                             <th>Xuất xứ</th>
-                            <td>Việt Nam</td>
+                            <td>{{$ctsp->xuatsu}}</td>
                         </tr>
                         <tr>
                             <th>Sản xuất</th>
-                            <td>Việt Nam</td>
+                            <td>{{$ctsp->sanxuat}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tiêu chuẩn</th>
+                            <td>{{$ctsp->tieuchuan}}</td>
                         </tr>
                         <tr>
                             <th>Khuyến cáo</th>
-                            <td>Tránh nguồn nhiệt, hóa chất. Không thích hợp cho trẻ dưới 3 tuổi.</td>
+                            <td>{{$sp->tomtatsp}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <h3>Tính năng nổi bật</h3>
+            <div>{{$ctsp->tinhnangnoibat}}</div>
+            <h3>Lợi ích</h3>
+            <div>{{$ctsp->loiich}}</div>
         </div>
         <!-- Đánh giá sản phẩm -->
         <div class="row mt-5">
@@ -87,14 +84,15 @@
                     <div class="card-body">
                         <h5 class="card-title">Người dùng 1</h5>
                         <p class="card-text">Sản phẩm rất tốt, màu sắc đẹp và dễ sử dụng.</p>
-                        <span class="text-warning">★★★★☆</span>
+                        <span class="" style="color:black">★★★★☆</span>
                     </div>
                 </div>
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">Người dùng 2</h5>
                         <p class="card-text">Giao hàng nhanh, chất lượng đảm bảo.</p>
-                        <span class="text-warning">★★★★★</span>
+                        <span class="" style="color:black">★★★★★</span>
+                        {{-- text-warning --}}
                     </div>
                 </div>
             </div>

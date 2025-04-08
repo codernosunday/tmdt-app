@@ -17,11 +17,11 @@
                     <td>{{ $i->danhmuccha->tendanhmuc ?? 'Không thuộc danh mục nào' }}</td>
                     <td>{{$i->ghichu}}</td>
                     <td>
-                        {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                        <button class="btn btn-danger btn-sm" onclick="deleteSP({{$i->id_ctdm}}) "><a class="delete_btn"><i
-                                    class="bi bi-trash3-fill"></i></a></button>
-                        <button class="btn btn-info btn-sm"><a class="edit_btn" href="quanlysanpham/1"><i
-                                    class="bi bi-pencil-square"></i> Sửa</a></button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteDMCon({{$i->id_ctdm}}) "><a
+                                class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
+                        <button class="btn btn-info btn-sm"><a class="edit_btn"
+                                href="/administrator/chinhsuadmcon/{{$i->id_ctdm}}"><i class="bi bi-pencil-square"></i>
+                                Sửa</a></button>
                     </td>
                 </tr>
             @endforeach
