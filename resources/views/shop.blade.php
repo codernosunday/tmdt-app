@@ -3,6 +3,7 @@
 @extends('layouts.app')
 @section('content')
 @section('title', 'Văn Phòng Phẩm')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <section id="sp">
         <div class="container">
             <div class="section-header d-md-flex justify-content-between align-items-center">
@@ -61,19 +62,19 @@
                 <div class="mb-3">
                     <h5>Phân khúc giá</h5>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="duoi50k">
+                        <input class="check-input" type="checkbox" id="giaduoi50k">
                         <label class="form-check-label" for="duoi50k">Dưới 50.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="50k_200k">
+                        <input class="check-input" type="checkbox" id="gia50k_200k">
                         <label class="form-check-label" for="50k_200k">Từ 50.000 VNĐ - 200.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="200k_100m">
+                        <input class="check-input" type="checkbox" id="gia200k_100m">
                         <label class="form-check-label" for="100m">Từ 200.000 VNĐ - 1.000.000 VNĐ</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="100m">
+                        <input class="check-input" type="checkbox" id="gia100m">
                         <label class="form-check-label" for="100m">Trên 1.000.000 VNĐ </label>
                     </div>
                 </div>
@@ -81,15 +82,15 @@
                 <div class="mb-3">
                     <h5>Thương hiệu</h5>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="thienlong">
+                        <input class="check-input" type="checkbox" id="brandthienlong">
                         <label class="form-check-label" for="thienlong">Thiên Long</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="FlexOffice">
+                        <input class="check-input" type="checkbox" id="brandFlexOffice">
                         <label class="form-check-label" for="FlexOffice">Flex Office</label>
                     </div>
                     <div class="form-check">
-                        <input class="check-input" type="checkbox" id="ColorKid">
+                        <input class="check-input" type="checkbox" id="brandColorKid">
                         <label class="form-check-label" for="ColorKid">Color Kid</label>
                     </div>
                 </div>

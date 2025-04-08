@@ -12,8 +12,8 @@
             <div class="col-md-6">
                 <div class="product-info">
                     <h1>{{ $sanpham->tensp }}</h1>
-                    <p class="text-muted">Thương hiệu: {{ $sanpham->chitietsp->thuonghieu ?? 'Không có' }}</p>
-                    <p class="text-danger fw-bold">{{ number_format($sanpham->giaban->giaban ?? 0, 0, ',', '.') }} VNĐ</p>
+                    <p class="text-muted">Thương hiệu: {{ $sanpham->thuonghieu ?? 'Không có' }}</p>
+                    <p class="text-danger fw-bold">{{isset($i->giaban) ? number_format($sanpham->giaban ?? 0, 0, ',', '.') }} VNĐ</p>
 
                     <!-- Chọn màu sắc nếu có -->
                     @if($sanpham->chitietsp && $sanpham->chitietsp->mausac)

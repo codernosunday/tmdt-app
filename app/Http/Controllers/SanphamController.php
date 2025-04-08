@@ -7,25 +7,22 @@ use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
 use Illuminate\Http\Request;
 
+
 class SanphamController extends Controller
 {
     public function chitietsanpham($tensp, $id_sp)
     {
-        // Fetch the product with its details and price
-        $sanpham = SanphamModel::with(['giaban', 'chitietsp'])->findOrFail($id_sp);
-        
-        // Validate if the product name in URL matches the actual product name
-        if ($tensp !== $sanpham->tensp) {
-            abort(404);
-        }
+        $sp = SanphamModel::where('id_sp', $sp)->firstOrFail();
 
-        // Get related products from the same category
-        $relatedProducts = SanphamModel::where('id_ctdm', $sanpham->id_ctdm)
-            ->where('id_sp', '!=', $id_sp)
-            ->with('giaban')
-            ->limit(4)
-            ->get();
+        $ctsp = ChitietsanphamModel::where('id_sp', $sp->id_sp)->first();
 
-        return view('trangsanpham', compact('sanpham', 'relatedProducts'));
+        $giaban = giabanModel::where('id_sp', $sp->id_sp)->latest('updated_at')->first();
+
+        return view('trangsanpham', [
+            'tensp' => $tensp,
+            'sp' => $sp,
+            'ctsp' => $ctsp,
+            'giaban' => $giaban
+        ]);
     }
 }
