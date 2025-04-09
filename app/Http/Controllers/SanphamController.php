@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SanphamModel;
-use App\Models\ChitietsanphamModel;
-use App\Models\giabanModel;
 use Illuminate\Http\Request;
 
 
 class SanphamController extends Controller
 {
-    public function chitietsanpham($tensp, $id_sp)
+    //
+    public function chitietsanpham($tensp, $sp)
     {
         $sp = SanphamModel::where('id_sp', $sp)->firstOrFail();
 

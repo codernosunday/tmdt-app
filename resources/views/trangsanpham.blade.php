@@ -1,12 +1,12 @@
 @vite(['resources/scss/trangsanpham.scss'])
 @extends('layouts.app')
-@section('title', $sanpham->tensp)
+@section('title', $tensp)
 @section('content')
     <div class="container my-5">
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-6">
-                <img src="{{ $sanpham->anh }}" class="product-image img-fluid" alt="{{ $sanpham->tensp }}">
+                <img src="https://via.placeholder.com/600x600" class="product-image" alt="Bút chì 6-12 màu">
             </div>
             <!-- Thông tin sản phẩm -->
             <div class="col-md-6">
@@ -20,75 +20,55 @@
                     <div class="mb-3">
                         <label for="color-select" class="form-label">Chọn màu sắc:</label>
                         <select class="form-select" id="color-select">
-                            <option selected>{{ $sanpham->chitietsp->mausac }}</option>
+                            <option selected>Chọn màu</option>
+                            <option value="red">Đỏ</option>
+                            <option value="blue">Xanh dương</option>
+                            <option value="green">Xanh lá</option>
                         </select>
                     </div>
-                    @endif
 
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
                         <label for="quantity" class="form-label">Số lượng:</label>
-                        <input type="number" class="form-control" id="quantity" value="1" min="1" 
-                               max="{{ $sanpham->chitietsp->soluong ?? 1 }}">
+                        <input type="number" class="form-control" id="quantity" value="1" min="1">
                     </div>
 
                     <!-- Nút hành động -->
-                    @if($sanpham->tinhtrang)
-                        <button class="btn btn-primary btn-add-to-cart mb-2">Thêm vào giỏ hàng</button>
-                        <button class="btn btn-success btn-buy-now mb-2">Mua ngay</button>
-                    @else
-                        <div class="alert alert-warning">Sản phẩm hiện đang hết hàng</div>
-                    @endif
+                    <button class="btn btn-primary btn-add-to-cart">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-buy-now text-white">Mua ngay</button>
+                </div>
 
-                    <!-- Thông tin chi tiết sản phẩm -->
-                    <div class="product-details mt-4">
-                        <h5>Thông tin sản phẩm</h5>
-                        <div class="mt-3">
-                            {!! $sanpham->tomtatsp !!}
-                        </div>
-                        @if($sanpham->chitietsp)
-                        <ul class="list-unstyled mt-3">
-                            @if($sanpham->chitietsp->kichthuoc)
-                            <li><strong>Kích thước:</strong> {{ $sanpham->chitietsp->kichthuoc }}</li>
-                            @endif
-                            @if($sanpham->chitietsp->doday)
-                            <li><strong>Độ dày:</strong> {{ $sanpham->chitietsp->doday }}mm</li>
-                            @endif
-                            @if($sanpham->chitietsp->sotrang)
-                            <li><strong>Số trang:</strong> {{ $sanpham->chitietsp->sotrang }}</li>
-                            @endif
-                            @if($sanpham->chitietsp->dattinh)
-                            <li><strong>Đặc tính:</strong> {{ $sanpham->chitietsp->dattinh }}</li>
-                            @endif
-                        </ul>
-                        @endif
-                    </div>
+                <!-- Thông tin bổ sung -->
+                <div class="product-details mt-4">
+                    <h5>Thông tin sản phẩm</h5>
+                    <ul>
+                        <li>Bút chì 6-12 màu, thiết kế Kawaii dễ thương.</li>
+                        <li>Chất liệu an toàn, không độc hại.</li>
+                        <li>Phù hợp cho học sinh, văn phòng, và họa sĩ.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Sản phẩm liên quan -->
-        @if($relatedProducts && $relatedProducts->count() > 0)
-        <div class="related-products mt-5">
-            <h3>Sản phẩm liên quan</h3>
-            <div class="row">
-                @foreach($relatedProducts as $product)
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <a href="{{ route('sanpham.show', ['tensp' => $product->tensp, 'id_sp' => $product->id_sp]) }}">
-                            <img src="{{ $product->anh }}" class="card-img-top" alt="{{ $product->tensp }}">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $product->tensp }}</h5>
-                            <p class="card-text text-danger">
-                                {{ number_format($product->giaban->giaban ?? 0, 0, ',', '.') }} VNĐ
-                            </p>
-                        </div>
+        <!-- Đánh giá sản phẩm -->
+        <div class="row mt-5">
+            <div class="col">
+                <h3>Đánh giá sản phẩm</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Người dùng 1</h5>
+                        <p class="card-text">Sản phẩm rất tốt, màu sắc đẹp và dễ sử dụng.</p>
+                        <span class="text-warning">★★★★☆</span>
                     </div>
                 </div>
-                @endforeach
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Người dùng 2</h5>
+                        <p class="card-text">Giao hàng nhanh, chất lượng đảm bảo.</p>
+                        <span class="text-warning">★★★★★</span>
+                    </div>
+                </div>
             </div>
         </div>
-        @endif
     </div>
 @endsection
