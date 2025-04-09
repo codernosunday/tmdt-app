@@ -54,12 +54,7 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 //admin 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-
-
-
-
-
-
+Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
 
 //admin- Vo Thanh Tin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -74,3 +69,5 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
 //shop-locsanpham-------Vo Thanh Tin
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
+
+Route::get('/sanpham/{tensp}/{id_sp}', [SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
