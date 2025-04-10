@@ -1,15 +1,20 @@
-<?php
+<?php 
 namespace App\Http\Controllers;
 
-use App\Models\Category; // Đảm bảo namespace đúng
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
     public function show($id_ctdm)
     {
+        // Tìm danh mục theo ID
         $category = Category::findOrFail($id_ctdm);
-        $products = $category->products; // Quan hệ products đã được định nghĩa trong model Category
+
+        // Lấy danh sách sản phẩm thuộc danh mục
+        $products = $category->products;
+
+        // Truyền dữ liệu sang view
         return view('categories.show', compact('category', 'products'));
     }
 }

@@ -9,12 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
-    // Nếu bảng trong database không theo chuẩn Laravel (vd: không phải "categories"), thêm dòng này:
-    // protected $table = 'ten_bang_trong_database';
+    protected $table = 'bangdanhmuc'; // Tên bảng trong cơ sở dữ liệu
+    protected $primaryKey = 'id_ctdm'; // Khóa chính
+    public $timestamps = true; // Nếu bảng có cột `created_at` và `updated_at`
 
-    // Nếu cần, định nghĩa quan hệ với sản phẩm
     public function products()
     {
-        return $this->hasMany(Product::class, 'id_dm', 'id');
+        return $this->hasMany(SanphamModel::class, 'id_ctdm', 'id_ctdm'); // Quan hệ với bảng sản phẩm
     }
 }
