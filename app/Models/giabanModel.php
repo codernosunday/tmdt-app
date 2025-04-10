@@ -12,7 +12,6 @@ class giabanModel extends Model
     protected $table = 'giaban';
     protected $primaryKey = 'id_giaban';
     protected $fillable = [
-
         'id_sp',
         'giaban'
     ];

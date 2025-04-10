@@ -163,18 +163,35 @@
                             </li>
 
                             <li class="shopping-cart">
-                                <a href="index.html" class="mx-3" data-bs-toggle="offcanvas"
+                                <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                                     <span
                                         class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                        0
+                                        {{ $countProductInCart }}
                                     </span>
                                 </a>
+
                                 <div class="list-shopping-cart">
-                                    <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
-                                        alt="Giỏ hàng trống" class="img-no-cart">
-                                    <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
+                                    @if ($countProductInCart > 0)
+                                        <div class="list-product-cart">
+                                            @foreach ($cart as $item)
+                                                <div class="product-cart-item d-flex align-items-center gap-2">
+                                                    <img src="{{ $item->anh }}" alt="product"
+                                                        class="img-fluid">
+                                                    <div class="product-cart-info">
+                                                        <h5>{{ $item->tensp }}</h5>
+                                                        <p>{{ number_format($item->price, 0, ',', '.') }} đ</p>
+                                                        <p>Số lượng: {{ $item->quantity }}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
+                                            alt="Giỏ hàng trống" class="img-no-cart">
+                                        <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
+                                    @endif
                                 </div>
                             </li>
                         </ul>
@@ -183,4 +200,10 @@
             </div>
         </nav>
     </div>
+
+    <script>
+        document.querySelector(".shopping-cart").addEventListener("click",()=>{
+            window.location.href = "/cart";
+        })
+    </script>
 </header>

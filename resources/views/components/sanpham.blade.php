@@ -17,9 +17,13 @@
                         <p class="product-price">
                             {{ isset($i->giaban) ? number_format($i->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
                         </p>
-                        <button class="btn-cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
+                        <form action="addToCart" method="POST">
+                            @csrf
+                            <input type="hidden" name="id_sp" value="{{ $i->id_sp }}">
+                            <button class="btn-cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ use App\Http\Controllers\QLDMController;
 Route::get('/', [HomePagesController::class, 'home'])->name('home');
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/cart', [CartController::class, 'cart']);
 
 
 Route::get('/login', [AuthController::class, 'loginPage']);
@@ -48,6 +48,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forgot', [AuthController::class, 'forgot']);
 Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
+
+Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
 
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);

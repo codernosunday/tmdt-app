@@ -53,6 +53,9 @@
     border: none;
     background-color: #e74c3c;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-cart i {
@@ -64,6 +67,10 @@
     background-color: #c0392b;
     transition: background-color 0.3s ease-in-out;
 } 
+
+.shopping-cart {
+    cursor: pointer;
+}
 
 .product-price {
     font-size: 18px;

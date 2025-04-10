@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\NguoidungModel;
+use App\Models\GiohangModel;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -54,14 +55,21 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
+            $id_giohang = GiohangModel::where('id_giohang', $user->id_nd)->first()->id_giohang;
+
             session([
                 'id' => $user->id_nd,
                 'username' => $user->username,
                 'email' => $user->mail,
                 'sodt' => $user->soDT,
+                'id_giohang' => $id_giohang,
             ]);
 
-            return redirect('shop');
+            if($user->quyentruycap === "admin"){
+                return redirect('administrator/quanlysanpham');
+            }else{
+                return redirect('shop');
+            }
         } else {
             return redirect()->back()
                 ->with('error', 'Đăng nhập thất bại,email hoặc mật khẩu không đúng.');
@@ -148,7 +156,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $user = NguoidungModel::where('mail', $request->email)->first();
+        $user = NguoidungModel::where('mail', $request->email);
         $code = $this->randomString();
         if ($user->exists()) {
             if($user->where('password', null)) {
@@ -174,7 +182,8 @@ class AuthController extends Controller
             'mail' => $request->email,
             'username' => $request->email,
             'password' => "",
-            'maxacnhan' => $code
+            'maxacnhan' => $code,
+            'quyentruycap' => "user"
         ]);
 
         $MailService = new MailController();
@@ -228,7 +237,11 @@ class AuthController extends Controller
             'password' => bcrypt($password)
         ]);
 
-        $giohang = new GioHangController();
+        $id_giohang = NguoidungModel::where('mail', $email)->first()->id_nd;
+
+        $giohang = GiohangModel::create([
+            'id_giohang' => $id_giohang,
+        ]);
 
         if ($user) {
             return redirect('login')
