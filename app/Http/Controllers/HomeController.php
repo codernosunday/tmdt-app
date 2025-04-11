@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::all(); // Fetch products from the database
-        return view('home', compact('products'));
+        // $products = Product::all(); // Fetch products from the database
+        // return view('home', compact('products'));
     }
 }
