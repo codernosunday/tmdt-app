@@ -13,8 +13,7 @@ class DanhmucconModel extends Model
     protected $primaryKey = 'id_ctdm';
     protected $fillable = [
         'id_dm',
-        'id_ctdm',
-        'tendanhmuc',
+        'ten',
         'ghichu',
     ];
     public $timestamps = true;

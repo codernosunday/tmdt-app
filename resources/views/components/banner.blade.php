@@ -5,52 +5,59 @@
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
-                            <img src="{{ asset('resources/img/banner/image.jpg') }}" class="img-fluid">
+                            <img src="images/banner-img.png" class="img-fluid">
                         </div>
-                        <div class="content-wrapper col-md-7 p-5 mb-5 ">
+                        <div class="content-wrapper col-md-7 p-5 mb-5">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Văn phòng phẩm <span class="text-primary">giá rẻ</span></h2>
+                            <h2 class="banner-title display-1 fw-normal">Văn phòng phẩm <span class="text-primary">giá
+                                    rẻ</span>
+                            </h2>
                             <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 Mua ngay
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
-                                </svg>
-                            </a>
+                                </svg></a>
                         </div>
+
                     </div>
                 </div>
                 <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
-                            <img src="images/banner-img3.png" class="img-fluid">
+                            <img src="images//banner-img3.png" class="img-fluid">
                         </div>
                         <div class="content-wrapper col-md-7 p-5 mb-5">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your pets</span></h2>
+                            <h2 class="banner-title display-1 fw-normal">Best destination for <span
+                                    class="text-primary">your
+                                    pets</span>
+                            </h2>
                             <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 shop now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
-                                </svg>
-                            </a>
+                                </svg></a>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide py-5">
+                </div> --}}
+                {{-- <div class="swiper-slide py-5">
                     <div class="row banner-content align-items-center">
                         <div class="img-wrapper col-md-5">
                             <img src="images/banner-img4.png" class="img-fluid">
                         </div>
                         <div class="content-wrapper col-md-7 p-5 mb-5">
                             <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your pets</span></h2>
+                            <h2 class="banner-title display-1 fw-normal">Best destination for <span
+                                    class="text-primary">your
+                                    pets</span>
+                            </h2>
                             <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 shop now
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
-                                </svg>
-                            </a>
+                                </svg></a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -58,7 +65,3 @@
         </div>
     </div>
 </section>
-
-<!-- Include Swiper.js -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SanphamModel;
 use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
+use App\Models\SanphamModel;
+
 class SanphamController extends Controller
 {
     //
