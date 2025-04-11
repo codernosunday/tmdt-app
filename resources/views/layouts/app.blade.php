@@ -5,6 +5,7 @@
 <head>
     <title>@yield('title', default: 'Shopen')</title>
     @include('layouts.partials.meta')
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 </head>
 </head>
 
