@@ -1,0 +1,27 @@
+/* Tăng độ dày border cho thanh tìm kiếm */
+.custom-border {
+    border-width: 2px !important; /* Tăng độ dày border lên 2px */
+}
+
+/* Cải thiện giao diện nút tìm kiếm */
+.btn-outline-success {
+    border: none; /* Loại bỏ border của nút để không bị trùng với border của thanh tìm kiếm */
+    padding: 0 15px; /* Điều chỉnh padding để nút trông cân đối */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Đảm bảo input và nút tìm kiếm không bị lệch */
+.search-bar {
+    height: 40px; /* Đặt chiều cao cố định cho thanh tìm kiếm */
+}
+
+/* Tùy chỉnh màu icon nếu cần */
+.btn-outline-success .iconify {
+    color: black; /* Màu xanh của Bootstrap success */
+}
+
+.btn-outline-success:hover .iconify {
+    color: #fff; /* Màu trắng khi hover */
+}

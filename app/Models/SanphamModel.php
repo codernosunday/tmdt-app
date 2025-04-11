@@ -24,7 +24,6 @@ class SanphamModel extends Model
         return $this->hasOne(GiabanModel::class, 'id_sp')
             ->latest('updated_at');
     }
-
     public function chitiet()
     {
         return $this->hasOne(ChitietsanphamModel::class, 'id_sanpham', 'id_sp'); // chỉnh lại tên khóa nếu khác

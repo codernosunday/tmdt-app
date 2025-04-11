@@ -1,12 +1,12 @@
 @vite(['resources/scss/trangsanpham.scss'])
 @extends('layouts.app')
-@section('title', $tensp)
+@section('title', $sanpham->tensp)
 @section('content')
     <div class="container my-5">
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-6">
-                <img src="{{$sp->anh}}" class="product-image" alt="Bút chì 6-12 màu">
+                <img src="{{ $sanpham->anh }}" class="product-image" alt="{{ $sanpham->tensp }}">
             </div>
             <!-- Thông tin sản phẩm -->
             <div class="col-md-6">
@@ -21,12 +21,12 @@
                     <div class="mb-3">
                         <label for="color-select" class="form-label">Chọn màu sắc:</label>
                         <select class="form-select" id="color-select">
-                            <option selected>Chọn màu</option>
-                            <option value="red">Đỏ</option>
-                            <option value="blue">Xanh dương</option>
-                            <option value="green">Xanh lá</option>
+                            @foreach(explode(',', $sanpham->chitietsp->mausac) as $color)
+                            <option value="{{ $color }}">{{ ucfirst($color) }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    @endif
 
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
