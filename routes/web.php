@@ -31,7 +31,6 @@ Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/cart', [CartController::class, 'cart']);
 
-
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::get('/register', [AuthController::class, 'registerPage']);
 Route::get('/verify', [AuthController::class, 'verifyPage']);
