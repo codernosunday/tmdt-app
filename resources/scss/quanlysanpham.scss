@@ -7,13 +7,40 @@
     margin: 20px 0;
 }
 
-.summary {
-    max-width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.table_color {
+    background-color: #f1f7fa;
+    font-weight: normal !important;
 }
 
+//
+.summary {
+    position: relative;
+    cursor: pointer;
+}
+
+.image-popup {
+    position: absolute;
+    top: 100%;
+    /* Hiển thị bên dưới icon */
+    left: 0;
+    width: 180px;
+    /* Kích thước ảnh */
+    height: auto;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    /* Đặt cao hơn các phần tử khác */
+    display: none;
+}
+
+/* Hiện ảnh khi hover vào td */
+.summary:hover .image-popup {
+    display: block;
+}
+
+//
 /* CSS cho hiệu ứng hover */
 .table tbody tr:hover {
     background-color: #d5d5d5;
@@ -70,4 +97,14 @@
 
 .btn-submit:hover {
     background-color: #218838;
+}
+
+.delete_btn {
+    color: white;
+    text-decoration: none;
+}
+
+.edit_btn {
+    color: white;
+    text-decoration: none;
 }

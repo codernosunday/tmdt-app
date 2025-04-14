@@ -24,13 +24,14 @@ class SanphamModel extends Model
         return $this->hasOne(GiabanModel::class, 'id_sp')
             ->latest('updated_at');
     }
-    public function danhmuc()
+
+    public function chitiet()
     {
-        return $this->belongsTo(DanhmucModel::class, 'id_ctdm', 'id_ctdm');
+        return $this->hasOne(ChitietsanphamModel::class, 'id_sp', 'id_sp'); // chỉnh lại tên khóa nếu khác
     }
-    public function chitietdonhang()
+
+    public function chitietsanpham()
     {
-        return $this->hasMany(ChitietdonhangModel::class, 'id_sp', 'id_sp');
+        return $this->hasMany(ChitietsanphamModel::class, 'id_sp', 'id_sp');
     }
-    
 }

@@ -1,66 +1,98 @@
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
 .product-image {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border: 1px solid #ddd;
     border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-info {
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.product-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    margin-bottom: 8px;
+    font-size: 16px;
 }
 
 .btn-add-to-cart,
 .btn-buy-now {
-    width: 100%;
-    margin-bottom: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-add-to-cart {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #e0a800;
 }
 
 .btn-buy-now {
-    background-color: #ff5722;
-    border-color: #ff5722;
+    background-color: #dc3545;
+    border: none;
 }
 
 .btn-buy-now:hover {
-    background-color: #e64a19;
-    border-color: #e64a19;
+    background-color: #c82333;
 }
 
 .product-details {
-    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .product-details h5 {
+    margin-bottom: 20px;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+h3 {
+    margin-top: 40px;
     margin-bottom: 15px;
+    color: #333;
 }
 
-.product-details ul {
-    list-style-type: none;
-    padding-left: 0;
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.product-details ul li {
-    margin-bottom: 10px;
+.card-body {
+    background-color: #fefefe;
 }
 
-.policy-box {
-    background-color: #e6f0ff;
-    /* Màu nền xanh nhạt */
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px dashed blue;
-    width: 300px;
+.card-title {
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
-.policy-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.policy-item i {
-    font-size: 22px;
+.card-text {
+    font-style: italic;
+    color: #555;
 }

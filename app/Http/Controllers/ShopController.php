@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\SanphamModel;
-use App\Models\ChitietsanphamModel;
+// use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
-use App\Models\gianhapModel;
+// use App\Models\gianhapModel;
 use App\Models\DanhmucconModel;
 use App\Models\DanhmucsanphamModel;
 
@@ -16,9 +16,10 @@ class ShopController extends Controller
     //
     public function shop()
     {
+        // dd(session('email'));
         $dm = DanhmucsanphamModel::all();
         $danhmuccon = DanhmucconModel::all();
-        // $sp = SanphamModel::with('giaban')->get();
+        $sp = SanphamModel::with('giaban')->get();
         return view('shop', compact('dm', 'danhmuccon'));
     }
     //loc theo danh muc
@@ -27,7 +28,7 @@ class ShopController extends Controller
         if ($danhmuc != 0) {
             $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(16)->get();
         } else {
-            $sp = SanphamModel::limit(16)->get();
+            $sp = SanphamModel::limit(40)->get();
         }
         return view('components.sanpham', compact('sp'));
     }

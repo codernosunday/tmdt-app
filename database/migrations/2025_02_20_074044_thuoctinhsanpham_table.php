@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('thuoctinhsanpham', function (Blueprint $table) {
             $table->increments('id_thuoctinh');
-            $table->string('loai');
-            $table->string('danhsachspgoiy');
+            $table->string('loai')->nullable();
+            $table->string('danhsachspgoiy')->nullable();
+            $table->string('kichthuoc')->nullable();
             $table->string('mota')->nullable();
+            $table->string('mau')->nullable();
+            $table->string('mamau')->nullable();
             $table->timestamps();
         });
     }

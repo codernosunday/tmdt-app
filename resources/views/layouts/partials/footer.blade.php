@@ -41,17 +41,19 @@
                     <h3>Liên kết nhanh</h3>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="{{ Route('shop') }}" class="nav-link">Trang chủ</a>
+                            <a href="#" class="nav-link">Trang chủ</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{ route('aboutus') }}" class="nav-link">Về chúng tôi</a>
-                        </li>
-                        
-                        <li class="menu-item">
-                            <a href="{{ route('service') }}" class="nav-link">Dich vụ</a>
+                            <a href="#" class="nav-link">Về chúng tôi</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{ route('contact') }}" class="nav-link">Liên hệ chúng tôi</a>
+                            <a href="#" class="nav-link">Ưu đãi</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Dịch vụ</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Liên hệ</a>
                         </li>
                     </ul>
                 </div>

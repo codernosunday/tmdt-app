@@ -42,8 +42,42 @@
     white-space: normal;
 }
 
+.product-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-cart {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: #e74c3c;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-cart i {
+    color: #fff;
+    font-size: 20px;
+}
+
+.btn-cart:hover {
+    background-color: #c0392b;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.shopping-cart {
+    cursor: pointer;
+}
+
 .product-price {
     font-size: 18px;
     font-weight: bold;
     color: #e74c3c;
+}
+
+.link {
+    text-decoration: none;
 }

@@ -18,6 +18,7 @@ return new class extends Migration
 
             // Các cột khác
             $table->string('tendanhmuc')->nullable();
+            $table->string('trangthai')->nullable();
             $table->string('ghichu')->nullable();
             // created_at & updated_at:
             $table->timestamps();

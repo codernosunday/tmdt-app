@@ -2,22 +2,6 @@
     <div class="offcanvas-header justify-content-center">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-
-    <div class="offcanvas-body">
-
-        <div class="order-md-last">
-            <h4 class="text-primary text-uppercase mb-3">
-                Tìm kiếm
-            </h4>
-            <div class="search-bar border rounded-2 border-dark-subtle">
-                <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-                    <input type="text" class="form-control border-0 bg-transparent " placeholder="Tìm kiếm sản phẩm" />
-                    <iconify-icon icon="tabler: search" class="fs-4 me-3"></iconify-icon>
-                </form>
-            </div>
-        </div>
-    </div>
-
 </div>
 <header>
     <div class="container py-2">
@@ -92,22 +76,54 @@
                                         <li><a href="/administrator/themsanpham" class="dropdown-item">Thêm mới sản
                                                 phẩm</a>
                                         </li>
-                                        <li><a href="index.html" class="dropdown-item">Quản lý danh mục sản phẩm</a>
-                                        </li>
-                                        <li><a href="index.html" class="dropdown-item">Quản lý danh mục con</a></li>
                                         <li><a href="index.html" class="dropdown-item">Thống kê</a></li>
                                     </ul>
-                                <li class="nav-item">
-                                    <a href="{{ route('shop') }}" class="nav-link">Quản lý sản phẩm</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" id="pages"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Quản lý người dùng</a>
+                                    <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="#" class="dropdown-item">Quản lý người dùng</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Thêm mới người dùng</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Danh sách chặn</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Quản lý địa chỉ</a></li>
+                                        <li><a href="#" class="dropdown-item">Thống kê nâng cao</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" id="pages"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Danh mục và khuyến mãi</a>
+                                    <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="/administrator/phanloaivamausac" class="dropdown-item">Phân loại và
+                                                màu sắc</a>
+                                        </li>
+                                        <li><a href="/administrator/quanlydanhmuccha" class="dropdown-item">Quản lý danh
+                                                mục cha</a>
+                                        </li>
+                                        <li><a href="/administrator/quanlydanhmucccon" class="dropdown-item">Quản lý
+                                                danh mục con</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Thêm mới danh mục con</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Thêm mới danh mục cha</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Quản lý khuyến mãi</a></li>
+                                        <li><a href="#" class="dropdown-item">Thêm chương trình khuyến mãi</a></li>
+                                        <li><a href="#" class="dropdown-item">Quản lý banner</a></li>
+                                        <li><a href="#" class="dropdown-item">Thêm mới banner</a></li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('blog') }}" class="nav-link">Quản lý người dùng</a>
+                                    <a href="{{ route('blog') }}" class="nav-link">Quản lý đơn hàng</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('contact') }}" class="nav-link">Quản lý đơn hàng</a>
+                                    <a href="{{ route('contact') }}" class="nav-link">Phản hồi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/" class="nav-link">Others</a>
+                                    <a href="/" class="nav-link">Thống kê chung</a>
                                 </li>
                             </ul>
 
@@ -116,11 +132,6 @@
                                     <li>
                                         <a href="index.html" class="mx-3">
                                             <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="mx-3">
-                                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                         </a>
                                     </li>
                                 </ul>
