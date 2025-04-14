@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ChitietsanphamModel;
+
 class ChitietgiohangModel extends Model
 {
     use HasFactory;
     protected $table = 'chitietgiohang';
-    protected $primary ='id_ctgh';
+    protected $primary = 'id_ctgh';
     protected $fillable = [
         'id_ctsp',
         'id_giohang',
@@ -22,7 +23,7 @@ class ChitietgiohangModel extends Model
 
     public function ctsp()
     {
-        return $this->belongsTo(SanphamModel::class, 'id_ctsp');
+        return $this->belongsTo(ChitietsanphamModel::class, 'id_ctsp');
     }
 
     public function sanpham()

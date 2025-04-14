@@ -15,6 +15,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QLDMController;
 
+use App\Http\Controllers\ThanhtoanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,9 +50,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forgot', [AuthController::class, 'forgot']);
 Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
-
+//gio hang - Vo Thanh Tin
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
-
+Route::post('/themvaogio', [CartController::class, 'themgiohang']);
+//dat hang - vo thanh tin
+Route::get('/trangthanhtoan/{ctgh}', [ThanhtoanController::class, 'trangthanhtoan']);
+//
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
@@ -58,7 +63,7 @@ Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-//admin 
+//admin - Vo Thanh Tin
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 
@@ -68,7 +73,7 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 
 
-//admin- Vo Thanh Tin
+//admin- Vo Thanh Tin - san pham va chi tiet san pham
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
@@ -77,14 +82,17 @@ Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsa
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
 Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
+// chitiet san pham
+Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
+Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
 Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
-//danh muc cha
+//danh muc cha- Vo Thanh Tin
 Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
 Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
 Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
-//danh muc con
+//danh muc con- Vo Thanh Tin
 Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
 Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
 Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
@@ -94,3 +102,6 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
 //shop-locsanpham ------- Vo Thanh Tin
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
+//Quan ly phan loai va mau sac - Vo Thanh Tin
+Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
+Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);

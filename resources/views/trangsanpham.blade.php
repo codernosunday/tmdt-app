@@ -1,7 +1,9 @@
 @vite(['resources/scss/trangsanpham.scss'])
+@vite(['resources/js/listspscript/sanpham.js'])
 @extends('layouts.app')
-@section('title', $tensp)
+@section('title', $sp->tensp)
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container my-5">
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
@@ -14,29 +16,31 @@
                     <h1>{{$sp->tensp}}</h1>
                     <p class="text-muted">Thương hiệu: {{$ctsp->thuonghieu}}</p>
                     <p class="text-muted">Còn hàng: {{$ctsp->soluong}}</p>
-                    <p class="text-danger fw-bold">
+                    <p class="">
                         {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
                     </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
-                        <label for="color-select" class="form-label">Chọn màu sắc:</label>
-                        <select class="form-select" id="color-select">
+                        <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
+                        <select class="form-select" id="chonchitiet">
                             <option selected>Chọn màu</option>
-                            <option value="red">Đỏ</option>
-                            <option value="blue">Xanh dương</option>
-                            <option value="green">Xanh lá</option>
+                            @foreach ($dschitiet as $i)
+                                <option value="{{$i->id_ctsp}}">{{$i->thuoctinh->mau}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
-                        <label for="quantity" class="form-label">Số lượng:</label>
-                        <input type="number" class="form-control" id="quantity" value="1" min="1">
+                        <label for="soluong" class="form-label">Số lượng:</label>
+                        <input type="number" class="form-control" id="soluong" value="1" min="1">
                     </div>
 
                     <!-- Nút hành động -->
-                    <button class="btn btn-primary btn-add-to-cart">Thêm vào giỏ hàng</button>
-                    <button class="btn btn-buy-now text-white">Mua ngay</button>
+                    <button type="button" onclick="themvaogio({{$sp->id_sp}})" class="btn btn-primary btn-add-to-cart">
+                        Thêm vào giỏ hàng
+                    </button>
+                    <button class="btn btn-primary btn-add-to-cart">Mua ngay</button>
                 </div>
 
                 <!-- Thông tin bổ sung -->
@@ -70,11 +74,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <h3>Tính năng nổi bật</h3>
+                <div>{{$ctsp->tinhnangnoibat}}</div>
+                <h3>Lợi ích</h3>
+                <div>{{$ctsp->loiich}}</div>
             </div>
-            <h3>Tính năng nổi bật</h3>
-            <div>{{$ctsp->tinhnangnoibat}}</div>
-            <h3>Lợi ích</h3>
-            <div>{{$ctsp->loiich}}</div>
         </div>
         <!-- Đánh giá sản phẩm -->
         <div class="row mt-5">

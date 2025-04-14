@@ -36,6 +36,9 @@
                                         class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
                                 <button class="btn btn-info btn-sm"><a class="edit_btn" href="quanlysanpham/{{$i->id_sp}}"><i
                                             class="bi bi-pencil-square"></i> Sửa</a></button>
+                                <button class="btn btn-info btn-sm"><a class="edit_btn"
+                                        href="/administrator/themchitietmoi/{{$i->id_sp}}"><i class="bi bi-pencil-square"></i>
+                                        Thêm chi tiết sản phẩm</a></button>
                             </td>
                         </tr>
                     @endforeach

@@ -10,6 +10,7 @@ use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
 use App\Models\gianhapModel;
 use App\Models\DanhmucconModel;
+use App\Models\ThuoctinhspModel;
 
 class QLsanphamController extends Controller
 {
@@ -136,7 +137,8 @@ class QLsanphamController extends Controller
     function pagesthemsanpham()
     {
         $danhmuccon = DanhmucconModel::all();
-        return view('admin.themsanpham', compact('danhmuccon'));
+        $thuoctinh = ThuoctinhspModel::all();
+        return view('admin.themsanpham', compact('danhmuccon', 'thuoctinh'));
     }
     function postthemsanpham(Request $request)
     {
@@ -168,13 +170,12 @@ class QLsanphamController extends Controller
             $id_sp = $sanpham->id_sp;
             $ctsp = ChitietsanphamModel::create([
                 'id_sp' => $id_sp,
+                'id_thuoctinh' => $request->input('thuoctinh'),
                 'doday' => $request->input('doday'),
                 'soluong' => $request->input('soluong'),
                 'sotrang' => $request->input('sotrang'),
                 'thuonghieu' => $request->input('thuonghieu'),
                 'anhsp' => $request->input('anh'),
-                'mausac' => $request->input('mausac'),
-                'mamau' => $request->input('mamau'),
                 'dattinh' => $request->input('mamau'),
                 'sanxuat' => $validated['sanxuat'],
                 'tieuchuan' => $validated['tieuchuan'],
@@ -219,6 +220,53 @@ class QLsanphamController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e,
+            ], 500);
+        }
+    }
+    //thêm chi tiết sản phẩm
+    function chiTietSanPham($id)
+    {
+        $sp = sanphamModel::where('id_sp', $id)->first();
+        $thuoctinh = ThuoctinhspModel::all();
+        return view('admin.themchitietsanpham', compact('sp', 'thuoctinh'));
+    }
+    function PostThemchiTietSanPham(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $ctsp = ChitietsanphamModel::create([
+                'id_sp' => $request->input('id_sp'),
+                'id_thuoctinh' => $request->input('mausac'),
+                'doday' => $request->input('doday'),
+                'soluong' => $request->input('soluong'),
+                'sotrang' => $request->input('sotrang'),
+                'thuonghieu' => $request->input('thuonghieu'),
+                'anhsp' => $request->input('anh'),
+                'sanxuat' => $request->input('sanxuat'),
+                'tieuchuan' => $request->input('tieuchuan'),
+                'loiich' => $request->input('loiich'),
+                'kichthuoc' => $request->input('kichthuoc'),
+                'xuatsu' => $request->input('xuatsu'),
+                'tinhnangnoibat' => $request->input('tinhnang')
+            ]);
+            $id_ctsp = $ctsp->id_ctsp;
+            gianhapModel::create([
+                'id_ctsp' => $id_ctsp,
+                'gianhap' => $request->input('gianhap'),
+                'soluong' => $request->input('soluong')
+            ]);
+            giabanModel::create([
+                'id_ctsp' => $id_ctsp,
+                'giaban' => $request->input('giaban')
+            ]);
+            DB::commit();
+            return response()->json([
+                'message' => 'Sản phẩm được thêm thành công!',
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

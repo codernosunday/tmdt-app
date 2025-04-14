@@ -27,7 +27,7 @@ class SanphamModel extends Model
 
     public function chitiet()
     {
-        return $this->hasOne(ChitietsanphamModel::class, 'id_sanpham', 'id_sp'); // chỉnh lại tên khóa nếu khác
+        return $this->hasOne(ChitietsanphamModel::class, 'id_sp', 'id_sp'); // chỉnh lại tên khóa nếu khác
     }
 
     public function chitietsanpham()

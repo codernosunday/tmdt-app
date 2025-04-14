@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\DanhmucconModel;
 use App\Models\DanhmucsanphamModel;
+use App\Models\ThuoctinhspModel;
+use Illuminate\Auth\Events\Validated;
 
 class QLDMController extends Controller
 {
@@ -206,6 +208,32 @@ class QLDMController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Thêm danh mục con thành công!',
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    // Quản lý phân loại và màu sắc
+    public function trangPhanloai()
+    {
+        $thuoctinh = ThuoctinhspModel::all();
+        return view('admin.phanloaimau', compact('thuoctinh'));
+    }
+    public function postThemPhanloai(Request $request)
+    {
+        try {
+            ThuoctinhspModel::create([
+                'loai' => $request->loai,
+                'kichthuoc' => $request->kichthuoc,
+                'mau' => $request->mau,
+                'mamau' => $request->mamau,
+            ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'thêm thành công',
             ], 200);
         } catch (Exception $e) {
             return response()->json([

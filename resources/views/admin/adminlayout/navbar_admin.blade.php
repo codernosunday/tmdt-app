@@ -97,6 +97,9 @@
                                     <a class="nav-link dropdown-toggle" role="button" id="pages"
                                         data-bs-toggle="dropdown" aria-expanded="false">Danh mục và khuyến mãi</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="/administrator/phanloaivamausac" class="dropdown-item">Phân loại và
+                                                màu sắc</a>
+                                        </li>
                                         <li><a href="/administrator/quanlydanhmuccha" class="dropdown-item">Quản lý danh
                                                 mục cha</a>
                                         </li>

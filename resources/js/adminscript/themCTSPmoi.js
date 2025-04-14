@@ -1,27 +1,14 @@
-const danhmuc = document.getElementById('danhmuc');
-let chondm = 1;
-danhmuc.addEventListener('change', function () {
-    chondm = danhmuc.value;
-});
-//
-const anh = document.getElementById('anh');
-const tensp = document.getElementById('tensp');
-const tomtatsp = document.getElementById('tomtatsp');
-const tinhtrang = document.getElementById('tinhtrang'); //còn hàng hoặc không còn hàng
-const thuoctinh = document.getElementById('thuoctinh');
+
 //
 const thuonghieu = document.getElementById('thuonghieu');
 const soluong = document.getElementById('soluong');
-
-const mamau = document.getElementById('mamau');
+const mausac = document.getElementById('mausac');
 const dattinh = document.getElementById('dattinh');
 const kichthuoc = document.getElementById('kichthuoc');
 const doday = document.getElementById('doday');
 const trongluong = document.getElementById('trongluong');
 const sotrang = document.getElementById('sotrang');
-const chieurong = document.getElementById('chieurong');
-const chieucao = document.getElementById('chieucao');
-// mới
+//moi
 const xuatsu = document.getElementById('xuatsu');
 const sanxuat = document.getElementById('sanxuat');
 const tieuchuan = document.getElementById('tieuchuan');
@@ -31,48 +18,50 @@ const tinhnang = document.getElementById('tinhnang');
 const gianhap = document.getElementById('gianhap');
 const giaban = document.getElementById('giaban');
 const giasale = document.getElementById('giasale')
-console.log(tensp.value)
-//object san pham
-window.sendData = function () {
-    const sanpham = {
-        danhmuc: chondm,
-        tensp: tensp.value,
-        giasale: giasale.value,
-        giaban: giaban.value,
-        tomtatsp: tomtatsp.value,
-        tinhtrang: tinhtrang.checked,
+window.themCTmoi = function (id) {
+    const ctsanpham = {
+        id_sp: id,
         gianhap: gianhap.value,
         soluong: soluong.value,
         thuonghieu: thuonghieu.value,
-        thuoctinh: thuoctinh.value,
-        anh: anh.value,
-        mamau: mamau.value,
+        mausac: mausac.value,
         dattinh: dattinh.value,
         kichthuoc: kichthuoc.value,
-        doday: doday.doday,
+        doday: doday.value,
         trongluong: trongluong.value,
         sotrang: sotrang.value,
+        giasale: giasale.value,
+        giaban: giaban.value,
         xuatsu: xuatsu.value,
         sanxuat: sanxuat.value,
         tieuchuan: tieuchuan.value,
         loiich: loiich.value,
         tinhnang: tinhnang.value
     };
-    fetch('/administrator/themspmoi', {
+    fetch('/administrator/postthemchitietmoi', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
-        body: JSON.stringify(sanpham),
+        body: JSON.stringify(ctsanpham),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            console.log(data.message);
-            location.reload();
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(({ status, body }) => {
+            if (status !== 200) {
+                console.error("Lỗi từ server:", body);
+                let errorMessage = body.message || "Có lỗi xảy ra!";
+                if (body.errors) {
+                    errorMessage += "\n" + Object.values(body.errors).flat().join("\n");
+                }
+                alert(errorMessage);
+                throw new Error(errorMessage);
+            }
+
+            alert(body.message);
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error("Lỗi:", error);
+            alert(error.message || "Đã xảy ra lỗi không xác định!");
         });
 }

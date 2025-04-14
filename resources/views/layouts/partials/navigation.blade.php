@@ -77,7 +77,7 @@
                             aria-controls="offcanvasCart">
                             <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                             <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                0
+                                {{ $countProductInCart }}
                             </span>
                         </a>
                     </li>
@@ -163,8 +163,8 @@
                             </li>
 
                             <li class="shopping-cart">
-                                <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                    aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                                     <span
                                         class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
@@ -177,8 +177,7 @@
                                         <div class="list-product-cart">
                                             @foreach ($cart as $item)
                                                 <div class="product-cart-item d-flex align-items-center gap-2">
-                                                    <img src="{{ $item->anh }}" alt="product"
-                                                        class="img-fluid">
+                                                    <img src="{{ $item->anh }}" alt="product" class="img-fluid">
                                                     <div class="product-cart-info">
                                                         <h5>{{ $item->tensp }}</h5>
                                                         <p>{{ number_format($item->price, 0, ',', '.') }} đ</p>
@@ -202,7 +201,7 @@
     </div>
 
     <script>
-        document.querySelector(".shopping-cart").addEventListener("click",()=>{
+        document.querySelector(".shopping-cart").addEventListener("click", () => {
             window.location.href = "/cart";
         })
     </script>
