@@ -15,6 +15,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QLDMController;
 
+use App\Http\Controllers\QLnguoidungController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +80,10 @@ Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsa
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
 Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
+
+//admin-Quan ly nguoi dung-HHH
+Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
+
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
 Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);

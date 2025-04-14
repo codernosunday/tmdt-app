@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
 
             $sanphams = SanphamModel::whereIn('id_sp', $ids_sanpham)->get();
 
+            $con = 1;
+
             $view->with([
                 'countProductInCart' => $count,
                 'cart' => $chitietgiohang->get(),
