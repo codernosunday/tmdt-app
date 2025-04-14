@@ -17,11 +17,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QLDMController;
 
-<<<<<<< HEAD
 use App\Http\Controllers\ThanhtoanController;
-=======
-
->>>>>>> parent of e71fce6 (Revert "Merge branch 'Phuc'")
 
 /*
 |--------------------------------------------------------------------------
@@ -58,12 +54,6 @@ Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChan
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
 //gio hang - Vo Thanh Tin
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
-<<<<<<< HEAD
-Route::post('/themvaogio', [CartController::class, 'themgiohang']);
-//dat hang - vo thanh tin
-Route::get('/trangthanhtoan/{ctgh}', [ThanhtoanController::class, 'trangthanhtoan']);
-//
-=======
 
 //Phuc: change the category route
 Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
@@ -116,7 +106,6 @@ Route::post('/verify', [AuthController::class, 'verify']);
 Route::post('/password', [AuthController::class, 'password']);
 Route::post('/login', [AuthController::class, 'login']);
 
->>>>>>> parent of e71fce6 (Revert "Merge branch 'Phuc'")
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
@@ -158,11 +147,6 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
 //shop-locsanpham ------- Vo Thanh Tin
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
-<<<<<<< HEAD
 //Quan ly phan loai va mau sac - Vo Thanh Tin
 Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
 Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
-=======
-
-Route::get('/sanpham/{tensp}/{id_sp}', [SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
->>>>>>> parent of e71fce6 (Revert "Merge branch 'Phuc'")

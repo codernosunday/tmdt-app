@@ -1,18 +1,14 @@
 @vite(['resources/scss/trangsanpham.scss'])
 @vite(['resources/js/listspscript/sanpham.js'])
 @extends('layouts.app')
-<<<<<<< HEAD
 @section('title', $sp->tensp)
-=======
-@section('title', $sanpham->tensp)
->>>>>>> parent of e71fce6 (Revert "Merge branch 'Phuc'")
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container my-5">
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-6">
-                <img src="{{ $sanpham->anh }}" class="product-image" alt="{{ $sanpham->tensp }}">
+                <img src="{{ $sp->anh }}" class="product-image" alt="{{$sp->tensp }}">
             </div>
             <!-- Thông tin sản phẩm -->
             <div class="col-md-6">
@@ -25,23 +21,14 @@
                     </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
-<<<<<<< HEAD
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
                         <select class="form-select" id="chonchitiet">
                             <option selected>Chọn màu</option>
                             @foreach ($dschitiet as $i)
-                                <option value="{{$i->id_ctsp}}">{{$i->thuoctinh->mau}}</option>
-=======
-                        <label for="color-select" class="form-label">Chọn màu sắc:</label>
-                        <select class="form-select" id="color-select">
-                            @foreach(explode(',', $sanpham->chitietsp->mausac) as $color)
-                            <option value="{{ $color }}">{{ ucfirst($color) }}</option>
->>>>>>> parent of e71fce6 (Revert "Merge branch 'Phuc'")
+                                <option value="{{$i->id_ctsp}}">{{$i->mau}}</option>
                             @endforeach
                         </select>
                     </div>
-                    @endif
-
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
                         <label for="soluong" class="form-label">Số lượng:</label>

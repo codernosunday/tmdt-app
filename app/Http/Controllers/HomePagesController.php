@@ -4,26 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\SanphamModel;
 use Illuminate\Http\Request;
+use App\Models\DanhmucconModel;
 
 class HomePagesController extends Controller
 {
     //
     public function home()
     {
-        
-        
+
+
         return view('home');
     }
 
-    public function services(){
+    public function services()
+    {
         return view('service');
     }
-    
-    public function contact(){
+
+    public function contact()
+    {
         return view('contact');
     }
 
-    public function aboutus(){
+    public function aboutus()
+    {
         return view('aboutus');
     }
 
