@@ -19,6 +19,9 @@ use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
 use App\Http\Controllers\QLnguoidungController;
+use APP\Http\Controllers\DanhgiaController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -73,6 +76,7 @@ Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus')
 Route::get('/service', [HomePagesController::class, 'service'])->name('service');
 Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
 Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->name('wishlist');
 
 //admin- Vo Thanh Tin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -113,7 +117,7 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+// Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 //admin - Vo Thanh Tin
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
@@ -161,3 +165,25 @@ Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhan
 Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
 // dat hang - theo doi don hang
 Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
+
+// Wishlist routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+    Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+});
+
+// Route::get('/san-pham/{tensp}/{id_sp}', [App\Http\Controllers\SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
+
+// Route for danhgia
+Route::middleware(['auth'])->group(function () {
+    Route::post('/danhgia/{id_sp}', 'DanhgiaController@store')->name('danhgia.store');
+});
+
+Route::post('/danhgia/{sp}', [DanhgiaController::class, 'store'])->name('danhgia.store');
+
+// // Thêm route auth nếu chưa có
+// Auth::routes();
+// // Hoặc định nghĩa rõ route login
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);

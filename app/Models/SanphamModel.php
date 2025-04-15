@@ -33,4 +33,29 @@ class SanphamModel extends Model
     {
         return $this->hasMany(ChitietsanphamModel::class, 'id_sp', 'id_sp');
     }
+
+    public function danhgia()
+    {
+        return $this->hasMany(DanhgiaModel::class, 'id_sp', 'id_sp');
+    }
+
+    public function ratingDistribution()
+    {
+        $distribution = [
+            5 => 0,
+            4 => 0,
+            3 => 0,
+            2 => 0,
+            1 => 0
+        ];
+
+        // Đếm số lượng đánh giá cho mỗi mức điểm
+        $this->danhgia->each(function($danhgia) use (&$distribution) {
+            if (isset($distribution[$danhgia->diem])) {
+                $distribution[$danhgia->diem]++;
+            }
+        });
+
+        return $distribution;
+    }
 }

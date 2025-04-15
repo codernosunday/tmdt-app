@@ -21,7 +21,7 @@ window.editCell = function (cell) {
 
     input.onkeydown = function (event) {
         if (event.key === "Enter") {
-            const id = cell.getAttribute("id");
+            const id = cell.parentElement.getAttribute("data-id");
             const isExitsRow = data.find(item => item.id === id);
 
             if (isExitsRow) {
