@@ -16,6 +16,7 @@ class hoadonModel extends Model
         'sodt',
         'madonhang',
         'hoten',
+        'email',
         'tongtien',
         'diachigiaohang',
         'ghichu',

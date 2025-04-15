@@ -62,13 +62,14 @@
                     <div class="card-body">
                         <div class="voucher-box">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Nhập mã giảm giá">
-                                <button class="btn btn-primary">Áp dụng</button>
+                                <input type="text" class="form-control" id="magiamgia" placeholder="Nhập mã giảm giá">
+                                <button class="btn btn-primary" onclick="magiamgia()">Áp dụng</button>
                             </div>
                             <div class="badge-container">
-                                <div class="badge">GIAMGIA10 (-10%)</div>
-                                <div class="badge">FREESHIP (Miễn phí vận chuyển)</div>
-                                <div class="badge">HESELL (-200.000đ)</div>
+                                <div id="dsgiamgia" name="dsgiamgia">
+
+                                </div>
+                                <p id="mggnote"></p>
                             </div>
                         </div>
                     </div>
@@ -127,21 +128,29 @@
                                         placeholder="Nhập số điện thoại" required>
                                     <div id="phoneError" class="invalid-feedback"></div>
                                 </div>
-
+                                <div class="form-group mb-3">
+                                    <label for="phone" class="form-label">Nhập Email*</label>
+                                    <input type="tel" class="form-control" id="email" name="email" placeholder="Nhập email"
+                                        required>
+                                    <div id="emailError" class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="address" class="form-label">Nhập họ tên*</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên"
+                                        required>
+                                    <div id="nameError" class="invalid-feedback"></div>
+                                </div>
                                 <div class="form-group mb-3">
                                     <label for="address" class="form-label">Địa chỉ nhận hàng*</label>
                                     <input type="text" class="form-control" id="address" name="address"
                                         placeholder="Nhập địa chỉ chi tiết" required>
                                     <div id="addressError" class="invalid-feedback"></div>
                                 </div>
-
                                 <div class="form-group mb-3">
                                     <label for="note" class="form-label">Ghi chú</label>
                                     <textarea class="form-control" id="note" name="note" rows="3"
                                         placeholder="Ghi chú về đơn hàng (nếu có)"></textarea>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary">Xác nhận đặt hàng</button>
                             </form>
                         </div>
                     @endif
@@ -202,16 +211,16 @@
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Giảm giá:</span>
-                            <span class="">Đang cập nhật</span>
+                            <span id="giaSale" class="special">Nhập mã giảm giá</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Phí vận chuyển:</span>
-                            <span>Đang cập nhật</span>
+                            <span>{{number_format($phi["giaphi"], 0, ',', '.') . ' đ'}}</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between fw-bold fs-5">
                             <span>Tổng cộng:</span>
-                            <span class="">Đang cập nhật</span>
+                            <span class="special" id="tongdh">{{number_format($soluong["tong"], 0, ',', '.') . ' đ'}}</span>
                         </div>
                         <hr>
                         <div class="form-check mb-3">
@@ -220,10 +229,20 @@
                                 Tôi đồng ý với <a href="#">điều khoản và điều kiện</a> của cửa hàng
                             </label>
                         </div>
-                        <button class="btn btn-danger w-100 py-3 fw-bold">ĐẶT HÀNG</button>
+                        <button class="btn btn-danger w-100 py-3 fw-bold" onclick="dathang()">ĐẶT HÀNG</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        window.appData = {
+            tongTienGoc: {{ intval($soluong['tong'] ?? 0) }},
+            id_ctsp: {{ $ctsp->id_ctsp }},
+            id_ctgh: {{ $soluong['id_ctgh']}},
+            soluong: {{$soluong["soluong"]}},
+            ip_phi:{{$phi["id_phi"]}},
+            id_giasale:{{-1}}
+                    };
+    </script>
 @endsection

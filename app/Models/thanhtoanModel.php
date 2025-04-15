@@ -13,8 +13,8 @@ class thanhtoanModel extends Model
     protected $table = 'thanhtoan';
     protected $primaryKey = 'id_thanhtoan';
     protected $fillable = [
+        'id_thanhtoan',
         'id_phi',
-        'tongtien',
         'trangthaidonhang',
         'hinhthucthanhtoan',
     ];

@@ -116,3 +116,6 @@ Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhan
 Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
 // dat hang - theo doi don hang
 Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
+Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
+//giam gia
+Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);

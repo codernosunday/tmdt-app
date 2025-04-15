@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('id_nd');
             $table->float('tongtien');
             $table->string('hoten');
+            $table->string('email');
             $table->string('sodt', 10);
             $table->string('madonhang', 10)->unique();
             $table->string('diachigiaohang');
