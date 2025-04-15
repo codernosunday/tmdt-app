@@ -192,14 +192,118 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
-    </nav>
-    </div>
 
-    <script>
-        document.querySelector(".shopping-cart").addEventListener("click", () => {
-            window.location.href = "/cart";
-        })
-    </script>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+
+                <div class="offcanvas-header justify-content-center">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body justify-content-between">
+                    <select class="filter-categories border-0 mb-0 me-5">
+                        <option>Shop by Category</option>
+                        @foreach ($danhMucSp as $i)
+                            <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
+                        @endforeach
+                    </select>
+                    <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
+                                aria-expanded="false">Pages</a>
+                            <ul class="dropdown-menu" aria-labelledby="pages">
+                                <li><a href="index.html" class="dropdown-item">About Us</a></li>
+                                <li><a href="index.html" class="dropdown-item">Shop</a></li>
+                                <li><a href="index.html" class="dropdown-item">Single Product</a></li>
+                                <li><a href="index.html" class="dropdown-item">Cart</a></li>
+                                <li><a href="index.html" class="dropdown-item">Wishlist</a></li>
+                                <li><a href="index.html" class="dropdown-item">Checkout</a></li>
+                                <li><a href="index.html" class="dropdown-item">Blog</a></li>
+                                <li><a href="index.html" class="dropdown-item">Single Post</a></li>
+                                <li><a href="index.html" class="dropdown-item">Contact</a></li>
+                                <li><a href="index.html" class="dropdown-item">FAQs</a></li>
+                                <li><a href="index.html" class="dropdown-item">Account</a></li>
+                                <li><a href="index.html" class="dropdown-item">Thankyou</a></li>
+                                <li><a href="index.html" class="dropdown-item">Error 404</a></li>
+                                <li><a href="index.html" class="dropdown-item">Styles</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('shop') }}" class="nav-link">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blog') }}" class="nav-link">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('contact') }}" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Others</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-none d-lg-flex align-items-end">
+                        <ul class="d-flex justify-content-end list-unstyled m-0">
+                            <li>
+                                <a href="index.html" class="mx-3">
+                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html" class="mx-3">
+                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                                </a>
+                            </li>
+
+                            <li class="shopping-cart">
+                                <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                    aria-controls="offcanvasCart">
+                                    <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                                    <span
+                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                        {{ $countProductInCart }}
+                                    </span>
+                                </a>
+
+                                {{-- <div class="list-shopping-cart">
+                                    @if ($countProductInCart > 0)
+                                    <div class="list-product-cart">
+                                        @foreach ($cart as $item)
+                                        <div class="product-cart-item d-flex align-items-center gap-2">
+                                            <img src="{{ $item->anh }}" alt="product" class="img-fluid">
+                                            <div class="product-cart-info">
+                                                <h5>{{ $item->tensp }}</h5>
+                                                <p>{{ number_format($item->price, 0, ',', '.') }} đ</p>
+                                                <p>Số lượng: {{ $item->quantity }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @else
+                                    <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
+                                        alt="Giỏ hàng trống" class="img-no-cart">
+                                    <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
+                                    @endif
+                                </div> --}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+
+        <script>
+            document.querySelector(".shopping-cart").addEventListener("click", () => {
+                window.location.href = "/cart";
+            })
+        </script>
 </header>
