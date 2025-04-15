@@ -10,6 +10,7 @@ class NguoidungModel extends Authenticatable
     use Notifiable;
 
     protected $table = 'nguoidung';
+    protected $primaryKey = 'id_nd';
 
     protected $fillable = [
         'hovaten',
