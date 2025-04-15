@@ -22,12 +22,14 @@
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
-                        <select class="form-select" id="chonchitiet">
-                            <option selected>Chọn màu</option>
-                            @foreach ($dschitiet as $i)
-                                <option value="{{$i->id_ctsp}}">{{$i->thuoctinh->mau}}</option>
-                            @endforeach
-                        </select>
+                        @foreach ($dschitiet as $i)
+                            @if (!is_null(optional($i->thuoctinh)->mau))
+                                <option value="{{ $i->id_ctsp }}">
+                                    {{ $i->thuoctinh->mau }}
+                                </option>
+                            @endif
+                        @endforeach
+
                     </div>
 
                     <!-- Chọn số lượng -->
