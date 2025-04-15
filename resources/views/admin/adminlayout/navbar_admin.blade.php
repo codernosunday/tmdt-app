@@ -116,8 +116,19 @@
                                         <li><a href="#" class="dropdown-item">Thêm mới banner</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('blog') }}" class="nav-link">Quản lý đơn hàng</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" id="pages"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Quản lý đơn hàng</a>
+                                    <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="#" class="dropdown-item">Chờ xác nhận</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Đã xác nhận</a></li>
+                                        <li><a href="#" class="dropdown-item">Đang giao</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Đã giao</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Đã huỷ</a></li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('contact') }}" class="nav-link">Phản hồi</a>

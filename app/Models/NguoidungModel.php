@@ -10,6 +10,7 @@ class NguoidungModel extends Authenticatable
     use Notifiable;
 
     protected $table = 'nguoidung';
+    protected $primaryKey = 'id_nd';
 
     protected $fillable = [
         'hovaten',
@@ -20,7 +21,8 @@ class NguoidungModel extends Authenticatable
         'mail',
         'ngaytao',
         'quyentruycap',
-        'maxacnhan'
+        'maxacnhan',
+        'solannhapsai'
     ];
 
     public $timestamps = true;

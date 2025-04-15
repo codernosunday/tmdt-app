@@ -39,10 +39,7 @@
                                         <td class="align-middle">{{number_format($giaban->giaban, 0, ',', '.') . ' đ'}}</td>
                                         <td class="align-middle">
                                             <div class="input-group" style="width: 120px;">
-                                                <button class="btn btn-outline-secondary decrease">-</button>
-                                                <input type="text" class="form-control text-center quantity"
-                                                    value="{{$ctgiohang->soluong}}">
-                                                <button class="btn btn-outline-secondary increase">+</button>
+                                                {{$soluong["soluong"]}}
                                             </div>
                                         </td>
                                         <td class="align-middle">{{number_format($tongtien, 0, ',', '.') . ' đ'}}</td>
@@ -82,44 +79,72 @@
                     <div class="card-header bg-light">
                         <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Địa chỉ giao hàng</h5>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <!-- Địa chỉ 1 -->
-                            <div class="col-md-6 mb-3">
-                                <div class="card address-card selected h-100">
-                                    <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="address" id="address1"
-                                                checked>
-                                            <label class="form-check-label fw-bold" for="address1">
-                                                Nhà riêng
-                                            </label>
+                    @if(1 > 2)
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Địa chỉ 1 -->
+                                <div class="col-md-6 mb-3">
+                                    <div class="card address-card selected h-100">
+                                        <div class="card-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="address" id="address1"
+                                                    checked>
+                                                <label class="form-check-label fw-bold" for="address1">
+                                                    Nhà riêng
+                                                </label>
+                                            </div>
+                                            <p class="mb-1">Nguyễn Văn A</p>
+                                            <p class="mb-1">0987654321</p>
+                                            <p class="mb-0">Số 1, Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
                                         </div>
-                                        <p class="mb-1">Nguyễn Văn A</p>
-                                        <p class="mb-1">0987654321</p>
-                                        <p class="mb-0">Số 1, Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
+                                    </div>
+                                </div>
+                                <!-- Địa chỉ 2 -->
+                                <div class="col-md-6 mb-3">
+                                    <div class="card address-card h-100">
+                                        <div class="card-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="address" id="address2">
+                                                <label class="form-check-label fw-bold" for="address2">
+                                                    Công ty
+                                                </label>
+                                            </div>
+                                            <p class="mb-1">Nguyễn Văn A</p>
+                                            <p class="mb-1">0987654321</p>
+                                            <p class="mb-0">Tòa nhà DEF, Số 123, Đường LMN, Quận 3, TP.HCM</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Địa chỉ 2 -->
-                            <div class="col-md-6 mb-3">
-                                <div class="card address-card h-100">
-                                    <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="address" id="address2">
-                                            <label class="form-check-label fw-bold" for="address2">
-                                                Công ty
-                                            </label>
-                                        </div>
-                                        <p class="mb-1">Nguyễn Văn A</p>
-                                        <p class="mb-1">0987654321</p>
-                                        <p class="mb-0">Tòa nhà DEF, Số 123, Đường LMN, Quận 3, TP.HCM</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-outline-primary"><i class="fas fa-plus me-2"></i>Thêm địa chỉ mới</button>
                         </div>
-                        <button class="btn btn-outline-primary"><i class="fas fa-plus me-2"></i>Thêm địa chỉ mới</button>
-                    </div>
+                    @else
+                        <div class="card-body">
+                            <form id="orderForm">
+                                <div class="form-group mb-3">
+                                    <label for="phone" class="form-label">Số điện thoại*</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                        placeholder="Nhập số điện thoại" required>
+                                    <div id="phoneError" class="invalid-feedback"></div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="address" class="form-label">Địa chỉ nhận hàng*</label>
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        placeholder="Nhập địa chỉ chi tiết" required>
+                                    <div id="addressError" class="invalid-feedback"></div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="note" class="form-label">Ghi chú</label>
+                                    <textarea class="form-control" id="note" name="note" rows="3"
+                                        placeholder="Ghi chú về đơn hàng (nếu có)"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Xác nhận đặt hàng</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Phương thức thanh toán -->

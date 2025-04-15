@@ -294,6 +294,16 @@
                                     @endif
                                 </div> --}}
                             </li>
+                            <li class="deliver">
+                                <a href="/theodoidonhang" class="mx-3">
+                                    <iconify-icon icon="mdi:truck-delivery"
+                                        class="fs-4 position-relative"></iconify-icon>
+                                    {{-- <span
+                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                        {{ $countProductInCart }}
+                                    </span> --}}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

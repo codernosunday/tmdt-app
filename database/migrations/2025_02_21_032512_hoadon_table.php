@@ -17,6 +17,9 @@ return new class extends Migration
             $table->increments('id_hoadon');
             $table->unsignedInteger('id_nd');
             $table->float('tongtien');
+            $table->string('hoten');
+            $table->string('sodt', 10);
+            $table->string('madonhang', 10)->unique();
             $table->string('diachigiaohang');
             $table->string('ghichu')->nullable();
             $table->timestamps();

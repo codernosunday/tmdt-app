@@ -18,6 +18,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
+use App\Http\Controllers\QLnguoidungController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -127,9 +129,16 @@ Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsa
 Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
 Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
 Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
+
 // chitiet san pham
 Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
 Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
+
+//admin-Quan ly nguoi dung-HHH
+Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
+Route::post('/administrator/xoanguoidung', [QLnguoidungController::class, 'xoaNguoiDung']);
+Route::post('/administrator/suaNguoiDung', [QLnguoidungController::class, 'suaNguoidung']);
+
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
 Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
@@ -150,3 +159,5 @@ Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
 //Quan ly phan loai va mau sac - Vo Thanh Tin
 Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
 Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
+// dat hang - theo doi don hang
+Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);

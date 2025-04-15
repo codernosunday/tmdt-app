@@ -52,8 +52,19 @@ class AuthController extends Controller
             'password' => $request->input('password'),
         ];
 
+        $User = NguoidungModel::where('mail', $request->email)->first();
+
+        if ($User && $User-> solannhapsai >= 5) {
+            return redirect()->back()
+                ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+        }
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+
+            NguoidungModel::where('mail', $request->email)->update([
+                'solannhapsai' => NULL
+            ]);
 
             $id_giohang = GiohangModel::where('id_giohang', $user->id_nd)->first()->id_giohang;
 
@@ -71,8 +82,29 @@ class AuthController extends Controller
                 return redirect('shop');
             }
         } else {
-            return redirect()->back()
+            if ($User) {
+                $countWrongPass = $User->solannhapsai === NULL ? 1 : $User->solannhapsai + 1;
+                NguoidungModel::where('mail', $request->email)->update([
+                    'solannhapsai' => $countWrongPass
+                ]);
+
+                if($countWrongPass >= 5) {
+                    NguoidungModel::where('mail', $request->email)->update([
+                        'tinhtrantk' => "Bị khóa",
+                    ]);
+                    return redirect()->back()
+                        ->with('error', 'Tài khoản của bạn đã bị khóa do nhập sai mật khẩu quá 5 lần!');
+                }else {
+                    return redirect()->back()
+                        ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
+                }
+
+                return redirect()->back()
+                ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
+            }else{
+                return redirect()->back()
                 ->with('error', 'Đăng nhập thất bại,email hoặc mật khẩu không đúng.');
+            }
         }
 
         // Đăng nhập thất bại, quay lại trang login
@@ -183,7 +215,8 @@ class AuthController extends Controller
             'username' => $request->email,
             'password' => "",
             'maxacnhan' => $code,
-            'quyentruycap' => "user"
+            'quyentruycap' => "user",
+            'tinhtrantk' => "Chưa kích hoạt",
         ]);
 
         $MailService = new MailController();
@@ -234,7 +267,8 @@ class AuthController extends Controller
         }
 
         $user = NguoidungModel::where('mail', $email)->update([
-            'password' => bcrypt($password)
+            'password' => bcrypt($password),
+            'tinhtrantk' => "Đã kích hoạt",
         ]);
 
         $id_giohang = NguoidungModel::where('mail', $email)->first()->id_nd;

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->increments('id_ctm');
             $table->unsignedInteger('id_ctsp');
             $table->unsignedInteger('id_hoadon');
+            $table->unsignedInteger('id_giasale');
             $table->integer('soluong');
+            $table->decimal('thanhtien', 15, 1)->nullable();
             $table->timestamps();
             $table->foreign('id_ctsp')
                 ->references('id_ctsp')
@@ -27,6 +29,9 @@ return new class extends Migration
                 ->references('id_hoadon')
                 ->on('hoadon')
                 ->onDelete('cascade');
+            $table->foreign('id_giasale')
+                ->references('id_giasale')
+                ->on('giasale');
         });
     }
 
