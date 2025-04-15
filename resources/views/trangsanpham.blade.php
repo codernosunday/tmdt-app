@@ -22,13 +22,19 @@
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
-                        @foreach ($dschitiet as $i)
-                            @if (!is_null(optional($i->thuoctinh)->mau))
-                                <option value="{{ $i->id_ctsp }}">
-                                    {{ $i->thuoctinh->mau }}
-                                </option>
-                            @endif
-                        @endforeach
+                        <select class="form-select" id="chonchitiet" name="chonchitiet">
+                            @foreach ($dschitiet as $i)
+                                @if (!is_null(optional($i->thuoctinh)->mau))
+                                    <option value="{{ $i->id_ctsp }}">
+                                        {{ $i->thuoctinh->mau }}
+                                    </option>
+                                @else
+                                    <option value="{{$ctsp->id_ctsp}}">
+                                        Không có màu sắc
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
 
                     </div>
 

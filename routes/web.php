@@ -113,3 +113,5 @@ Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
 //Quan ly phan loai va mau sac - Vo Thanh Tin
 Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
 Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
+// dat hang - theo doi don hang
+Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);

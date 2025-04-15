@@ -73,7 +73,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                        <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                             aria-controls="offcanvasCart">
                             <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                             <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
@@ -81,7 +81,14 @@
                             </span>
                         </a>
                     </li>
-
+                    <li class="deliver">
+                        <a href="/theodoidonhang/" class="mx-3">
+                            <iconify-icon icon="mdi:truck-delivery" class="fs-4 position-relative"></iconify-icon>
+                            {{-- <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                {{ $countProductInCart }}
+                            </span> --}}
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                             aria-controls="offcanvasSearch">
@@ -192,6 +199,16 @@
                                     <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
                                     @endif
                                 </div> --}}
+                            </li>
+                            <li class="deliver">
+                                <a href="/theodoidonhang" class="mx-3">
+                                    <iconify-icon icon="mdi:truck-delivery"
+                                        class="fs-4 position-relative"></iconify-icon>
+                                    {{-- <span
+                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                        {{ $countProductInCart }}
+                                    </span> --}}
+                                </a>
                             </li>
                         </ul>
                     </div>

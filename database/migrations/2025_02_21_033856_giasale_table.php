@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('giasale', function (Blueprint $table) {
             $table->increments('id_giasale');
-            $table->unsignedInteger('id_giaban')->nullable();
             $table->unsignedInteger('id_sp')->nullable();
             $table->unsignedInteger('id_dm')->nullable();
             $table->unsignedInteger('id_ctdm')->nullable();
             $table->unsignedInteger('id_ctsp')->nullable();
-            $table->decimal('giasale', 12, 3)->nullable();;
+            $table->string('ten')->nullable();
+            $table->string('magiamgia')->nullable();
+            $table->boolean('trangthai')->nullable();
+            $table->decimal('giasale', 12, 3)->nullable();
             $table->timestamp('ketthuc')->nullable();
             $table->timestamps();
             $table->foreign('id_dm')
@@ -38,9 +40,6 @@ return new class extends Migration
             $table->foreign('id_ctsp')
                 ->references('id_ctsp')
                 ->on('chitietsanpham');
-            $table->foreign('id_giaban')
-                ->references('id_giaban')
-                ->on('giaban');
         });
     }
 
