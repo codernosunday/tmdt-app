@@ -91,7 +91,8 @@ Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'P
 
 //admin-Quan ly nguoi dung-HHH
 Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
-
+Route::post('/administrator/xoanguoidung', [QLnguoidungController::class, 'xoaNguoiDung']);
+Route::post('/administrator/suaNguoiDung', [QLnguoidungController::class, 'suaNguoidung']);
 
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
