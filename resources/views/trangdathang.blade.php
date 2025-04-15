@@ -32,7 +32,7 @@
                                                 <img src="{{$sanpham->anh}}" alt="Product" class="cart-item-img me-3">
                                                 <div>
                                                     <h6 class="mb-1">{{$sanpham->tensp}}</h6>
-                                                    <p class="text-muted mb-0">Màu: đang cập nhật</p>
+                                                    <p class="text-muted mb-0">Màu: {{$ctsp->mau}}</p>
                                                 </div>
                                             </div>
                                         </td>
