@@ -12,6 +12,7 @@ use App\Models\vanchuyenModel;
 use App\Models\hoadonModel;
 use App\Models\cthoadonModel;
 use App\Models\thanhtoanModel;
+use App\Models\ThuoctinhspModel;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;
@@ -118,5 +119,62 @@ class ThanhtoanController extends Controller
     public function theodoidonhang()
     {
         return view('theodoidonhang');
+    }
+    public function kiemtradonhang($madh)
+    {
+        $hoadon = hoadonModel::where('madonhang', $madh)->first();
+        if (!$hoadon) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Không tìm thấy đơn hàng.'
+            ], 404);
+        }
+
+        $cthd = cthoadonModel::where('id_hoadon', $hoadon->id_hoadon)->first();
+        if (!$cthd) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Không tìm thấy chi tiết hóa đơn.'
+            ], 404);
+        }
+
+        $tongGia = cthoadonModel::where('id_hoadon', $hoadon->id_hoadon)->sum('thanhtien');
+        $ctsp = ChitietsanphamModel::where('id_ctsp', $cthd->id_ctsp)->first();
+        $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
+        $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+        $phi = vanchuyenModel::where('id_phi', $hoadon->id_phi)->first();
+        $gia = $cthd->thanhtien / $cthd->soluong;
+        $giasale = 0;
+        if ($cthd->id_giasale) {
+            $sale = giasaleModel::where('id_giasale', $cthd->id_giasale)->first();
+            $giasale = $sale->giasale;
+        }
+        $tamtinh = $tongGia;
+        $tongtien = $tamtinh + $phi->giaphi - $giasale;
+        $data = [
+            "madh" => $hoadon->madonhang,
+            "ngaydat" => $hoadon->created_at->format('d/m/Y H:i'),
+            "trangthai" => $hoadon->trangthaidonhang,
+            "tongtien" => $tongtien,
+            "phuongthuc" => $hoadon->hinhthucthanhtoan,
+            "hoten" => $hoadon->hoten,
+            "email" => $hoadon->email,
+            "sodt" => $hoadon->sodt,
+            "diachi" => $hoadon->diachigiaohang,
+            "ngay" => $hoadon->updated_at->format('d/m/Y H:i'),
+            "anhsp" => $ctsp->anhsp,
+            "tensp" => $sanpham->tensp,
+            "mau" => $thuoctinh->mau,
+            "soluong" => $cthd->soluong,
+            "gia" => $gia,
+            "giasale" => $giasale,
+            "thanhtiencthd" => $cthd->thanhtien,
+            "tamtinh" => $tamtinh,
+            "phivanchuyen" => $phi->giaphi,
+        ];
+        return response()->json([
+            'status' => 'success',
+            'data' => view('components.thongtindonhang', compact('data'))->render()
+        ]);
     }
 }

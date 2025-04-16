@@ -243,6 +243,6 @@
             id_ctgh: {{ $soluong['id_ctgh']}},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                    };
+                            };
     </script>
 @endsection
