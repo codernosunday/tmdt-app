@@ -83,7 +83,8 @@
                                     <a class="nav-link dropdown-toggle" role="button" id="pages"
                                         data-bs-toggle="dropdown" aria-expanded="false">Quản lý người dùng</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
-                                        <li><a href="#" class="dropdown-item">Quản lý người dùng</a>
+                                        <li><a href="/administrator/quanlynguoidung" class="dropdown-item">Quản lý người
+                                                dùng</a>
                                         </li>
                                         <li><a href="#" class="dropdown-item">Thêm mới người dùng</a>
                                         </li>

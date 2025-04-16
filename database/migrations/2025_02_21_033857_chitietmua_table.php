@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('id_hoadon');
             $table->unsignedInteger('id_giasale')->nullable();
             $table->integer('soluong');
-            $table->decimal('thanhtien', 15, 1)->nullable();
+            $table->decimal('thanhtien', 20, 2)->nullable();
             $table->timestamps();
             $table->foreign('id_ctsp')
                 ->references('id_ctsp')

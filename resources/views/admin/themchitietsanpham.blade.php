@@ -34,7 +34,7 @@
             <input type="text" id="thuonghieu" name="thuonghieu" placeholder="Thiên Long">
         </div>
         <div class="form-group">
-            <label for="productWidth">Xuất sứ</label>
+            <label for="productWidth">Xuất xứ</label>
             <input type="text" id="xuatsu" name="xuatsu">
         </div>
         <div class="form-group">

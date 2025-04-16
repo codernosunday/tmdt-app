@@ -71,7 +71,8 @@ window.dathang = function () {
         'ghichu': ghichu,
         'hinhthuctt': hinhthuctt
     }
-    console.log(JSON.stringify(dathang));
+    // console.log(JSON.stringify(dathang));
+    if (!confirm("Bạn có chắc chắn muốn đặt hàng?")) return;
     if (validateOrderForm()) {
         fetch('/donhang/dathang', {
             method: 'POST',
@@ -81,23 +82,25 @@ window.dathang = function () {
             },
             body: JSON.stringify(dathang),
         })
-            .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(res => res.json().then(body => ({ status: res.status, body })))
             .then(({ status, body }) => {
-                if (status !== 200) {
-                    console.error("Lỗi từ server:", body);
-                    let errorMessage = body.message || "Có lỗi xảy ra!";
-                    if (body.errors) {
-                        errorMessage += "\n" + Object.values(body.errors).flat().join("\n");
+                if (status === 200) {
+                    if (!confirm("Đặt hàng thành công!")) {
+                        window.location.href = "/theodoidonhang"
                     }
-                    alert(errorMessage);
-                    throw new Error(errorMessage);
+                    else {
+                        window.location.href = "/shop"
+                    }
+                } else {
+                    throw new Error(
+                        (body.message || "Có lỗi xảy ra!") +
+                        (body.errors ? "\n" + Object.values(body.errors).flat().join("\n") : "")
+                    );
                 }
-
-                alert(body.message);
             })
-            .catch(error => {
-                console.error("Lỗi:", error);
-                alert(error.message || "Đã xảy ra lỗi không xác định!");
+            .catch(err => {
+                console.error("Lỗi:", err);
+                alert(err.message || "Đặt hàng thất bại!");
             });
     }
 

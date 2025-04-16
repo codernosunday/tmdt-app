@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SanphamModel;
 use App\Models\ChitietsanphamModel;
+use App\Models\giasaleModel;
 
 class giabanModel extends Model
 {
@@ -15,7 +16,9 @@ class giabanModel extends Model
     protected $fillable = [
         'id_ctsp',
         'id_sp',
-        'giaban'
+        'id_giasale',
+        'giaban',
+        'giabanmoi'
     ];
     public $timestamps = true;
     public function sanpham()
@@ -25,5 +28,9 @@ class giabanModel extends Model
     public function ctsp()
     {
         return $this->belongsTo(ChitietsanphamModel::class, 'id_ctsp');
+    }
+    public function giasale()
+    {
+        return $this->belongsTo(giasaleModel::class, 'id_giasale');
     }
 }

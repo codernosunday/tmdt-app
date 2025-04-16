@@ -239,10 +239,10 @@
         window.appData = {
             tongTienGoc: {{ intval($soluong['tong'] ?? 0) }},
             id_ctsp: {{ $ctsp->id_ctsp }},
+            id_phi: {{ $phi["idphi"] }},
             id_ctgh: {{ $soluong['id_ctgh']}},
-            soluong: {{$soluong["soluong"]}},
-            ip_phi:{{$phi["id_phi"]}},
+            soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                    };
+            };
     </script>
 @endsection

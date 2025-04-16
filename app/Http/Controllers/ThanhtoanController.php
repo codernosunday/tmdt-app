@@ -34,7 +34,7 @@ class ThanhtoanController extends Controller
             "id_ctgh" => $ctgiohang->id_ctgh
         ];
         $phi = [
-            "id_phi" => $phi->id_phi,
+            "idphi" => $phi->id_phi,
             "giaphi" => $phi->giaphi,
         ];
         return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang'));
@@ -50,20 +50,20 @@ class ThanhtoanController extends Controller
             DB::beginTransaction();
             $hoadon = hoadonModel::create([
                 'id_nd' => $id_nd,
+                'id_phi' => $request->input('id_phi'),
                 'madonhang' => $madonhang,
                 'sodt' => $request->input('sodt'),
                 'hoten' => $request->input('ten'),
                 'email' => $request->input('email'),
-                'tongtien' => $request->input('tong'),
                 'diachigiaohang' => $request->input('diachi'),
                 'ghichu' => $request->input('ghichu'),
+                'trangthaidonhang' => 'Chờ xác nhận',
+                'hinhthucthanhtoan' => $request->input('hinhthuctt'),
             ]);
             $id_hd = $hoadon->id_hoadon;
             thanhtoanModel::create([
                 'id_thanhtoan' => $id_hd,
-                'id_phi' => $request->input('id_phi'),
-                'trangthaidonhang' => 'Chờ xác nhận',
-                'hinhthucthanhtoan' => $request->input('hinhthuctt'),
+                'trangthaithanhtoan' => false,
             ]);
             $giasale = $request->input('id_giasale');
             if ($giasale < 0) {
@@ -76,6 +76,8 @@ class ThanhtoanController extends Controller
                 'thanhtien' => $request->input('tong'),
                 'soluong' => $request->input('soluong'),
             ]);
+            $capnhat = $request->input('id_ctgh');
+            ChitietgiohangModel::where('id_ctgh', $capnhat)->delete();
             DB::commit();
             return response()->json([
                 'message' => 'Đặt hàng thành công',

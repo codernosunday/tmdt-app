@@ -17,7 +17,10 @@ return new class extends Migration
         Schema::create('giaban', function (Blueprint $table) {
             $table->increments('id_giaban');
             $table->unsignedInteger('id_sp')->nullable();
-            $table->decimal('giaban', 12, 2)->nullable();;
+            $table->unsignedInteger('id_giasale')->nullable();
+            $table->boolean('sale')->nullable();
+            $table->decimal('giaban', 12, 2)->nullable();
+            $table->decimal('giabanmoi', 12, 2)->nullable();
             $table->unsignedInteger('id_ctsp')->nullable();
             $table->timestamps();
             $table->foreign('id_ctsp')
@@ -28,6 +31,10 @@ return new class extends Migration
                 ->references('id_sp')
                 ->on('sanpham')
                 ->onDelete('cascade');
+            $table->foreign('id_giasale')
+                ->references('id_giasale')
+                ->on('giasale')
+                ->onDelete('no action');
         });
     }
 
