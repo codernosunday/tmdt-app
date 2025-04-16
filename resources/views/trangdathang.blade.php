@@ -69,7 +69,7 @@
                                 <div id="dsgiamgia" name="dsgiamgia">
 
                                 </div>
-                                <p id="mggnote"></p>
+                                <p id="mggnote" class="special"></p>
                             </div>
                         </div>
                     </div>
@@ -243,6 +243,6 @@
             id_ctgh: {{ $soluong['id_ctgh']}},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-            };
+                    };
     </script>
 @endsection

@@ -1,6 +1,5 @@
 window.magiamgia = function () {
     const magiamgia = document.getElementById("magiamgia").value;
-
     // Dọn sạch thông báo cũ và badge cũ
     document.getElementById('dsgiamgia').innerHTML = '';
     document.getElementById('mggnote').textContent = '';
@@ -29,6 +28,7 @@ window.magiamgia = function () {
                 document.getElementById('giaSale').textContent = gia;
                 document.getElementById('tongdh').textContent = tong;
             } else {
+                document.getElementById('giaSale').textContent = 'Nhập mã giảm giá';
                 document.getElementById('mggnote').textContent = 'Mã giảm giá không đúng';
             }
         })
@@ -82,20 +82,11 @@ window.dathang = function () {
             },
             body: JSON.stringify(dathang),
         })
-            .then(res => res.json().then(body => ({ status: res.status, body })))
-            .then(({ status, body }) => {
-                if (status === 200) {
-                    if (!confirm("Đặt hàng thành công!")) {
-                        window.location.href = "/theodoidonhang"
-                    }
-                    else {
-                        window.location.href = "/shop"
-                    }
-                } else {
-                    throw new Error(
-                        (body.message || "Có lỗi xảy ra!") +
-                        (body.errors ? "\n" + Object.values(body.errors).flat().join("\n") : "")
-                    );
+            .then(response => response.json())
+            .then(data => {
+                if (data.dieukien) {
+                    alert("Đặt hàng thành công!");
+                    window.location.href = "/theodoidonhang"
                 }
             })
             .catch(err => {

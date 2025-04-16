@@ -80,10 +80,12 @@ class ThanhtoanController extends Controller
             ChitietgiohangModel::where('id_ctgh', $capnhat)->delete();
             DB::commit();
             return response()->json([
+                'dieukien' => true,
                 'message' => 'Đặt hàng thành công',
             ], 201);
         } catch (Exception $e) {
             return response()->json([
+                'dieukien' => false,
                 'message' => $e->getMessage(),
             ], 500);
         }
@@ -100,6 +102,10 @@ class ThanhtoanController extends Controller
                     'id_magiamgia' => $magiamgia->id_giasale,
                     'giasale' => $magiamgia->giasale,
                     'ten' => $magiamgia->ten,
+                ], 200);
+            } else {
+                return response()->json([
+                    'dieukien' => false,
                 ], 200);
             }
         } catch (Exception $e) {

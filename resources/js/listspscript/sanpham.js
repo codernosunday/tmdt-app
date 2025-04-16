@@ -17,7 +17,7 @@ window.themvaogio = function (id_sp) {
         .then(response => response.json())
         .then(data => {
             alert(data.message);
-            console.log(data.message);
+            window.location.href = '/cart'
         })
         .catch(error => {
             console.error('Error:', error);
