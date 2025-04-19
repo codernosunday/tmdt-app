@@ -162,7 +162,7 @@ class ThanhtoanController extends Controller
             "sodt" => $hoadon->sodt,
             "diachi" => $hoadon->diachigiaohang,
             "ngay" => $hoadon->updated_at->format('d/m/Y H:i'),
-            "anhsp" => $ctsp->anhsp,
+            "anhsp" => $sanpham->anhbase64,
             "tensp" => $sanpham->tensp,
             "mau" => $thuoctinh->mau,
             "soluong" => $cthd->soluong,

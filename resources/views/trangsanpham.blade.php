@@ -8,7 +8,8 @@
         <div class="row">
             <!-- Hình ảnh sản phẩm -->
             <div class="col-md-6">
-                <img src="{{$sp->anh}}" class="product-image" alt="Bút chì 6-12 màu">
+                <img src="{{ $sp->anhbase64 ? asset('storage/' . $sp->anhbase64) : '' }}" class="product-image"
+                    alt="Bút chì 6-12 màu">
             </div>
             <!-- Thông tin sản phẩm -->
             <div class="col-md-6">

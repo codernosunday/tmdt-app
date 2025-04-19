@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         $User = NguoidungModel::where('mail', $request->email)->first();
 
-        if ($User && $User-> solannhapsai >= 5) {
+        if ($User && $User->solannhapsai >= 5) {
             return redirect()->back()
                 ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
         }
@@ -76,9 +76,9 @@ class AuthController extends Controller
                 'id_giohang' => $id_giohang,
             ]);
 
-            if($user->quyentruycap === "admin"){
+            if ($user->quyentruycap === "admin") {
                 return redirect('administrator/quanlysanpham');
-            }else{
+            } else {
                 return redirect('shop');
             }
         } else {
@@ -88,22 +88,22 @@ class AuthController extends Controller
                     'solannhapsai' => $countWrongPass
                 ]);
 
-                if($countWrongPass >= 5) {
+                if ($countWrongPass >= 5) {
                     NguoidungModel::where('mail', $request->email)->update([
                         'tinhtrantk' => "Bị khóa",
                     ]);
                     return redirect()->back()
                         ->with('error', 'Tài khoản của bạn đã bị khóa do nhập sai mật khẩu quá 5 lần!');
-                }else {
+                } else {
                     return redirect()->back()
                         ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
                 }
 
                 return redirect()->back()
-                ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
-            }else{
+                    ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
+            } else {
                 return redirect()->back()
-                ->with('error', 'Đăng nhập thất bại,email hoặc mật khẩu không đúng.');
+                    ->with('error', 'Đăng nhập thất bại,email hoặc mật khẩu không đúng.');
             }
         }
 
@@ -191,7 +191,7 @@ class AuthController extends Controller
         $user = NguoidungModel::where('mail', $request->email);
         $code = $this->randomString();
         if ($user->exists()) {
-            if($user->where('password', null)) {
+            if ($user->where('password', null)) {
                 $MailService = new MailController();
                 $MailService->basic_email($request->email, $code);
 
@@ -202,11 +202,10 @@ class AuthController extends Controller
                 return redirect('verify')
                     ->with('success', 'Email đã tồn tại nhưng chưa được kích hoạt, hãy lấy mã và kích hoạt tài khoản')
                     ->with('email', $request->email);
-
-            }else{
+            } else {
                 return redirect()->back()
-                ->with('error', 'Email đã tồn tại, vui lòng nhập email mới!')
-                ->with('email', $request->email);
+                    ->with('error', 'Email đã tồn tại, vui lòng nhập email mới!')
+                    ->with('email', $request->email);
             }
         }
 

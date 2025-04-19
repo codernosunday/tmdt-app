@@ -29,7 +29,8 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{$sanpham->anh}}" alt="Product" class="cart-item-img me-3">
+                                                <img src="{{ $sanpham->anhbase64 ? asset('storage/' . $sanpham->anhbase64) : '' }}"
+                                                    alt="Product" class="cart-item-img me-3">
                                                 <div>
                                                     <h6 class="mb-1">{{$sanpham->tensp}}</h6>
                                                     <p class="text-muted mb-0">Màu: {{$ctsp->mau}}</p>
@@ -243,6 +244,6 @@
             id_ctgh: {{ $soluong['id_ctgh']}},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                            };
+                                };
     </script>
 @endsection

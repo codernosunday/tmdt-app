@@ -25,3 +25,1168 @@ INSERT INTO `bangdanhmuc` (`id_ctdm`, `id_dm`, `ten`, `ghichu`, `created_at`, `u
 (16, 3, 'Dao rọc giấy', 'Dao rọc giấy', '2025-02-27 21:59:53', NULL),
 (17, 3, 'Tẩy xoá', 'Tẩy xoá', '2025-02-27 22:02:14', NULL),
 (18, 4, 'Bìa', 'Bìa nút, bìa còng', '2025-03-10 14:59:21', '2025-03-10 14:59:21');
+
+//////////////////-------------------------------////////////////////
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 19, 2025 lúc 08:23 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `tmdt`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `bangdanhmuc`
+--
+
+CREATE TABLE `bangdanhmuc` (
+  `id_ctdm` int(10) UNSIGNED NOT NULL,
+  `id_dm` int(10) UNSIGNED DEFAULT NULL,
+  `ten` varchar(255) DEFAULT NULL,
+  `trangthai` varchar(255) DEFAULT NULL,
+  `ghichu` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `bangdanhmuc`
+--
+
+INSERT INTO `bangdanhmuc` (`id_ctdm`, `id_dm`, `ten`, `trangthai`, `ghichu`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Pin thiết bị', NULL, 'Pin thiết bị', '2025-02-27 14:48:30', NULL),
+(2, 2, 'Bút dạ quang', NULL, 'Bút dạ quang', '2025-02-27 14:48:30', NULL),
+(3, 3, 'Kẹp', NULL, 'Kẹp', '2025-02-27 14:49:25', NULL),
+(4, 4, 'Cặp', NULL, 'Cặp ', '2025-02-27 14:49:25', NULL),
+(5, 3, 'Kéo', NULL, 'Kéo', '2025-02-27 14:50:19', NULL),
+(6, 3, 'Dây thẻ đeo', NULL, 'Dây thẻ đeo', '2025-02-27 14:50:19', NULL),
+(7, 3, 'Bấm kim', NULL, 'Bấm kim', '2025-02-27 14:51:23', NULL),
+(8, 6, 'Ly giữ nhiệt', NULL, 'Ly giữ nhiệt', '2025-02-27 14:51:23', NULL),
+(9, 3, 'Khay đựng đồ', NULL, 'Khay đựng đồ', '2025-02-27 14:55:00', NULL),
+(10, 1, 'Sổ ghi chú', NULL, 'Sổ ghi chú', '2025-02-27 14:55:00', NULL),
+(11, 5, 'Máy hút bụi', NULL, 'Máy hút bụi', '2025-02-27 14:56:02', NULL),
+(12, 5, 'Máy tuốt bút chì', NULL, 'Máy tuốt bút chì', '2025-02-27 14:56:02', NULL),
+(13, 1, 'Giấy', NULL, 'Giấy', '2025-02-27 14:58:59', NULL),
+(14, 3, 'Mực bút lông', NULL, 'Mực bút lông', '2025-02-27 14:58:59', NULL),
+(15, 3, 'Băng keo', NULL, 'Băng keo', '2025-02-27 14:59:53', NULL),
+(16, 3, 'Dao rọc giấy', NULL, 'Dao rọc giấy', '2025-02-27 14:59:53', NULL),
+(17, 3, 'Tẩy xoá', NULL, 'Tẩy xoá', '2025-02-27 15:02:14', NULL),
+(18, 4, 'Bìa', NULL, 'Bìa nút, bìa còng', '2025-03-10 07:59:21', '2025-03-10 07:59:21'),
+(19, 8, 'Bút bi cao cấp', NULL, NULL, '2025-04-18 08:15:20', '2025-04-18 08:15:20');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `banner`
+--
+
+CREATE TABLE `banner` (
+  `id_banner` int(10) UNSIGNED NOT NULL,
+  `id_giasale` int(10) UNSIGNED DEFAULT NULL,
+  `id_sp` int(10) UNSIGNED DEFAULT NULL,
+  `id_dm` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctdm` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctsp` int(10) UNSIGNED DEFAULT NULL,
+  `anhbanner` text DEFAULT NULL,
+  `tieude` text DEFAULT NULL,
+  `noidung` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `ketthuc` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `binhluan`
+--
+
+CREATE TABLE `binhluan` (
+  `id_bl` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED DEFAULT NULL,
+  `id_nd` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctsp` int(10) UNSIGNED DEFAULT NULL,
+  `sosao` double(8,2) DEFAULT NULL,
+  `danhgia` varchar(255) DEFAULT NULL,
+  `noidungbinhluan` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietgiohang`
+--
+
+CREATE TABLE `chitietgiohang` (
+  `id_ctgh` int(10) UNSIGNED NOT NULL,
+  `id_ctsp` int(10) UNSIGNED NOT NULL,
+  `id_giohang` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietmua`
+--
+
+CREATE TABLE `chitietmua` (
+  `id_ctm` int(10) UNSIGNED NOT NULL,
+  `id_ctsp` int(10) UNSIGNED NOT NULL,
+  `id_hoadon` int(10) UNSIGNED NOT NULL,
+  `id_giasale` int(10) UNSIGNED DEFAULT NULL,
+  `soluong` int(11) NOT NULL,
+  `thanhtien` decimal(20,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietmua`
+--
+
+INSERT INTO `chitietmua` (`id_ctm`, `id_ctsp`, `id_hoadon`, `id_giasale`, `soluong`, `thanhtien`, `created_at`, `updated_at`) VALUES
+(11, 17, 11, 1, 1, 184000.00, '2025-04-18 20:09:02', '2025-04-18 20:09:02');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietsanpham`
+--
+
+CREATE TABLE `chitietsanpham` (
+  `id_ctsp` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED NOT NULL,
+  `id_thuoctinh` int(10) UNSIGNED DEFAULT NULL,
+  `kichthuoc` varchar(255) DEFAULT NULL,
+  `trangthai` enum('conhang','hethang','an') DEFAULT NULL,
+  `doday` varchar(255) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `sotrang` int(11) DEFAULT NULL,
+  `tenchitiet` varchar(255) DEFAULT NULL,
+  `thuonghieu` varchar(255) DEFAULT NULL,
+  `trongluong` varchar(255) DEFAULT NULL,
+  `xuatsu` varchar(255) DEFAULT NULL,
+  `sanxuat` varchar(255) DEFAULT NULL,
+  `khuyencao` text DEFAULT NULL,
+  `mausac` varchar(255) DEFAULT NULL,
+  `tieuchuan` varchar(255) DEFAULT NULL,
+  `mamau` varchar(255) DEFAULT NULL,
+  `loiich` text DEFAULT NULL,
+  `tinhnangnoibat` text DEFAULT NULL,
+  `anhsp` text DEFAULT NULL,
+  `ctanhbase64` longtext DEFAULT NULL,
+  `dattinh` varchar(500) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietsanpham`
+--
+
+INSERT INTO `chitietsanpham` (`id_ctsp`, `id_sp`, `id_thuoctinh`, `kichthuoc`, `trangthai`, `doday`, `soluong`, `sotrang`, `tenchitiet`, `thuonghieu`, `trongluong`, `xuatsu`, `sanxuat`, `khuyencao`, `mausac`, `tieuchuan`, `mamau`, `loiich`, `tinhnangnoibat`, `anhsp`, `ctanhbase64`, `dattinh`, `created_at`, `updated_at`) VALUES
+(13, 10, 1, '180 x 90 x 40 mm', NULL, NULL, 56, NULL, NULL, 'Parker', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dòng Sonnet có phong cách cổ điển, tinh tế, Sonnet là biểu tượng thanh lịch của Parker. Với thiết kế đa dạng bao gồm biểu tượng Ciselé, mọi chi tiết phức tạp của Sonnet được tỉ mỉ để mang đến sự tinh tế trong mỗi nét viết.', 'uploads/4ibgLKFRWv9rPB4Gg6gOi1jSpetxqKV5IVdywl9j.png', NULL, NULL, '2025-04-18 08:22:12', '2025-04-18 08:22:42'),
+(14, 11, 3, 'Bề rộng 48mm, dài 50 Yard', NULL, NULL, 150, NULL, NULL, 'Flexoffice', NULL, 'Việt Nam', 'Việt Nam', NULL, NULL, NULL, NULL, NULL, 'Sản phẩm được sản xuất theo công nghệ hiện đại, đạt tiêu chuẩn quốc tế, thân thiện với môi trường.\r\nSản phẩm được làm từ màng BOPP có độ bền dai cao cộng keo tráng được lựa chọn để làm băng keo luôn đảm bảo độ dính cao, khả năng đàn hồi tốt.\r\nCó thể dính rất chắc trên nhiều chất liệu khác nhau.', 'uploads/UosjmGh9Ds428mrHxNejAgFN7ZpRzgriQDVWEvFO.png', NULL, NULL, '2025-04-18 08:34:19', '2025-04-18 08:35:24'),
+(15, 12, 5, 'Rộng 48mm, 200 Yard (~180m)', NULL, NULL, 1000, NULL, NULL, 'Thiên long', NULL, 'Việt Nam', 'Việt Nam', NULL, NULL, NULL, NULL, NULL, 'Sản phẩm được sản xuất theo công nghệ hiện đại, đạt tiêu chuẩn quốc tế, thân thiện với môi trường.\r\nSản phẩm được làm từ màng BOPP có độ bền dai cao cộng keo tráng được lựa chọn để làm băng keo luôn đảm bảo độ dính cao, khả năng đàn hồi tốt.Có thể dính rất chắc trên nhiều chất liệu khác nhau.', NULL, NULL, NULL, '2025-04-18 08:44:36', '2025-04-18 08:44:36'),
+(16, 13, 3, '136.9mm', NULL, NULL, 150, NULL, NULL, 'Thiên long', NULL, 'Việt Nam', 'Việt Nam', NULL, NULL, 'TCCS 016:2011/TL-BDQ', NULL, NULL, NULL, 'uploads/Yo5Ovt3clXBwSLYLGLeb20JK7tB5Zq8KjH3Ac021.png', NULL, NULL, '2025-04-18 08:50:28', '2025-04-18 08:52:21'),
+(17, 14, 7, '83 x 83 x 77 mm', NULL, NULL, 150, NULL, NULL, 'Flexio', NULL, 'Việt Nam', 'Trung Quốc', NULL, NULL, 'TCCS 0170:2023/TL-MHB', NULL, NULL, NULL, 'uploads/2nYFx2yRB9nsNvAgUHlK22dJk67ZaWZ5jtGiJv62.png', NULL, NULL, '2025-04-18 09:00:27', '2025-04-18 09:04:19'),
+(18, 14, 6, '83 x 83 x 77 mm', NULL, NULL, 67, NULL, NULL, 'Flexio', NULL, 'Việt Nam', 'Trung Quốc', NULL, NULL, 'TCCS 0170:2023/TL-MHB', NULL, NULL, NULL, NULL, NULL, 'Tránh nguồn nhiệt, hóa chất. Không thích hợp cho trẻ dưới 3 tuổi.', '2025-04-18 09:06:56', '2025-04-18 09:06:56');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhmucsanpham`
+--
+
+CREATE TABLE `danhmucsanpham` (
+  `id_dm` int(10) UNSIGNED NOT NULL,
+  `tendanhmuc` varchar(255) DEFAULT NULL,
+  `trangthai` varchar(255) DEFAULT NULL,
+  `ghichu` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhmucsanpham`
+--
+
+INSERT INTO `danhmucsanpham` (`id_dm`, `tendanhmuc`, `trangthai`, `ghichu`, `created_at`, `updated_at`) VALUES
+(1, 'Giấy và Sổ sách', NULL, 'Giấy in, giấy photocopy\r\nSổ tay, sổ lò xo, sổ ghi chép\r\nGiấy note, giấy nhớ, giấy decal\r\nBao thư, bìa hồ sơ, kẹp tài liệu', '2025-02-27 14:29:20', NULL),
+(2, 'Bút và Dụng cụ Viết', NULL, 'Bút bi, bút mực, bút gel\r\nBút chì, bút chì bấm\r\nBút dạ quang, bút lông bảng, bút xóa\r\nMực bút máy, ngòi bút', '2025-02-27 14:29:20', NULL),
+(3, ' Dụng cụ Văn phòng', NULL, 'Kẹp giấy, ghim bấm, kẹp bướm\r\nDập ghim, gỡ ghim, đồ bấm lỗ\r\nBăng keo, keo dán, hồ dán\r\nThước kẻ, dao rọc giấy', '2025-02-27 14:33:59', NULL),
+(4, 'File Hồ sơ và Lưu trữ', NULL, 'Bìa còng, bìa lá, bìa trình ký\r\nTúi hồ sơ, hộp đựng tài liệu\r\nKệ đựng giấy tờ, hộc tủ di động', '2025-02-27 14:33:59', NULL),
+(5, 'Thiết bị Văn phòng', NULL, 'Máy in, máy photocopy, máy scan\r\nMáy hủy tài liệu, máy đóng sách\r\nMáy tính cầm tay, máy chấm công\r\nUSB, ổ cứng di động', '2025-02-27 14:39:37', NULL),
+(6, 'Sản phẩm Dùng hàng ngày', NULL, 'Bấm móng tay, kéo, gương nhỏ\r\nBình nước, ly cốc văn phòng\r\nCà phê, trà, bánh kẹo cho văn phòng', '2025-02-27 14:39:54', NULL),
+(7, 'Điện tử', NULL, 'Pin, thiết bị điện tử', '2025-02-27 14:47:15', NULL),
+(8, 'Sản phẩm cao cấp', NULL, 'Sản phẩm trên 500k', '2025-04-18 08:14:52', '2025-04-18 08:14:52');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `diachi`
+--
+
+CREATE TABLE `diachi` (
+  `id_dchi` int(10) UNSIGNED NOT NULL,
+  `id_nd` int(10) UNSIGNED NOT NULL,
+  `ghichu` text DEFAULT NULL,
+  `diachi1` text DEFAULT NULL,
+  `diachi2` text DEFAULT NULL,
+  `quocgia` varchar(255) DEFAULT NULL,
+  `tinh` varchar(255) DEFAULT NULL,
+  `huyen` varchar(255) DEFAULT NULL,
+  `xa` varchar(255) DEFAULT NULL,
+  `soDT` varchar(10) DEFAULT NULL,
+  `ngaytao` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `dsmongmuon`
+--
+
+CREATE TABLE `dsmongmuon` (
+  `id_dsmm` int(10) UNSIGNED NOT NULL,
+  `id_nd` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giaban`
+--
+
+CREATE TABLE `giaban` (
+  `id_giaban` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED DEFAULT NULL,
+  `id_giasale` int(10) UNSIGNED DEFAULT NULL,
+  `sale` tinyint(1) DEFAULT NULL,
+  `giaban` decimal(12,2) DEFAULT NULL,
+  `giabanmoi` decimal(12,2) DEFAULT NULL,
+  `id_ctsp` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giaban`
+--
+
+INSERT INTO `giaban` (`id_giaban`, `id_sp`, `id_giasale`, `sale`, `giaban`, `giabanmoi`, `id_ctsp`, `created_at`, `updated_at`) VALUES
+(13, 10, NULL, NULL, 5523000.00, NULL, 13, '2025-04-18 08:22:12', '2025-04-18 08:22:42'),
+(14, 11, NULL, NULL, 71500.00, NULL, 14, '2025-04-18 08:34:19', '2025-04-18 08:35:24'),
+(15, 12, NULL, NULL, 320000.00, NULL, 15, '2025-04-18 08:44:36', '2025-04-18 08:44:36'),
+(16, 13, NULL, NULL, 52000.00, NULL, 16, '2025-04-18 08:50:28', '2025-04-18 08:52:21'),
+(17, 14, NULL, NULL, 167000.00, NULL, 17, '2025-04-18 09:00:27', '2025-04-18 09:04:30'),
+(18, NULL, NULL, NULL, 187000.00, NULL, 18, '2025-04-18 09:06:56', '2025-04-18 09:06:56');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `gianhap`
+--
+
+CREATE TABLE `gianhap` (
+  `id_gianhap` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED DEFAULT NULL,
+  `id_nhacungcap` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctsp` int(10) UNSIGNED DEFAULT NULL,
+  `gianhap` decimal(12,2) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `gianhap`
+--
+
+INSERT INTO `gianhap` (`id_gianhap`, `id_sp`, `id_nhacungcap`, `id_ctsp`, `gianhap`, `soluong`, `created_at`, `updated_at`) VALUES
+(13, 10, NULL, 13, 4970700.00, 56, '2025-04-18 08:22:12', '2025-04-18 08:22:42'),
+(14, 11, NULL, 14, 64350.00, 150, '2025-04-18 08:34:19', '2025-04-18 08:35:24'),
+(15, 12, NULL, 15, 160000.00, 1000, '2025-04-18 08:44:36', '2025-04-18 08:44:36'),
+(16, 13, NULL, 16, 41600.00, 150, '2025-04-18 08:50:28', '2025-04-18 08:52:21'),
+(17, 14, NULL, 17, 133600.00, 150, '2025-04-18 09:00:27', '2025-04-18 09:04:30'),
+(18, NULL, NULL, 18, 153600.00, 67, '2025-04-18 09:06:56', '2025-04-18 09:06:56');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giasale`
+--
+
+CREATE TABLE `giasale` (
+  `id_giasale` int(10) UNSIGNED NOT NULL,
+  `id_sp` int(10) UNSIGNED DEFAULT NULL,
+  `id_dm` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctdm` int(10) UNSIGNED DEFAULT NULL,
+  `id_ctsp` int(10) UNSIGNED DEFAULT NULL,
+  `ten` varchar(255) DEFAULT NULL,
+  `magiamgia` varchar(255) DEFAULT NULL,
+  `trangthai` tinyint(1) DEFAULT NULL,
+  `giasale` decimal(12,3) DEFAULT NULL,
+  `ketthuc` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giasale`
+--
+
+INSERT INTO `giasale` (`id_giasale`, `id_sp`, `id_dm`, `id_ctdm`, `id_ctsp`, `ten`, `magiamgia`, `trangthai`, `giasale`, `ketthuc`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, 'Siêu sale tháng 4 thả ga deal hot', 'THANG4', NULL, 29000.000, '2025-04-29 17:00:00', '2025-04-18 02:03:24', '2025-04-18 02:21:29'),
+(2, NULL, NULL, NULL, NULL, 'Siêu sale tháng 5 tháng 5', 'GIA30KT5', NULL, 12000.000, '2025-05-04 17:00:00', '2025-04-18 02:19:31', '2025-04-18 02:19:31');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giohang`
+--
+
+CREATE TABLE `giohang` (
+  `id_giohang` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`id_giohang`, `created_at`, `updated_at`) VALUES
+(1, '2025-04-15 21:04:46', '2025-04-15 21:04:46');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hinhthucthanhtoan`
+--
+
+CREATE TABLE `hinhthucthanhtoan` (
+  `id_hinhthuc` int(10) UNSIGNED NOT NULL,
+  `tenhinhthuc` varchar(255) DEFAULT NULL,
+  `sodt` varchar(255) DEFAULT NULL,
+  `sotk` varchar(255) DEFAULT NULL,
+  `nganhang` varchar(255) DEFAULT NULL,
+  `tenchu` varchar(255) DEFAULT NULL,
+  `QRcode` varchar(255) DEFAULT NULL,
+  `khac` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hoadon`
+--
+
+CREATE TABLE `hoadon` (
+  `id_hoadon` int(10) UNSIGNED NOT NULL,
+  `id_nd` int(10) UNSIGNED NOT NULL,
+  `id_phi` int(10) UNSIGNED DEFAULT NULL,
+  `id_hinhthuc` int(10) UNSIGNED DEFAULT NULL,
+  `tontien` decimal(20,2) DEFAULT NULL,
+  `hoten` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `sodt` varchar(10) NOT NULL,
+  `madonhang` varchar(10) NOT NULL,
+  `trangthaidonhang` varchar(255) DEFAULT NULL,
+  `hinhthucthanhtoan` varchar(255) DEFAULT NULL,
+  `noidungchuyenkhoan` varchar(255) DEFAULT NULL,
+  `diachigiaohang` varchar(255) NOT NULL,
+  `ghichu` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`id_hoadon`, `id_nd`, `id_phi`, `id_hinhthuc`, `tontien`, `hoten`, `email`, `sodt`, `madonhang`, `trangthaidonhang`, `hinhthucthanhtoan`, `noidungchuyenkhoan`, `diachigiaohang`, `ghichu`, `created_at`, `updated_at`) VALUES
+(11, 1, 1, NULL, NULL, 'Vo Thanh Tin', '22superdog22003@gmail.com', '0866757710', '3OUDSE', 'Chờ xác nhận', 'Thanh toán khi nhận hàng', NULL, '17/5 tân Trung, Bên Cồn, Mỹ', NULL, '2025-04-18 20:09:02', '2025-04-18 20:09:02');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2025_02_16_083855_create_nguoidung_table', 1),
+(6, '2025_02_16_084058_create_diachi_table', 1),
+(7, '2025_02_19_035319_danhmucsanpham_table', 1),
+(8, '2025_02_19_042523_bangdanhmuc_table', 1),
+(9, '2025_02_20_063439_sanpham_table', 1),
+(10, '2025_02_20_070113_dsmongmuon_table', 1),
+(11, '2025_02_20_073531_giohang_table', 1),
+(12, '2025_02_20_074044_thuoctinhsanpham_table', 1),
+(13, '2025_02_20_075131_chitietsanpham_table', 1),
+(14, '2025_02_20_151330_chitietgiohang_table', 1),
+(15, '2025_02_21_032510_hinhthucthanhtoan_table', 1),
+(16, '2025_02_21_032511_phivanchuyen_table', 1),
+(17, '2025_02_21_032512_hoadon_table', 1),
+(18, '2025_02_21_033856_giasale_table', 1),
+(19, '2025_02_21_033857_chitietmua_table', 1),
+(20, '2025_03_12_034948_giaban_table', 1),
+(21, '2025_03_12_035019_nhacungcap_table', 1),
+(22, '2025_03_12_041317_gianhap_table', 1),
+(23, '2025_03_30_142417_banner_table', 1),
+(24, '2025_04_03_042806_create_sessions_table', 1),
+(25, '2025_04_05_034450_binhluan_table', 1),
+(26, '2025_04_05_040320_thanhtoan_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `nguoidung`
+--
+
+CREATE TABLE `nguoidung` (
+  `id_nd` int(10) UNSIGNED NOT NULL,
+  `hovaten` varchar(255) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `maxacnhan` varchar(10) NOT NULL,
+  `ngaysinh` date DEFAULT NULL,
+  `soDT` varchar(10) DEFAULT NULL,
+  `mail` varchar(255) NOT NULL,
+  `xacnhanmail` tinyint(1) DEFAULT NULL,
+  `ngaytao` date DEFAULT NULL,
+  `solannhapsai` int(11) DEFAULT NULL,
+  `tinhtrantk` varchar(255) DEFAULT NULL,
+  `quyentruycap` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nguoidung`
+--
+
+INSERT INTO `nguoidung` (`id_nd`, `hovaten`, `username`, `password`, `maxacnhan`, `ngaysinh`, `soDT`, `mail`, `xacnhanmail`, `ngaytao`, `solannhapsai`, `tinhtrantk`, `quyentruycap`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'testcungcat@gmail.com', '$2y$10$61E3tjUHSPY0AzLBMreutOwODrI3CMOCJIAgPc2YtVFepj9ldjkYa', '029089', NULL, NULL, 'testcungcat@gmail.com', NULL, NULL, NULL, 'Đã kích hoạt', 'user', '2025-04-15 21:04:06', '2025-04-18 19:25:44');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `nhacungcap`
+--
+
+CREATE TABLE `nhacungcap` (
+  `id_nhacungcap` int(10) UNSIGNED NOT NULL,
+  `ten` varchar(255) DEFAULT NULL,
+  `lienhe` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `phivanchuyen`
+--
+
+CREATE TABLE `phivanchuyen` (
+  `id_phi` int(10) UNSIGNED NOT NULL,
+  `giaphi` decimal(8,2) DEFAULT NULL,
+  `khuvuc` varchar(255) DEFAULT NULL,
+  `phuongthuc` varchar(255) DEFAULT NULL,
+  `ghichu` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `phivanchuyen`
+--
+
+INSERT INTO `phivanchuyen` (`id_phi`, `giaphi`, `khuvuc`, `phuongthuc`, `ghichu`, `created_at`, `updated_at`) VALUES
+(1, 17000.00, 'Vĩnh Long', 'Giao hàng tiêu chuẩn', 'vĩnh long gần đây', '2025-04-16 04:02:16', '2025-04-18 01:20:57'),
+(2, 25000.00, 'Cần thơ', 'Giao hàng tiêu chuẩn', 'Cần thơ xa', '2025-04-18 01:20:03', '2025-04-18 01:20:03'),
+(3, 35000.00, 'TP. Hồ Chí Minh', 'Giao hàng nhanh', NULL, '2025-04-18 01:21:29', '2025-04-18 01:21:43');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sanpham`
+--
+
+CREATE TABLE `sanpham` (
+  `id_sp` int(10) UNSIGNED NOT NULL,
+  `id_ctdm` int(10) UNSIGNED NOT NULL,
+  `tensp` varchar(255) DEFAULT NULL,
+  `anh` varchar(255) DEFAULT NULL,
+  `anhbase64` longtext DEFAULT NULL,
+  `tomtatsp` text DEFAULT NULL,
+  `tinhtrang` tinyint(1) DEFAULT NULL,
+  `trangthai` enum('conhang','hethang','an') DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
+
+INSERT INTO `sanpham` (`id_sp`, `id_ctdm`, `tensp`, `anh`, `anhbase64`, `tomtatsp`, `tinhtrang`, `trangthai`, `created_at`, `updated_at`) VALUES
+(10, 19, 'Bút máy cao cấp Parker Sonnet Matte Black GT TB-1950875', NULL, 'uploads/4ibgLKFRWv9rPB4Gg6gOi1jSpetxqKV5IVdywl9j.png', NULL, 1, 'conhang', '2025-04-18 08:22:12', '2025-04-18 08:22:42'),
+(11, 15, 'Combo 5 Băng keo đục OPP Flexoffice FO-BKD06', NULL, 'uploads/UosjmGh9Ds428mrHxNejAgFN7ZpRzgriQDVWEvFO.png', NULL, 1, 'conhang', '2025-04-18 08:34:19', '2025-04-18 08:35:24'),
+(12, 15, 'Combo 5 Băng keo đục 200 yards Thiên Long BKD-200', NULL, 'uploads/XSIWCXnckvsD6ZeBvoHu1CHQGVs0VhBwUfJkY87D.png', NULL, 0, 'conhang', '2025-04-18 08:44:36', '2025-04-18 08:44:36'),
+(13, 2, 'Hộp 5 bút dạ quang màu Pastel Thiên Long HL-019-DS - Phiên bản Demon Slayer', NULL, 'uploads/Yo5Ovt3clXBwSLYLGLeb20JK7tB5Zq8KjH3Ac021.png', NULL, 1, 'conhang', '2025-04-18 08:50:28', '2025-04-18 08:52:21'),
+(14, 11, 'Máy hút bụi mini Thiên Long Flexio MVE-001 - Không bao gồm pin', NULL, 'uploads/2nYFx2yRB9nsNvAgUHlK22dJk67ZaWZ5jtGiJv62.png', NULL, 0, 'conhang', '2025-04-18 09:00:27', '2025-04-18 09:00:27');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` longtext NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thanhtoan`
+--
+
+CREATE TABLE `thanhtoan` (
+  `id_thanhtoan` int(10) UNSIGNED NOT NULL,
+  `trangthaithanhtoan` tinyint(1) NOT NULL,
+  `ndthanhtoan` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thanhtoan`
+--
+
+INSERT INTO `thanhtoan` (`id_thanhtoan`, `trangthaithanhtoan`, `ndthanhtoan`, `created_at`, `updated_at`) VALUES
+(11, 0, NULL, '2025-04-18 20:09:02', '2025-04-18 20:09:02');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thuoctinhsanpham`
+--
+
+CREATE TABLE `thuoctinhsanpham` (
+  `id_thuoctinh` int(10) UNSIGNED NOT NULL,
+  `loai` varchar(255) DEFAULT NULL,
+  `danhsachspgoiy` varchar(255) DEFAULT NULL,
+  `kichthuoc` varchar(255) DEFAULT NULL,
+  `mota` varchar(255) DEFAULT NULL,
+  `mau` varchar(255) DEFAULT NULL,
+  `mamau` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thuoctinhsanpham`
+--
+
+INSERT INTO `thuoctinhsanpham` (`id_thuoctinh`, `loai`, `danhsachspgoiy`, `kichthuoc`, `mota`, `mau`, `mamau`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, 'Đen', '#000000', '2025-04-15 21:07:11', '2025-04-15 21:07:11'),
+(2, NULL, NULL, NULL, NULL, 'Vàng đất', '#ffd700', '2025-04-15 21:07:16', '2025-04-15 21:07:16'),
+(3, NULL, NULL, NULL, NULL, 'Không màu', NULL, '2025-04-15 21:07:22', '2025-04-15 21:07:22'),
+(4, NULL, NULL, NULL, NULL, 'Trắng', '#ffffff', '2025-04-15 21:07:28', '2025-04-15 21:07:28'),
+(5, NULL, NULL, NULL, NULL, 'Đục', NULL, '2025-04-18 08:34:38', '2025-04-18 08:34:38'),
+(6, NULL, NULL, NULL, NULL, 'Hồng', '#FFC0CB', '2025-04-18 09:02:59', '2025-04-18 09:02:59'),
+(7, NULL, NULL, NULL, NULL, 'Xanh biển', '#02367B', '2025-04-18 09:03:41', '2025-04-18 09:03:41');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `bangdanhmuc`
+--
+ALTER TABLE `bangdanhmuc`
+  ADD PRIMARY KEY (`id_ctdm`),
+  ADD KEY `bangdanhmuc_id_dm_foreign` (`id_dm`);
+
+--
+-- Chỉ mục cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id_banner`),
+  ADD KEY `banner_id_dm_foreign` (`id_dm`),
+  ADD KEY `banner_id_ctdm_foreign` (`id_ctdm`),
+  ADD KEY `banner_id_sp_foreign` (`id_sp`),
+  ADD KEY `banner_id_ctsp_foreign` (`id_ctsp`),
+  ADD KEY `banner_id_giasale_foreign` (`id_giasale`);
+
+--
+-- Chỉ mục cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD PRIMARY KEY (`id_bl`),
+  ADD KEY `binhluan_id_sp_foreign` (`id_sp`),
+  ADD KEY `binhluan_id_nd_foreign` (`id_nd`),
+  ADD KEY `binhluan_id_ctsp_foreign` (`id_ctsp`);
+
+--
+-- Chỉ mục cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  ADD PRIMARY KEY (`id_ctgh`),
+  ADD KEY `chitietgiohang_id_ctsp_foreign` (`id_ctsp`),
+  ADD KEY `chitietgiohang_id_giohang_foreign` (`id_giohang`),
+  ADD KEY `chitietgiohang_id_sp_foreign` (`id_sp`);
+
+--
+-- Chỉ mục cho bảng `chitietmua`
+--
+ALTER TABLE `chitietmua`
+  ADD PRIMARY KEY (`id_ctm`),
+  ADD KEY `chitietmua_id_ctsp_foreign` (`id_ctsp`),
+  ADD KEY `chitietmua_id_hoadon_foreign` (`id_hoadon`),
+  ADD KEY `chitietmua_id_giasale_foreign` (`id_giasale`);
+
+--
+-- Chỉ mục cho bảng `chitietsanpham`
+--
+ALTER TABLE `chitietsanpham`
+  ADD PRIMARY KEY (`id_ctsp`),
+  ADD KEY `chitietsanpham_id_sp_foreign` (`id_sp`),
+  ADD KEY `chitietsanpham_id_thuoctinh_foreign` (`id_thuoctinh`);
+
+--
+-- Chỉ mục cho bảng `danhmucsanpham`
+--
+ALTER TABLE `danhmucsanpham`
+  ADD PRIMARY KEY (`id_dm`);
+
+--
+-- Chỉ mục cho bảng `diachi`
+--
+ALTER TABLE `diachi`
+  ADD PRIMARY KEY (`id_dchi`),
+  ADD KEY `diachi_id_nd_foreign` (`id_nd`);
+
+--
+-- Chỉ mục cho bảng `dsmongmuon`
+--
+ALTER TABLE `dsmongmuon`
+  ADD PRIMARY KEY (`id_dsmm`),
+  ADD KEY `dsmongmuon_id_nd_foreign` (`id_nd`),
+  ADD KEY `dsmongmuon_id_sp_foreign` (`id_sp`);
+
+--
+-- Chỉ mục cho bảng `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Chỉ mục cho bảng `giaban`
+--
+ALTER TABLE `giaban`
+  ADD PRIMARY KEY (`id_giaban`),
+  ADD KEY `giaban_id_ctsp_foreign` (`id_ctsp`),
+  ADD KEY `giaban_id_sp_foreign` (`id_sp`),
+  ADD KEY `giaban_id_giasale_foreign` (`id_giasale`);
+
+--
+-- Chỉ mục cho bảng `gianhap`
+--
+ALTER TABLE `gianhap`
+  ADD PRIMARY KEY (`id_gianhap`),
+  ADD KEY `gianhap_id_nhacungcap_foreign` (`id_nhacungcap`),
+  ADD KEY `gianhap_id_sp_foreign` (`id_sp`),
+  ADD KEY `gianhap_id_ctsp_foreign` (`id_ctsp`);
+
+--
+-- Chỉ mục cho bảng `giasale`
+--
+ALTER TABLE `giasale`
+  ADD PRIMARY KEY (`id_giasale`),
+  ADD KEY `giasale_id_dm_foreign` (`id_dm`),
+  ADD KEY `giasale_id_ctdm_foreign` (`id_ctdm`),
+  ADD KEY `giasale_id_sp_foreign` (`id_sp`),
+  ADD KEY `giasale_id_ctsp_foreign` (`id_ctsp`);
+
+--
+-- Chỉ mục cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  ADD PRIMARY KEY (`id_giohang`);
+
+--
+-- Chỉ mục cho bảng `hinhthucthanhtoan`
+--
+ALTER TABLE `hinhthucthanhtoan`
+  ADD PRIMARY KEY (`id_hinhthuc`);
+
+--
+-- Chỉ mục cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD PRIMARY KEY (`id_hoadon`),
+  ADD UNIQUE KEY `hoadon_madonhang_unique` (`madonhang`),
+  ADD KEY `hoadon_id_nd_foreign` (`id_nd`),
+  ADD KEY `hoadon_id_phi_foreign` (`id_phi`),
+  ADD KEY `hoadon_id_hinhthuc_foreign` (`id_hinhthuc`);
+
+--
+-- Chỉ mục cho bảng `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `nguoidung`
+--
+ALTER TABLE `nguoidung`
+  ADD PRIMARY KEY (`id_nd`),
+  ADD UNIQUE KEY `nguoidung_mail_unique` (`mail`),
+  ADD UNIQUE KEY `nguoidung_username_unique` (`username`);
+
+--
+-- Chỉ mục cho bảng `nhacungcap`
+--
+ALTER TABLE `nhacungcap`
+  ADD PRIMARY KEY (`id_nhacungcap`);
+
+--
+-- Chỉ mục cho bảng `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Chỉ mục cho bảng `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Chỉ mục cho bảng `phivanchuyen`
+--
+ALTER TABLE `phivanchuyen`
+  ADD PRIMARY KEY (`id_phi`);
+
+--
+-- Chỉ mục cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD PRIMARY KEY (`id_sp`),
+  ADD KEY `sanpham_id_ctdm_foreign` (`id_ctdm`);
+
+--
+-- Chỉ mục cho bảng `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Chỉ mục cho bảng `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  ADD KEY `thanhtoan_id_thanhtoan_foreign` (`id_thanhtoan`);
+
+--
+-- Chỉ mục cho bảng `thuoctinhsanpham`
+--
+ALTER TABLE `thuoctinhsanpham`
+  ADD PRIMARY KEY (`id_thuoctinh`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `bangdanhmuc`
+--
+ALTER TABLE `bangdanhmuc`
+  MODIFY `id_ctdm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT cho bảng `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id_banner` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  MODIFY `id_bl` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  MODIFY `id_ctgh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietmua`
+--
+ALTER TABLE `chitietmua`
+  MODIFY `id_ctm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietsanpham`
+--
+ALTER TABLE `chitietsanpham`
+  MODIFY `id_ctsp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `danhmucsanpham`
+--
+ALTER TABLE `danhmucsanpham`
+  MODIFY `id_dm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `diachi`
+--
+ALTER TABLE `diachi`
+  MODIFY `id_dchi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `dsmongmuon`
+--
+ALTER TABLE `dsmongmuon`
+  MODIFY `id_dsmm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `giaban`
+--
+ALTER TABLE `giaban`
+  MODIFY `id_giaban` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `gianhap`
+--
+ALTER TABLE `gianhap`
+  MODIFY `id_gianhap` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `giasale`
+--
+ALTER TABLE `giasale`
+  MODIFY `id_giasale` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  MODIFY `id_giohang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `hinhthucthanhtoan`
+--
+ALTER TABLE `hinhthucthanhtoan`
+  MODIFY `id_hinhthuc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `id_hoadon` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT cho bảng `nguoidung`
+--
+ALTER TABLE `nguoidung`
+  MODIFY `id_nd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `nhacungcap`
+--
+ALTER TABLE `nhacungcap`
+  MODIFY `id_nhacungcap` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `phivanchuyen`
+--
+ALTER TABLE `phivanchuyen`
+  MODIFY `id_phi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id_sp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT cho bảng `thuoctinhsanpham`
+--
+ALTER TABLE `thuoctinhsanpham`
+  MODIFY `id_thuoctinh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `bangdanhmuc`
+--
+ALTER TABLE `bangdanhmuc`
+  ADD CONSTRAINT `bangdanhmuc_id_dm_foreign` FOREIGN KEY (`id_dm`) REFERENCES `danhmucsanpham` (`id_dm`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD CONSTRAINT `banner_id_ctdm_foreign` FOREIGN KEY (`id_ctdm`) REFERENCES `bangdanhmuc` (`id_ctdm`) ON DELETE CASCADE,
+  ADD CONSTRAINT `banner_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `banner_id_dm_foreign` FOREIGN KEY (`id_dm`) REFERENCES `danhmucsanpham` (`id_dm`) ON DELETE CASCADE,
+  ADD CONSTRAINT `banner_id_giasale_foreign` FOREIGN KEY (`id_giasale`) REFERENCES `giasale` (`id_giasale`) ON DELETE CASCADE,
+  ADD CONSTRAINT `banner_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD CONSTRAINT `binhluan_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `binhluan_id_nd_foreign` FOREIGN KEY (`id_nd`) REFERENCES `nguoidung` (`id_nd`) ON DELETE CASCADE,
+  ADD CONSTRAINT `binhluan_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  ADD CONSTRAINT `chitietgiohang_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chitietgiohang_id_giohang_foreign` FOREIGN KEY (`id_giohang`) REFERENCES `giohang` (`id_giohang`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chitietgiohang_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `chitietmua`
+--
+ALTER TABLE `chitietmua`
+  ADD CONSTRAINT `chitietmua_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chitietmua_id_giasale_foreign` FOREIGN KEY (`id_giasale`) REFERENCES `giasale` (`id_giasale`),
+  ADD CONSTRAINT `chitietmua_id_hoadon_foreign` FOREIGN KEY (`id_hoadon`) REFERENCES `hoadon` (`id_hoadon`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `chitietsanpham`
+--
+ALTER TABLE `chitietsanpham`
+  ADD CONSTRAINT `chitietsanpham_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chitietsanpham_id_thuoctinh_foreign` FOREIGN KEY (`id_thuoctinh`) REFERENCES `thuoctinhsanpham` (`id_thuoctinh`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `diachi`
+--
+ALTER TABLE `diachi`
+  ADD CONSTRAINT `diachi_id_nd_foreign` FOREIGN KEY (`id_nd`) REFERENCES `nguoidung` (`id_nd`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `dsmongmuon`
+--
+ALTER TABLE `dsmongmuon`
+  ADD CONSTRAINT `dsmongmuon_id_nd_foreign` FOREIGN KEY (`id_nd`) REFERENCES `nguoidung` (`id_nd`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dsmongmuon_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `giaban`
+--
+ALTER TABLE `giaban`
+  ADD CONSTRAINT `giaban_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `giaban_id_giasale_foreign` FOREIGN KEY (`id_giasale`) REFERENCES `giasale` (`id_giasale`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `giaban_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `gianhap`
+--
+ALTER TABLE `gianhap`
+  ADD CONSTRAINT `gianhap_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`) ON DELETE CASCADE,
+  ADD CONSTRAINT `gianhap_id_nhacungcap_foreign` FOREIGN KEY (`id_nhacungcap`) REFERENCES `nhacungcap` (`id_nhacungcap`) ON DELETE CASCADE,
+  ADD CONSTRAINT `gianhap_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `giasale`
+--
+ALTER TABLE `giasale`
+  ADD CONSTRAINT `giasale_id_ctdm_foreign` FOREIGN KEY (`id_ctdm`) REFERENCES `bangdanhmuc` (`id_ctdm`) ON DELETE CASCADE,
+  ADD CONSTRAINT `giasale_id_ctsp_foreign` FOREIGN KEY (`id_ctsp`) REFERENCES `chitietsanpham` (`id_ctsp`),
+  ADD CONSTRAINT `giasale_id_dm_foreign` FOREIGN KEY (`id_dm`) REFERENCES `danhmucsanpham` (`id_dm`) ON DELETE CASCADE,
+  ADD CONSTRAINT `giasale_id_sp_foreign` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  ADD CONSTRAINT `giohang_id_giohang_foreign` FOREIGN KEY (`id_giohang`) REFERENCES `nguoidung` (`id_nd`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD CONSTRAINT `hoadon_id_hinhthuc_foreign` FOREIGN KEY (`id_hinhthuc`) REFERENCES `hinhthucthanhtoan` (`id_hinhthuc`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `hoadon_id_nd_foreign` FOREIGN KEY (`id_nd`) REFERENCES `nguoidung` (`id_nd`) ON DELETE CASCADE,
+  ADD CONSTRAINT `hoadon_id_phi_foreign` FOREIGN KEY (`id_phi`) REFERENCES `phivanchuyen` (`id_phi`) ON DELETE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD CONSTRAINT `sanpham_id_ctdm_foreign` FOREIGN KEY (`id_ctdm`) REFERENCES `bangdanhmuc` (`id_ctdm`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  ADD CONSTRAINT `thanhtoan_id_thanhtoan_foreign` FOREIGN KEY (`id_thanhtoan`) REFERENCES `hoadon` (`id_hoadon`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

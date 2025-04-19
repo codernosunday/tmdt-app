@@ -23,7 +23,7 @@ class CartController extends Controller
             ->select(
                 'chitietgiohang.*',
                 'sanpham.tensp',
-                'sanpham.anh',
+                'sanpham.anhbase64',
                 'thuoctinhsanpham.mau',
                 'giaban.giaban',
                 DB::raw('chitietgiohang.soluong * giaban.giaban as thanh_tien')

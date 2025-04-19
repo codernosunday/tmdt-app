@@ -13,6 +13,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\nguoidungCotroller;
+use App\Http\Controllers\pvcvakhuyenmaiController;
 use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
@@ -64,10 +66,11 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
-
 //admin - Vo Thanh Tin
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
+//Nguoi dung- Vo Thanh Tin
+Route::get('/nguoidung', [nguoidungCotroller::class, 'trangnguoidung']);
 
 
 
@@ -121,3 +124,15 @@ Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']
 Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhang']);
 //giam gia
 Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
+//QL phi van chuyen
+Route::get('/administrator/phivanchuyen', [pvcvakhuyenmaiController::class, 'qlphivanchuyen']);
+Route::get('/administrator/xempvc/{id}', [pvcvakhuyenmaiController::class, 'timvanchuyen']);
+Route::post('/administrator/themphivanchuyen', [pvcvakhuyenmaiController::class, 'themphivanchuyen']);
+Route::post('/administrator/chinhsuavanchuyen/{id}', [pvcvakhuyenmaiController::class, 'capnhatphivanchuyen']);
+Route::delete('/administrator/xoaphivanchuyen/{id}', [pvcvakhuyenmaiController::class, 'xoaphivanchuyen']);
+//QL giá sale
+Route::get('/administrator/qlgiasale', [pvcvakhuyenmaiController::class, 'trangsale']);
+Route::post('/administrator/themgiasale', [pvcvakhuyenmaiController::class, 'themgiasale']);
+Route::get('/administrator/xemgiasale/{id}', [pvcvakhuyenmaiController::class, 'xemgiasale']);
+Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
+Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);

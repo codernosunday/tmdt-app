@@ -95,7 +95,8 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{$data["anhsp"]}}" alt="Product" class="product-img me-3">
+                                    <img src="{{ $data["anhsp"] ? asset('storage/' . $data["anhsp"]) : '' }}"
+                                        alt="Product" class="product-img me-3">
                                     <div>
                                         <h6 class="mb-1">{{$data["tensp"]}}</h6>
                                         <p class="text-muted mb-0">Màu: {{$data["mau"]}}</p>
