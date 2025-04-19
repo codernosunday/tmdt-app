@@ -8,6 +8,7 @@ use App\Models\SanphamModel;
 use App\Models\ChitietsanphamModel;
 use App\Models\DanhmucconModel;
 use App\Models\DanhmucsanphamModel;
+use App\Models\giabanModel;
 
 class giasaleModel extends Model
 {
@@ -41,5 +42,9 @@ class giasaleModel extends Model
     public function danhmuccon()
     {
         return $this->belongsTo(DanhmucconModel::class, 'id_ctdm');
+    }
+    public function giaban()
+    {
+        return $this->hasMany(giabanModel::class, 'id_giasale');
     }
 }

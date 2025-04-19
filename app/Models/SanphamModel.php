@@ -14,8 +14,10 @@ class SanphamModel extends Model
         'id_ctdm',
         'tensp',
         'anh',
+        'anhbase64',
         'tomtatsp',
-        'tinhtrang'
+        'tinhtrang',
+        'trangthai'
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';

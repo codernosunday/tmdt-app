@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('id_ctdm');
             $table->string('tensp')->nullable();
             $table->string('anh')->nullable();
+            $table->longText('anhbase64')->nullable();
             $table->text('tomtatsp')->nullable();
             $table->boolean('tinhtrang')->nullable();
             $table->enum('trangthai', ['conhang', 'hethang', 'an'])->nullable();

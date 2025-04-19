@@ -10,7 +10,7 @@
                     <div class="premium-badge">Premium</div>
                     @endif --}}
                     <a class="link" href="/sanpham/{{$i->tensp}}/{{$i->id_sp}}">
-                        <img src="{{ $i->anh }}" alt="{{ $i->tensp }}">
+                        <img src="{{ $i->anhbase64 ? asset('storage/' . $i->anhbase64) : '' }}" alt="{{ $i->tensp }}">
 
                         <p class="product-name">{{ $i->tensp }}</p>
                         <div class="product-details">

@@ -15,18 +15,13 @@ return new class extends Migration
     {
         Schema::create('thanhtoan', function (Blueprint $table) {
             $table->unsignedInteger('id_thanhtoan');
-            $table->unsignedInteger('id_phi')->nullable();
-            $table->string('trangthaidonhang');
-            $table->string('hinhthucthanhtoan');
+            $table->boolean('trangthaithanhtoan');
+            $table->string('ndthanhtoan')->nullable();
             $table->timestamps();
             $table->foreign('id_thanhtoan')
                 ->references('id_hoadon')
                 ->on('hoadon')
                 ->onDelete('cascade');
-            $table->foreign('id_phi')
-                ->references('id_phi')
-                ->on('phivanchuyen')
-                ->onDelete('no action');
         });
     }
 

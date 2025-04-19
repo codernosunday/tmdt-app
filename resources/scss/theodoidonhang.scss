@@ -1,0 +1,67 @@
+.order-status {
+    position: relative;
+    padding-left: 30px;
+}
+
+.order-status .step {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.order-status .step::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    background: white;
+    z-index: 2;
+}
+
+.order-status .step.active::before {
+    border-color: #0d6efd;
+    background: #0d6efd;
+}
+
+.order-status .step.completed::before {
+    border-color: #198754;
+    background: #198754;
+}
+
+.order-status .step::after {
+    content: "";
+    position: absolute;
+    left: -21px;
+    top: 20px;
+    width: 2px;
+    height: calc(100% + 20px);
+    background: #dee2e6;
+}
+
+.order-status .step:last-child::after {
+    display: none;
+}
+
+.order-status .step.completed::after {
+    background: #198754;
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.badge {
+    background-color: #dc3545;
+    /* màu danger của Bootstrap */
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}

@@ -34,6 +34,7 @@ return new class extends Migration
             $table->text('loiich')->nullable();
             $table->text('tinhnangnoibat')->nullable();
             $table->text('anhsp')->nullable();
+            $table->longText('ctanhbase64')->nullable();
             $table->string('dattinh', 500)->nullable();
             $table->timestamps();
             $table->foreign('id_sp')

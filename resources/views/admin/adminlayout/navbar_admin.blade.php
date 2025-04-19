@@ -83,7 +83,8 @@
                                     <a class="nav-link dropdown-toggle" role="button" id="pages"
                                         data-bs-toggle="dropdown" aria-expanded="false">Quản lý người dùng</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
-                                        <li><a href="#" class="dropdown-item">Quản lý người dùng</a>
+                                        <li><a href="/administrator/quanlynguoidung" class="dropdown-item">Quản lý người
+                                                dùng</a>
                                         </li>
                                         <li><a href="#" class="dropdown-item">Thêm mới người dùng</a>
                                         </li>
@@ -110,7 +111,8 @@
                                         </li>
                                         <li><a href="#" class="dropdown-item">Thêm mới danh mục cha</a>
                                         </li>
-                                        <li><a href="#" class="dropdown-item">Quản lý khuyến mãi</a></li>
+                                        <li><a href="/administrator/qlgiasale" class="dropdown-item">Quản lý khuyến
+                                                mãi</a></li>
                                         <li><a href="#" class="dropdown-item">Thêm chương trình khuyến mãi</a></li>
                                         <li><a href="#" class="dropdown-item">Quản lý banner</a></li>
                                         <li><a href="#" class="dropdown-item">Thêm mới banner</a></li>
@@ -120,6 +122,9 @@
                                     <a class="nav-link dropdown-toggle" role="button" id="pages"
                                         data-bs-toggle="dropdown" aria-expanded="false">Quản lý đơn hàng</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="/administrator/phivanchuyen" class="dropdown-item">Quản lý phí vận
+                                                chuyển</a>
+                                        </li>
                                         <li><a href="#" class="dropdown-item">Chờ xác nhận</a>
                                         </li>
                                         <li><a href="#" class="dropdown-item">Đã xác nhận</a></li>
@@ -133,8 +138,18 @@
                                 <li class="nav-item">
                                     <a href="{{ route('contact') }}" class="nav-link">Phản hồi</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/" class="nav-link">Thống kê chung</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" id="pages"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Thống kê và báo cáo</a>
+                                    <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="#" class="dropdown-item">Thống kê người dùng</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Thống kê mặt hàng</a>
+                                        </li>
+                                        <li><a href="#" class="dropdown-item">Thông kê theo tháng</a></li>
+                                        <li><a href="#" class="dropdown-item">Thông kê theo quí</a></li>
+                                        <li><a href="#" class="dropdown-item">Thông kê theo năm</a></li>
+                                    </ul>
                                 </li>
                             </ul>
 

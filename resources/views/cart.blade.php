@@ -19,8 +19,8 @@
                                             <button class="btn btn-outline-info"><i class="bi bi-info-circle-fill"></i></button>
                                         </td>
                                         <td class="align-middle">
-                                            <img src="{{ asset($item->anh) }}" alt="{{ asset($item->anh) }}" class="img-thumbnail"
-                                                width="80">
+                                            <img src="{{ $item->anhbase64 ? asset('storage/' . $item->anhbase64) : '' }}" alt="{{$item->tensp}}"
+                                                class="img-thumbnail" width="80">
                                         </td>
                                         <td class="align-middle">
                                             <p class="mb-1" class="align-middle">{{ $item->tensp }}</p>

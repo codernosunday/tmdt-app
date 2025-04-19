@@ -11,6 +11,7 @@ use App\Models\giabanModel;
 use App\Models\gianhapModel;
 use App\Models\DanhmucconModel;
 use App\Models\ThuoctinhspModel;
+use Illuminate\Support\Facades\Storage;
 
 class QLsanphamController extends Controller
 {
@@ -22,12 +23,39 @@ class QLsanphamController extends Controller
     }
     function pagesQLchitietsanpham($id_sp)
     {
-        $danhmuc = DanhmucconModel::all();
+        $danhmuccon = DanhmucconModel::all();
         $sp = SanphamModel::where('id_sp', $id_sp)->first();
-        $ban = giabanModel::where('id_sp', $id_sp)->first();
-        $nhap = gianhapModel::where('id_sp', $id_sp)->first();
-        $ctsp = ChitietsanphamModel::where('id_sp', $id_sp)->first();
-        return view('admin.chitietsanpham', compact('sp', 'ban', 'nhap', 'ctsp', 'danhmuc'));
+        $ctsp = ChitietsanphamModel::where('id_sp', $id_sp)->get();
+        $thuoctinh = ThuoctinhspModel::all();
+        $firstCtsp = $ctsp->first();
+        $ban = giabanModel::where('id_ctsp', $firstCtsp->id_ctsp)->first();
+        $nhap = gianhapModel::where('id_ctsp', $firstCtsp->id_ctsp)->first();
+        $data = [
+            "id_sp" => $sp->id_sp,
+            "tensp" => $sp->tensp,
+            "danhmuc" => $sp->id_ctdm,
+            "anhsp" => $sp->anhbase64,
+            "linkanh" => $sp->anh,
+            "tomtat" => $sp->tomtatsp,
+            "tinhtrang" => $sp->tinhtrang,
+            "trangthai" => $sp->trangthai,
+            "thuonghieu" => $firstCtsp->thuonghieu,
+            "xuatxu" => $firstCtsp->xuatsu,
+            "sanxuat" => $firstCtsp->sanxuat,
+            "khuyencao" => $firstCtsp->dattinh,
+            "tinhnangnoibat" => $firstCtsp->tinhnangnoibat,
+            "loiich" => $firstCtsp->loiich,
+            "kichthuoc" => $firstCtsp->kichthuoc,
+            "doday" => $firstCtsp->doday,
+            "trongluong" => $firstCtsp->trongluong,
+            "tieuchuan" => $firstCtsp->tieuchuan,
+            "sotrang" => $firstCtsp->sotrang,
+            "ttinh" => $firstCtsp->id_thuoctinh,
+            "giaban" => $ban->giaban,
+            "gianhap" => $nhap->gianhap,
+            "soluong" => $nhap->soluong,
+        ];
+        return view('admin.chitietsanpham', compact('data', 'ctsp', 'danhmuccon', 'thuoctinh'));
     }
 
     public function postcapnhatsanpham(Request $request)
@@ -37,6 +65,7 @@ class QLsanphamController extends Controller
             $validated = $request->validate([
                 'danhmuc' => 'required|integer',
                 'id_sp' => 'required|exists:sanpham,id_sp',
+                'id_ctsp' => 'required|exists:chitietsanpham,id_ctsp',
                 'tensp' => 'required|string|max:255',
                 'anh' => 'nullable|string|max:255',
                 'tomtatsp' => 'nullable|string',
@@ -49,11 +78,16 @@ class QLsanphamController extends Controller
                 'sanxuat' => 'nullable|string',
                 'xuatsu' => 'nullable|string',
                 'tinhnang' => 'nullable|string',
-                'kichthuoc' => 'nullable|string'
+                'kichthuoc' => 'nullable|string',
+                'fileanh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'trangthai' => 'nullable|string'
             ]);
+
+
             DB::beginTransaction();
             // Kiểm tra sản phẩm tồn tại
             $sanpham = SanphamModel::find($validated['id_sp']);
+
             if (!$sanpham) {
                 return response()->json([
                     'success' => false,
@@ -61,29 +95,37 @@ class QLsanphamController extends Controller
                     'errors' => ['id_sp' => 'ID sản phẩm không hợp lệ.']
                 ], 404);
             }
+            if ($request->file('fileanh')) {
+                $image = $request->file('fileanh');
+                $path = $image->store('uploads', 'public');
+            }
+            $path = $sanpham->anhbase64;
             // Cập nhật sản phẩm
             $sanpham->update([
                 'id_ctdm' => $validated['danhmuc'],
                 'tensp' => $validated['tensp'],
                 'anh' => $validated['anh'] ?? $sanpham->anh,
                 'tomtatsp' => $validated['tomtatsp'],
-                'tinhtrang' => $validated['tinhtrang']
+                'trangthai' => $validated['trangthai'],
+                'tinhtrang' => $validated['tinhtrang'],
+                'anhbase64' => $path
             ]);
             // Cập nhật chi tiết sản phẩm
             ChitietsanphamModel::updateOrCreate(
-                ['id_sp' => $validated['id_sp']],
+                ['id_ctsp' => $validated['id_ctsp']],
                 [
                     'doday' => $request->input('doday'),
                     'soluong' => $validated['soluong'] ?? 0,
                     'sotrang' => $request->input('sotrang'),
                     'thuonghieu' => $request->input('thuonghieu'),
-                    'anhsp' => $validated['anh'] ?? $sanpham->anh,
+                    'anhsp' => $path,
                     'mausac' => $request->input('mausac'),
                     'mamau' => $request->input('mamau'),
                     'dattinh' => $request->input('dattinh'),
                     'tieuchuan' => $validated['tieuchuan'],
                     'loiich' => $validated['loiich'],
                     'xuatsu' => $validated['xuatsu'],
+                    'sanxuat' => $validated['sanxuat'],
                     'tinhnangnoibat' => $validated['tinhnang'],
                     'kichthuoc' => $validated['kichthuoc']
                 ]
@@ -156,16 +198,25 @@ class QLsanphamController extends Controller
             'tieuchuan' => 'nullable|string',
             'loiich' => 'nullable|string',
             'xuatsu' => 'nullable|string',
-            'tinhnang' => 'nullable|string'
+            'tinhnang' => 'nullable|string',
+            'fileanh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         DB::beginTransaction();
         try {
+            if ($request->file('fileanh')) {
+                $image = $request->file('fileanh');
+                $path = $image->store('uploads', 'public');
+            } else {
+                $path = '';
+            }
             $sanpham = SanphamModel::create([
                 'id_ctdm' => $validated['danhmuc'],
                 'tensp' => $validated['tensp'],
                 'anh' => $validated['anh'],
+                'anhbase64' => $path,
                 'tomtatsp' => $validated['tomtatsp'],
-                'tinhtrang' => $validated['tinhtrang']
+                'tinhtrang' => $validated['tinhtrang'],
+                'trangthai' => "conhang"
             ]);
             $id_sp = $sanpham->id_sp;
             $ctsp = ChitietsanphamModel::create([
@@ -212,6 +263,9 @@ class QLsanphamController extends Controller
         try {
             $sanpham = SanphamModel::find($id);
             if ($sanpham) {
+                if ($sanpham->anhbase64 && Storage::exists('public/' . $sanpham->anhbase64)) {
+                    Storage::delete('public/' . $sanpham->anhbase64);
+                }
                 $sanpham->delete();
             }
             return response()->json([
@@ -224,11 +278,43 @@ class QLsanphamController extends Controller
         }
     }
     //thêm chi tiết sản phẩm
-    function chiTietSanPham($id)
+    function chiTietSanPham($id_sp)
     {
-        $sp = sanphamModel::where('id_sp', $id)->first();
+        $sp = sanphamModel::where('id_sp', $id_sp)->first();
         $thuoctinh = ThuoctinhspModel::all();
-        return view('admin.themchitietsanpham', compact('sp', 'thuoctinh'));
+        $danhmuccon = DanhmucconModel::all();
+        $sp = SanphamModel::where('id_sp', $id_sp)->first();
+        $ctsp = ChitietsanphamModel::where('id_sp', $id_sp)->get();
+        $thuoctinh = ThuoctinhspModel::all();
+        $firstCtsp = $ctsp->first();
+        $ban = giabanModel::where('id_ctsp', $firstCtsp->id_ctsp)->first();
+        $nhap = gianhapModel::where('id_ctsp', $firstCtsp->id_ctsp)->first();
+        $data = [
+            "id_sp" => $sp->id_sp,
+            "tensp" => $sp->tensp,
+            "danhmuc" => $sp->id_ctdm,
+            "anhsp" => $sp->anhbase64,
+            "linkanh" => $sp->anh,
+            "tomtat" => $sp->tomtatsp,
+            "tinhtrang" => $sp->tinhtrang,
+            "trangthai" => $sp->trangthai,
+            "thuonghieu" => $firstCtsp->thuonghieu,
+            "xuatxu" => $firstCtsp->xuatsu,
+            "sanxuat" => $firstCtsp->sanxuat,
+            "khuyencao" => $firstCtsp->dattinh,
+            "tinhnangnoibat" => $firstCtsp->tinhnangnoibat,
+            "loiich" => $firstCtsp->loiich,
+            "kichthuoc" => $firstCtsp->kichthuoc,
+            "doday" => $firstCtsp->doday,
+            "trongluong" => $firstCtsp->trongluong,
+            "tieuchuan" => $firstCtsp->tieuchuan,
+            "sotrang" => $firstCtsp->sotrang,
+            "ttinh" => $firstCtsp->id_thuoctinh,
+            "giaban" => $ban->giaban,
+            "gianhap" => $nhap->gianhap,
+            "soluong" => $nhap->soluong,
+        ];
+        return view('admin.themchitietsanpham', compact('data', 'ctsp', 'danhmuccon', 'thuoctinh'));
     }
     function PostThemchiTietSanPham(Request $request)
     {
@@ -236,18 +322,18 @@ class QLsanphamController extends Controller
         try {
             $ctsp = ChitietsanphamModel::create([
                 'id_sp' => $request->input('id_sp'),
-                'id_thuoctinh' => $request->input('mausac'),
+                'id_thuoctinh' => $request->input('thuoctinh'),
                 'doday' => $request->input('doday'),
                 'soluong' => $request->input('soluong'),
                 'sotrang' => $request->input('sotrang'),
                 'thuonghieu' => $request->input('thuonghieu'),
-                'anhsp' => $request->input('anh'),
                 'sanxuat' => $request->input('sanxuat'),
                 'tieuchuan' => $request->input('tieuchuan'),
                 'loiich' => $request->input('loiich'),
                 'kichthuoc' => $request->input('kichthuoc'),
                 'xuatsu' => $request->input('xuatsu'),
-                'tinhnangnoibat' => $request->input('tinhnang')
+                'tinhnangnoibat' => $request->input('tinhnang'),
+                'dattinh' => $request->input('dattinh')
             ]);
             $id_ctsp = $ctsp->id_ctsp;
             gianhapModel::create([

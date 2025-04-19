@@ -13,7 +13,21 @@ class CartController extends Controller
     //
     public function cart()
     {
-        $ctgh =  ChitietgiohangModel::where('id_giohang', session("id_giohang"));
+        $cartItems = DB::table('chitietgiohang')
+            ->join('chitietsanpham', 'chitietgiohang.id_ctsp', '=', 'chitietsanpham.id_ctsp')
+            ->join('sanpham', 'chitietsanpham.id_sp', '=', 'sanpham.id_sp')
+            ->join('giaban', 'chitietsanpham.id_ctsp', '=', 'giaban.id_ctsp')
+            ->leftJoin('thuoctinhsanpham', 'chitietsanpham.id_thuoctinh', '=', 'thuoctinhsanpham.id_thuoctinh') // dùng leftJoin
+            ->select(
+                'chitietgiohang.*',
+                'sanpham.tensp',
+                'sanpham.anhbase64',
+                'thuoctinhsanpham.mau',
+                'giaban.giaban',
+                DB::raw('chitietgiohang.soluong * giaban.giaban as thanh_tien')
+            )
+            ->where('chitietgiohang.id_giohang', session("id_giohang"))
+            ->get();
         // $sanpham= SanphamModel::
         return view('cart');
     }
