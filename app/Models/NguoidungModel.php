@@ -22,7 +22,8 @@ class NguoidungModel extends Authenticatable
         'ngaytao',
         'quyentruycap',
         'maxacnhan',
-        'solannhapsai'
+        'solannhapsai',
+        'tinhtrantk'
     ];
 
     public $timestamps = true;

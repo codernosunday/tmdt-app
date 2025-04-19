@@ -1,0 +1,125 @@
+// Biến màu
+$primary-color: #4a6fa5;
+$secondary-color: #f8f9fa;
+$text-color: #333;
+$border-color: #ddd;
+$edit-color: #ff7e33;
+
+.profile-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $border-color;
+    }
+
+    .profile-icon {
+        width: 100px;
+        height: 100px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .profile-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .profile-details {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background: $secondary-color;
+        border-radius: 8px;
+        align-items: center;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: $primary-color;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        flex-grow: 1;
+        text-align: right;
+        margin: 0 15px;
+    }
+
+    .edit-btn {
+        background: $edit-color;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+            background: darken($edit-color, 10%);
+        }
+    }
+
+    .save-btn {
+        background: $primary-color;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background 0.3s;
+
+        &:hover {
+            background: darken($primary-color, 10%);
+        }
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        font-family: inherit;
+    }
+
+    .edit-form {
+        display: none;
+        padding: 15px;
+        background: $secondary-color;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: $primary-color;
+        }
+    }
+}
