@@ -145,6 +145,7 @@ Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
 
 // dat hang - theo doi don hang
+Route::get('/trangthanhtoan/{ctgh}', [ThanhtoanController::class, 'trangthanhtoan']);
 Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
 Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 //theo doi don hang
