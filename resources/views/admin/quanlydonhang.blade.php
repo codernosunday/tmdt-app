@@ -1,5 +1,6 @@
 @vite('resources/scss/quanlysanpham.scss')
 @vite('resources/js/adminscript/mainQLSP.js')
+@vite('resources/js/adminscript/quanlydonhang/capnhattrangthaidonhang.js')
 @extends('admin.adminlayout.layout_admin')
 @section('content')
 @section('title', 'Quản lý sản phẩm')
@@ -28,7 +29,7 @@
                             <td>{{$donhang["created_at"]}}</td>
                             <td>{{$donhang["diachigiaohang"]}}</td>
                             <td>{{$donhang["vanchuyen"]["khuvuc"]}}</td>
-                            <td>{{$donhang["trangthaidonhang"]}}</td>
+                            <td ondblclick="editCell(this)">{{$donhang["trangthaidonhang"]}}</td>
                             <td>{{$donhang["hinhthucthanhtoan"]}}</td>
                             <td>{{$donhang["ghichu"] ? $donhang["ghichu"]:"Không có"}}</td>
                             <td>
