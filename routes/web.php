@@ -21,9 +21,8 @@ use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
 use App\Http\Controllers\QLnguoidungController;
-use APP\Http\Controllers\DanhgiaController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QLdonhangController;
+use App\Http\Controllers\QLchitietdonhangController;
 
 
 /*
@@ -76,7 +75,7 @@ Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus')
 Route::get('/service', [HomePagesController::class, 'service'])->name('service');
 Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
 Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->name('wishlist');
+// Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->name('wishlist');
 
 //admin- Vo Thanh Tin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -138,6 +137,31 @@ Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQL
 Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
 Route::post('/nguoidung/capnhat', [nguoidungCotroller::class, 'capnhatthongtin']);
 
+// chitiet san pham
+Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
+Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
+
+//admin-Quan ly nguoi dung-HHH
+Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
+Route::post('/administrator/xoanguoidung', [QLnguoidungController::class, 'xoaNguoiDung']);
+Route::post('/administrator/suaNguoiDung', [QLnguoidungController::class, 'suaNguoidung']);
+
+Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
+
+//admin danh muc san pham - Vo Thanh Tin
+Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
+Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
+//danh muc cha- Vo Thanh Tin
+Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
+Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
+Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
+//danh muc con- Vo Thanh Tin
+Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
+Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
+Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
+Route::post('/administrator/updatedmcon', [QLDMController::class, 'postUpdateDMcon']);
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
@@ -202,11 +226,11 @@ Route::middleware(['admin.access'])->group(function () {
     Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
 });
 // Wishlist routes
-Route::middleware(['auth'])->group(function () {
-    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
-    Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
-    Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+//     Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
+//     Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+// });
 
 // Route::get('/san-pham/{tensp}/{id_sp}', [App\Http\Controllers\SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
 
