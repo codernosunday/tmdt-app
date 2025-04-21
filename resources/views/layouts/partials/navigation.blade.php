@@ -69,14 +69,17 @@
 
                     <ul class="navbar-nav align-items-center menu-list list-unstyled d-flex gap-md-3 mb-0 mx-auto">
                         <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">Home</a>
+                            <a href="{{ route('home') }}"
+                                class="nav-link {{ request()->is('home') ? 'active' : '' }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('shop') }}" class="nav-link {{ request()->is('shop*') ? 'active' : '' }}">Shop</a>
+                            <a href="{{ route('shop') }}"
+                                class="nav-link {{ request()->is('shop*') ? 'active' : '' }}">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('wishlist') }}" class="nav-link {{ request()->is('wishlish*') ? 'active' : '' }}">Wishlist</a>
-                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('wishlist') }}"
+                                class="nav-link {{ request()->is('wishlish*') ? 'active' : '' }}">Wishlist</a>
+                        </li> --}}
                     </ul>
 
                     <ul class="d-flex list-unstyled m-0 align-items-center">
@@ -96,8 +99,8 @@
                         </li>
                     </ul>
 
-                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                        aria-controls="offcanvasNavbar">
+                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
@@ -180,8 +183,7 @@
                     </li>
                     <li class="deliver">
                         <a href="/theodoidonhang" class="mx-3">
-                            <iconify-icon icon="mdi:truck-delivery"
-                                class="fs-4 position-relative"></iconify-icon>
+                            <iconify-icon icon="mdi:truck-delivery" class="fs-4 position-relative"></iconify-icon>
                         </a>
                     </li>
                 </ul>
@@ -191,20 +193,20 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Category select handler
-    document.getElementById('categorySelect').addEventListener('change', function() {
-        if (this.value) {
-            window.location.href = `/shop/category/${this.value}`;
-        }
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Category select handler
+        document.getElementById('categorySelect').addEventListener('change', function () {
+            if (this.value) {
+                window.location.href = `/shop/category/${this.value}`;
+            }
+        });
 
-    // Cart click handler
-    const cartButtons = document.querySelectorAll('.shopping-cart');
-    cartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            window.location.href = '/cart';
+        // Cart click handler
+        const cartButtons = document.querySelectorAll('.shopping-cart');
+        cartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = '/cart';
+            });
         });
     });
-});
 </script>
