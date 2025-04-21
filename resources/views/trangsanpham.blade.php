@@ -16,10 +16,13 @@
                 <div class="product-info">
                     <h1>{{$sp->tensp}}</h1>
                     <p class="text-muted">Thương hiệu: {{$ctsp->thuonghieu}}</p>
-                    <p class="text-muted">Còn hàng: {{$ctsp->soluong}}</p>
-                    <p class="">
-                        {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
-                    </p>
+                    <p class="text-muted" id="soluong">Còn hàng: {{$ctsp->soluong}}</p>
+                    <div class="d-flex align-items-center">
+                        <p class="mr-2">Giá bán: </p>
+                        <p id="giaban" class="giaban">
+                            {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
+                        </p>
+                    </div>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
@@ -111,4 +114,9 @@
             </div>
         </div>
     </div>
+    <script>
+        window.appData = {
+            idsp: {{ $ctsp->id_ctsp }}
+                                        };
+    </script>
 @endsection

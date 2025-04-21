@@ -114,6 +114,7 @@ class QLsanphamController extends Controller
             ChitietsanphamModel::updateOrCreate(
                 ['id_ctsp' => $validated['id_ctsp']],
                 [
+                    'id_thuoctinh' => $request->input('thuoctinh'),
                     'doday' => $request->input('doday'),
                     'soluong' => $validated['soluong'] ?? 0,
                     'sotrang' => $request->input('sotrang'),

@@ -14,7 +14,8 @@
                         <select id="danhmuc" class="form-control">
                             @foreach ($danhmuccon as $dmc)
                                 <option value="{{$dmc->id_ctdm}}" {{$dmc->id_ctdm == $data["danhmuc"] ? 'selected' : ''}}>
-                                    {{$dmc->ten}}</option>
+                                    {{$dmc->ten}}
+                                </option>
                             @endforeach
                         </select>
                     </div>

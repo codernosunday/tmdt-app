@@ -1,4 +1,11 @@
 // DOM Elements
+var thuoctinhElement = document.getElementById('thuoctinh');
+var giatri;
+thuoctinhElement.addEventListener('change', function () {
+    giatri = thuoctinhElement.value;
+    console.log(giatri)
+});
+
 const formElements = {
     danhmuc: document.getElementById('danhmuc'),
     ctsp: document.getElementById('ctsp'),
@@ -263,7 +270,8 @@ function buildFormData(idsp) {
     // Attributes
     formData.append('thuonghieu', formElements.thuonghieu.value.trim());
     formData.append('thuoctinh', formElements.thuoctinh.value);
-    formData.append('xuatsu', formElements.xuatsu.value.trim());
+
+    formData.append('xuatsu', giatri ?? formElements?.xuatsu?.value.trim());
     formData.append('sanxuat', formElements.sanxuat.value.trim());
     formData.append('tieuchuan', formElements.tieuchuan.value.trim());
 

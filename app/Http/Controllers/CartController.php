@@ -33,7 +33,6 @@ class CartController extends Controller
         // $sanpham= SanphamModel::
         return view('cart', compact('cartItems'));
     }
-
     public function addToCart(Request $request)
     {
         $giohang = GiohangModel::where('id_giohang', session("id_giohang"))->first();

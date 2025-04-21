@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\ChitietgiohangModel;
+use App\Models\NguoidungModel;
 use App\Models\SanphamModel;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,6 +41,13 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'countProductInCart' => $count,
                 'cart' => $chitietgiohang->get(),
+            ]);
+        });
+        View::composer('admin.adminlayout.navbar_admin', function ($view) {
+            $nguoidung = NguoidungModel::where('id_nd', session('id'))->first();
+            $quyen = $nguoidung->quyentruycap;
+            $view->with([
+                'quyen' => $quyen,
             ]);
         });
     }

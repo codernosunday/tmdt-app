@@ -33,7 +33,7 @@
                                                     alt="Product" class="cart-item-img me-3">
                                                 <div>
                                                     <h6 class="mb-1">{{$sanpham->tensp}}</h6>
-                                                    <p class="text-muted mb-0">Màu: {{$ctsp->mau}}</p>
+                                                    <p class="text-muted mb-0">Màu: {{$thuoctinh->mau}}</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -244,6 +244,6 @@
             id_ctgh: {{ $soluong['id_ctgh']}},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                                };
+                                    };
     </script>
 @endsection

@@ -24,6 +24,7 @@ class ThanhtoanController extends Controller
     {
         $ctgiohang = ChitietgiohangModel::where('id_ctgh', $ctgh)->first();
         $ctsp = ChitietsanphamModel::where('id_ctsp', $ctgiohang->id_ctsp)->first();
+        $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
         $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
         $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
         $tongtien = $ctgiohang->soluong * $giaban->giaban;
@@ -38,7 +39,7 @@ class ThanhtoanController extends Controller
             "idphi" => $phi->id_phi,
             "giaphi" => $phi->giaphi,
         ];
-        return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang'));
+        return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
     }
 
     public function thanhtoansanpham(Request $request)
@@ -82,7 +83,7 @@ class ThanhtoanController extends Controller
             DB::commit();
             return response()->json([
                 'dieukien' => true,
-                'message' => 'Đặt hàng thành công',
+                'message' => 'Đặt hàng thành công mã đơn của bạn là ' . $madonhang . ' hãy lưu nó để theo dõi lịch sử đơn hàng',
             ], 201);
         } catch (Exception $e) {
             return response()->json([

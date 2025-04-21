@@ -85,7 +85,7 @@ window.dathang = function () {
             .then(response => response.json())
             .then(data => {
                 if (data.dieukien) {
-                    alert("Đặt hàng thành công!");
+                    alert(data.message);
                     window.location.href = "/theodoidonhang"
                 }
             })

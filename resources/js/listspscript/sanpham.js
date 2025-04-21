@@ -23,3 +23,31 @@ window.themvaogio = function (id_sp) {
             console.error('Error:', error);
         });
 }
+var selectElement = document.getElementById('chonchitiet');
+selectElement.addEventListener('change', function () {
+
+    var chonchitiet = selectElement.value;
+    fetch(`/xemsanpham/${chonchitiet}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Có lỗi xảy ra khi gọi API');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log('Giá bán:', data.giaban);
+                console.log('Giá nhập:', data.soluong);
+                var giaban = parseFloat(data.giaban);
+                giaban = giaban.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                document.getElementById("giaban").textContent = giaban;
+                document.getElementById("soluong").textContent = "Còn hàng: " + data.soluong;
+            } else {
+                alert('Không tìm thấy thông tin chi tiết sản phẩm');
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+        });
+
+});
