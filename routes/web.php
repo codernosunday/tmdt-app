@@ -61,7 +61,7 @@ Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChan
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
 //gio hang - Vo Thanh Tin
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
-
+Route::post('/themvaogio', [CartController::class, 'themgiohang']);
 //Phuc: change the category route
 Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
@@ -71,8 +71,6 @@ Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']
 
 // New route for danhmuc category
 Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
-
-
 // Route - Phuc
 Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
 Route::get('/service', [HomePagesController::class, 'service'])->name('service');
