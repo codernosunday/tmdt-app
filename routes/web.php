@@ -17,6 +17,8 @@ use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
 use App\Http\Controllers\QLnguoidungController;
+use App\Http\Controllers\QLdonhangController;
+use App\Http\Controllers\QLchitietdonhangController;
 
 
 /*
@@ -93,6 +95,10 @@ Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'P
 Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
 Route::post('/administrator/xoanguoidung', [QLnguoidungController::class, 'xoaNguoiDung']);
 Route::post('/administrator/suaNguoiDung', [QLnguoidungController::class, 'suaNguoidung']);
+
+Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
 
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
