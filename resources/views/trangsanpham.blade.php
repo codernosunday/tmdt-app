@@ -23,6 +23,11 @@
                             {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
                         </p>
                     </div>
+                    <p class="text-muted">Thương hiệu: {{$chitiet->thuonghieu ?? 'Chưa cập nhật'}}</p>
+                    <p class="text-muted">Còn hàng: {{$chitiet->soluong ?? 0}}</p>
+                    <p class="">
+                        {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
+                    </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
@@ -41,7 +46,6 @@
                         </select>
 
                     </div>
-
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
                         <label for="soluong" class="form-label">Số lượng:</label>
@@ -66,19 +70,19 @@
                     <tbody>
                         <tr>
                             <th class="w-25">Thương hiệu</th>
-                            <td>{{$ctsp->thuonghieu}}</td>
+                            <td>{{$chitiet->thuonghieu ?? 'Chưa cập nhật'}}</td>
                         </tr>
                         <tr>
                             <th>Xuất xứ</th>
-                            <td>{{$ctsp->xuatsu}}</td>
+                            <td>{{ $chitiet->xuatsu ?? 'Chưa cập nhật' }}</td>
                         </tr>
                         <tr>
                             <th>Sản xuất</th>
-                            <td>{{$ctsp->sanxuat}}</td>
+                            <td>{{ $chitiet->sanxuat ?? 'Chưa cập nhật' }}</td>
                         </tr>
                         <tr>
                             <th>Tiêu chuẩn</th>
-                            <td>{{$ctsp->tieuchuan}}</td>
+                            <td>{{ $chitiet->tieuchuan ?? 'Chưa cập nhật' }}</td>
                         </tr>
                         <tr>
                             <th>Khuyến cáo</th>
@@ -86,37 +90,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3>Tính năng nổi bật</h3>
-                <div>{{$ctsp->tinhnangnoibat}}</div>
+                {{-- <h3>Tính năng nổi bật</h3>
+                <div>{{$chitiet->tinhnangnoibat}}</div>
                 <h3>Lợi ích</h3>
-                <div>{{$ctsp->loiich}}</div>
+                <div>{{$chitiet->loiich}}</div> --}}
             </div>
         </div>
-        <!-- Đánh giá sản phẩm -->
-        <div class="row mt-5">
-            <div class="col">
-                <h3>Đánh giá sản phẩm</h3>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Người dùng 1</h5>
-                        <p class="card-text">Sản phẩm rất tốt, màu sắc đẹp và dễ sử dụng.</p>
-                        <span class="" style="color:black">★★★★☆</span>
-                    </div>
-                </div>
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Người dùng 2</h5>
-                        <p class="card-text">Giao hàng nhanh, chất lượng đảm bảo.</p>
-                        <span class="" style="color:black">★★★★★</span>
-                        {{-- text-warning --}}
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('components.danhgia')
     </div>
-    <script>
-        window.appData = {
-            idsp: {{ $ctsp->id_ctsp }}
-                                        };
-    </script>
 @endsection

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use App\Models\ChitietgiohangModel;
 use App\Models\GioHangModel;
 use App\Models\SanphamModel;
@@ -31,11 +29,12 @@ class CartController extends Controller
             ->where('chitietgiohang.id_giohang', session("id_giohang"))
             ->get();
         // $sanpham= SanphamModel::
-        return view('cart', compact('cartItems'));
+        return view('cart');
     }
     public function addToCart(Request $request)
     {
         $giohang = GiohangModel::where('id_giohang', session("id_giohang"))->first();
+
         if ($giohang) {
             $sanpham = SanphamModel::where('id_sp', $request->id_sp)->first();
             $chitietgiohang = ChitietgiohangModel::where('id_giohang', $giohang->id_giohang)->where('id_sp', $sanpham->id_sp)->first();
@@ -62,43 +61,6 @@ class CartController extends Controller
             return response()->json([
                 'message' => 'Không thể thêm vào giỏ hàng',
             ], 400);
-        }
-    }
-
-    public function themgiohang(Request $request)
-    {
-        try {
-            $giohang = GiohangModel::where('id_giohang', session("id_giohang"))->first();
-            if ($giohang) {
-                $ctsp = ChitietsanphamModel::where('id_ctsp', $request->id_ctsp)->first();
-                $chitietgiohang = ChitietgiohangModel::where('id_giohang', $giohang->id_giohang)->where('id_ctsp', $ctsp->id_ctsp)->first();
-
-                if ($ctsp && $chitietgiohang) {
-                    $soluong = $chitietgiohang->soluong >= 1 ? $chitietgiohang->soluong + $request->soluong : 1;
-                    $chitietgiohang::where('id_ctgh', $chitietgiohang->id_ctgh)->update([
-                        'soluong' => $soluong
-                    ]);
-                } else {
-                    ChitietgiohangModel::create([
-                        'id_giohang' => session('id_giohang'),
-                        'id_ctsp' => $request->id_ctsp,
-                        'id_sp' => $request->id_sp,
-                        'soluong' => 1,
-                    ]);
-                }
-
-                return response()->json([
-                    'message' => 'Thêm vào giỏ hàng thành công'
-                ], 200);
-            } else {
-                return response()->json([
-                    'message' => 'Không thể thêm vào giỏ hàng',
-                ], 400);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => $e->getMessage(),
-            ], 500);
         }
     }
 }

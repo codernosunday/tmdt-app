@@ -26,7 +26,6 @@ class SanphamModel extends Model
         return $this->hasOne(GiabanModel::class, 'id_sp')
             ->latest('updated_at');
     }
-
     public function chitiet()
     {
         return $this->hasOne(ChitietsanphamModel::class, 'id_sp', 'id_sp'); // chỉnh lại tên khóa nếu khác
@@ -35,5 +34,30 @@ class SanphamModel extends Model
     public function chitietsanpham()
     {
         return $this->hasMany(ChitietsanphamModel::class, 'id_sp', 'id_sp');
+    }
+
+    public function danhgia()
+    {
+        return $this->hasMany(DanhgiaModel::class, 'id_sp', 'id_sp');
+    }
+
+    public function ratingDistribution()
+    {
+        $distribution = [
+            5 => 0,
+            4 => 0,
+            3 => 0,
+            2 => 0,
+            1 => 0
+        ];
+
+        // Đếm số lượng đánh giá cho mỗi mức điểm
+        $this->danhgia->each(function($danhgia) use (&$distribution) {
+            if (isset($distribution[$danhgia->diem])) {
+                $distribution[$danhgia->diem]++;
+            }
+        });
+
+        return $distribution;
     }
 }

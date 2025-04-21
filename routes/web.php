@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
+use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\AdminController;
@@ -19,6 +21,9 @@ use App\Http\Controllers\QLDMController;
 
 use App\Http\Controllers\ThanhtoanController;
 use App\Http\Controllers\QLnguoidungController;
+use APP\Http\Controllers\DanhgiaController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -56,22 +61,83 @@ Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChan
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
 //gio hang - Vo Thanh Tin
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
-Route::post('/themvaogio', [CartController::class, 'themgiohang']);
-//dat hang - vo thanh tin
-Route::get('/trangthanhtoan/{ctgh}', [ThanhtoanController::class, 'trangthanhtoan']);
-//
+
+//Phuc: change the category route
+Route::get('/danhmuc/{slug}', [HomePagesController::class, 'locSPtheoDanhmuc'])->name('danhmuc');
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
+// New route for danhmuc category
+Route::get('/danhmuc/{slug}', [CategoryController::class, 'show'])->name('danhmuc');
+
+
+// Route - Phuc
+Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus');
+Route::get('/service', [HomePagesController::class, 'service'])->name('service');
+Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
+Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->name('wishlist');
+
+//admin- Vo Thanh Tin
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
+Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
+Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+//shop - Vo Thanh Tin
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
+//shop-locsanpham-------
+
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+
+
+Route::get('/login', [AuthController::class, 'loginPage']);
+Route::get('/register', [AuthController::class, 'registerPage']);
+Route::get('/verify', [AuthController::class, 'verifyPage']);
+Route::get('/password', [AuthController::class, 'passwordPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+
+// Route::get('/verify', [AuthController::class, 'verifyPage']);
+Route::get('/password', [AuthController::class, 'passwordPage']);
+
+// Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/verify', [AuthController::class, 'verify']);
+Route::post('/password', [AuthController::class, 'password']);
+Route::post('/login', [AuthController::class, 'login']);
+
 Route::get('/danhmuc/{danhmuc}', [HomePagesController::class, 'locSPtheoDanhmuc']);
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
-Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+// Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
+
 //admin - Vo Thanh Tin
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 Route::get('/xemsanpham/{ctsp}', [SanphamController::class, 'xemctsp']);
 
 //Nguoi dung- Vo Thanh Tin
 Route::get('/nguoidung', [nguoidungCotroller::class, 'trangnguoidung']);
+Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
+
+//admin- Vo Thanh Tin - san pham va chi tiet san pham
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
+Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
+Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
+Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
+Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
 Route::post('/nguoidung/capnhat', [nguoidungCotroller::class, 'capnhatthongtin']);
 
 //shop - Vo Thanh Tin
@@ -138,3 +204,64 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
     Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
 });
+//admin danh muc san pham - Vo Thanh Tin
+Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
+Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
+//danh muc cha- Vo Thanh Tin
+Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
+Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
+Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
+//danh muc con- Vo Thanh Tin
+Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
+Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
+Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
+Route::post('/administrator/updatedmcon', [QLDMController::class, 'postUpdateDMcon']);
+//shop - Vo Thanh Tin
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
+//shop-locsanpham ------- Vo Thanh Tin
+Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
+//Quan ly phan loai va mau sac - Vo Thanh Tin
+Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
+Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
+// dat hang - theo doi don hang
+Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
+
+// Wishlist routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+    Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+});
+
+// Route::get('/san-pham/{tensp}/{id_sp}', [App\Http\Controllers\SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
+
+// Route for danhgia
+Route::middleware(['auth'])->group(function () {
+    Route::post('/danhgia/{id_sp}', 'DanhgiaController@store')->name('danhgia.store');
+});
+
+// Route::post('/danhgia/{sp}', [DanhgiaController::class, 'store'])->name('danhgia.store');
+
+// // Thêm route auth nếu chưa có
+// Auth::routes();
+// // Hoặc định nghĩa rõ route login
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
+//theo doi don hang
+Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhang']);
+//giam gia
+Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
+//QL phi van chuyen
+Route::get('/administrator/phivanchuyen', [pvcvakhuyenmaiController::class, 'qlphivanchuyen']);
+Route::get('/administrator/xempvc/{id}', [pvcvakhuyenmaiController::class, 'timvanchuyen']);
+Route::post('/administrator/themphivanchuyen', [pvcvakhuyenmaiController::class, 'themphivanchuyen']);
+Route::post('/administrator/chinhsuavanchuyen/{id}', [pvcvakhuyenmaiController::class, 'capnhatphivanchuyen']);
+Route::delete('/administrator/xoaphivanchuyen/{id}', [pvcvakhuyenmaiController::class, 'xoaphivanchuyen']);
+//QL giá sale
+Route::get('/administrator/qlgiasale', [pvcvakhuyenmaiController::class, 'trangsale']);
+Route::post('/administrator/themgiasale', [pvcvakhuyenmaiController::class, 'themgiasale']);
+Route::get('/administrator/xemgiasale/{id}', [pvcvakhuyenmaiController::class, 'xemgiasale']);
+Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
+Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);

@@ -8,6 +8,7 @@ use App\Models\SanphamModel;
 use App\Models\giabanModel;
 use App\Models\gianhapModel;
 use App\Models\ThuoctinhspModel;
+use App\Models\DanhmucsanphamModel;
 
 class ChitietsanphamModel extends Model
 {
@@ -55,5 +56,9 @@ class ChitietsanphamModel extends Model
     public function thuoctinh()
     {
         return $this->belongsTo(ThuoctinhspModel::class, 'id_thuoctinh');
+    }
+    public function danhmuc()
+    {
+        return $this->belongsTo(DanhmucsanphamModel::class, 'id_dm', 'id_dm');
     }
 }
