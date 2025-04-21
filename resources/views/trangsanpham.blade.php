@@ -15,8 +15,8 @@
             <div class="col-md-6">
                 <div class="product-info">
                     <h1>{{$sp->tensp}}</h1>
-                    <p class="text-muted">Thương hiệu: {{$ctsp->thuonghieu}}</p>
-                    <p class="text-muted" id="soluong">Còn hàng: {{$ctsp->soluong}}</p>
+                    <p class="text-muted">Thương hiệu: {{$chitiet->thuonghieu}}</p>
+                    <p class="text-muted" id="soluong">Còn hàng: {{$chitiet->soluong}}</p>
                     <div class="d-flex align-items-center">
                         <p class="mr-2">Giá bán: </p>
                         <p id="giaban" class="giaban">

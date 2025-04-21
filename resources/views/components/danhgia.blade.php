@@ -1,4 +1,4 @@
-<div class="container py-4">
+{{-- <div class="container py-4">
     <h1>{{ $sp->name }}</h1>
     <img src="{{ $sp->image_url }}" alt="{{ $sp->name }}" class="img-fluid mb-4">
     <p>Giá: {{ number_format($sp->discounted_price, 0, ',', '.') }}₫</p>
@@ -9,9 +9,9 @@
         <div class="d-flex align-items-center mb-3">
             <h2 class="me-2">{{ number_format($diemTrungBinh, 1) }}</h2>
             <div class="stars">
-                @for ($i = 1; $i <= 5; $i++)
-                    <span class="text-warning">{{ $i <= round($diemTrungBinh) ? '★' : '☆' }}</span>
-                @endfor
+                @for ($i = 1; $i <= 5; $i++) <span class="text-warning">{{ $i <= round($diemTrungBinh) ? '★' : '☆'
+                        }}</span>
+                        @endfor
             </div>
             <span class="ms-3">{{ $tongDanhGia }} đánh giá</span>
         </div>
@@ -19,15 +19,15 @@
         <!-- Thanh tiến trình cho từng mức sao -->
         <div class="rating-distribution mb-3">
             @foreach ($sp->ratingDistribution() as $star => $count)
-                <div class="d-flex align-items-center mb-2">
-                    <span class="me-2">{{ $star }} sao</span>
-                    <div class="progress flex-grow-1" style="height: 8px;">
-                        <div class="progress-bar bg-warning" role="progressbar"
-                            style="width: {{ $tongDanhGia > 0 ? ($count / $tongDanhGia * 100) : 0 }}%"
-                            aria-valuenow="{{ $count }}" aria-valuemin="0" aria-valuemax="{{ $tongDanhGia }}"></div>
-                    </div>
-                    <span class="ms-2">{{ $count }}</span>
+            <div class="d-flex align-items-center mb-2">
+                <span class="me-2">{{ $star }} sao</span>
+                <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" role="progressbar"
+                        style="width: {{ $tongDanhGia > 0 ? ($count / $tongDanhGia * 100) : 0 }}%"
+                        aria-valuenow="{{ $count }}" aria-valuemin="0" aria-valuemax="{{ $tongDanhGia }}"></div>
                 </div>
+                <span class="ms-2">{{ $count }}</span>
+            </div>
             @endforeach
         </div>
 
@@ -36,7 +36,7 @@
             <div class="btn-group" role="group">
                 <button class="btn btn-outline-primary active" data-filter="*">Tất cả</button>
                 @for ($i = 5; $i >= 1; $i--)
-                    <button class="btn btn-outline-primary" data-filter=".rating-{{ $i }}">{{ $i }} sao</button>
+                <button class="btn btn-outline-primary" data-filter=".rating-{{ $i }}">{{ $i }} sao</button>
                 @endfor
             </div>
         </div>
@@ -46,33 +46,32 @@
     <div class="comment-form mb-5">
         <h3>Viết đánh giá</h3>
         @auth
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
 
-            <form action="{{ route('danhgia.store', ['sp' => $sp->id_sp]) }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="diem" class="form-label">Đánh giá (1-5 sao):</label>
-                    <select name="diem" id="diem" class="form-select" required>
-                        <option value="">Chọn số sao</option>
-                        @for ($i = 1; $i <= 5; $i++)
-                            <option value="{{ $i }}">{{ $i }} sao</option>
+        <form action="{{ route('danhgia.store', ['sp' => $sp->id_sp]) }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="diem" class="form-label">Đánh giá (1-5 sao):</label>
+                <select name="diem" id="diem" class="form-select" required>
+                    <option value="">Chọn số sao</option>
+                    @for ($i = 1; $i <= 5; $i++) <option value="{{ $i }}">{{ $i }} sao</option>
                         @endfor
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="noidung" class="form-label">Nội dung đánh giá:</label>
-                    <textarea name="noidung" id="noidung" class="form-control" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
-            </form>
-        @else
-            <div class="alert alert-info">
-                Vui lòng <a href="/login" class="alert-link">đăng nhập</a> để viết đánh giá.
+                </select>
             </div>
+            <div class="mb-3">
+                <label for="noidung" class="form-label">Nội dung đánh giá:</label>
+                <textarea name="noidung" id="noidung" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+        </form>
+        @else
+        <div class="alert alert-info">
+            Vui lòng <a href="/login" class="alert-link">đăng nhập</a> để viết đánh giá.
+        </div>
         @endauth
     </div>
 
@@ -81,22 +80,22 @@
         <h3>Danh sách đánh giá</h3>
         <div class="comments-list">
             @forelse ($danhgia as $dg)
-                <div class="comment mb-3 p-3 border rounded rating-{{ $dg->diem }}">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <strong>{{ $dg->user->name }}</strong>
-                            <div class="stars">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span class="text-warning">{{ $i <= $dg->diem ? '★' : '☆' }}</span>
-                                @endfor
-                            </div>
+            <div class="comment mb-3 p-3 border rounded rating-{{ $dg->diem }}">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ $dg->user->name }}</strong>
+                        <div class="stars">
+                            @for ($i = 1; $i <= 5; $i++) <span class="text-warning">{{ $i <= $dg->diem ? '★' : '☆'
+                                    }}</span>
+                                    @endfor
                         </div>
-                        <small>{{ $dg->created_at->format('d/m/Y') }}</small>
                     </div>
-                    <p class="mt-2">{{ $dg->noidung }}</p>
+                    <small>{{ $dg->created_at->format('d/m/Y') }}</small>
                 </div>
+                <p class="mt-2">{{ $dg->noidung }}</p>
+            </div>
             @empty
-                <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+            <p>Chưa có đánh giá nào cho sản phẩm này.</p>
             @endforelse
         </div>
     </div>
@@ -166,4 +165,4 @@
         });
     });
 </script>
-</div>
+</div> --}}

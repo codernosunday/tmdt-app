@@ -154,8 +154,6 @@ Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhan
 //giam gia
 Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
 
-
-
 Route::middleware(['admin.access'])->group(function () {
     //admin- Vo Thanh Tin - san pham va chi tiet san pham
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -204,29 +202,6 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
     Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
 });
-//admin danh muc san pham - Vo Thanh Tin
-Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
-Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
-//danh muc cha- Vo Thanh Tin
-Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
-Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
-Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
-//danh muc con- Vo Thanh Tin
-Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
-Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
-Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
-Route::post('/administrator/updatedmcon', [QLDMController::class, 'postUpdateDMcon']);
-//shop - Vo Thanh Tin
-Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
-Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
-//shop-locsanpham ------- Vo Thanh Tin
-Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
-//Quan ly phan loai va mau sac - Vo Thanh Tin
-Route::get('/administrator/phanloaivamausac', [QLDMController::class, 'trangPhanloai']);
-Route::post('/administrator/themphanloaivamausac', [QLDMController::class, 'postThemPhanloai']);
-// dat hang - theo doi don hang
-Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
-
 // Wishlist routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
