@@ -263,3 +263,7 @@ Route::post('/administrator/themgiasale', [pvcvakhuyenmaiController::class, 'the
 Route::get('/administrator/xemgiasale/{id}', [pvcvakhuyenmaiController::class, 'xemgiasale']);
 Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
 Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
+
+Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
+Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
