@@ -38,7 +38,7 @@ class SanphamController extends Controller
 
         // Get product ratings with user info
         $danhgia = DanhgiaModel::where('id_sp', $sp->id_sp)
-            ->with('user')
+            ->with('nguoidung')
             ->latest()
             ->get();
 

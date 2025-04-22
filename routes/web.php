@@ -15,6 +15,7 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\danhgiaController;
 use App\Http\Controllers\nguoidungCotroller;
 use App\Http\Controllers\pvcvakhuyenmaiController;
 use App\Http\Controllers\QLDMController;
@@ -225,26 +226,9 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
     Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
 });
-// Wishlist routes
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
-//     Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
-//     Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-// });
-// Route::get('/san-pham/{tensp}/{id_sp}', [App\Http\Controllers\SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
-
 // Route for danhgia
-Route::middleware(['auth'])->group(function () {
-    Route::post('/danhgia/{id_sp}', 'DanhgiaController@store')->name('danhgia.store');
-});
+Route::post('/danhgiasanpham/{id}', [danhgiaController::class, 'danhgia']);
 
-// Route::post('/danhgia/{sp}', [DanhgiaController::class, 'store'])->name('danhgia.store');
-
-// // Thêm route auth nếu chưa có
-// Auth::routes();
-// // Hoặc định nghĩa rõ route login
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login']);
 Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 //theo doi don hang
 Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhang']);

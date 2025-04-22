@@ -55,3 +55,102 @@ selectElement.addEventListener('change', function () {
 window.muangay = function (id) {
     window.location.href = `/trangthanhtoan/${id}/${soluong.value}`;
 }
+
+const stars = document.querySelectorAll('.rating-input .star');
+const ratingInput = document.getElementById('rating-value');
+const comments = document.getElementById('comment');
+stars.forEach(star => {
+    star.addEventListener('click', function () {
+        const rating = this.getAttribute('data-rating');
+        ratingInput.value = rating;
+
+        stars.forEach((s, index) => {
+            if (index < rating) {
+                s.textContent = '★';
+                s.style.color = '#ffc107';
+            } else {
+                s.textContent = '☆';
+                s.style.color = '#ffc107';
+            }
+        });
+    });
+
+    star.addEventListener('mouseover', function () {
+        const rating = this.getAttribute('data-rating');
+
+        stars.forEach((s, index) => {
+            if (index < rating) {
+                s.textContent = '★';
+                s.style.color = '#ffc107';
+            }
+        });
+    });
+
+    star.addEventListener('mouseout', function () {
+        const currentRating = ratingInput.value;
+
+        stars.forEach((s, index) => {
+            if (index >= currentRating) {
+                s.textContent = '☆';
+            }
+        });
+    });
+});
+
+// Xử lý nút like
+document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const countElement = this.querySelector('.like-count');
+        let count = parseInt(countElement.textContent);
+        countElement.textContent = count + 1;
+        this.style.color = '#e74c3c';
+        this.disabled = true;
+    });
+});
+
+// Xử lý nút báo cáo
+document.querySelectorAll('.report-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        if (confirm('Bạn có chắc muốn báo cáo đánh giá này vi phạm?')) {
+            alert('Cảm ơn bạn đã báo cáo. Chúng tôi sẽ xem xét đánh giá này.');
+        }
+    });
+});
+window.danhgia = function (id) {
+    const rating = parseInt(ratingInput.value);
+    const comment = comments.value.trim();
+
+    if (!rating || !comment) {
+        alert("Vui lòng chọn số sao và viết cảm nhận.");
+        return;
+    }
+
+    const data = {
+        rating: rating,
+        comment: comment,
+    };
+
+    console.log("Dữ liệu gửi đi:", data);
+
+    fetch(`/danhgiasanpham/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector("meta[name='csrf-token']").getAttribute("content")
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(result => {
+            console.log("Kết quả từ server:", result);
+            alert("Đánh giá của bạn đã được gửi!");
+            // Reset
+            ratingInput.value = 0;
+            comments.value = "";
+            stars.forEach(s => s.textContent = "☆");
+        })
+        .catch(error => {
+            console.error("Lỗi khi gửi đánh giá:", error);
+            alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+        });
+}

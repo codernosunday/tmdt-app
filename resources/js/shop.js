@@ -1,33 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Load mặc định
     fetch(`/loc/0`)
-        .then(response => response.text()) // Nhận nội dung HTML
+        .then(response => response.text())
         .then(html => {
-            // Hiển thị nội dung trong một phần tử trên trang
             document.getElementById('listsanpham').innerHTML = html;
         })
-        .catch(error => {
-            console.error('Lỗi:', error);
-        });
+        .catch(error => console.error('Lỗi:', error));
+
     const selectBox = document.getElementById('danhmuc');
+
+    // Lọc theo danh mục
     selectBox.addEventListener('change', function () {
         const selectedValue = selectBox.value;
         fetch(`/loc/${selectedValue}`)
-            .then(response => response.text()) // Nhận nội dung HTML
+            .then(response => response.text())
             .then(html => {
-                // Hiển thị nội dung trong một phần tử trên trang
                 document.getElementById('listsanpham').innerHTML = html;
             })
-            .catch(error => {
-                console.error('Lỗi:', error);
-            });
+            .catch(error => console.error('Lỗi:', error));
     });
-    // loc san pham --------
-    const filterBox = document.getElementById("filterBox");
-    document.querySelectorAll(".check-input").forEach(input => {
+
+    // Gắn sự kiện thay đổi cho các input lọc
+    document.querySelectorAll("input[type='checkbox'], input[type='radio']").forEach(input => {
         input.addEventListener("change", applyFilters);
     });
+
+    // Hàm xử lý lọc nâng cao
     function applyFilters() {
-        let filters = {
+        const filters = {
             id_ctdm: selectBox.value,
             priceOrder: document.querySelector('input[name="locgia"]:checked')?.id || "",
             nameOrder: document.querySelector('input[name="Tensanpham"]:checked')?.id || "",
@@ -35,17 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
             brand: [],
             color: []
         };
-        document.querySelectorAll('#filterBox input[type="checkbox"]:checked').forEach(input => {
-            if (input.id.startsWith("gia")) {
-                filters.priceRange.push(input.id);
-            } else if (input.id.startsWith("brand")) {
-                filters.brand.push(input.id);
-            } else {
-                filters.color.push(input.style.background);
-            }
+
+        // Lọc checkbox theo name
+        document.querySelectorAll('input[name="priceRange[]"]:checked').forEach(input => {
+            filters.priceRange.push(input.value);
         });
-        console.log(JSON.stringify(filters))
-        // Gửi request AJAX
+        document.querySelectorAll('input[name="brand[]"]:checked').forEach(input => {
+            filters.brand.push(input.value);
+        });
+        document.querySelectorAll('input[name="color[]"]:checked').forEach(input => {
+            filters.color.push(input.value);
+        });
+
+        // Hiện dữ liệu lọc ra console để kiểm tra
+        console.log("Dữ liệu gửi đi:", filters);
+
+        // Gửi AJAX
         fetch("/shop/locnangcao", {
             method: "POST",
             headers: {
@@ -56,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(async response => {
                 const contentType = response.headers.get("content-type");
-
                 if (!contentType || !contentType.includes("application/json")) {
                     throw new Error("Phản hồi từ server không phải JSON");
                 }
@@ -66,18 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!response.ok) {
                     throw new Error(data.message || "Lỗi không xác định từ server");
                 }
+
                 document.getElementById("listsanpham").innerHTML = data.data;
             })
             .catch(error => {
                 console.error("Lỗi từ server:", error.message);
             });
-    }
-});
-document.getElementById("toggleFilter").addEventListener("click", function () {
-    var filterBox = document.getElementById("filterBox");
-    if (filterBox.style.display === "none" || filterBox.style.display === "") {
-        filterBox.style.display = "block";
-    } else {
-        filterBox.style.display = "none";
     }
 });

@@ -91,6 +91,9 @@
                 <div>{{$chitiet->loiich}}</div> --}}
             </div>
         </div>
-        @include('components.danhgia')
+        <div class="row">
+            {{-- <h3>Đánh giá sản phẩm</h3> --}}
+            @include('components.danhgia')
+        </div>
     </div>
 @endsection
