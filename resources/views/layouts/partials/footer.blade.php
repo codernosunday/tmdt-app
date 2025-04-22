@@ -4,7 +4,8 @@
             <div class="col-md-3">
                 <div class="footer-menu">
                     <img src="{{asset('logobannermain.png')}}" alt="logo">
-                    <p class="blog-paragraph fs-6 mt-3">Đăng ký nhận bản tin của chúng tôi để cập nhật những ưu đãi hấp dẫn.</p>
+                    <p class="blog-paragraph fs-6 mt-3">Đăng ký nhận bản tin của chúng tôi để cập nhật những ưu đãi hấp
+                        dẫn.</p>
                     <div class="social-links">
                         <ul class="d-flex list-unstyled gap-2">
                             <li class="social">
@@ -46,7 +47,7 @@
                         <li class="menu-item">
                             <a href="{{ route('aboutus') }}" class="nav-link">Về chúng tôi</a>
                         </li>
-                        
+
                         <li class="menu-item">
                             <a href="{{ route('service') }}" class="nav-link">Dich vụ</a>
                         </li>
@@ -78,7 +79,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <div>
                     <h3>Bản tin của chúng tôi</h3>
                     <p class="blog-paragraph fs-6">Đăng ký nhận bản tin để không bỏ lỡ các ưu đãi đặc biệt.</p>
@@ -90,7 +91,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>

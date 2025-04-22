@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             $con = 1;
 
             $view->with([
+                'dangnhap' => session('id'),
                 'countProductInCart' => $count,
                 'cart' => $chitietgiohang->get(),
             ]);
