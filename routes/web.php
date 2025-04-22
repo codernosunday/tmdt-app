@@ -169,7 +169,7 @@ Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
 Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
 
 // dat hang - theo doi don hang
-Route::get('/trangthanhtoan/{ctgh}', [ThanhtoanController::class, 'trangthanhtoan']);
+Route::get('/trangthanhtoan/{ctgh}/{sl?}', [ThanhtoanController::class, 'trangthanhtoan']);
 Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
 Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 //theo doi don hang
@@ -231,7 +231,6 @@ Route::middleware(['admin.access'])->group(function () {
 //     Route::post('/wishlist/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
 //     Route::delete('/wishlist/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
 // });
-
 // Route::get('/san-pham/{tensp}/{id_sp}', [App\Http\Controllers\SanphamController::class, 'chitietsanpham'])->name('sanpham.show');
 
 // Route for danhgia

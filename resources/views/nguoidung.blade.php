@@ -73,9 +73,27 @@
                         class="bi bi-pen"></i></button>
             </div>
             <div class="edit-form" id="address-form">
+                <div class="input-group mb-3">
+                    <div class="input-group mb-2">
+                        <label class="w-100 text-dark" for="province">Tỉnh/Thành phố</label>
+                        <select class="form-control" id="province" required></select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="input-group mb-2">
+                        <label class="w-100 text-dark" for="district">Quận/Huyện</label>
+                        <select class="form-control" id="district" required></select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <label class="w-100 text-dark" for="ward">Phường/Xã</label>
+                        <select class="form-control" id="ward" required></select>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <textarea id="address-input"
-                        rows="3">{{ $data["diachi"] ?? '123 Đường ABC, Quận XYZ, TP.HCM' }}</textarea>
+                    <label class="" for="address-input">Địa chỉ nhà</label>
+                    <textarea id="address-input" rows="3">{{ $data["diachi"] ?? 'Nhập số nhà' }}</textarea>
                 </div>
                 <button class="btn btn-primary btn-sm" onclick="saveChanges('address')"><i class="bi bi-floppy"></i>
                     Lưu</button>

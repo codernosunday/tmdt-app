@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\diachiModel;
 use Illuminate\Http\Request;
 use App\Models\NguoidungModel;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class nguoidungCotroller extends Controller
 {
@@ -16,12 +18,14 @@ class nguoidungCotroller extends Controller
             return redirect('login');
         }
         $nguoidung = NguoidungModel::where('id_nd', $id)->first();
+        $diachi = diachiModel::where('id_nd', $id)->first();
         $data = [
             "hoten" => $nguoidung->hovaten,
             "email" => $nguoidung->mail,
             "sodt" => $nguoidung->soDT,
             "ngaysinh" => $nguoidung->ngaysinh,
-            "tinhtrangtk" => $nguoidung->tinhtrantk
+            "tinhtrangtk" => $nguoidung->tinhtrantk,
+            "diachi" => $diachi->diachi1
         ];
         return view('nguoidung', compact('data'));
     }
@@ -31,6 +35,7 @@ class nguoidungCotroller extends Controller
             $info = $request->input('field');
             $value = $request->input('value');
             $nguoidung = NguoidungModel::find(session('id'));
+            DB::beginTransaction();
             if (!$nguoidung) {
                 return response()->json([
                     'success' => false,
@@ -57,6 +62,20 @@ class nguoidungCotroller extends Controller
                     'ngaysinh' => $value,
                 ]);
             }
+            if ($info == 'address') {
+                $diachi = diachiModel::where('id_nd', session('id'))->first();
+                if ($diachi) {
+                    $diachi->update([
+                        'diachi1' => $value,
+                    ]);
+                } else {
+                    diachiModel::create([
+                        'id_nd'   => session('id'),
+                        'diachi1' => $value,
+                    ]);
+                }
+            }
+            DB::commit();
             return response()->json([
                 'success' => true,
                 'message' => 'Cập nhật thành công',

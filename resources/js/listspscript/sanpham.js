@@ -1,5 +1,6 @@
+const soluong = document.getElementById('soluongmua');
 window.themvaogio = function (id_sp) {
-    const soluong = document.getElementById('soluong')
+    const soluong = document.getElementById('soluongmua')
     const ctsp = document.getElementById('chonchitiet')
     const ctgh = {
         'id_ctsp': ctsp.value,
@@ -51,3 +52,6 @@ selectElement.addEventListener('change', function () {
         });
 
 });
+window.muangay = function (id) {
+    window.location.href = `/trangthanhtoan/${id}/${soluong.value}`;
+}

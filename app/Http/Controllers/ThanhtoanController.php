@@ -20,28 +20,51 @@ use Illuminate\Support\Str;
 class ThanhtoanController extends Controller
 {
     //
-    public function trangthanhtoan($ctgh)
+    public function trangthanhtoan($id, $sl = null)
     {
-        $ctgiohang = ChitietgiohangModel::where('id_ctgh', $ctgh)->first();
-        $ctsp = ChitietsanphamModel::where('id_ctsp', $ctgiohang->id_ctsp)->first();
-        $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
-        $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
-        $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
-        $tongtien = $ctgiohang->soluong * $giaban->giaban;
-        $phi = vanchuyenModel::first();
-        $giohang = session("id_giohang");
-        $soluong = [
-            "tong" => $ctgiohang->soluong * $giaban->giaban + $phi->giaphi,
-            "soluong" => $ctgiohang->soluong,
-            "id_ctgh" => $ctgiohang->id_ctgh
-        ];
-        $phi = [
-            "idphi" => $phi->id_phi,
-            "giaphi" => $phi->giaphi,
-        ];
-        return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+        $ctgiohang = ChitietgiohangModel::where('id_ctgh', $id)->first();
+        if ($ctgiohang) {
+            $ctsp = ChitietsanphamModel::where('id_ctsp', $ctgiohang->id_ctsp)->first();
+            $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
+            $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+            $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
+            $tongtien = $ctgiohang->soluong * $giaban->giaban;
+            $phi = vanchuyenModel::first();
+            $giohang = session("id_giohang");
+            $soluong = [
+                "tong" => $ctgiohang->soluong * $giaban->giaban + $phi->giaphi,
+                "soluong" => $ctgiohang->soluong,
+                "id_ctgh" => $ctgiohang->id_ctgh
+            ];
+            $phi = [
+                "idphi" => $phi->id_phi,
+                "giaphi" => $phi->giaphi,
+            ];
+            return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+        } else {
+            $soluong = 1;
+            if ($sl) {
+                $soluong = (int) $sl;
+            }
+            $ctsp = ChitietsanphamModel::where('id_ctsp', $id)->first();
+            $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
+            $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+            $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
+            $tongtien = $soluong * $giaban->giaban;
+            $phi = vanchuyenModel::first();
+            $giohang = session("id_giohang");
+            $soluong = [
+                "tong" => $soluong * $giaban->giaban + $phi->giaphi,
+                "soluong" => $soluong,
+                "id_ctgh" => null
+            ];
+            $phi = [
+                "idphi" => $phi->id_phi,
+                "giaphi" => $phi->giaphi,
+            ];
+            return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+        }
     }
-
     public function thanhtoansanpham(Request $request)
     {
         try {
@@ -79,7 +102,9 @@ class ThanhtoanController extends Controller
                 'soluong' => $request->input('soluong'),
             ]);
             $capnhat = $request->input('id_ctgh');
-            ChitietgiohangModel::where('id_ctgh', $capnhat)->delete();
+            if ($capnhat) {
+                ChitietgiohangModel::where('id_ctgh', $capnhat)->delete();
+            }
             DB::commit();
             return response()->json([
                 'dieukien' => true,

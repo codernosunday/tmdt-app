@@ -46,7 +46,7 @@
                                 xuất</a></button>
                     @else
                         <button type="button" class="btn btn-primary btn-sm"><a class="nav-link active" href="/login">Đăng
-                                nhập</a></button>
+                                nhập ngay !</a></button>
                     @endif
                 </div>
             </div>
