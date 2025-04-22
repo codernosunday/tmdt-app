@@ -70,9 +70,9 @@
                             <label>Phương thức</label>
                             <select name="phuongthuc" class="form-control" required>
                                 <option value="">Chọn phương thức</option>
-                                <option value="Giao hàng nhanh">Giao hàng nhanh</option>
-                                <option value="Giao hàng tiêu chuẩn">Giao hàng tiêu chuẩn</option>
-                                <option value="Giao hàng tiết kiệm">Giao hàng tiết kiệm</option>
+                                <option value="Giao hàng nhanh">Giao hàng tiêu chuẩn</option>
+                                {{-- <option value="Giao hàng tiêu chuẩn">Giao hàng tiêu chuẩn</option>
+                                <option value="Giao hàng tiết kiệm">Giao hàng tiết kiệm</option> --}}
                             </select>
                         </div>
                         <div class="form-group">

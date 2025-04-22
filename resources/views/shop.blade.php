@@ -87,7 +87,7 @@
                         </div>
 
                         <!-- Màu sắc -->
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <h5>Màu sắc</h5>
                             <div class="d-flex flex-wrap gap-2">
                                 <label class="color-box" style="background: red;"><input type="checkbox" hidden></label>
@@ -95,7 +95,7 @@
                                 <label class="color-box" style="background: green;"><input type="checkbox" hidden></label>
                                 <label class="color-box" style="background: black;"><input type="checkbox" hidden></label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

@@ -57,7 +57,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <div class="footer-menu">
                     <h3>Trung tâm hỗ trợ</h3>
                     <ul class="menu-list list-unstyled">
@@ -78,7 +78,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="col-md-3">
                 <div>
                     <h3>Bản tin của chúng tôi</h3>

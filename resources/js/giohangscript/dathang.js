@@ -1,3 +1,8 @@
+
+const provinceSelect = document.getElementById("province");
+const districtSelect = document.getElementById("district");
+const wardSelect = document.getElementById("ward");
+const addressInput = document.getElementById("full_address");
 window.magiamgia = function () {
     const magiamgia = document.getElementById("magiamgia").value;
     // Dọn sạch thông báo cũ và badge cũ
@@ -169,3 +174,61 @@ function validateOrderForm() {
     // Trả về kết quả kiểm tra
     return isValid;
 }
+
+// Lưu tạm tên đã chọn
+let selectedProvince = "";
+let selectedDistrict = "";
+let selectedWard = "";
+// Load danh sách tỉnh
+fetch("https://provinces.open-api.vn/api/?depth=1")
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(province => {
+            const option = document.createElement("option");
+            option.value = province.code;
+            option.textContent = province.name;
+            provinceSelect.appendChild(option);
+        });
+    });
+
+// Khi chọn tỉnh
+provinceSelect.addEventListener("change", function () {
+    const provinceCode = this.value;
+    selectedProvince = this.options[this.selectedIndex].text;
+    districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
+    wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
+    if (!provinceCode) return;
+    fetch(`https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`)
+        .then(res => res.json())
+        .then(data => {
+            data.districts.forEach(district => {
+                const option = document.createElement("option");
+                option.value = district.code;
+                option.textContent = district.name;
+                districtSelect.appendChild(option);
+            });
+        });
+});
+// Khi chọn quận/huyện
+districtSelect.addEventListener("change", function () {
+    const districtCode = this.value;
+    selectedDistrict = this.options[this.selectedIndex].text;
+    wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
+    if (!districtCode) return;
+
+    fetch(`https://provinces.open-api.vn/api/d/${districtCode}?depth=2`)
+        .then(res => res.json())
+        .then(data => {
+            data.wards.forEach(ward => {
+                const option = document.createElement("option");
+                option.value = ward.code;
+                option.textContent = ward.name;
+                wardSelect.appendChild(option);
+            });
+        });
+});
+// Khi chọn phường/xã → Gán vào input hidden
+wardSelect.addEventListener("change", function () {
+    selectedWard = this.options[this.selectedIndex].text;
+    addressInput.value = `${selectedWard}, ${selectedDistrict}, ${selectedProvince}`;
+});
