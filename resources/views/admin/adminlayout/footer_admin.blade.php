@@ -1,5 +1,5 @@
 <footer id="footer" class="my-5">
-    <div class="container py-5 my-5">
+    {{-- <div class="container py-5 my-5">
         <div class="row">
             <div class="col-md-3">
                 <div class="footer-menu">
@@ -98,15 +98,15 @@
             </div>
 
         </div>
-    </div>
-</footer>
-<div id="footer-bottom">
-    <div class="container">
-        <hr class="m-0">
-        <div class="row mt-3">
-            <div class="col-md-6 copyright">
-                <p class="secondary-font">© 2025 Shopen. Trang web bán đồ dùng văn phòng phẩm.</p>
+    </div> --}}
+    <div id="footer-bottom">
+        <div class="container">
+            <hr class="m-0">
+            <div class="row mt-3">
+                <div class="col-md-6 copyright">
+                    <p class="secondary-font">© 2025 Shopen. Trang web bán đồ dùng văn phòng phẩm giao diện quản lý</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</footer>

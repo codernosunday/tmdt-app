@@ -6,13 +6,13 @@
 <header>
     <div class="container py-2">
         <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+            {{-- <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
                     <a class="nav-link {{ request()->is('welcome') ? 'active' : '' }}" href="/">
                         <img src="{{asset('logobannermain.png')}}" alt="logo" class="img-fluid">
                     </a>
                 </div>
-            </div>
+            </div> --}}
             <div
                 class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
                 <div class="support-box text-end d-none d-xl-block">
