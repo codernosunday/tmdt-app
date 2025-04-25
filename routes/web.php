@@ -59,6 +59,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forgot', [AuthController::class, 'forgot']);
 Route::post('/forgotPasswordChange', [AuthController::class, 'forgotPasswordChange']);
 Route::post('/forgotPasswordVerify', [AuthController::class, 'forgotPasswordVerify']);
+
+
 //gio hang - Vo Thanh Tin
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
 Route::post('/themvaogio', [CartController::class, 'themgiohang']);
@@ -76,16 +78,7 @@ Route::get('/aboutus', [HomePagesController::class, 'aboutUs'])->name('aboutus')
 Route::get('/service', [HomePagesController::class, 'service'])->name('service');
 Route::get('/contact', [HomePagesController::class, 'contact'])->name('contact');
 Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
-// Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->name('wishlist');
 
-//admin- Vo Thanh Tin
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
-Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
-Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
-Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
@@ -119,7 +112,6 @@ Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 // Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 
-//admin - Vo Thanh Tin
 Route::get('/sanpham/{tensp}/{sp}', [SanphamController::class, 'chitietsanpham']);
 Route::get('/xemsanpham/{ctsp}', [SanphamController::class, 'xemctsp']);
 
@@ -127,20 +119,6 @@ Route::get('/xemsanpham/{ctsp}', [SanphamController::class, 'xemctsp']);
 Route::get('/nguoidung', [nguoidungCotroller::class, 'trangnguoidung']);
 Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
 
-//admin- Vo Thanh Tin - san pham va chi tiet san pham
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/administrator/quanlysanpham/{id_sp}', [QLsanphamController::class, 'pagesQLchitietsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
-Route::get('/administrator/themsanpham', [QLsanphamController::class, 'pagesthemsanpham']);
-Route::post('/administrator/themspmoi', [QLsanphamController::class, 'postthemsanpham']);
-Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
-Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
-Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
-Route::post('/nguoidung/capnhat', [nguoidungCotroller::class, 'capnhatthongtin']);
-
-// chitiet san pham
-Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
-Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
 
 //admin-Quan ly nguoi dung-HHH
 Route::get('/administrator/quanlynguoidung', [QLnguoidungController::class, 'pagesQLnguoidung']);
@@ -152,21 +130,8 @@ Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class,
 Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
 
 Route::post('/administrator/suaTTDH', [QLdonhangController::class, 'suaTTDH']);
-
 Route::post('/administrator/pdf', [QLchitietdonhangController::class, 'createPDF']);
 
-//admin danh muc san pham - Vo Thanh Tin
-Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
-Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
-//danh muc cha- Vo Thanh Tin
-Route::post('/administrator/postthemdmcha', [QLDMController::class, 'postthemDMcha']);
-Route::delete('/administrator/deletedmcha/{id}', [QLDMController::class, 'deleteDMcha']);
-Route::post('/administrator/updatedmcha', [QLDMController::class, 'postSuaDMcha']);
-//danh muc con- Vo Thanh Tin
-Route::get('/administrator/chinhsuadmcon/{id}', [QLDMController::class, 'trangsuaDMcon']);
-Route::post('/administrator/postthemdmcon', [QLDMController::class, 'postAddDMcon']);
-Route::delete('/administrator/deletedmcon/{id}', [QLDMController::class, 'postDeleteDMcon']);
-Route::post('/administrator/updatedmcon', [QLDMController::class, 'postUpdateDMcon']);
 //shop - Vo Thanh Tin
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 Route::get('/loc/{danhmuc}', [ShopController::class, 'locSP']);
@@ -181,7 +146,11 @@ Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']
 Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhang']);
 //giam gia
 Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
+// Route for danhgia
+Route::post('/danhgiasanpham/{id}', [danhgiaController::class, 'danhgia']);
+Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 
+//admin
 Route::middleware(['admin.access'])->group(function () {
     //admin- Vo Thanh Tin - san pham va chi tiet san pham
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -192,7 +161,6 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
     Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
     Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
-
     // chitiet san pham
     Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
     Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
@@ -229,28 +197,7 @@ Route::middleware(['admin.access'])->group(function () {
     Route::get('/administrator/xemgiasale/{id}', [pvcvakhuyenmaiController::class, 'xemgiasale']);
     Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
     Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
+    Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
+    Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
+    Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
 });
-// Route for danhgia
-Route::post('/danhgiasanpham/{id}', [danhgiaController::class, 'danhgia']);
-
-Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
-//theo doi don hang
-Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhang']);
-//giam gia
-Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
-//QL phi van chuyen
-Route::get('/administrator/phivanchuyen', [pvcvakhuyenmaiController::class, 'qlphivanchuyen']);
-Route::get('/administrator/xempvc/{id}', [pvcvakhuyenmaiController::class, 'timvanchuyen']);
-Route::post('/administrator/themphivanchuyen', [pvcvakhuyenmaiController::class, 'themphivanchuyen']);
-Route::post('/administrator/chinhsuavanchuyen/{id}', [pvcvakhuyenmaiController::class, 'capnhatphivanchuyen']);
-Route::delete('/administrator/xoaphivanchuyen/{id}', [pvcvakhuyenmaiController::class, 'xoaphivanchuyen']);
-//QL giá sale
-Route::get('/administrator/qlgiasale', [pvcvakhuyenmaiController::class, 'trangsale']);
-Route::post('/administrator/themgiasale', [pvcvakhuyenmaiController::class, 'themgiasale']);
-Route::get('/administrator/xemgiasale/{id}', [pvcvakhuyenmaiController::class, 'xemgiasale']);
-Route::post('/administrator/capnhatgiasale/{id}', [pvcvakhuyenmaiController::class, 'capnhatgiasale']);
-Route::delete('/administrator/xoagiasale/{id}', [pvcvakhuyenmaiController::class, 'xoagiasale']);
-
-Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
-Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
-Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
