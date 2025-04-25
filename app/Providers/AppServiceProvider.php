@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
                 'cart' => $chitietgiohang->get(),
             ]);
         });
-        View::composer('admin.adminlayout.navbar_admin', function ($view) {
+        View::composer(['admin.adminlayout.navbar_admin', 'admin.adminlayout.head'], function ($view) {
             $nguoidung = NguoidungModel::where('id_nd', session('id'))->first();
             $quyen = $nguoidung->quyentruycap;
             $view->with([

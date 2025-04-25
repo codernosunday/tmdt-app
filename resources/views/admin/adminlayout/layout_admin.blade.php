@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-@vite(['resources/scss/app.scss', 'resources/scss/style.scss'])
+@vite(['resources/scss/admin.scss', 'resources/js/adminscript/adminpage.js'])
 
 <head>
     <title>@yield('title', default: 'Shopen')</title>
     @include('admin.adminlayout.meta_admin')
 </head>
 </head>
+{{-- <div>@yield('content')</div> --}}
 
 <body>
-    {{-- <div class="preloader-wrapper">
-        <div class="preloader">
-        </div>
-    </div> --}}
     @include('admin.adminlayout.navbar_admin')
-    <div>@yield('content')</div>
-    @include('admin.adminlayout.footer_admin')
+    <div class="main-content">
+        <!-- Header -->
+
+        @include('admin.adminlayout.head')
+        <!-- Content -->
+        <main class="content">
+            <div>@yield('content')</div>
+        </main>
+        <!-- Footer -->
+        @include('admin.adminlayout.footer_admin')
+    </div>
 </body>
 
 </html>
