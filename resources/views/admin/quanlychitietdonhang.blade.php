@@ -5,6 +5,19 @@
 @section('title', 'Quản lý sản phẩm')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
+        <div class="d-flex justify-content-end align-items-center mb-3">
+            <form action="/administrator/pdf" method="post">
+                @csrf
+                <input type="hidden" value="{{$data['donhang']['id_hoadon']}}" name="id">
+                <input type="submit" class="btn btn-success btn-sm" value="In đơn hàng" name="export_pdf">
+            </form>
+        </div>
+        <div>
+            <p>Tên người dùng: {{$data['donhang']['hoten']}}</p>
+            <p>Email: {{$data['donhang']['email']}}</p>
+            <p>Địa chỉ: {{$data['donhang']['diachigiaohang']}}</p>
+            <p>Số điện thoại: {{$data['donhang']['sodt']}}</p>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="table_color">
@@ -19,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($chitietdonhang as $chitiet)
+                    @foreach ($data['chitietdonhang'] as $chitiet)
                         <tr>
                             <td>{{$chitiet["thongtinsp"]["tensp"]}}</td>
                             <td><img src="{{$chitiet['thongtinsp']['anh']}}" alt=""></td>

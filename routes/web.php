@@ -151,6 +151,10 @@ Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQL
 Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
 Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
 
+Route::post('/administrator/suaTTDH', [QLdonhangController::class, 'suaTTDH']);
+
+Route::post('/administrator/pdf', [QLchitietdonhangController::class, 'createPDF']);
+
 //admin danh muc san pham - Vo Thanh Tin
 Route::get('/administrator/quanlydanhmuccha', [QLDMController::class, 'danhmuccha']);
 Route::get('/administrator/quanlydanhmucccon', [QLDMController::class, 'danhmuccon']);
