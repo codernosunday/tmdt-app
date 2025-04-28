@@ -19,14 +19,26 @@ class nguoidungCotroller extends Controller
         }
         $nguoidung = NguoidungModel::where('id_nd', $id)->first();
         $diachi = diachiModel::where('id_nd', $id)->first();
-        $data = [
-            "hoten" => $nguoidung->hovaten,
-            "email" => $nguoidung->mail,
-            "sodt" => $nguoidung->soDT,
-            "ngaysinh" => $nguoidung->ngaysinh,
-            "tinhtrangtk" => $nguoidung->tinhtrantk,
-            "diachi" => $diachi->diachi1
-        ];
+        if ($diachi) {
+            $data = [
+                "hoten" => $nguoidung->hovaten,
+                "email" => $nguoidung->mail,
+                "sodt" => $nguoidung->soDT,
+                "ngaysinh" => $nguoidung->ngaysinh,
+                "tinhtrangtk" => $nguoidung->tinhtrantk,
+                "diachi" => $diachi->diachi1
+            ];
+        } else {
+            $data = [
+                "hoten" => $nguoidung->hovaten,
+                "email" => $nguoidung->mail,
+                "sodt" => $nguoidung->soDT,
+                "ngaysinh" => $nguoidung->ngaysinh,
+                "tinhtrangtk" => $nguoidung->tinhtrantk,
+                "diachi" => 'Chưa có'
+            ];
+        }
+
         return view('nguoidung', compact('data'));
     }
     public function capnhatthongtin(Request $request)
@@ -67,11 +79,19 @@ class nguoidungCotroller extends Controller
                 if ($diachi) {
                     $diachi->update([
                         'diachi1' => $value,
+                        'quocgia' => 'Việt Nam',
+                        'tinh' => $request->input('tinh'),
+                        'huyen' => $request->input('huyen'),
+                        'xa' => $request->input('xa')
                     ]);
                 } else {
                     diachiModel::create([
                         'id_nd'   => session('id'),
                         'diachi1' => $value,
+                        'quocgia' => 'Việt Nam',
+                        'tinh' => $request->input('tinh'),
+                        'huyen' => $request->input('huyen'),
+                        'xa' => $request->input('xa')
                     ]);
                 }
             }

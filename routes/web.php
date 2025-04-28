@@ -10,7 +10,6 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\QLsanphamController;
-use App\Http\Controllers\QLsanphamComtroller;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\AdminController;
@@ -24,7 +23,7 @@ use App\Http\Controllers\ThanhtoanController;
 use App\Http\Controllers\QLnguoidungController;
 use App\Http\Controllers\QLdonhangController;
 use App\Http\Controllers\QLchitietdonhangController;
-
+use App\Http\Controllers\thongkeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +116,7 @@ Route::get('/xemsanpham/{ctsp}', [SanphamController::class, 'xemctsp']);
 
 //Nguoi dung- Vo Thanh Tin
 Route::get('/nguoidung', [nguoidungCotroller::class, 'trangnguoidung']);
+Route::post('/nguoidung/capnhat', [nguoidungCotroller::class, 'capnhatthongtin']);
 Route::get('/categories/{id_ctdm}', [CategoryController::class, 'show'])->name('categories.show');
 
 
@@ -200,4 +200,14 @@ Route::middleware(['admin.access'])->group(function () {
     Route::get('/administrator/quanlydonhang', [QLdonhangController::class, 'pagesQLdonhang']);
     Route::get('/administrator/quanlydonhang/{select}', [QLdonhangController::class, 'pagesQLdonhang']);
     Route::get('/administrator/quanlychitietdonhang/{id}', [QLchitietdonhangController::class, 'pagesQLchitietdonhang']);
+    //thống kê võ thanh tín
+    Route::get('/administrator/thongkedoanhthu', [thongkeController::class, 'trangthongkedoanhthu']);
+    Route::get('/administrator/thongkedoanhthu/thongke', [thongkeController::class, 'thongke']);
+    //thong kê người dùng
+    Route::get('/administrator/thongkenguoidung', [thongkeController::class, 'thongkenguoidung']);
+    Route::get('/administrator/thongkenguoidung/data', [thongkeController::class, 'layDuLieuNguoiDung']);
+
+    //thong kê sanpham
+    Route::get('/administrator/thongkesanpham', [thongkeController::class, 'thongkesanpham']);
+    Route::get('/administrator/thongkesanpham/data', [ThongkeController::class, 'thongKeSP']);
 });

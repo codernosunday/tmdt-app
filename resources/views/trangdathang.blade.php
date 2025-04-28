@@ -238,7 +238,8 @@
                         <hr>
                         <div class="d-flex justify-content-between fw-bold fs-5">
                             <span>Tổng cộng:</span>
-                            <span class="special" id="tongdh">{{number_format($soluong["tong"], 0, ',', '.') . ' đ'}}</span>
+                            <span class="special"
+                                id="tongdh">{{number_format($soluong["tong"] + $phi["giaphi"], 0, ',', '.') . ' đ'}}</span>
                         </div>
                         <hr>
                         <div class="form-check mb-3">
@@ -256,11 +257,12 @@
     <script>
         window.appData = {
             tongTienGoc: {{ intval($soluong['tong'] ?? 0) }},
+            tonghienthi: {{$soluong['tong'] + $phi["giaphi"]}},
             id_ctsp: {{ $ctsp->id_ctsp }},
             id_phi: {{ $phi["idphi"] }},
             id_ctgh: {{ $soluong['id_ctgh'] ?? 'null' }},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                            };
+        };
     </script>
 @endsection

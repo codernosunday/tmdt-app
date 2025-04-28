@@ -53,6 +53,15 @@ window.saveChanges = function (field) {
     updateUserProfile(field, inputElement.value);
 }
 window.updateUserProfile = function (field, value) {
+    let tinh = null;
+    let huyen = null;
+    let xa = null;
+    try {
+        tinh = provinceSelect.options[provinceSelect.selectedIndex].text;
+        huyen = districtSelect.options[districtSelect.selectedIndex].text;
+        xa = wardSelect.options[wardSelect.selectedIndex].text;
+    } catch {
+    }
     fetch('/nguoidung/capnhat', {
         method: 'POST',
         headers: {
@@ -61,7 +70,10 @@ window.updateUserProfile = function (field, value) {
         },
         body: JSON.stringify({
             field: field,
-            value: field === 'dob' ? formatDateForServer(value) : value
+            value: field === 'dob' ? formatDateForServer(value) : value,
+            tinh: field === 'address' ? tinh : null,
+            huyen: field === 'address' ? huyen : null,
+            xa: field === 'address' ? xa : null,
         })
     })
         .then(response => response.json())
@@ -82,7 +94,6 @@ function formatDateForServer(dateString) {
     const date = new Date(dateString);
     return date.toISOString().split('T')[0];
 }
-
 //tỉnh thành phố
 const provinceSelect = document.getElementById("province");
 const districtSelect = document.getElementById("district");

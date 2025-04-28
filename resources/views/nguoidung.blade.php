@@ -93,6 +93,7 @@
                 </div>
                 <div class="form-group">
                     <label class="" for="address-input">Địa chỉ nhà</label>
+                    <input type="hidden" id="full_address" name="full_address">
                     <textarea id="address-input" rows="3">{{ $data["diachi"] ?? 'Nhập số nhà' }}</textarea>
                 </div>
                 <button class="btn btn-primary btn-sm" onclick="saveChanges('address')"><i class="bi bi-floppy"></i>

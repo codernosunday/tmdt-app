@@ -55,9 +55,10 @@
                     <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
                 </a>
                 <div class="submenu">
-                    <a href="#"><i class="bi bi-graph-up"></i><span>Doanh thu</span></a>
-                    <a href="#"><span>Tài khoản khách hàng</span></a>
-                    <a href="#"><span>Các mặt hàng</span></a>
+                    <a href="/administrator/thongkedoanhthu"><i class="bi bi-graph-up"></i><span>Doanh thu</span></a>
+                    <a href="/administrator/thongkenguoidung"><i class="bi bi-person-video3"></i><span>Tài khoản khách
+                            hàng</span></a>
+                    <a href="/administrator/thongkesanpham"><i class="bi bi-cart4"></i><span>Các mặt hàng</span></a>
                 </div>
             </div>
         @else

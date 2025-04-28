@@ -54,7 +54,7 @@ class ThanhtoanController extends Controller
             $phi = vanchuyenModel::first();
             $giohang = session("id_giohang");
             $soluong = [
-                "tong" => $soluong * $giaban->giaban + $phi->giaphi,
+                "tong" => $soluong * $giaban->giaban,
                 "soluong" => $soluong,
                 "id_ctgh" => null
             ];
@@ -83,6 +83,7 @@ class ThanhtoanController extends Controller
                 'diachigiaohang' => $request->input('diachi'),
                 'ghichu' => $request->input('ghichu'),
                 'trangthaidonhang' => 'Chờ xác nhận',
+                'tontien' => $request->input('tong'),
                 'hinhthucthanhtoan' => $request->input('hinhthuctt'),
             ]);
             $id_hd = $hoadon->id_hoadon;

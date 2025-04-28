@@ -26,7 +26,7 @@ window.magiamgia = function () {
                 badge.className = 'badge';
                 badge.textContent = `${data.ten}`;
                 container.appendChild(badge);
-                const tdh = parseInt(window.appData.tongTienGoc) - parseInt(data.giasale);
+                const tdh = parseInt(window.appData.tonghienthi) - parseInt(data.giasale);
                 const tong = new Intl.NumberFormat('vi-VN').format(tdh) + ' đ';
                 const gia = new Intl.NumberFormat('vi-VN').format(data.giasale) + ' đ';
                 window.appData.id_giasale = data.id_magiamgia;
