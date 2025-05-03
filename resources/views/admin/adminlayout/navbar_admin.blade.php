@@ -72,7 +72,8 @@
                     <a href="/administrator/quanlynguoidung"><i class="bi bi-person-badge"></i><span>Danh sách người
                             dùng</span></a>
                     <a href="#"><i class="bi bi-person-add"></i><span>Thêm người dùng</span></a>
-                    <a href="#"><i class="bi bi-chat-left-dots"></i><span>Quản lý bình luận</span></a>
+                    <a href="/administrator/quanlybinhluan"><i class="bi bi-chat-left-dots"></i><span>Quản lý bình
+                            luận</span></a>
                 </div>
             </div>
         @endif

@@ -45,12 +45,18 @@ window.dathang = function () {
     const sodt = document.getElementById('phone').value.trim();
     const ten = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
-    const diachi = document.getElementById('address').value.trim();
+    let diachi = document.getElementById('address').value.trim();
     const ghichu = document.getElementById('note').value.trim();
-
     const tructiep = document.getElementById('cod');
     const banking = document.getElementById('banking');
     const momo = document.getElementById('momo');
+    const districtSelect = document.getElementById('district');
+    const districtText = districtSelect.options[districtSelect.selectedIndex].text;
+    const provinceSelect = document.getElementById('province');
+    const provinceText = provinceSelect.options[provinceSelect.selectedIndex].text;
+    const wardSelect = document.getElementById('ward');
+    const wardText = wardSelect.options[wardSelect.selectedIndex].text;
+    diachi = provinceText + ", " + districtText + ", " + wardText + " " + diachi;
     let hinhthuctt;
     if (tructiep.checked) {
         hinhthuctt = 'Thanh toán khi nhận hàng'
@@ -170,7 +176,27 @@ function validateOrderForm() {
         document.getElementById('address').classList.add('is-invalid');
         isValid = false;
     }
-
+    //Kiểm tra địa chỉ
+    const province = document.getElementById('province').value.trim();
+    const district = document.getElementById('district').value.trim();
+    const ward = document.getElementById('ward').value.trim();
+    if (!province) {
+        isValid = false;
+        alert("Vui lòng chọn Tỉnh/Thành phố");
+    } else if (!district) {
+        isValid = false;
+        alert("Vui lòng chọn Quận/Huyện");
+    } else if (!ward) {
+        isValid = false;
+        alert("Vui lòng chọn Phường/Xã");
+    } else if (!address) {
+        isValid = false;
+        document.getElementById('addressError').textContent = "Vui lòng nhập địa chỉ nhận hàng.";
+        document.getElementById('address').classList.add('is-invalid');
+    } else {
+        document.getElementById('addressError').textContent = "";
+        document.getElementById('address').classList.remove('is-invalid');
+    }
     // Trả về kết quả kiểm tra
     return isValid;
 }

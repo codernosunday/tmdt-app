@@ -30,16 +30,17 @@ window.editCell = function (cell) {
 
 window.saveRow = function (button, id) {
     let row = button.closest("tr");
-    let rowId = row.getAttribute("data-id");
+    let cells = row.querySelectorAll('td');
 
-    if (!editedData[rowId]) {
-        alert("Không có thay đổi nào cần lưu.");
-        return;
-    }
+    let tendanhmuc = cells[1].innerText.trim();
+    let ghichu = cells[2].innerText.trim();
+    let requestData = {
+        id_dm: id,
+        tendanhmuc: tendanhmuc,
+        ghichu: ghichu
+    };
 
-    let requestData = editedData[rowId];
-    requestData.id_dm = id
-    console.log(JSON.stringify(requestData));
+    console.log(JSON.stringify(requestData)); // Kiểm tra object gửi
 
     fetch(`/administrator/updatedmcha`, {
         method: "POST",
@@ -53,10 +54,13 @@ window.saveRow = function (button, id) {
         .then(data => {
             console.log("Cập nhật thành công:", data);
             alert("Cập nhật thành công!");
-            delete editedData[rowId];
         })
-        .catch(error => console.error("Lỗi cập nhật:", error));
+        .catch(error => {
+            console.error("Lỗi cập nhật:", error);
+            alert("Cập nhật thất bại!");
+        });
 }
+
 window.postthemmoi = function () {
     const tendanhmuc = document.getElementById("themtendanhmuc");
     const ghichu = document.getElementById("themghichu");

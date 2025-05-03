@@ -1,33 +1,32 @@
-@vite('resources/scss/quanlysanpham.scss')
 @vite('resources/scss/quanlydanhmuc.scss')
 @vite('resources/js/adminscript/mainQLDMC.js')
 @extends('admin.adminlayout.layout_admin')
 @section('content')
 @section('title', 'Quản lý danh mục cha')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="container">
+    <div class="container my-4">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="table_color">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-header">
                     <tr>
-                        <th><i class="bi bi-info-circle-fill"></i></th>
-                        <th>Tên danh mục<i class="bi bi-sort-alpha-up"></i></th>
+                        <th class="text-center" style="width: 50px;"><i class="bi bi-info-circle-fill"></i></th>
+                        <th>Tên danh mục <i class="bi bi-sort-alpha-up"></i></th>
                         <th>Ghi chú</th>
-                        <th>Thao tác</th>
+                        <th class="text-center" style="width: 180px;">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($dmcha as $i)
                         <tr>
-                            <td><i class="bi bi-info-circle"></i></td>
+                            <td class="text-center"><i class="bi bi-info-circle"></i></td>
                             <td ondblclick="editCell(this)" data-field="ten">{{$i->tendanhmuc}}</td>
                             <td ondblclick="editCell(this)" data-field="ghichu">{{$i->ghichu}}</td>
-                            <td>
-                                {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                                <button class="btn btn-danger btn-sm" onclick="deleteDanhmuc({{$i->id_dm}}) "><a
-                                        class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
-                                <button class="btn btn-info btn-sm" onclick="saveRow(this,{{$i->id_dm}})">
-                                    <div class="edit_btn"><i class="bi bi-pencil-square"></i> Sửa</div>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-danger me-1" onclick="deleteDanhmuc({{$i->id_dm}})">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                                <button class="btn btn-sm btn-primary" onclick="saveRow(this,{{$i->id_dm}})">
+                                    <i class="bi bi-pencil-square"></i>
                                 </button>
                             </td>
                         </tr>
@@ -35,11 +34,14 @@
                 </tbody>
             </table>
         </div>
-        <div class="container mt-4">
-            <h4 class="fw-bold">Thêm Mới Danh Mục</h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card shadow-sm p-4 rounded border-0">
+
+        <div class="row mt-5">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white text-center fw-bold">
+                        Thêm Mới Danh Mục
+                    </div>
+                    <div class="card-body">
                         <form id="addDanhmucForm">
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tên danh mục:</label>
@@ -49,11 +51,14 @@
                                 <label class="form-label fw-bold">Ghi chú:</label>
                                 <textarea class="form-control" id="themghichu" name="ghichu" rows="3"></textarea>
                             </div>
-                            <button type="button" onclick="postthemmoi()" class="btn btn-primary w-100">Thêm mới</button>
+                            <button type="button" onclick="postthemmoi()" class="btn btn-success w-100 fw-bold">
+                                Thêm mới
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

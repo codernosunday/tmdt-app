@@ -21,6 +21,7 @@
                                 <th>Tên</th>
                                 <th>Mã giảm giá</th>
                                 <th>Giá sale</th>
+                                <th>Trạng thái</th>
                                 <th>Ngày kết thúc</th>
                                 <th>Hành động</th>
                             </tr>
@@ -31,6 +32,7 @@
                                     <td>{{ $giasale->ten }}</td>
                                     <td>{{ $giasale->magiamgia }}</td>
                                     <td>{{ number_format($giasale->giasale, 0, ',', '.') }} đ</td>
+                                    <td>{{$giasale->trangthai?'Đang diễn ra':'Đã kết thúc'}}</td>
                                     <td>{{ $giasale->ketthuc }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-primary edit-btn"
@@ -69,6 +71,12 @@
                             <input type="number" class="form-control" id="giasale" name="giasale" required>
                         </div>
                         <div class="mb-3">
+                            <input class="form-check-input" type="checkbox" id="trangthai" name="trangthai" value="1">
+                            <label class="form-check-label" for="trangthai">
+                                Áp dụng ngay
+                            </label>
+                        </div>
+                        <div class="mb-3">
                             <label for="ketthuc" class="form-label">Ngày kết thúc</label>
                             <input type="date" class="form-control" id="ketthuc" name="ketthuc" required>
                         </div>
@@ -104,6 +112,12 @@
                         <div class="mb-3">
                             <label for="edit_giasale" class="form-label">Giá sale</label>
                             <input type="number" class="form-control" id="edit_giasale" name="giasale" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-check-input" type="checkbox" id="hoatdong" name="hoatdong" value="1">
+                            <label class="form-check-label" for="hoatdong">
+                                Hoạt động
+                            </label>
                         </div>
                         <div class="mb-3">
                             <label for="edit_ketthuc" class="form-label">Ngày kết thúc</label>

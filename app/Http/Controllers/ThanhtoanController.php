@@ -32,7 +32,7 @@ class ThanhtoanController extends Controller
             $phi = vanchuyenModel::first();
             $giohang = session("id_giohang");
             $soluong = [
-                "tong" => $ctgiohang->soluong * $giaban->giaban + $phi->giaphi,
+                "tong" => $ctgiohang->soluong * $giaban->giaban,
                 "soluong" => $ctgiohang->soluong,
                 "id_ctgh" => $ctgiohang->id_ctgh
             ];
@@ -123,7 +123,9 @@ class ThanhtoanController extends Controller
     {
         try {
             $ma = $request->input('magiamgia');
-            $magiamgia = giasaleModel::where('magiamgia', $ma)->first();
+            $magiamgia = giasaleModel::where('magiamgia', $ma)
+                ->where('trangthai', true)
+                ->first();
             if ($magiamgia) {
                 return response()->json([
                     'dieukien' => true,

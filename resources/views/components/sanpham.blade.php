@@ -1,14 +1,17 @@
 @vite(['resources/scss/listsp.scss'])
 @vite(['resources/css/app.css'])
+@php
+    use Carbon\Carbon;
+@endphp
 <div class="container mt-4">
     <div class="row">
         @foreach($sp as $i)
             <div class="col-md-2 col-6 mb-4">
 
                 <div class="product-card">
-                    {{-- @if(isset($i->premium) && $i->premium)
-                    <div class="premium-badge">Premium</div>
-                    @endif --}}
+                    @if ($i->created_at && $i->created_at->isSameMonth(Carbon::now()))
+                        <div class="premium-badge">Mới</div>
+                    @endif
                     <a class="link" href="/sanpham/{{$i->tensp}}/{{$i->id_sp}}">
                         <img src="{{ $i->anhbase64 ? asset('storage/' . $i->anhbase64) : '' }}" alt="{{ $i->tensp }}">
 

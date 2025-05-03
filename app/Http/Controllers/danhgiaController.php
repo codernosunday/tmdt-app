@@ -42,4 +42,19 @@ class danhgiaController extends Controller
             ], 500);
         }
     }
+
+    public function trangQLbinhluan()
+    {
+        $binhluan = DanhgiaModel::with('sanpham', 'nguoidung')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('admin.quanlybinhluan', compact('binhluan'));
+    }
+    public function xoabinhluan($id)
+    {
+        $binhluan = DanhgiaModel::findOrFail(id: $id);
+        $binhluan->delete();
+
+        return response()->json(['message' => 'Xóa bình luận thành công.']);
+    }
 }

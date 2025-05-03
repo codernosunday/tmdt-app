@@ -16,6 +16,7 @@ class DanhmucconModel extends Model
         'id_ctdm',
         'ten',
         'ghichu',
+        'trangthai'
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';

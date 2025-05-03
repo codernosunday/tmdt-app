@@ -5,41 +5,40 @@
 @section('title', 'Quản lý sản phẩm')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="table_color">
-                    <tr>
-                        <th><i class="bi bi-info-circle-fill"></i></th>
-                        <th>Tên sản phẩm <i class="bi bi-sort-alpha-up"></i></th>
-                        <th>Ảnh</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($sp as $i)
-                        <tr>
-                            <td><i class="bi bi-eye-fill"></i></td>
-                            <td>{{$i->tensp}}</td>
-                            <td class="summary" id="anh">
-                                <i class="bi bi-card-image"></i>
-                                <div class="image-popup">
-                                    <img src="{{$i->anh}}" alt="{{$i->tensp}}" class="img-fluid">
-                                </div>
-                            </td>
-                            <td>
-                                {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                                <button class="btn btn-danger btn-sm" onclick="deleteSP({{$i->id_sp}}) "><a
-                                        class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
-                                <button class="btn btn-info btn-sm"><a class="edit_btn" href="quanlysanpham/{{$i->id_sp}}"><i
-                                            class="bi bi-pencil-square"></i></a></button>
-                                <button class="btn btn-info btn-sm"><a class="edit_btn"
-                                        href="/administrator/themchitietmoi/{{$i->id_sp}}">
-                                        <i class="bi bi-clipboard-plus-fill"></i></a></button>
-                            </td>
-                        </tr>
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="danhmuc" class="form-label">Danh mục sản phẩm</label>
+                <select id="danhmuc" class="form-select">
+                    <option value="all">Tất cả</option>
+                    @foreach($danhmucs as $dm)
+                        <option value="{{ $dm->id_ctdm }}">{{ $dm->ten }}</option>
                     @endforeach
-                </tbody>
-            </table>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="trangthai" class="form-label">Trạng thái hàng</label>
+                <select id="trangthai" class="form-select">
+                    <option value="all">Tất cả</option>
+                    <option value="conhang">Còn hàng</option>
+                    <option value="hethang">Hết hàng</option>
+                    <option value="an">Ẩn</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="search" class="form-label">Tìm kiếm sản phẩm</label>
+                <div class="input-group">
+                    <input type="text" id="search" name="timkiem" class="form-control" placeholder="Nhập tên sản phẩm...">
+                    <button class="btn btn-primary" id="btnSearch" onclick="searchProduct()" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div id="listsanpham">
+
+            </div>
         </div>
     </div>
 @endsection

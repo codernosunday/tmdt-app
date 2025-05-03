@@ -1,83 +1,55 @@
-let editedData = {};
-let data = [];
+let allUsers = window.allUsers || [];
 
-window.editCell = function (cell) {
-    console.log(cell);
-    let currentText = cell.innerText;
-    let field = cell.getAttribute("data-field");
-    let rowId = cell.parentElement.getAttribute("data-id");
-    let key = cell.getAttribute("key");
+// Mở popup chỉnh sửa
+window.openEditModal = function (id) {
+    const user = allUsers.find(u => u.id_nd == id);
+    if (!user) return alert("Không tìm thấy người dùng!");
 
-    let input = document.createElement("input");
-    input.type = "text";
-    input.value = currentText;
-    input.classList.add("form-control");
+    document.getElementById('edit_id').value = user.id_nd;
+    document.getElementById('edit_hovaten').value = user.hovaten || '';
+    document.getElementById('edit_ngaysinh').value = user.ngaysinh || '';
+    document.getElementById('edit_sodt').value = user.soDT || '';
+    document.getElementById('edit_mail').value = user.mail || '';
+    document.getElementById('edit_tinhtrantk').value = user.tinhtrantk || 'Đang hoạt động';
+    document.getElementById('edit_quyentruycap').value = user.quyentruycap || 'User';
+};
 
-    input.onblur = function () {
-        cell.innerText = input.value;
-        if (!editedData[rowId]) editedData[rowId] = {};
-        editedData[rowId][field] = input.value;
+// Gửi dữ liệu cập nhật
+document.getElementById('editUserForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const data = {
+        id: document.getElementById('edit_id').value,
+        hovaten: document.getElementById('edit_hovaten').value,
+        ngaysinh: document.getElementById('edit_ngaysinh').value,
+        sodt: document.getElementById('edit_sodt').value,
+        mail: document.getElementById('edit_mail').value,
+        tinhtrantk: document.getElementById('edit_tinhtrantk').value,
+        quyentruycap: document.getElementById('edit_quyentruycap').value
     };
 
-    input.onkeydown = function (event) {
-        if (event.key === "Enter") {
-            const id = cell.parentElement.getAttribute("data-id");
-            const isExitsRow = data.find(item => item.id === id);
-
-            if (isExitsRow) {
-                data = data.map(item => {
-                    if (item.id === id) {
-                        return {
-                            ...item,
-                            [key]: input.value
-                        }
-                    }else {
-                        return item;
-                    }
-                });
-            }else {
-                data.push({
-                    id: id,
-                    [key]: input.value
-                });
-            }  
-            console.log(data);
-            input.blur();
-        }
-    };
-
-    cell.innerHTML = "";
-    cell.appendChild(input);
-    input.focus();
-}
-
-window.suanguoidung = function (id) {
-    const userInfo = data.find(item => item.id == id);
-    console.log(userInfo);
-    fetch(`/administrator/suaNguoiDung`, {
-        method: "POST",
+    fetch('/administrator/suaNguoiDung', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
-        body: JSON.stringify(userInfo),
+        body: JSON.stringify(data)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Lỗi HTTP: ${response.status}`);
-            }
-            return response.json();
+        .then(res => {
+            if (!res.ok) throw new Error('Lỗi HTTP: ' + res.status);
+            return res.json();
         })
-        .then(data => {
-            if (data.success) {
-                alert("Cập nhật thông tin người dùng thành công!");
+        .then(res => {
+            if (res.success) {
+                alert('Cập nhật thành công!');
                 location.reload();
             } else {
-                alert("Lỗi: " + (data.message || "Có lỗi xảy ra!"));
+                alert('Lỗi: ' + (res.message || 'Cập nhật thất bại!'));
             }
         })
-        .catch(error => {
-            console.error("Lỗi cập nhật:", error.message);
-            alert("Có lỗi xảy ra, vui lòng thử lại!");
+        .catch(err => {
+            console.error('Lỗi khi cập nhật:', err);
+            alert('Có lỗi xảy ra. Vui lòng thử lại!');
         });
-};
+});

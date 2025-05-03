@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 use App\Models\SanphamModel;
 use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
@@ -19,8 +20,62 @@ class QLsanphamController extends Controller
     function pagesQLsanpham()
     {
         $sp = SanphamModel::all();
-        return view('admin.quanlysanpham', compact('sp'));
+        $danhmucs = DanhmucconModel::all();
+        return view('admin.quanlysanpham', compact('sp', 'danhmucs'));
     }
+    function bangsanpham($id)
+    {
+        if ($id == 'all') {
+            $sp = SanphamModel::paginate(20);
+        } else {
+            $sp = SanphamModel::where('id_ctdm', $id)->paginate(20);
+        }
+        return view('admin.bangsanpham', compact('sp'));
+    }
+    //loc san pham
+    function loctrangthai(Request $request)
+    {
+        $id_ctdm = $request->input('danhmuc');
+        $trangthai = $request->input('trangthai');
+        if ($id_ctdm  == 'all' && $trangthai != 'all') {
+            $sp = SanphamModel::where('trangthai', $trangthai)->paginate(20);
+        } else {
+            $sp = SanphamModel::where('id_ctdm', $id_ctdm)
+                ->when($trangthai !== 'all', function ($query) use ($trangthai) {
+                    return $query->where('trangthai', $trangthai);
+                })
+                ->paginate(20);
+        }
+        return view('admin.bangsanpham', compact('sp'));
+    }
+    function loctheoten(Request $request)
+    {
+        $ten = $request->input('timkiem');
+        $id_ctdm = $request->input('danhmuc');
+        $trangthai = $request->input('trangthai');
+
+        if ($id_ctdm === 'all' && $trangthai !== 'all') {
+            $sp = SanphamModel::where('trangthai', $trangthai)
+                ->when($ten, function ($query) use ($ten) {
+                    return $query->where('tensp', 'like', '%' . $ten . '%');
+                })
+                ->paginate(20);
+        } else {
+            $sp = SanphamModel::when($id_ctdm !== 'all', function ($query) use ($id_ctdm) {
+                return $query->where('id_ctdm', $id_ctdm);
+            })
+                ->when($trangthai !== 'all', function ($query) use ($trangthai) {
+                    return $query->where('trangthai', $trangthai);
+                })
+                ->when($ten, function ($query) use ($ten) {
+                    return $query->where('tensp', 'like', '%' . $ten . '%');
+                })
+                ->paginate(20);
+        }
+
+        return view('admin.bangsanpham', compact('sp'));
+    }
+    //
     function pagesQLchitietsanpham($id_sp)
     {
         $danhmuccon = DanhmucconModel::all();
@@ -61,7 +116,7 @@ class QLsanphamController extends Controller
     public function postcapnhatsanpham(Request $request)
     {
         try {
-            // Kiểm tra đầu vào
+            // Validate dữ liệu đầu vào
             $validated = $request->validate([
                 'danhmuc' => 'required|integer',
                 'id_sp' => 'required|exists:sanpham,id_sp',
@@ -83,9 +138,9 @@ class QLsanphamController extends Controller
                 'trangthai' => 'nullable|string'
             ]);
 
-
             DB::beginTransaction();
-            // Kiểm tra sản phẩm tồn tại
+
+            // Tìm sản phẩm
             $sanpham = SanphamModel::find($validated['id_sp']);
 
             if (!$sanpham) {
@@ -95,12 +150,16 @@ class QLsanphamController extends Controller
                     'errors' => ['id_sp' => 'ID sản phẩm không hợp lệ.']
                 ], 404);
             }
+
+            // Xử lý ảnh nếu có
             if ($request->file('fileanh')) {
                 $image = $request->file('fileanh');
                 $path = $image->store('uploads', 'public');
+            } else {
+                $path = $sanpham->anhbase64; // giữ ảnh cũ
             }
-            $path = $sanpham->anhbase64;
-            // Cập nhật sản phẩm
+
+            // Cập nhật sản phẩm chính
             $sanpham->update([
                 'id_ctdm' => $validated['danhmuc'],
                 'tensp' => $validated['tensp'],
@@ -110,10 +169,11 @@ class QLsanphamController extends Controller
                 'tinhtrang' => $validated['tinhtrang'],
                 'anhbase64' => $path
             ]);
+
             // Cập nhật chi tiết sản phẩm
-            ChitietsanphamModel::updateOrCreate(
-                ['id_ctsp' => $validated['id_ctsp']],
-                [
+            $chitiet = ChitietsanphamModel::find($validated['id_ctsp']);
+            if ($chitiet) {
+                $chitiet->update([
                     'id_thuoctinh' => $request->input('thuoctinh'),
                     'doday' => $request->input('doday'),
                     'soluong' => $validated['soluong'] ?? 0,
@@ -129,19 +189,17 @@ class QLsanphamController extends Controller
                     'sanxuat' => $validated['sanxuat'],
                     'tinhnangnoibat' => $validated['tinhnang'],
                     'kichthuoc' => $validated['kichthuoc']
-                ]
-            );
-            // Cập nhật giá nhập
+                ]);
+            }
             gianhapModel::updateOrCreate(
-                ['id_sp' => $validated['id_sp']],
+                ['id_ctsp' => $validated['id_ctsp']],
                 [
                     'gianhap' => $validated['gianhap'] ?? null,
                     'soluong' => $validated['soluong'] ?? null
                 ]
             );
-            // Cập nhật giá bán
             giabanModel::updateOrCreate(
-                ['id_sp' => $validated['id_sp']],
+                ['id_ctsp' => $validated['id_ctsp']],
                 ['giaban' => $validated['giaban'] ?? null]
             );
 
@@ -174,7 +232,6 @@ class QLsanphamController extends Controller
             ], 500);
         }
     }
-
 
 
     function pagesthemsanpham()
@@ -356,5 +413,27 @@ class QLsanphamController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+    public function getchietSP($id)
+    {
+        $ctsp = ChitietsanphamModel::find($id);
+        if (!$ctsp) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Không tìm thấy chi tiết sản phẩm'
+            ], 404);
+        }
+
+        $giaban = giabanModel::where('id_ctsp', $id)->first();
+        $gianhap = gianhapModel::where('id_ctsp', $id)->first();
+        $mau = ThuoctinhspModel::find($ctsp->id_thuoctinh);
+
+        return response()->json([
+            'status' => true,
+            'giaban' => $giaban->giaban ?? null,
+            'gianhap' => $gianhap->gianhap ?? null,
+            'soluong' => $gianhap->soluong ?? null,
+            'mau' => $mau->giatri ?? $ctsp->id_thuoctinh
+        ], 200);
     }
 }

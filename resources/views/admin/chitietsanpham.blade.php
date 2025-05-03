@@ -111,7 +111,7 @@
                             min="0" step="1000" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="giasale">Giá khuyến mãi (VND)</label>
                         <input type="number" id="giasale" name="giasale" class="form-control" placeholder="0" min="0">
                     </div>

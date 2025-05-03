@@ -161,6 +161,8 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/capnhatsp', [QLsanphamController::class, 'postcapnhatsanpham']);
     Route::get('/administrator/quanlysanpham', [QLsanphamController::class, 'pagesQLsanpham']);
     Route::delete('/administrator/xoasp/{id}', [QLsanphamController::class, 'deleteSP']);
+    // hienchitietsanpham
+    Route::get('/administrator/chitiet/{id}', [QLsanphamController::class, 'getchietSP']);
     // chitiet san pham
     Route::get('/administrator/themchitietmoi/{id}', [QLsanphamController::class, 'chiTietSanPham']);
     Route::post('/administrator/postthemchitietmoi', [QLsanphamController::class, 'PostThemchiTietSanPham']);
@@ -210,4 +212,12 @@ Route::middleware(['admin.access'])->group(function () {
     //thong kê sanpham
     Route::get('/administrator/thongkesanpham', [thongkeController::class, 'thongkesanpham']);
     Route::get('/administrator/thongkesanpham/data', [ThongkeController::class, 'thongKeSP']);
+
+    //Quan ly binh luan
+    Route::get('/administrator/quanlybinhluan', [danhgiaController::class, 'trangQLbinhluan']);
+    Route::delete('/administrator/xoabinhluan/{id}', [danhgiaController::class, 'xoabinhluan']);
+    //loc sanpham
+    Route::get('/administrator/locsapham/{id}', [QLsanphamController::class, 'bangsanpham']);
+    Route::post('/administrator/loctrangthai', [QLsanphamController::class, 'loctrangthai']);
+    Route::post('/administrator/loctheoten', [QLsanphamController::class, 'loctheoten']);
 });
