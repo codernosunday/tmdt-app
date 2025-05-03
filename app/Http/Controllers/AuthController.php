@@ -65,7 +65,10 @@ class AuthController extends Controller
             return redirect()->back()
                 ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
         }
-
+        if ($User->tinhtrantk == 'Đã khóa') {
+            return redirect()->back()
+                ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+        }
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
@@ -84,6 +87,8 @@ class AuthController extends Controller
             ]);
 
             if ($user->quyentruycap === "admin") {
+                return redirect('administrator/quanlynguoidung');
+            } else if ($user->quyentruycap === "staff") {
                 return redirect('administrator/quanlysanpham');
             } else {
                 return redirect('shop');
