@@ -85,7 +85,9 @@ class AuthController extends Controller
 
             if ($user->quyentruycap === "admin") {
                 return redirect('administrator/quanlysanpham');
-            } else {
+            }else if ($user->quyentruycap === "staff") {
+                return redirect('administrator/quanlysanpham');
+            }else{
                 return redirect('shop');
             }
         } else {

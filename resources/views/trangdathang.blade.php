@@ -212,6 +212,12 @@
                                 <img src="https://via.placeholder.com/100x30?text=MoMo" alt="MoMo" class="img-fluid">
                             </div>
                         </div>
+                        <form action="/trangthanhtoan" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
+                                toán MOMO</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
