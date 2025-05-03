@@ -2,8 +2,10 @@
 @vite('resources/js/adminscript/quanlynguoidung/capnhatnguoidung.js')
 @extends('admin.adminlayout.layout_admin')
 @section('content')
-@section('title', 'Quản lý sản phẩm')
+@section('title', 'Quản lý người dùng')
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="container">
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
@@ -24,39 +26,92 @@
                     @foreach ($danhsachnguoidung as $nguoidung)
                         <tr>
                             <td><i class="bi bi-info-circle"></i></td>
-                            <td ondblclick="editCell(this)" key="hovaten" id="{{$nguoidung->id_nd}}">{{$nguoidung->hovaten ? $nguoidung->hovaten:"-----" }}</td>
-                            <td ondblclick="editCell(this)" key="ngaysinh" id="{{$nguoidung->id_nd}}">{{ $nguoidung->ngaysinh ? $nguoidung->ngaysinh:"------" }}</td>
-                            <td ondblclick="editCell(this)" key="sodt" id="{{$nguoidung->id_nd}}">{{ $nguoidung->soDT ? $nguoidung->soDT:"------" }}</td>
-                            <td key="mail" id="{{$nguoidung->id_nd}}">{{ $nguoidung->mail ? $nguoidung->mail:"------" }}</td>
-                            <td key="ngaytao" id="{{$nguoidung->id_nd}}">{{ $nguoidung->created_at ? $nguoidung->created_at:"------" }}</td>
-                            <td ondblclick="editCell(this)" key="tinhtrantk" id="{{$nguoidung->id_nd}}">{{ $nguoidung->tinhtrantk ? $nguoidung->tinhtrantk:"------" }}</td>
-                            <td ondblclick="editCell(this)" key="quyentruycap" id="{{$nguoidung->id_nd}}">{{ $nguoidung->quyentruycap ? $nguoidung->quyentruycap:"------" }}</td>
+                            <td>{{ $nguoidung->hovaten ?? '-----' }}</td>
+                            <td>{{ $nguoidung->ngaysinh ?? '------' }}</td>
+                            <td>{{ $nguoidung->soDT ?? '------' }}</td>
+                            <td>{{ $nguoidung->mail ?? '------' }}</td>
+                            <td>{{ $nguoidung->created_at ?? '------' }}</td>
+                            <td>{{ $nguoidung->tinhtrantk ?? '------' }}</td>
+                            <td>{{ $nguoidung->quyentruycap ?? '------' }}</td>
                             <td>
-                                {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                                <form action="xoanguoidung" method='post'>
+                                <form action="xoanguoidung" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $nguoidung->id_nd }}">
-                                    <button class="btn btn-danger btn-sm me-1"><i class="bi bi-trash3-fill"></i></button>
+                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i></button>
                                 </form>
-                                <button class="btn btn-info btn-sm" onClick="suanguoidung({{$nguoidung->id_nd}})"><a class="edit_btn"><i
-                                            class="bi bi-pencil-square"></i> Sửa</a></button>
+                                <button class="btn btn-info btn-sm" onclick="openEditModal({{ $nguoidung->id_nd }})"
+                                    data-bs-toggle="modal" data-bs-target="#editUserModal">
+                                    <i class="bi bi-pencil-square"></i> Sửa
+                                </button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+
+        <!-- Modal Sửa người dùng -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form id="editUserForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chỉnh sửa thông tin người dùng</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="edit_id">
+                            <div class="mb-3">
+                                <label class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" id="edit_hovaten">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ngày sinh</label>
+                                <input type="date" class="form-control" id="edit_ngaysinh">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" id="edit_sodt">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="edit_mail">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tình trạng tài khoản</label>
+                                <select class="form-select" id="edit_tinhtrantk">
+                                    <option value="Đã kích hoạt">Đã kích hoạt</option>
+                                    <option value="Đã khóa">Đã khóa</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Quyền truy cập</label>
+                                <select class="form-select" id="edit_quyentruycap">
+                                    <option value="admin">Quản trị</option>
+                                    <option value="user">Người dùng</option>
+                                    <option value="staff">Nhân viên</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
     @if (session('DeleteSuccess'))
-        <script>
-            alert("{{ session('DeleteSuccess') }}");
-        </script>
+        <script>alert("{{ session('DeleteSuccess') }}");</script>
     @endif
 
     @if (session('DeleteFail'))
-        <script>
-            alert("{{ session('DeleteFail') }}");
-        </script>
+        <script>alert("{{ session('DeleteFail') }}");</script>
     @endif
-@endsection
 
+    <script>
+        window.allUsers = @json($danhsachnguoidung);
+    </script>
+@endsection

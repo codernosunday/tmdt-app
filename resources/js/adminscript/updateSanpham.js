@@ -36,7 +36,30 @@ const formElements = {
     imageError: document.getElementById('imageError'),
     formStatus: document.getElementById('formStatus')
 };
+document.addEventListener('DOMContentLoaded', function () {
+    const ctspSelect = document.getElementById('ctsp');
 
+    ctspSelect.addEventListener('change', function () {
+        const selectedId = this.value;
+        console.log("ID chi tiết sản phẩm được chọn:", selectedId);
+        fetch(`/administrator/chitiet/${selectedId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('soluong').value = data.soluong || 0;
+                document.getElementById('gianhap').value = data.gianhap || 0;
+                document.getElementById('giaban').value = data.giaban || 0;
+                // Gán màu sắc (thuộc tính)
+                const selectThuocTinh = document.getElementById('thuoctinh');
+                if (data.mau) {
+                    selectThuocTinh.value = data.mau;
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi lấy chi tiết sản phẩm:", error);
+                alert("Không thể tải dữ liệu chi tiết sản phẩm.");
+            });
+    });
+});
 // State variables
 let currentDanhMuc = formElements.danhmuc.value;
 let currentCTSP = formElements.ctsp ? formElements.ctsp.value : null;
@@ -69,7 +92,6 @@ window.updateData = function (idsp) {
 
     formElements.formStatus.textContent = 'Đang cập nhật sản phẩm...';
     formElements.formStatus.className = 'status-message processing';
-
     submitFormData(formData)
         .then(handleResponse)
         .catch(handleError);
@@ -251,7 +273,9 @@ function buildFormData(idsp) {
     // Basic information
     formData.append('danhmuc', currentDanhMuc);
     formData.append('id_sp', idsp);
-    if (currentCTSP) formData.append('id_ctsp', currentCTSP);
+    if (formElements.ctsp && formElements.ctsp.value) {
+        formData.append('id_ctsp', formElements.ctsp.value);
+    }
     formData.append('tensp', formElements.tensp.value.trim());
     formData.append('trangthai', trangthai);
 
@@ -285,7 +309,6 @@ function buildFormData(idsp) {
     formData.append('doday', formElements.doday.value.trim());
     formData.append('trongluong', formElements.trongluong.value.trim());
     formData.append('sotrang', formElements.sotrang.value.trim());
-
     return formData;
 }
 

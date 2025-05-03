@@ -15,9 +15,9 @@
                             <tbody>
                                 @foreach($cartItems as $item)
                                     <tr>
-                                        <td class="align-middle">
+                                        {{-- <td class="align-middle">
                                             <button class="btn btn-outline-info"><i class="bi bi-info-circle-fill"></i></button>
-                                        </td>
+                                        </td> --}}
                                         <td class="align-middle">
                                             <img src="{{ $item->anhbase64 ? asset('storage/' . $item->anhbase64) : '' }}" alt="{{$item->tensp}}"
                                                 class="img-thumbnail" width="80">
@@ -41,14 +41,14 @@
                                         </td>
                                         <td class="align-middle">{{ number_format($item->giaban * $item->soluong) }}đ</td>
                                         <td class="align-middle">
-                                            <a href="/trangthanhtoan/{{$item->id_ctgh}}">
-                                                <i class="fas fa-trash-alt"></i>
-                                                mua hàng
-                                            </a>
-                                            <button class="btn btn-outline-danger btn-sm remove-item"
-                                                data-id="{{ $item->id_ctgh }}">
-                                                <i class="bi bi-trash3-fill"></i>
-                                            </button>
+                                            <div class="d-flex gap-2 justify-content-center">
+                                                <a href="/trangthanhtoan/{{ $item->id_ctgh }}" class="btn btn-outline-success btn-sm" title="Thanh toán">
+                                                    <i class="bi bi-wallet2"></i>
+                                                </a>
+                                                <button class="btn btn-outline-danger btn-sm remove-item" data-id="{{ $item->id_ctgh }}">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

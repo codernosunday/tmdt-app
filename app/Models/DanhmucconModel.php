@@ -14,13 +14,18 @@ class DanhmucconModel extends Model
     protected $fillable = [
         'id_dm',
         'id_ctdm',
-        'tendanhmuc',
+        'ten',
         'ghichu',
+        'trangthai'
     ];
     public $timestamps = true;
     protected $dateFormat = 'Y-m-d H:i:s';
     public function danhmuccha()
     {
         return $this->belongsTo(DanhmucsanphamModel::class, 'id_dm');
+    }
+    public function sanpham()
+    {
+        return $this->hasMany(SanphamModel::class, 'id_ctdm', 'id_ctdm');
     }
 }

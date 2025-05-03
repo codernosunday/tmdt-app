@@ -1,4 +1,4 @@
-@vite(['resources/css/auth/auth.css','resources/css/app.css'])
+@vite(['resources/css/auth/auth.css', 'resources/css/app.css'])
 @section('title', 'Đăng nhập')
 @include('layouts.partials.meta')
 
@@ -28,20 +28,22 @@
                     <h1>Đăng nhập.</h1>
                     <p style="font-size: 1.2rem;">Bạn chưa có tài khoản? <a href="/register">Đăng kí</a></p>
 
-                    <div class="d-flex gap-3 mt-3">
+                    {{-- <div class="d-flex gap-3 mt-3">
                         <button class="btn text-black border w-100"
                             style="background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng nhập với Google</span>
+                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng
+                                nhập với Google</span>
                         </button>
                         <button class="btn text-white border-0 w-100"
                             style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
                             <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Log
                                 in with Facebook</span>
                         </button>
-                    </div>
+                    </div> --}}
 
 
-                    <p class="socials-divider"><span class="text-center my-3" style="font-size: 1.2rem;">hoặc</span></p>
+                    {{-- <p class="socials-divider"><span class="text-center my-3"
+                            style="font-size: 1.2rem;">hoặc</span></p> --}}
 
                     <form method="POST" action="">
                         @csrf
@@ -59,21 +61,16 @@
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
                                 <input type="password" class="form-control border-0 shadow-none" name="password"
-                                    placeholder="Nhập mật khẩu của bạn" required>
+                                    id="password" placeholder="Nhập mật khẩu của bạn" required>
+                                <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;">
+                                    <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+                                </span>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <a href="/forgot" class="forgot">Quên mật khẩu?</a>
                         </div>
-
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="terms">
-                            <label class="form-check-label" for="terms">
-                                Tôi đồng ý với  <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của nền tảng
-                            </label>
-                        </div>
-
                         <button type="submit" class="btn btn-danger w-100">Đăng nhập</button>
                     </form>
                 </div>
@@ -83,13 +80,23 @@
     <script>
         var err = document.querySelector(".error");
         var suc = document.querySelector(".success");
-        const timeout = setTimeout(()=>{
-            if(err){
+        const timeout = setTimeout(() => {
+            if (err) {
                 err.style.display = "none";
             }
-            if(suc){
+            if (suc) {
                 suc.style.display = "none";
             }
-        },3000);
+        }, 3000);
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('togglePasswordIcon');
+            const isPassword = passwordInput.type === 'password';
+
+            passwordInput.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
     </script>
 </body>

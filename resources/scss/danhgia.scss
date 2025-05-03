@@ -1,0 +1,116 @@
+/* Đánh giá*/
+
+.review-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-date {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.rating {
+    margin-bottom: 15px;
+}
+
+.star {
+    color: #ffc107;
+    font-size: 24px;
+}
+
+.review-content {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.review-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.like-btn,
+.report-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.like-btn:hover {
+    color: #e74c3c;
+}
+
+.report-btn:hover {
+    color: #e74c3c;
+}
+
+.add-review {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.add-review h3 {
+    margin-top: 0;
+}
+
+.rating-input {
+    margin: 15px 0;
+}
+
+.rating-input .star {
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 100px;
+    margin-bottom: 15px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: #27ae60;
+}

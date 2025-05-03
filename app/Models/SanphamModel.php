@@ -35,7 +35,10 @@ class SanphamModel extends Model
     {
         return $this->hasMany(ChitietsanphamModel::class, 'id_sp', 'id_sp');
     }
-
+    public function danhmuccon()
+    {
+        return $this->belongsTo(DanhmucconModel::class, 'id_ctdm', 'id_ctdm');
+    }
     public function danhgia()
     {
         return $this->hasMany(DanhgiaModel::class, 'id_sp', 'id_sp');
@@ -52,7 +55,7 @@ class SanphamModel extends Model
         ];
 
         // Đếm số lượng đánh giá cho mỗi mức điểm
-        $this->danhgia->each(function($danhgia) use (&$distribution) {
+        $this->danhgia->each(function ($danhgia) use (&$distribution) {
             if (isset($distribution[$danhgia->diem])) {
                 $distribution[$danhgia->diem]++;
             }

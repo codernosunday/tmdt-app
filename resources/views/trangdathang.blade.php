@@ -142,11 +142,28 @@
                                     <div id="nameError" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="address" class="form-label">Địa chỉ nhận hàng*</label>
-                                    <input type="text" class="form-control" id="address" name="address"
-                                        placeholder="Nhập địa chỉ chi tiết" required>
-                                    <div id="addressError" class="invalid-feedback"></div>
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label for="province" class="form-label text-dark">Tỉnh/Thành phố</label>
+                                            <select class="form-control" id="province" required></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="district" class="form-label text-dark">Quận/Huyện</label>
+                                            <select class="form-control" id="district" required></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="ward" class="form-label text-dark">Phường/Xã</label>
+                                            <select class="form-control" id="ward" required></select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="address" class="form-label text-dark">Địa chỉ nhận hàng*</label>
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="Nhập địa chỉ chi tiết" required>
+                                            <div id="addressError" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="form-group mb-3">
                                     <label for="note" class="form-label">Ghi chú</label>
                                     <textarea class="form-control" id="note" name="note" rows="3"
@@ -195,6 +212,12 @@
                                 <img src="https://via.placeholder.com/100x30?text=MoMo" alt="MoMo" class="img-fluid">
                             </div>
                         </div>
+                        <form action="/trangthanhtoan" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
+                                toán MOMO</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -221,7 +244,8 @@
                         <hr>
                         <div class="d-flex justify-content-between fw-bold fs-5">
                             <span>Tổng cộng:</span>
-                            <span class="special" id="tongdh">{{number_format($soluong["tong"], 0, ',', '.') . ' đ'}}</span>
+                            <span class="special"
+                                id="tongdh">{{number_format($soluong["tong"] + $phi["giaphi"], 0, ',', '.') . ' đ'}}</span>
                         </div>
                         <hr>
                         <div class="form-check mb-3">
@@ -239,11 +263,12 @@
     <script>
         window.appData = {
             tongTienGoc: {{ intval($soluong['tong'] ?? 0) }},
+            tonghienthi: {{$soluong['tong'] + $phi["giaphi"]}},
             id_ctsp: {{ $ctsp->id_ctsp }},
             id_phi: {{ $phi["idphi"] }},
-            id_ctgh: {{ $soluong['id_ctgh']}},
+            id_ctgh: {{ $soluong['id_ctgh'] ?? 'null' }},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-                                    };
+        };
     </script>
 @endsection

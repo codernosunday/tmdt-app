@@ -41,3 +41,63 @@ window.deleteSP = function (id) {
             alert(`Lỗi khi xóa sản phẩm: ${error.message}`);
         });
 };
+// bộ lọc danh mục
+const selectBox = document.getElementById('danhmuc');
+// Lọc theo danh mục
+selectBox.addEventListener('change', function () {
+    const selectedValue = selectBox.value;
+    fetch(`/administrator/locsapham/${selectedValue}`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('listsanpham').innerHTML = html;
+        })
+        .catch(error => console.error('Lỗi:', error));
+});
+// bộ lọc tình trạng
+const trangthai = document.getElementById('trangthai');
+trangthai.addEventListener('change', function () {
+    const tt = trangthai.value;
+    const danhmuc = selectBox.value;
+    const data = {
+        'trangthai': tt,
+        'danhmuc': danhmuc
+    }
+    fetch("/administrator/loctrangthai", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content")
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('listsanpham').innerHTML = html;
+        })
+        .catch(error => console.error('Lỗi:', error));
+})
+
+window.searchProduct = function () {
+    const keyword = document.getElementById("search").value;
+    const tt = trangthai.value;
+    const danhmuc = selectBox.value;
+    const data = {
+        'trangthai': tt,
+        'danhmuc': danhmuc,
+        'timkiem': keyword
+    }
+    fetch("/administrator/loctheoten", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content")
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('listsanpham').innerHTML = html;
+        })
+        .catch(error => console.error('Lỗi:', error));
+
+}

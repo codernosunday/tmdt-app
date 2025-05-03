@@ -6,12 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\NguoidungModel;
 use App\Models\GiohangModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     public function loginPage()
     {
         return view('auth.login');
+    }
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     public function registerPage()
@@ -58,7 +65,10 @@ class AuthController extends Controller
             return redirect()->back()
                 ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
         }
-
+        if ($User->tinhtrantk == 'Đã khóa') {
+            return redirect()->back()
+                ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+        }
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
@@ -77,8 +87,12 @@ class AuthController extends Controller
             ]);
 
             if ($user->quyentruycap === "admin") {
+                return redirect('administrator/quanlynguoidung');
+            } else if ($user->quyentruycap === "staff") {
                 return redirect('administrator/quanlysanpham');
-            } else {
+            }else if ($user->quyentruycap === "staff") {
+                return redirect('administrator/quanlysanpham');
+            }else{
                 return redirect('shop');
             }
         } else {
@@ -98,9 +112,6 @@ class AuthController extends Controller
                     return redirect()->back()
                         ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
                 }
-
-                return redirect()->back()
-                    ->with('error', 'Đăng nhập thất bại do mật khẩu không đúng, bạn còn ' . (5 - $countWrongPass) . ' lần thử!');
             } else {
                 return redirect()->back()
                     ->with('error', 'Đăng nhập thất bại,email hoặc mật khẩu không đúng.');

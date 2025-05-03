@@ -22,7 +22,7 @@ class hoadonModel extends Model
         'madonhang',
         'hoten',
         'email',
-        'tongtien',
+        'tontien',
         'diachigiaohang',
         'ghichu',
         'trangthaidonhang',

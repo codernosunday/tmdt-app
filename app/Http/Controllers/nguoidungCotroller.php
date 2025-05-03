@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\diachiModel;
 use Illuminate\Http\Request;
 use App\Models\NguoidungModel;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class nguoidungCotroller extends Controller
 {
@@ -16,13 +18,27 @@ class nguoidungCotroller extends Controller
             return redirect('login');
         }
         $nguoidung = NguoidungModel::where('id_nd', $id)->first();
-        $data = [
-            "hoten" => $nguoidung->hovaten,
-            "email" => $nguoidung->mail,
-            "sodt" => $nguoidung->soDT,
-            "ngaysinh" => $nguoidung->ngaysinh,
-            "tinhtrangtk" => $nguoidung->tinhtrantk
-        ];
+        $diachi = diachiModel::where('id_nd', $id)->first();
+        if ($diachi) {
+            $data = [
+                "hoten" => $nguoidung->hovaten,
+                "email" => $nguoidung->mail,
+                "sodt" => $nguoidung->soDT,
+                "ngaysinh" => $nguoidung->ngaysinh,
+                "tinhtrangtk" => $nguoidung->tinhtrantk,
+                "diachi" => $diachi->diachi1
+            ];
+        } else {
+            $data = [
+                "hoten" => $nguoidung->hovaten,
+                "email" => $nguoidung->mail,
+                "sodt" => $nguoidung->soDT,
+                "ngaysinh" => $nguoidung->ngaysinh,
+                "tinhtrangtk" => $nguoidung->tinhtrantk,
+                "diachi" => 'Chưa có'
+            ];
+        }
+
         return view('nguoidung', compact('data'));
     }
     public function capnhatthongtin(Request $request)
@@ -31,6 +47,7 @@ class nguoidungCotroller extends Controller
             $info = $request->input('field');
             $value = $request->input('value');
             $nguoidung = NguoidungModel::find(session('id'));
+            DB::beginTransaction();
             if (!$nguoidung) {
                 return response()->json([
                     'success' => false,
@@ -57,6 +74,28 @@ class nguoidungCotroller extends Controller
                     'ngaysinh' => $value,
                 ]);
             }
+            if ($info == 'address') {
+                $diachi = diachiModel::where('id_nd', session('id'))->first();
+                if ($diachi) {
+                    $diachi->update([
+                        'diachi1' => $value,
+                        'quocgia' => 'Việt Nam',
+                        'tinh' => $request->input('tinh'),
+                        'huyen' => $request->input('huyen'),
+                        'xa' => $request->input('xa')
+                    ]);
+                } else {
+                    diachiModel::create([
+                        'id_nd'   => session('id'),
+                        'diachi1' => $value,
+                        'quocgia' => 'Việt Nam',
+                        'tinh' => $request->input('tinh'),
+                        'huyen' => $request->input('huyen'),
+                        'xa' => $request->input('xa')
+                    ]);
+                }
+            }
+            DB::commit();
             return response()->json([
                 'success' => true,
                 'message' => 'Cập nhật thành công',

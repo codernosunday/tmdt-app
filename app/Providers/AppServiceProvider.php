@@ -39,11 +39,12 @@ class AppServiceProvider extends ServiceProvider
             $con = 1;
 
             $view->with([
+                'dangnhap' => session('id'),
                 'countProductInCart' => $count,
                 'cart' => $chitietgiohang->get(),
             ]);
         });
-        View::composer('admin.adminlayout.navbar_admin', function ($view) {
+        View::composer(['admin.adminlayout.navbar_admin', 'admin.adminlayout.head'], function ($view) {
             $nguoidung = NguoidungModel::where('id_nd', session('id'))->first();
             $quyen = $nguoidung->quyentruycap;
             $view->with([

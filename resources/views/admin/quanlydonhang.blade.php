@@ -23,20 +23,20 @@
                 </thead>
                 <tbody>
                     @foreach ($danhsachdonhang as $donhang)
-                        <tr>
+                        <tr id="{{$donhang['id_hoadon']}}">
                             <td>{{$donhang["hoten"]}}</td>
                             <td>{{$donhang["sodt"]}}</td>
                             <td>{{$donhang["created_at"]}}</td>
                             <td>{{$donhang["diachigiaohang"]}}</td>
                             <td>{{$donhang["vanchuyen"]["khuvuc"]}}</td>
-                            <td ondblclick="editCell(this)">{{$donhang["trangthaidonhang"]}}</td>
+                            <td ondblclick="editCell(this)" key="trangthaidonhang">{{$donhang["trangthaidonhang"]}}</td>
                             <td>{{$donhang["hinhthucthanhtoan"]}}</td>
                             <td>{{$donhang["ghichu"] ? $donhang["ghichu"] : "Không có"}}</td>
                             <td>
                                 {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
                                 <button class="btn btn-danger btn-sm"><a class="delete_btn"><i
                                             class="bi bi-trash3-fill"></i></a></button>
-                                <button class="btn btn-info btn-sm"><a class="edit_btn" href=""><i
+                                <button class="btn btn-info btn-sm" onclick="suatrangthaidonhang({{$donhang['id_hoadon']}})"><a class="edit_btn" href=""><i
                                             class="bi bi-pencil-square"></i> Sửa</a></button>
                                 <button class="btn btn-info btn-sm"><a class="edit_btn"
                                         href="/administrator/quanlychitietdonhang/{{$donhang['id_hoadon']}}"><i

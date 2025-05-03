@@ -1,0 +1,59 @@
+.dashboard {
+    padding: 20px;
+}
+
+.stats-summary {
+    display: flex;
+    gap: 20px;
+    /* khoảng cách giữa các thẻ */
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 calc(50% - 10px);
+    /* 2 thẻ 1 hàng */
+    min-width: 250px;
+}
+
+.stat-card h3 {
+    margin-top: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.stat-card p {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    color: #4a6fa5;
+}
+
+.chart-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.chart-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 48%;
+    min-width: 300px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+
+    .stat-card,
+    .chart-container {
+        width: 100%;
+    }
+}

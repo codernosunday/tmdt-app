@@ -23,11 +23,6 @@
                             {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
                         </p>
                     </div>
-                    <p class="text-muted">Thương hiệu: {{$chitiet->thuonghieu ?? 'Chưa cập nhật'}}</p>
-                    <p class="text-muted">Còn hàng: {{$chitiet->soluong ?? 0}}</p>
-                    <p class="">
-                        {{ isset($sp->giaban->giaban) ? number_format($sp->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
-                    </p>
                     <!-- Chọn màu sắc -->
                     <div class="mb-3">
                         <label for="chonchitiet" class="form-label">Chọn màu sắc:</label>
@@ -49,14 +44,14 @@
                     <!-- Chọn số lượng -->
                     <div class="mb-3">
                         <label for="soluong" class="form-label">Số lượng:</label>
-                        <input type="number" class="form-control" id="soluong" value="1" min="1">
+                        <input type="number" class="form-control" id="soluongmua" value="1" min="1">
                     </div>
-
                     <!-- Nút hành động -->
                     <button type="button" onclick="themvaogio({{$sp->id_sp}})" class="btn btn-primary btn-add-to-cart">
                         Thêm vào giỏ hàng
                     </button>
-                    <button class="btn btn-primary btn-add-to-cart">Mua ngay</button>
+                    <button class="btn btn-primary btn-add-to-cart" onclick="muangay({{$chitiet->id_ctsp}})">Mua
+                        ngay</button>
                 </div>
 
                 <!-- Thông tin bổ sung -->
@@ -96,6 +91,9 @@
                 <div>{{$chitiet->loiich}}</div> --}}
             </div>
         </div>
-        @include('components.danhgia')
+        <div class="row">
+            {{-- <h3>Đánh giá sản phẩm</h3> --}}
+            @include('components.danhgia')
+        </div>
     </div>
 @endsection

@@ -1,174 +1,91 @@
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
-    <div class="offcanvas-header justify-content-center">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        @if($quyen == 'staff')
+            <h3>Trang nhân viên</h3>
+        @else
+            <h3>Trang quản lý</h3>
+        @endif
+    </div>
+
+    <div class="sidebar-menu">
+        <div class="menu-item">
+            <a href="#">
+                <i class="bi bi-house-door"></i>
+                <span>Trang chủ</span>
+            </a>
+        </div>
+        @if($quyen == 'staff')
+            <div class="menu-item">
+                <a href="#">
+                    <i class="bi bi-cart"></i>
+                    <span>Sản phẩm</span>
+                    <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
+                </a>
+                <div class="submenu">
+                    <a href="/administrator/quanlysanpham"><i class="bi bi-menu-up"></i><span>Danh sách sản phẩm</span></a>
+                    <a href="/administrator/themsanpham"><i class="bi bi-file-plus"></i><span>Thêm sản phẩm</span></a>
+                    <a href="/administrator/quanlydanhmucccon"><i class="bi bi-bookmarks"></i><span>Danh mục sản
+                            phẩm</span></a>
+                    <a href="/administrator/quanlydanhmuccha"><i class="bi bi-bookmark"></i><span>Danh mục cha</span></a>
+                    <a href="/administrator/qlgiasale"><i class="bi bi-wallet"></i><span>Khuyến
+                            mãi</span></a>
+
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Đơn hàng</span>
+                    <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
+                </a>
+                <div class="submenu">
+                    <a href="/administrator/quanlydonhang/all"><i class="bi bi-inboxes"></i><span>Danh sách đơn
+                            hàng</span></a>
+                    <a href="/administrator/phivanchuyen"><i class="bi bi-truck"></i><span>Quản lý phí vận chuyển</span></a>
+                    {{-- <a href="/administrator/quanlydanhmucccon"><span>Danh mục sản phẩm</span></a>
+                    <a href="/administrator/quanlydanhmuccha"><span>Danh mục cha</span></a> --}}
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Thống kê & báo cáo</span>
+                    <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
+                </a>
+                <div class="submenu">
+                    <a href="/administrator/thongkedoanhthu"><i class="bi bi-graph-up"></i><span>Doanh thu</span></a>
+                    <a href="/administrator/thongkenguoidung"><i class="bi bi-person-video3"></i><span>Tài khoản khách
+                            hàng</span></a>
+                    <a href="/administrator/thongkesanpham"><i class="bi bi-cart4"></i><span>Các mặt hàng</span></a>
+                </div>
+            </div>
+        @else
+            <div class="menu-item">
+                <a href="#">
+                    <i class="bi bi-people"></i>
+                    <span>Quản lý người dùng</span>
+                    <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
+                </a>
+                <div class="submenu">
+                    <a href="/administrator/quanlynguoidung"><i class="bi bi-person-badge"></i><span>Danh sách người
+                            dùng</span></a>
+                    <a href="#"><i class="bi bi-person-add"></i><span>Thêm người dùng</span></a>
+                    <a href="/administrator/quanlybinhluan"><i class="bi bi-chat-left-dots"></i><span>Quản lý bình
+                            luận</span></a>
+                </div>
+            </div>
+        @endif
+        {{-- <div class="menu-item">
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+        </div> --}}
+    </div>
+
+    <div class="sidebar-footer">
+        <span>Phiên bản 1.0.1</span>
     </div>
 </div>
-<header>
-    <div class="container py-2">
-        <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
-            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-                <div class="main-logo">
-                    <a class="nav-link {{ request()->is('welcome') ? 'active' : '' }}" href="/">
-                        <img src="{{asset('logobannermain.png')}}" alt="logo" class="img-fluid">
-                    </a>
-                </div>
-            </div>
-            <div
-                class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-                <div class="support-box text-end d-none d-xl-block">
-                    <h3 class="mb-0">Giao diện {{$quyen == 'admin' ? 'người quản trị' : 'nhân viên'}}</h3>
-                </div>
-            </div>
-
-            <div class="container-fluid">
-                <hr class="m-0">
-            </div>
-
-            <div class="container">
-                <nav class="main-menu d-flex navbar navbar-expand-lg ">
-                    <div class="d-flex d-lg-none align-items-end mt-3">
-                        <ul class="d-flex justify-content-end list-unstyled m-0">
-                            <li>
-                                <a href="account.html" class="mx-3">
-                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="mx-3">
-                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                                    aria-controls="offcanvasSearch">
-                                    <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                        aria-labelledby="offcanvasNavbarLabel">
-
-                        <div class="offcanvas-header justify-content-center">
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-
-                        <div class="offcanvas-body justify-content-between">
-                            <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
-                                @if($quyen == 'staff')
-                                    <li class="nav-item">
-                                        <a href="{{ route('home') }}" class="nav-link active">Home</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Quản lý sản phẩm</a>
-                                        <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="/administrator/quanlysanpham" class="dropdown-item">Quản lý sản
-                                                    phẩm</a>
-                                            </li>
-                                            <li><a href="/administrator/themsanpham" class="dropdown-item">Thêm mới sản
-                                                    phẩm</a>
-                                            </li>
-                                            <li><a href="index.html" class="dropdown-item">Thống kê</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Danh mục và khuyến mãi</a>
-                                        <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="/administrator/phanloaivamausac" class="dropdown-item">Phân loại và
-                                                    màu sắc</a>
-                                            </li>
-                                            <li><a href="/administrator/quanlydanhmuccha" class="dropdown-item">Quản lý danh
-                                                    mục cha</a>
-                                            </li>
-                                            <li><a href="/administrator/quanlydanhmucccon" class="dropdown-item">Quản lý
-                                                    danh mục con</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Thêm mới danh mục con</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Thêm mới danh mục cha</a>
-                                            </li>
-                                            <li><a href="/administrator/qlgiasale" class="dropdown-item">Quản lý khuyến
-                                                    mãi</a></li>
-                                            <li><a href="#" class="dropdown-item">Thêm chương trình khuyến mãi</a></li>
-                                            <li><a href="#" class="dropdown-item">Quản lý banner</a></li>
-                                            <li><a href="#" class="dropdown-item">Thêm mới banner</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Quản lý đơn hàng</a>
-                                        <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="/administrator/phivanchuyen" class="dropdown-item">Quản lý phí vận
-                                                    chuyển</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Chờ xác nhận</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Đã xác nhận</a></li>
-                                            <li><a href="#" class="dropdown-item">Đang giao</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Đã giao</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Đã huỷ</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Thống kê và báo cáo</a>
-                                        <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="#" class="dropdown-item">Thống kê người dùng</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Thống kê mặt hàng</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Thông kê theo tháng</a></li>
-                                            <li><a href="#" class="dropdown-item">Thông kê theo quí</a></li>
-                                            <li><a href="#" class="dropdown-item">Thông kê theo năm</a></li>
-                                        </ul>
-                                    </li>
-                                @endif
-                                @if($quyen == 'admin')
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Quản lý người dùng</a>
-                                        <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="/administrator/quanlynguoidung" class="dropdown-item">Quản lý người
-                                                    dùng</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Thêm mới người dùng</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Danh sách chặn</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item">Quản lý địa chỉ</a></li>
-                                            <li><a href="#" class="dropdown-item">Thống kê nâng cao</a></li>
-                                        </ul>
-                                    </li>
-                                @endif
-                            </ul>
-
-                            {{-- <li class="nav-item">
-                                <a href="{{ route('contact') }}" class="nav-link">Phản hồi</a>
-                            </li> --}}
-                            {{-- <div class="d-none d-lg-flex align-items-end">
-                                <ul class="d-flex justify-content-end list-unstyled m-0">
-                                    <li>
-                                        <a href="index.html" class="mx-3">
-                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div> --}}
-                        </div>
-                    </div>
-                </nav>
-            </div>
-</header>

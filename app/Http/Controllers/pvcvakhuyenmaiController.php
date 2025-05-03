@@ -88,17 +88,22 @@ class pvcvakhuyenmaiController extends Controller
 
     public function themgiasale(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'ten' => 'required|string|max:255',
             'magiamgia' => 'required|string|max:255',
             'giasale' => 'required|numeric|min:0',
             'ketthuc' => 'required|date',
+            'trangthai' => 'nullable|boolean'
         ]);
 
-        giasaleModel::create($request->all());
+        // Gán mặc định trạng thái là false nếu không gửi
+        $validated['trangthai'] = $request->has('trangthai') ? true : false;
+
+        giasaleModel::create($validated);
 
         return response()->json(['success' => 'Thêm chương trình khuyến mãi thành công']);
     }
+
 
     public function xemgiasale($id)
     {
@@ -113,13 +118,21 @@ class pvcvakhuyenmaiController extends Controller
             'magiamgia' => 'required|string|max:255',
             'giasale' => 'required|numeric|min:0',
             'ketthuc' => 'required|date',
+            'hoatdong' => 'nullable|boolean'
         ]);
 
         $giasale = giasaleModel::findOrFail($id);
-        $giasale->update($request->all());
+
+        // Chuyển request hoatdong thành trangthai
+        $data = $request->except('hoatdong');
+        $data['trangthai'] = $request->has('hoatdong') ? true : false;
+
+        $giasale->update($data);
 
         return response()->json(['success' => 'Cập nhật chương trình khuyến mãi thành công']);
     }
+
+
 
     public function xoagiasale($id)
     {
