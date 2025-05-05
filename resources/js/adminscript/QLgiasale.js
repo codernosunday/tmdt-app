@@ -29,11 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(`/administrator/xemgiasale/${id}`)
                 .then(res => res.json())
                 .then(data => {
+                    document.getElementById('hoatdong').checked = data.trangthai;
                     document.getElementById('edit_id_giasale').value = data.id_giasale;
                     document.getElementById('edit_ten').value = data.ten;
                     document.getElementById('edit_magiamgia').value = data.magiamgia;
                     document.getElementById('edit_giasale').value = data.giasale;
-                    document.getElementById('edit_ketthuc').value = data.ketthuc;
+                    document.getElementById('edit_ketthuc').value = data.ketthuc.substring(0, 10);
 
                     const myModal = new bootstrap.Modal(document.getElementById('editGiasaleModal'));
                     myModal.show();

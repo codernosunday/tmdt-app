@@ -23,18 +23,20 @@
                     <h1>Đăng kí.</h1>
                     <p style="font-size: 1.2rem;">Bạn đã có tài khoản? <a href="/login">Đăng nhập</a></p>
 
-                    <div class="d-flex gap-3 mt-3">
+                    {{-- <div class="d-flex gap-3 mt-3">
                         <button class="btn text-black border w-100"
                             style="background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng kí với Google</span>
+                            <img src="{{ asset('img/login/google-icon.png') }}" width="24px" alt="Google"> <span>Đăng kí
+                                với Google</span>
                         </button>
                         <button class="btn text-white border-0 w-100"
                             style="background-color: #3b5998; display: flex; align-items: center; justify-content: center;">
-                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook"> <span>Đăng kí với Facebook</span>
+                            <img src="{{ asset('img/login/facebook-icon.svg') }}" width="24px" alt="Facebook">
+                            <span>Đăng kí với Facebook</span>
                         </button>
-                    </div>
+                    </div> --}}
 
-                    <p class="socials-divider"><span class="text-center my-3" style="font-size: 1.2rem;">hoặc</span></p>
+                    <p class="socials-divider"><span class="text-center my-3" style="font-size: 1.2rem;">Hoặc</span></p>
 
                     <form method="POST" action="">
                         @csrf
@@ -47,12 +49,13 @@
                             </div>
                         </div>
 
-                        <div class="form-check mb-3">
+                        {{-- <div class="form-check mb-3">
                             <input type="checkbox" class="form-check-input" id="terms">
                             <label class="form-check-label" for="terms">
-                                Tôi đồng ý với  <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của nền tảng
+                                Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a>
+                                của nền tảng
                             </label>
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-danger w-100">Đăng kí</button>
                     </form>
@@ -64,10 +67,10 @@
 
     <script>
         var col = document.querySelector(".error");
-        const timeout = setTimeout(()=>{
-            if(col){
+        const timeout = setTimeout(() => {
+            if (col) {
                 col.style.display = "none";
             }
-        },3000);
+        }, 3000);
     </script>
 </body>

@@ -86,12 +86,11 @@ class QLDMController extends Controller
         try {
             $validated = $request->validate([
                 'id_dm' => 'required|integer',
-                'ten' => 'nullable|string|max:255',
+                'tendanhmuc' => 'nullable|string|max:255',
                 'ghichu' => 'nullable|string|max:255',
             ]);
 
-            // Tìm bản ghi cần cập nhật
-            $dm = DanhmucsanphamModel::find($validated['ten']);
+            $dm = DanhmucsanphamModel::find($validated['id_dm']);
 
             if (!$dm) {
                 return response()->json([
@@ -99,16 +98,8 @@ class QLDMController extends Controller
                     'message' => 'Danh mục không tồn tại!',
                 ], 404);
             }
-
-            // Chỉ cập nhật những trường có giá trị
-            if (isset($validated['ten'])) {
-                $dm->tendanhmuc = $validated['ten'];
-            }
-            if (isset($validated['ghichu'])) {
-                $dm->ghichu = $validated['ghichu'];
-            }
-
-            $dm->save();
+            unset($validated['id_dm']);
+            $dm->update($validated);
 
             return response()->json([
                 'success' => true,
@@ -154,6 +145,7 @@ class QLDMController extends Controller
                 'id_dm' => 'required|integer',
                 'ten' => 'nullable|string|max:255',
                 'ghichu' => 'nullable|string|max:255',
+                'trangthai' => 'nullable|string|max:255',
             ]);
             $dmc = DanhmucconModel::find($validated['id_ctdm']);
             if (!$dmc) {
@@ -170,6 +162,9 @@ class QLDMController extends Controller
             }
             if (isset($validated['ghichu'])) {
                 $dmc->ghichu = $validated['ghichu'];
+            }
+            if (isset($validated['trangthai'])) {
+                $dmc->trangthai = $validated['trangthai'];
             }
             $dmc->save();
             return response()->json([
@@ -241,5 +236,44 @@ class QLDMController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+    public function xoathuoctinh($id)
+    {
+        $thuoctinh = ThuoctinhspModel::find($id);
+        if ($thuoctinh) {
+            $thuoctinh->delete();
+            return response()->json(['success' => true, 'message' => 'Đã xoá thuộc tính.']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Không tìm thấy thuộc tính.'], 404);
+        }
+    }
+    public function suathuoctinh(Request $request)
+    {
+        $validated = $request->validate([
+            'id_thuoctinh' => 'required|exists:thuoctinhsanpham,id_thuoctinh',
+        ]);
+
+        $thuoctinh = ThuoctinhspModel::find($request->id_thuoctinh);
+
+        // Cập nhật các trường nếu có
+        if ($request->has('loai')) {
+            $thuoctinh->loai = $request->loai;
+        }
+
+        if ($request->has('kichthuoc')) {
+            $thuoctinh->kichthuoc = $request->kichthuoc;
+        }
+
+        if ($request->has('mau')) {
+            $thuoctinh->mau = $request->mau;
+        }
+
+        if ($request->has('mamau')) {
+            $thuoctinh->mamau = $request->mamau;
+        }
+
+        $thuoctinh->save();
+
+        return response()->json(['success' => true, 'message' => 'Cập nhật thuộc tính thành công.']);
     }
 }

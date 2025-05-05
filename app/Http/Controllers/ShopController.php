@@ -18,7 +18,7 @@ class ShopController extends Controller
     {
         // dd(session('email'));
         $dm = DanhmucsanphamModel::all();
-        $danhmuccon = DanhmucconModel::all();
+        $danhmuccon = DanhmucconModel::where('trangthai', 'Hiện')->get();
         $sp = SanphamModel::with('giaban')->get();
         return view('shop', compact('dm', 'danhmuccon'));
     }
@@ -26,9 +26,14 @@ class ShopController extends Controller
     public function locSP($danhmuc)
     {
         if ($danhmuc != 0) {
-            $sp = SanphamModel::where('id_ctdm', $danhmuc)->limit(16)->get();
+            $sp = SanphamModel::where('id_ctdm', $danhmuc)
+                ->where('trangthai', 'conhang')
+                ->limit(16)
+                ->get();
         } else {
-            $sp = SanphamModel::limit(40)->get();
+            $sp = SanphamModel::where('trangthai', 'conhang')
+                ->limit(40)
+                ->get();
         }
         return view('components.sanpham', compact('sp'));
     }
@@ -37,7 +42,8 @@ class ShopController extends Controller
         try {
             $filters = $request->json()->all();
 
-            $query = SanphamModel::with(['giaban', 'chitietsanpham']);
+            $query = SanphamModel::with(['giaban', 'chitietsanpham'])
+                ->where('trangthai', 'conhang');
 
             // Lọc theo danh mục
             if (!empty($filters['id_ctdm'])) {
@@ -65,7 +71,6 @@ class ShopController extends Controller
                     });
                 });
             }
-
             // Lọc theo thương hiệu
             if (!empty($filters['brand']) && is_array($filters['brand'])) {
                 $brandMap = [

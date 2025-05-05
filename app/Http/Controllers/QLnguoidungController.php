@@ -44,7 +44,7 @@ class QLnguoidungController extends Controller
         $nguoidung->ngaysinh    = $data['ngaysinh'] ?? $nguoidung->ngaysinh;
         $nguoidung->soDT        = $data['sodt'] ?? $nguoidung->soDT;
         $nguoidung->tinhtrantk  = $data['tinhtrantk'] ?? $nguoidung->tinhtrantk;
-        $nguoidung->quyentruycap= $data['quyentruycap'] ?? $nguoidung->quyentruycap;
+        $nguoidung->quyentruycap = $data['quyentruycap'] ?? $nguoidung->quyentruycap;
 
         // Lưu lại
         $nguoidung->save();

@@ -28,7 +28,7 @@
                         <th>Xuất xứ</th>
                         <th>Số lượng</th>
                         <th>Thành tiền</th>
-                        <th>Thao tác</th>
+                        {{-- <th>Thao tác</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -40,16 +40,16 @@
                             <td>{{$chitiet["chitietsanpham"]["xuatsu"]}}</td>
                             <td>{{$chitiet["soluong"]}}</td>
                             <td>{{$chitiet["thanhtien"]}}</td>
-                            <td>
-                                {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                                <button class="btn btn-danger btn-sm"><a
-                                        class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
+                            {{-- <td>
+
+                                <button class="btn btn-danger btn-sm"><a class="delete_btn"><i
+                                            class="bi bi-trash3-fill"></i></a></button>
                                 <button class="btn btn-info btn-sm"><a class="edit_btn" href=""><i
                                             class="bi bi-pencil-square"></i> Sửa</a></button>
-                                <button class="btn btn-info btn-sm"><a class="edit_btn"
-                                        href=""><i class="bi bi-pencil-square"></i>
+                                <button class="btn btn-info btn-sm"><a class="edit_btn" href=""><i
+                                            class="bi bi-pencil-square"></i>
                                         Thêm chi tiết sản phẩm</a></button>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

@@ -16,7 +16,9 @@
                 <div class="product-info">
                     <h1>{{$sp->tensp}}</h1>
                     <p class="text-muted">Thương hiệu: {{$chitiet->thuonghieu}}</p>
-                    <p class="text-muted" id="soluong">Còn hàng: {{$chitiet->soluong}}</p>
+                    <p class="text-muted" id="soluong">
+                        {{$chitiet->soluong >= 1 ? 'Còn hàng: ' . $chitiet->soluong : 'hết hàng'}}
+                    </p>
                     <div class="d-flex align-items-center">
                         <p class="mr-2">Giá bán: </p>
                         <p id="giaban" class="giaban">
@@ -47,11 +49,16 @@
                         <input type="number" class="form-control" id="soluongmua" value="1" min="1">
                     </div>
                     <!-- Nút hành động -->
-                    <button type="button" onclick="themvaogio({{$sp->id_sp}})" class="btn btn-primary btn-add-to-cart">
-                        Thêm vào giỏ hàng
-                    </button>
-                    <button class="btn btn-primary btn-add-to-cart" onclick="muangay({{$chitiet->id_ctsp}})">Mua
-                        ngay</button>
+                    @if($chitiet->soluong >= 1)
+                        <button type="button" onclick="themvaogio({{$sp->id_sp}})" class="btn btn-primary btn-add-to-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                        <button class="btn btn-primary btn-add-to-cart" onclick="muangay({{$chitiet->id_ctsp}})">Mua
+                            ngay</button>
+                    @else
+                        <button class="btn btn-primary btn-add-to-cart">Sản phẩm hết hàng</button>
+                    @endif
+
                 </div>
 
                 <!-- Thông tin bổ sung -->

@@ -11,6 +11,7 @@ use App\Models\giasaleModel;
 use App\Models\vanchuyenModel;
 use App\Models\hoadonModel;
 use App\Models\cthoadonModel;
+use App\Models\gianhapModel;
 use App\Models\thanhtoanModel;
 use App\Models\ThuoctinhspModel;
 use Illuminate\Support\Facades\DB;
@@ -25,44 +26,68 @@ class ThanhtoanController extends Controller
         $ctgiohang = ChitietgiohangModel::where('id_ctgh', $id)->first();
         if ($ctgiohang) {
             $ctsp = ChitietsanphamModel::where('id_ctsp', $ctgiohang->id_ctsp)->first();
-            $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
-            $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
-            $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
-            $tongtien = $ctgiohang->soluong * $giaban->giaban;
-            $phi = vanchuyenModel::first();
-            $giohang = session("id_giohang");
-            $soluong = [
-                "tong" => $ctgiohang->soluong * $giaban->giaban + $phi->giaphi,
-                "soluong" => $ctgiohang->soluong,
-                "id_ctgh" => $ctgiohang->id_ctgh
-            ];
-            $phi = [
-                "idphi" => $phi->id_phi,
-                "giaphi" => $phi->giaphi,
-            ];
-            return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+            if ($ctgiohang->soluong <= $ctsp->soluong) {
+                $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
+                $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+                $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
+                $tongtien = $ctgiohang->soluong * $giaban->giaban;
+                $phi = vanchuyenModel::first();
+                $giohang = session("id_giohang");
+                $soluong = [
+                    "tong" => $ctgiohang->soluong * $giaban->giaban,
+                    "soluong" => $ctgiohang->soluong,
+                    "id_ctgh" => $ctgiohang->id_ctgh
+                ];
+                $phi = [
+                    "idphi" => $phi->id_phi,
+                    "giaphi" => $phi->giaphi,
+                ];
+                return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Số lượng quá lớn'
+                ]);
+            }
         } else {
             $soluong = 1;
-            if ($sl) {
-                $soluong = (int) $sl;
-            }
             $ctsp = ChitietsanphamModel::where('id_ctsp', $id)->first();
-            $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
-            $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
-            $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
-            $tongtien = $soluong * $giaban->giaban;
-            $phi = vanchuyenModel::first();
-            $giohang = session("id_giohang");
-            $soluong = [
-                "tong" => $soluong * $giaban->giaban,
-                "soluong" => $soluong,
-                "id_ctgh" => null
-            ];
-            $phi = [
-                "idphi" => $phi->id_phi,
-                "giaphi" => $phi->giaphi,
-            ];
-            return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+            if ($ctsp) {
+                $gianhap = gianhapModel::where('id_ctsp', $id)->first();
+                $tonkho = $gianhap->soluong;
+                if ($sl) {
+                    $soluong = (int) $sl;
+                }
+                if ($soluong <= $tonkho && $soluong >= 1) {
+                    $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
+                    $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+                    $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
+                    $tongtien = $soluong * $giaban->giaban;
+                    $phi = vanchuyenModel::first();
+                    $giohang = session("id_giohang");
+                    $soluong = [
+                        "tong" => $soluong * $giaban->giaban,
+                        "soluong" => $soluong,
+                        "id_ctgh" => null
+                    ];
+                    $phi = [
+                        "idphi" => $phi->id_phi,
+                        "giaphi" => $phi->giaphi,
+                    ];
+                    return view('trangdathang', compact('phi', 'soluong', 'ctsp', 'giaban', 'tongtien', 'sanpham', 'giohang', 'thuoctinh'));
+                } else {
+                    return view('loi');
+                    // return response()->json([
+                    //     'success' => false,
+                    //     'message' => 'Số lượng quá lớn'
+                    // ]);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Không tìm thấy sản phẩm'
+                ]);
+            }
         }
     }
     public function thanhtoansanpham(Request $request)
@@ -106,6 +131,10 @@ class ThanhtoanController extends Controller
             if ($capnhat) {
                 ChitietgiohangModel::where('id_ctgh', $capnhat)->delete();
             }
+            $ctsanpham = ChitietsanphamModel::where('id_ctsp', $request->input('id_ctsp'))->first();
+            $tonkho = $ctsanpham->soluong - $request->input('soluong');
+            $ctsanpham->soluong = $tonkho;
+            $ctsanpham->save();
             DB::commit();
             return response()->json([
                 'dieukien' => true,
@@ -123,7 +152,9 @@ class ThanhtoanController extends Controller
     {
         try {
             $ma = $request->input('magiamgia');
-            $magiamgia = giasaleModel::where('magiamgia', $ma)->first();
+            $magiamgia = giasaleModel::where('magiamgia', $ma)
+                ->where('trangthai', true)
+                ->first();
             if ($magiamgia) {
                 return response()->json([
                     'dieukien' => true,

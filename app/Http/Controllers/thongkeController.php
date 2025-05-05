@@ -99,7 +99,6 @@ class thongkeController extends Controller
             ->orderBy('key_label')
             ->get();
     }
-
     // Hàm lấy dữ liệu theo năm
     private function layDuLieuTheoNam()
     {

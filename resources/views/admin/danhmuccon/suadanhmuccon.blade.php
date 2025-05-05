@@ -89,7 +89,17 @@
                             @endforeach
                         </select>
                     </div>
-
+                    @if($dmcon->trangthai)
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="trangthai" name="trangthai" value="1" {{ $dmcon->trangthai == 'Ẩn' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="themtendmc">Ẩn</label>
+                        </div>
+                    @else
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="trangthai" name="trangthai" value="0">
+                            <label class="form-check-label" for="trangthai">Ẩn</label>
+                        </div>
+                    @endif
                     <div class="mb-3">
                         <label class="form-label">Ghi chú:</label>
                         <textarea class="form-control" id="themghichu" name="ghichu"
@@ -106,10 +116,16 @@
 
 <script>
     window.postThemDMC = function (id) {
+        const checkbox = document.getElementById('trangthai');
+        let trangthai = 'Ẩn'
+        if (checkbox.checked) {
+            trangthai = 'Ẩn';
+        } else {
+            trangthai = 'Hiện';
+        }
         const tendmc = document.getElementById("themtendmc").value.trim();
         const dmcha = document.getElementById("themdmcha").value;
         const ghichu = document.getElementById("themghichu").value.trim();
-
         if (!tendmc || !dmcha) {
             alert("Vui lòng nhập đầy đủ Tên danh mục con và chọn Danh mục cha.");
             return;
@@ -124,7 +140,8 @@
                 id_ctdm: id,
                 ten: tendmc,
                 id_dm: dmcha,
-                ghichu: ghichu
+                ghichu: ghichu,
+                trangthai: trangthai
             }),
         })
             .then(response => response.json())

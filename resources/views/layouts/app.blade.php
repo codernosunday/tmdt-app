@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@vite(['resources/scss/app.scss', 'resources/scss/style.scss', 'resources/css/home/home.css'])
+@vite(['resources/scss/app.scss', 'resources/scss/style.scss', 'resources/css/home/home.css', 'resources/js/search.js'])
 
 <head>
     <title>@yield('title', default: 'Shopen')</title>
@@ -18,4 +18,5 @@
     <div>@yield('content')</div>
     @include('layouts.partials.footer')
 </body>
+
 </html>

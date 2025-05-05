@@ -27,6 +27,8 @@
                     <a href="/administrator/quanlydanhmucccon"><i class="bi bi-bookmarks"></i><span>Danh mục sản
                             phẩm</span></a>
                     <a href="/administrator/quanlydanhmuccha"><i class="bi bi-bookmark"></i><span>Danh mục cha</span></a>
+                    <a href="/administrator/phanloaivamausac"><i class="bi bi-palette"></i><span>Quản lý thuộc
+                            tính</span></a>
                     <a href="/administrator/qlgiasale"><i class="bi bi-wallet"></i><span>Khuyến
                             mãi</span></a>
 
@@ -40,7 +42,7 @@
                     <i class="bi bi-chevron-compact-down dropdown-icon" style="margin-left: auto;"></i>
                 </a>
                 <div class="submenu">
-                    <a href="/administrator/quanlydonhang/all"><i class="bi bi-inboxes"></i><span>Danh sách đơn
+                    <a href="/administrator/quanlydonhang/"><i class="bi bi-inboxes"></i><span>Danh sách đơn
                             hàng</span></a>
                     <a href="/administrator/phivanchuyen"><i class="bi bi-truck"></i><span>Quản lý phí vận chuyển</span></a>
                     {{-- <a href="/administrator/quanlydanhmucccon"><span>Danh mục sản phẩm</span></a>
@@ -72,7 +74,8 @@
                     <a href="/administrator/quanlynguoidung"><i class="bi bi-person-badge"></i><span>Danh sách người
                             dùng</span></a>
                     <a href="#"><i class="bi bi-person-add"></i><span>Thêm người dùng</span></a>
-                    <a href="#"><i class="bi bi-chat-left-dots"></i><span>Quản lý bình luận</span></a>
+                    <a href="/administrator/quanlybinhluan"><i class="bi bi-chat-left-dots"></i><span>Quản lý bình
+                            luận</span></a>
                 </div>
             </div>
         @endif

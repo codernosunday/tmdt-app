@@ -62,7 +62,6 @@ function updateCategoryPerformanceChart(categoryPerformance) {
     categoryPerfChart.data.datasets[1].data = profits;
     categoryPerfChart.update();
 }
-
 // Gọi fetch khi trang load
 document.addEventListener('DOMContentLoaded', fetchThongKeSanPham);
 

@@ -8,7 +8,7 @@ class DanhgiaModel extends Model
 {
     protected $table = 'binhluan';
     protected $primaryKey = 'id_bl';
-    
+
     protected $fillable = [
         'id_sp',
         'id_nd',
@@ -34,7 +34,6 @@ class DanhgiaModel extends Model
     {
         return $this->belongsTo(ChitietSanphamModel::class, 'id_ctsp', 'id_ctsp');
     }
-
     public function nguoidung()
     {
         return $this->belongsTo(NguoidungModel::class, 'id_nd', 'id_nd');

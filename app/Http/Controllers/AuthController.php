@@ -60,12 +60,19 @@ class AuthController extends Controller
         ];
 
         $User = NguoidungModel::where('mail', $request->email)->first();
-
-        if ($User && $User->solannhapsai >= 5) {
+        if ($User) {
+            if ($User->solannhapsai >= 5) {
+                return redirect()->back()
+                    ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+            }
+            if ($User->tinhtrantk == 'Đã khóa') {
+                return redirect()->back()
+                    ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+            }
+        } else {
             return redirect()->back()
-                ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+                ->with('error', 'Sai tài khoản hoặc mật khẩu');
         }
-
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
@@ -84,10 +91,12 @@ class AuthController extends Controller
             ]);
 
             if ($user->quyentruycap === "admin") {
+                return redirect('administrator/quanlynguoidung');
+            } else if ($user->quyentruycap === "staff") {
                 return redirect('administrator/quanlysanpham');
-            }else if ($user->quyentruycap === "staff") {
+            } else if ($user->quyentruycap === "staff") {
                 return redirect('administrator/quanlysanpham');
-            }else{
+            } else {
                 return redirect('shop');
             }
         } else {

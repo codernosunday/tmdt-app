@@ -26,17 +26,17 @@
                                     style="width: 15px; height: 15px; background-color: {{ $i->mamau }}; border: 1px solid #ccc;">
                                 </div>
                             </td>
-                            <td ondblclick="editCell(this)" data-field="ten">{{$i->loai}}</td>
-                            <td ondblclick="editCell(this)" data-field="ghichu">{{$i->kichthuoc}}</td>
-                            <td ondblclick="editCell(this)" data-field="ghichu">{{$i->mau}}
+                            <td ondblclick="editCell(this)" data-field="loai">{{$i->loai}}</td>
+                            <td ondblclick="editCell(this)" data-field="kichthuoc">{{$i->kichthuoc}}</td>
+                            <td ondblclick="editCell(this)" data-field="mau">{{$i->mau}}
                             </td>
-                            <td ondblclick="editCell(this)" data-field="ghichu">{{$i->mamau}}</td>
+                            <td ondblclick="editCell(this)" data-field="mamau">{{$i->mamau}}</td>
                             <td>
                                 {{-- <button class="btn btn-warning btn-sm me-1">Sửa</button> --}}
-                                <button class="btn btn-danger btn-sm" onclick="deleteDanhmuc({{$i->id_dm}}) "><a
+                                <button class="btn btn-danger btn-sm" onclick="deleteThuoctinh({{$i->id_thuoctinh}}) "><a
                                         class="delete_btn"><i class="bi bi-trash3-fill"></i></a></button>
-                                <button class="btn btn-info btn-sm" onclick="saveRow(this,{{$i->id_dm}})">
-                                    <div class="edit_btn"><i class="bi bi-pencil-square"></i> Sửa</div>
+                                <button class="btn btn-info btn-sm" onclick="saveRow(this,{{$i->id_thuoctinh}})">
+                                    <div class="edit_btn"><i class="bi bi-pencil-square"></i></div>
                                 </button>
                             </td>
                         </tr>

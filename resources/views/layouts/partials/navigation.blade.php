@@ -1,3 +1,4 @@
+@vite(['resources/js/search.js'])
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
     <div class="offcanvas-header justify-content-center">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -8,11 +9,14 @@
                 Tìm kiếm
             </h4>
             <div class="search-bar border border-success mb-2 rounded-2 overflow-hidden d-flex p-2">
-                <input type="text" class="form-control border-0" placeholder="Tìm kiếm sản phẩm..." />
+                <input type="text" class="form-control border-0" id='idsearch' placeholder="Tìm kiếm sản phẩm..." />
                 <button class="btn btn-primary">
                     <span class="iconify" data-icon="mdi:search" style="font-size: 20px;"></span>
                 </button>
             </div>
+            <ul id="search-results-mobile" class="list-group mt-2 bg-white shadow"
+                style="display: none; max-height: 300px; overflow-y: auto; border-radius: 4px;">
+            </ul>
         </div>
     </div>
 </div>
@@ -27,11 +31,18 @@
                 </div>
             </div>
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border border-black rounded-2 overflow-hidden d-flex custom-border hover-effect">
-                    <input type="text" class="form-control border-0 px-3" placeholder="Tìm kiếm sản phẩm..." />
-                    <button class="btn btn-outline-success d-flex align-items-center justify-content-center">
-                        <span class="iconify" data-icon="mdi:search" style="font-size: 20px;"></span>
-                    </button>
+                <div class="position-relative">
+                    <div
+                        class="search-bar border border-black rounded-2 overflow-hidden d-flex custom-border hover-effect">
+                        <input type="text" class="form-control border-0 px-3" id="idsearchs"
+                            placeholder="Tìm kiếm sản phẩm..." />
+                        <button class="btn btn-outline-success d-flex align-items-center justify-content-center">
+                            <span class="iconify" data-icon="mdi:search" style="font-size: 20px;"></span>
+                        </button>
+                    </div>
+                    <ul id="search-results" class="list-group bg-white shadow"
+                        style="position: absolute; top: 100%; left: 0; right: 0; z-index: 1050; display: none; max-height: 300px; overflow-y: auto; border-radius: 0 0 4px 4px;">
+                    </ul>
                 </div>
             </div>
             <div
@@ -66,11 +77,11 @@
                             <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="wishlist.html" class="mx-3">
                             <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a href="/cart/" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
@@ -135,15 +146,6 @@
                         <li class="nav-item">
                             <a href="{{ route('shop') }}" class="nav-link">Shop</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('blog') }}" class="nav-link">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('contact') }}" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Others</a>
-                        </li> --}}
                     </ul>
 
                     <div class="d-none d-lg-flex align-items-end">
@@ -151,11 +153,6 @@
                             <li>
                                 <a href="/nguoidung/" class="mx-3">
                                     <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html" class="mx-3">
-                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                 </a>
                             </li>
 
@@ -168,36 +165,11 @@
                                         {{ $countProductInCart }}
                                     </span>
                                 </a>
-
-                                {{-- <div class="list-shopping-cart">
-                                    @if ($countProductInCart > 0)
-                                    <div class="list-product-cart">
-                                        @foreach ($cart as $item)
-                                        <div class="product-cart-item d-flex align-items-center gap-2">
-                                            <img src="{{ $item->anh }}" alt="product" class="img-fluid">
-                                            <div class="product-cart-info">
-                                                <h5>{{ $item->tensp }}</h5>
-                                                <p>{{ number_format($item->price, 0, ',', '.') }} đ</p>
-                                                <p>Số lượng: {{ $item->quantity }}</p>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @else
-                                    <img src="{{ asset('img/shopping-cart/shopping-cart.png') }}"
-                                        alt="Giỏ hàng trống" class="img-no-cart">
-                                    <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
-                                    @endif
-                                </div> --}}
                             </li>
                             <li class="deliver">
                                 <a href="/theodoidonhang" class="mx-3">
                                     <iconify-icon icon="mdi:truck-delivery"
                                         class="fs-4 position-relative"></iconify-icon>
-                                    {{-- <span
-                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                        {{ $countProductInCart }}
-                                    </span> --}}
                                 </a>
                             </li>
                         </ul>
