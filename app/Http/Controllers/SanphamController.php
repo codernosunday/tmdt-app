@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\DanhmucconModel;
 use App\Models\DanhmucsanphamModel;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class SanphamController extends Controller
 
         return view('trangsanpham', compact(
             'sp',
-            'chitiet', // change from ctsp to chitiet
+            'chitiet',
             'dschitiet',
             'splienquan',
             'danhgia',
@@ -72,5 +73,29 @@ class SanphamController extends Controller
                 'success' => false
             ], 400);
         }
+    }
+    public function timkiemsanpham(Request $request)
+    {
+        $keyword = $request->get('keyword');
+
+        if (!$keyword) {
+            return response()->json([]);
+        }
+
+        $sanphams = SanphamModel::where('tensp', 'like', "%$keyword%")
+            ->select('id_sp', 'tensp')
+            ->limit(10)
+            ->get();
+
+        $results = $sanphams->map(function ($sp) {
+            $slugTensp = Str::slug($sp->tensp);
+            return [
+                'id' => $sp->id_sp,
+                'name' => $sp->tensp,
+                'slug' => "sanpham/{$slugTensp}/{$sp->id_sp}"
+            ];
+        });
+
+        return response()->json($results);
     }
 }

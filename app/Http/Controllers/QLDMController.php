@@ -237,4 +237,43 @@ class QLDMController extends Controller
             ], 500);
         }
     }
+    public function xoathuoctinh($id)
+    {
+        $thuoctinh = ThuoctinhspModel::find($id);
+        if ($thuoctinh) {
+            $thuoctinh->delete();
+            return response()->json(['success' => true, 'message' => 'Đã xoá thuộc tính.']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Không tìm thấy thuộc tính.'], 404);
+        }
+    }
+    public function suathuoctinh(Request $request)
+    {
+        $validated = $request->validate([
+            'id_thuoctinh' => 'required|exists:thuoctinhsanpham,id_thuoctinh',
+        ]);
+
+        $thuoctinh = ThuoctinhspModel::find($request->id_thuoctinh);
+
+        // Cập nhật các trường nếu có
+        if ($request->has('loai')) {
+            $thuoctinh->loai = $request->loai;
+        }
+
+        if ($request->has('kichthuoc')) {
+            $thuoctinh->kichthuoc = $request->kichthuoc;
+        }
+
+        if ($request->has('mau')) {
+            $thuoctinh->mau = $request->mau;
+        }
+
+        if ($request->has('mamau')) {
+            $thuoctinh->mamau = $request->mamau;
+        }
+
+        $thuoctinh->save();
+
+        return response()->json(['success' => true, 'message' => 'Cập nhật thuộc tính thành công.']);
+    }
 }

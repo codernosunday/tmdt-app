@@ -9,26 +9,30 @@ use Illuminate\Support\Facades\Log;  // <-- thêm dòng này
 
 class QLdonhangController extends Controller
 {
-    function pagesQLdonhang($select)
+    function pagesQLdonhang()
     {
-        $trangthai = collect([
-            'choxacnhan' => 'chờ xác nhận',
-            'daxacnhan' => 'đã xác nhận',
-            'danggiaohang' => 'đang giao hàng',
-            'dagiohang' => 'đã giao hàng',
-            'dahuy' => 'đã hủy'
-        ]);
+        $danhsachdonhang = hoadonModel::with(['vanchuyen', 'nguoidung', 'hinhthuc'])->get()->toArray();
+        return view('admin.quanlydonhang', compact('danhsachdonhang'));
+    }
+    //loc don hang
+    public function locDonHang(Request $request)
+    {
+        // Get the 'trangthai' parameter from the request
+        $trangthai = $request->query('trangthai');
 
-        if($select == 'all'){
-            $danhsachdonhang = hoadonModel::with(['vanchuyen', 'nguoidung', 'hinhthuc'])->get()->toArray();
-            return view('admin.quanlydonhang', compact('danhsachdonhang'));
-        }else if($trangthai->has($select)){
-            $danhsachdonhang = hoadonModel::where("trangthaidonhang", $trangthai[$select])->with(['vanchuyen', 'nguoidung', 'hinhthuc'])->get()->toArray();
-            return view('admin.quanlydonhang', compact('danhsachdonhang'));
+        // Start building the query on the hoadonModel
+        $query = hoadonModel::with(['vanchuyen', 'nguoidung', 'hinhthuc']);  // Eager load relationships
 
-        }else{
-            dd('không tìm thấy trạng thái đơn hàng');
+        // If 'trangthai' is not empty, add the filter condition
+        if (!empty($trangthai)) {
+            $query->where('trangthaidonhang', $trangthai);
         }
+
+        // Get the orders, ordered by the created_at column
+        $danhsachdonhang = $query->orderBy('created_at', 'desc')->get();
+
+        // Return the view with the filtered list of orders
+        return view('admin.bangdonhang', compact('danhsachdonhang'));
     }
 
     public function suaTTDH(Request $request)
