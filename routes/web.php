@@ -140,6 +140,9 @@ Route::post('/shop/locnangcao', [ShopController::class, 'locnangcao']);
 
 // dat hang - theo doi don hang
 Route::get('/trangthanhtoan/{ctgh}/{sl?}', [ThanhtoanController::class, 'trangthanhtoan']);
+Route::post('/trangthanhtoan', [ThanhtoanController::class, 'vnpay_payment']);
+
+
 Route::get('/theodoidonhang', [ThanhtoanController::class, 'theodoidonhang']);
 Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 //theo doi don hang
