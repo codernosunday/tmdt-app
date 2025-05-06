@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\danhgiaController;
 use App\Http\Controllers\nguoidungCotroller;
+use App\Http\Controllers\nhacungcapController;
 use App\Http\Controllers\pvcvakhuyenmaiController;
 use App\Http\Controllers\QLDMController;
 
@@ -217,4 +218,10 @@ Route::middleware(['admin.access'])->group(function () {
     Route::post('/administrator/loctheoten', [QLsanphamController::class, 'loctheoten']);
     //loc don hang
     Route::get('/administrator/donhang/locdonhang', [QLdonhangController::class, 'locDonHang']);
+    //nha cung cap
+    Route::get('/administrator/nhacungcap', [nhacungcapController::class, 'trangnhacungcap']);
+    Route::post('/administrator/themnhacungcap', [nhacungcapController::class, 'themnhacungcap']);
+    Route::delete('/administrator/xoanhacungcap/{id}', [nhacungcapController::class, 'xoanhacungcap']);
+    Route::get('/administrator/xemnhacungcap/{id}', [nhacungcapController::class, 'xemnhacungcap']);
+    Route::post('/administrator/capnhatnhacungcap/{id}', [nhacungcapController::class, 'capnhatnhacungcap']);
 });

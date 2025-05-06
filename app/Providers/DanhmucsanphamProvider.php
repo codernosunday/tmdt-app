@@ -30,7 +30,7 @@ class DanhmucsanphamProvider extends ServiceProvider
         //
         View::composer('layouts.partials.navigation', function ($view) {
             $danhMucSp = DanhmucsanphamModel::all();
-            $danhmuccon = DanhmucconModel::all();
+            $danhmuccon = DanhmucconModel::where('trangthai', 'Hiện')->get();
             $view->with([
                 'danhMucSp' => $danhMucSp,
                 'danhmuccon' => $danhmuccon
@@ -43,7 +43,7 @@ class DanhmucsanphamProvider extends ServiceProvider
         // });
         View::composer('components.listsanpham', function ($view) {
 
-            $danhmuccon = DanhmucconModel::all();
+            $danhmuccon = DanhmucconModel::where('trangthai', 'Hiện')->get();
             $view->with('danhmuccon', $danhmuccon);
         });
     }

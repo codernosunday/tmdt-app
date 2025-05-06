@@ -11,6 +11,7 @@ use App\Models\ChitietsanphamModel;
 use App\Models\giabanModel;
 use App\Models\gianhapModel;
 use App\Models\DanhmucconModel;
+use App\Models\nhacungcapModel;
 use App\Models\ThuoctinhspModel;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,16 +22,18 @@ class QLsanphamController extends Controller
     {
         $sp = SanphamModel::all();
         $danhmucs = DanhmucconModel::all();
-        return view('admin.quanlysanpham', compact('sp', 'danhmucs'));
+        $ncc = nhacungcapModel::all();
+        return view('admin.quanlysanpham', compact('sp', 'danhmucs', 'ncc'));
     }
     function bangsanpham($id)
     {
+        $ncc = nhacungcapModel::all();
         if ($id == 'all') {
             $sp = SanphamModel::paginate(20);
         } else {
             $sp = SanphamModel::where('id_ctdm', $id)->paginate(20);
         }
-        return view('admin.bangsanpham', compact('sp'));
+        return view('admin.bangsanpham', compact('sp', 'ncc'));
     }
     //loc san pham
     function loctrangthai(Request $request)

@@ -31,6 +31,7 @@
                             tính</span></a>
                     <a href="/administrator/qlgiasale"><i class="bi bi-wallet"></i><span>Khuyến
                             mãi</span></a>
+                    <a href="/administrator/nhacungcap"><i class="bi bi-shop-window"></i><span>Nhà cung cấp</span></a>
 
                 </div>
             </div>
