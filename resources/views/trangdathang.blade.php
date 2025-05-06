@@ -203,21 +203,28 @@
                         </div>
                         <div class="payment-method">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="momo">
-                                <label class="form-check-label fw-bold" for="momo">
-                                    Ví điện tử MoMo
+                                <input class="form-check-input" type="radio" name="payment" id="vnpay">
+                                <label class="form-check-label fw-bold" for="vnpay">
+                                    Ví điện tử VNPAY
                                 </label>
+                                <!-- <form action="/trangthanhtoan" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
+                                        toán VNPAY</button>
+                                </form> -->
                             </div>
-                            <div class="mt-2 ps-4">
-                                <img src="https://via.placeholder.com/100x30?text=MoMo" alt="MoMo" class="img-fluid">
+                            <div 
+                                class="m-0 p-0 "
+                                style="display: flex; justify-content: center; align-items: center;"
+                            >
+                                <img 
+                                    src="https://cdn.brandfetch.io/idV02t6WJs/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" 
+                                    alt="VnPay" 
+                                    class="img-fluid"
+                                    style="width: 200px; height: 200px;"
+                                >
                             </div>
                         </div>
-                        <form action="/trangthanhtoan" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
-                                toán MOMO</button>
-                        </form>
-
                     </div>
                 </div>
             </div>
@@ -270,5 +277,16 @@
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
         };
+
+        const listItem = document.querySelectorAll(".payment-method");
+        listItem.forEach(item=> {
+            item.addEventListener("click", function() {
+                listItem.forEach(item=> {
+                    item.classList.remove('selected');
+                });
+                item.querySelector('.form-check-input').checked = true;
+                item.classList.add('selected');
+            });
+        });
     </script>
 @endsection

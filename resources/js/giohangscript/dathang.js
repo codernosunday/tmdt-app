@@ -41,6 +41,7 @@ window.magiamgia = function () {
             console.error('Error:', error);
         });
 }
+
 window.dathang = function () {
     const sodt = document.getElementById('phone').value.trim();
     const ten = document.getElementById('name').value.trim();
@@ -49,7 +50,7 @@ window.dathang = function () {
     const ghichu = document.getElementById('note').value.trim();
     const tructiep = document.getElementById('cod');
     const banking = document.getElementById('banking');
-    const momo = document.getElementById('momo');
+    const vnpay = document.getElementById('vnpay');
     const districtSelect = document.getElementById('district');
     const districtText = districtSelect.options[districtSelect.selectedIndex].text;
     const provinceSelect = document.getElementById('province');
@@ -64,8 +65,8 @@ window.dathang = function () {
     if (banking.checked) {
         hinhthuctt = 'Thanh toán bằng tài khoản ngân hàng'
     }
-    if (momo.checked) {
-        hinhthuctt = 'Thanh toán bằng ví momo'
+    if (vnpay.checked) {
+        hinhthuctt = 'Thanh toán bằng ví vnpay'
     }
     const dathang = {
         'id_ctgh': window.appData.id_ctgh,
@@ -97,7 +98,8 @@ window.dathang = function () {
             .then(data => {
                 if (data.dieukien) {
                     alert(data.message);
-                    window.location.href = "/theodoidonhang"
+                    if(data.vnpayLink) window.location.href = data.vnpayLink;
+                    else window.location.href = "/theodoidonhang";
                 }
             })
             .catch(err => {

@@ -139,6 +139,7 @@ class ThanhtoanController extends Controller
             return response()->json([
                 'dieukien' => true,
                 'message' => 'Đặt hàng thành công mã đơn của bạn là ' . $madonhang . ' hãy lưu nó để theo dõi lịch sử đơn hàng',
+                'vnpayLink' => $request->input('hinhthuctt') == 'Thanh toán bằng ví vnpay' ? $this->vnpay_payment($madonhang, $request->input('tong')):null,
             ], 201);
         } catch (Exception $e) {
             return response()->json([
@@ -236,17 +237,17 @@ class ThanhtoanController extends Controller
         ]);
     }
 
-    public function vnpay_payment(Request $request)
+    public function vnpay_payment(string $madonhang, string $tongtien)
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "https://localhost/vnpay_php/vnpay_return.php";
         $vnp_TmnCode = "6CFRV4XK";//Mã website tại VNPAY 
         $vnp_HashSecret = "VRUHNR4SR0DI8PUPJPWPIXZMDPP7FL8C"; //Chuỗi bí mật
         
-        $vnp_TxnRef = "MADONHANG01";
+        $vnp_TxnRef = $madonhang;
         $vnp_OrderInfo = "Thanh toán hóa đơn";
         $vnp_OrderType = "shopen";
-        $vnp_Amount = 300000 * 100; //Giá tiền
+        $vnp_Amount = $tongtien * 100; //Giá tiền
         $vnp_Locale = "VN";
         $vnp_BankCode = "NCB";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
@@ -299,7 +300,7 @@ class ThanhtoanController extends Controller
             header('Location: ' . $vnp_Url);
             die();
         } else {
-            return redirect($returnData['data']);
+            return $returnData['data'];
         }
     }
 }

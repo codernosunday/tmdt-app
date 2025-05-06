@@ -143,7 +143,6 @@ Route::get('/theodoidonhang/{mahd}', [ThanhtoanController::class, 'kiemtradonhan
 Route::post('/dathang/magiamgia', [ThanhtoanController::class, 'sdMagiamgia']);
 // Route for danhgia
 Route::post('/danhgiasanpham/{id}', [danhgiaController::class, 'danhgia']);
-Route::post('/donhang/dathang', [ThanhtoanController::class, 'thanhtoansanpham']);
 
 //admin
 Route::middleware(['admin.access'])->group(function () {
