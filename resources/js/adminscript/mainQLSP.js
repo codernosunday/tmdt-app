@@ -101,3 +101,17 @@ window.searchProduct = function () {
         .catch(error => console.error('Lỗi:', error));
 
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Bắt sự kiện click nút "Nhập hàng"
+    document.querySelectorAll('.form_nhap').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            var idSanPham = this.getAttribute('data-id');
+            document.getElementById('idSanPham').value = idSanPham; // Gán id sản phẩm vào form
+
+            var nhapHangModal = new bootstrap.Modal(document.getElementById('nhapHangModal'));
+            nhapHangModal.show();
+        });
+    });
+});

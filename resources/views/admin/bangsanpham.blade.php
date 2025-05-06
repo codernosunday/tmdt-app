@@ -10,7 +10,11 @@
     <tbody>
         @foreach ($sp as $i)
             <tr>
-                <td class="text-center"><i class="bi bi-eye-fill"></i></td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-success form_nhap" data-id="{{ $i->id_sp }}">
+                        <i class="bi bi-plus-circle"></i>
+                    </button>
+                </td>
                 <td>{{$i->tensp}}</td>
                 <td class="text-center summary">
                     <div class="image-container">
@@ -38,3 +42,44 @@
         {{ $sp->links('pagination::bootstrap-4') }}
     </div>
 @endif
+<!-- Modal nhập hàng -->
+<div class="modal fade" id="nhapHangModal" tabindex="-1" aria-labelledby="nhapHangModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nhapHangModalLabel">Nhập hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNhapHang">
+                    <input type="hidden" id="idSanPham" name="idSanPham">
+
+                    <div class="mb-3">
+                        <label for="giaNhap" class="form-label">Giá nhập</label>
+                        <input type="number" class="form-control" id="giaNhap" name="giaNhap" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="soLuong" class="form-label">Số lượng nhập</label>
+                        <input type="number" class="form-control" id="soLuong" name="soLuong" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nhaCungCap" class="form-label">Nhà cung cấp</label>
+                        <select class="form-select" id="nhaCungCap" name="nhaCungCap" required>
+                            <option value="">Chọn nhà cung cấp</option>
+                            @foreach($ncc as $n)
+                                <option value="{{ $n->id_nhacungcap}}">{{ $n->ten }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="submit" form="formNhapHang" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -37,7 +37,7 @@
         </div>
         <div class="table-responsive">
             <div id="listsanpham">
-
+                @include('admin.bangsanpham')
             </div>
         </div>
     </div>

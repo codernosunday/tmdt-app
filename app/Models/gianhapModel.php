@@ -28,4 +28,8 @@ class gianhapModel extends Model
     {
         return $this->belongsTo(ChitietsanphamModel::class, 'id_ctsp');
     }
+    public function nhacungcap()
+    {
+        return $this->hasMany(nhacungcapModel::class, 'id_nhacungcap');
+    }
 }

@@ -10,7 +10,7 @@
                         <div class="content-wrapper col-md-7 p-5 mb-5 ">
                             <div class="secondary-font text-primary text-uppercase mb-4">Văn phòng phẩm giá rẻ</div>
                             <h2 class="banner-title display-1 fw-normal">Nhập mã <span
-                                    class="text-primary">THANG4</span> để giảm 29k</h2>
+                                    class="text-primary">THANG5</span> để giảm 19k</h2>
                             <a href="/shop" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                 Mua ngay
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">

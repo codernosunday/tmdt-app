@@ -4,24 +4,27 @@
 @section('title', $category->ten ?? 'Danh mục')
 
 @section('content')
-<div class="container my-5">
-    <h1>{{ $category->ten ?? 'Danh mục' }}</h1>
-    <div class="row">
-        @foreach($thongtinsanpham as $product)
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <a href="">
-                    <img src="{{ $product['anh'] }}" class="card-img-top" alt="{{  $product['tensp'] }}">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $product['tensp'] }}</h5>
-                    <p class="card-text text-danger">
-                        {{ number_format($product['giaban']['giaban'] ?? 0, 0, ',', '.') }} VNĐ
-                    </p>
+    @php
+        use Illuminate\Support\Str;
+    @endphp
+
+    <div class="container my-5">
+        <h1>{{ $category->ten ?? 'Danh mục' }}</h1>
+        <div class="row">
+            @foreach($thongtinsanpham as $product)
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <a href="/sanpham/{{ $product['tensp'] }}/{{$product['id_sp']}}">
+                            <img src="{{ $product['anhbase64'] ? asset('storage/' . $product['anhbase64']) : '' }}"
+                                alt="{{ $product['tensp'] }}">
+                        </a>
+                        <h5 class="product-name">{{ Str::limit($product['tensp'], 50) }}</h5>
+                        <p class="product-price">
+                            {{ number_format($product['giaban']['giaban'] ?? 0, 0, ',', '.') }} VNĐ
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
-</div>
 @endsection
