@@ -1,7 +1,7 @@
 <table class="table table-hover table-bordered align-middle">
     <thead class="table-header">
         <tr>
-            <th class="text-center" style="width: 50px;"><i class="bi bi-info-circle-fill"></i></th>
+            <th class="text-center" style="width: 50px;"></th>
             <th>Tên sản phẩm <i class="bi bi-sort-alpha-up"></i></th>
             <th class="text-center" style="width: 100px;">Ảnh</th>
             <th class="text-center" style="width: 220px;">Thao tác</th>
@@ -11,9 +11,7 @@
         @foreach ($sp as $i)
             <tr>
                 <td class="text-center">
-                    <button class="btn btn-sm btn-success form_nhap" data-id="{{ $i->id_sp }}">
-                        <i class="bi bi-plus-circle"></i>
-                    </button>
+                    <a href="/administrator/gianhap/{{ $i->id_sp }}"><i class="bi bi-plus-circle"></i></a>
                 </td>
                 <td>{{$i->tensp}}</td>
                 <td class="text-center summary">
@@ -43,7 +41,7 @@
     </div>
 @endif
 <!-- Modal nhập hàng -->
-<div class="modal fade" id="nhapHangModal" tabindex="-1" aria-labelledby="nhapHangModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="nhapHangModal" tabindex="-1" aria-labelledby="nhapHangModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -69,7 +67,7 @@
                         <select class="form-select" id="nhaCungCap" name="nhaCungCap" required>
                             <option value="">Chọn nhà cung cấp</option>
                             @foreach($ncc as $n)
-                                <option value="{{ $n->id_nhacungcap}}">{{ $n->ten }}</option>
+                            <option value="{{ $n->id_nhacungcap}}">{{ $n->ten }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -82,4 +80,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

@@ -30,6 +30,6 @@ class gianhapModel extends Model
     }
     public function nhacungcap()
     {
-        return $this->hasMany(nhacungcapModel::class, 'id_nhacungcap');
+        return $this->belongsTo(nhacungcapModel::class, 'id_nhacungcap');
     }
 }

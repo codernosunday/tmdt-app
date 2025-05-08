@@ -94,14 +94,29 @@
                     <div class="form-group">
                         <label for="soluong">Số lượng trong kho *</label>
                         <input type="number" id="soluong" name="soluong" value="{{$data["soluong"]}}"
-                            class="form-control" placeholder="0" min="0" required>
+                            class="form-control" placeholder="0" min="0" required disabled>
                     </div>
 
+
                     <div class="form-group">
-                        <label for="gianhap">Giá nhập (VND) *</label>
-                        <input type="number" id="gianhap" name="gianhap"
-                            value="{{ number_format($data['gianhap'], 0, '', '') }}" class="form-control"
-                            placeholder="0" min="0" required>
+
+                        @if($data['gianhap'])
+                            <label for="gianhap">Giá nhập (VND) *:
+                                <a href="/administrator/gianhap/{{$data["id_sp"]}}">
+                                    Nhập sản phẩm
+                                </a>
+                            </label>
+                            <input type="number" id="gianhap" name="gianhap"
+                                value="{{ number_format($data['gianhap'], 0, '', '') }}" class="form-control"
+                                placeholder="0" min="0" required disabled>
+                        @else
+                            <label for="gianhap">
+                                Chưa có giá nhập
+                                <a href="/administrator/gianhap/{{$data["id_sp"]}}">
+                                    Thêm mới tại đây
+                                </a>
+                            </label>
+                        @endif
                     </div>
 
                     <div class="form-group">

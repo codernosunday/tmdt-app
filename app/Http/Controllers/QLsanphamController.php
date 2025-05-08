@@ -17,13 +17,12 @@ use Illuminate\Support\Facades\Storage;
 
 class QLsanphamController extends Controller
 {
-    //
     function pagesQLsanpham()
     {
         $sp = SanphamModel::all();
         $danhmucs = DanhmucconModel::all();
-        $ncc = nhacungcapModel::all();
-        return view('admin.quanlysanpham', compact('sp', 'danhmucs', 'ncc'));
+        // $ncc = nhacungcapModel::all();
+        return view('admin.quanlysanpham', compact('sp', 'danhmucs'));
     }
     function bangsanpham($id)
     {
@@ -78,7 +77,6 @@ class QLsanphamController extends Controller
 
         return view('admin.bangsanpham', compact('sp'));
     }
-    //
     function pagesQLchitietsanpham($id_sp)
     {
         $danhmuccon = DanhmucconModel::all();
@@ -110,8 +108,8 @@ class QLsanphamController extends Controller
             "sotrang" => $firstCtsp->sotrang,
             "ttinh" => $firstCtsp->id_thuoctinh,
             "giaban" => $ban->giaban,
-            "gianhap" => $nhap->gianhap,
-            "soluong" => $nhap->soluong,
+            "gianhap" => $nhap ? $nhap->gianhap : null,
+            "soluong" => $firstCtsp->soluong,
         ];
         return view('admin.chitietsanpham', compact('data', 'ctsp', 'danhmuccon', 'thuoctinh'));
     }
@@ -191,16 +189,16 @@ class QLsanphamController extends Controller
                     'xuatsu' => $validated['xuatsu'],
                     'sanxuat' => $validated['sanxuat'],
                     'tinhnangnoibat' => $validated['tinhnang'],
-                    'kichthuoc' => $validated['kichthuoc']
+                    'kichthuoc' => $validated['kichthuoc'],
                 ]);
             }
-            gianhapModel::updateOrCreate(
-                ['id_ctsp' => $validated['id_ctsp']],
-                [
-                    'gianhap' => $validated['gianhap'] ?? null,
-                    'soluong' => $validated['soluong'] ?? null
-                ]
-            );
+            // gianhapModel::updateOrCreate(
+            //     ['id_ctsp' => $validated['id_ctsp']],
+            //     [
+            //         'gianhap' => $validated['gianhap'] ?? null,
+            //         'soluong' => $validated['soluong'] ?? null
+            //     ]
+            // );
             giabanModel::updateOrCreate(
                 ['id_ctsp' => $validated['id_ctsp']],
                 ['giaban' => $validated['giaban'] ?? null]
@@ -284,7 +282,7 @@ class QLsanphamController extends Controller
                 'id_sp' => $id_sp,
                 'id_thuoctinh' => $request->input('thuoctinh'),
                 'doday' => $request->input('doday'),
-                'soluong' => $request->input('soluong'),
+                // 'soluong' => $request->input('soluong'),
                 'sotrang' => $request->input('sotrang'),
                 'thuonghieu' => $request->input('thuonghieu'),
                 'anhsp' => $request->input('anh'),
@@ -297,12 +295,12 @@ class QLsanphamController extends Controller
                 'tinhnangnoibat' => $validated['tinhnang']
             ]);
             $id_ctsp = $ctsp->id_ctsp;
-            gianhapModel::create([
-                'id_ctsp' => $id_ctsp,
-                'id_sp' => $id_sp,
-                'gianhap' => $request->input('gianhap'),
-                'soluong' => $request->input('soluong')
-            ]);
+            // gianhapModel::create([
+            //     'id_ctsp' => $id_ctsp,
+            //     'id_sp' => $id_sp,
+            //     'gianhap' => $request->input('gianhap'),
+            //     'soluong' => $request->input('soluong')
+            // ]);
             giabanModel::create([
                 'id_ctsp' => $id_ctsp,
                 'id_sp' => $id_sp,
@@ -397,11 +395,11 @@ class QLsanphamController extends Controller
                 'dattinh' => $request->input('dattinh')
             ]);
             $id_ctsp = $ctsp->id_ctsp;
-            gianhapModel::create([
-                'id_ctsp' => $id_ctsp,
-                'gianhap' => $request->input('gianhap'),
-                'soluong' => $request->input('soluong')
-            ]);
+            // gianhapModel::create([
+            //     'id_ctsp' => $id_ctsp,
+            //     'gianhap' => $request->input('gianhap'),
+            //     'soluong' => $request->input('soluong')
+            // ]);
             giabanModel::create([
                 'id_ctsp' => $id_ctsp,
                 'giaban' => $request->input('giaban')
@@ -435,7 +433,7 @@ class QLsanphamController extends Controller
             'status' => true,
             'giaban' => $giaban->giaban ?? null,
             'gianhap' => $gianhap->gianhap ?? null,
-            'soluong' => $gianhap->soluong ?? null,
+            'soluong' => $ctsp->soluong ?? null,
             'mau' => $mau->giatri ?? $ctsp->id_thuoctinh
         ], 200);
     }

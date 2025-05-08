@@ -17,6 +17,6 @@ class nhacungcapModel extends Model
     public $timestamps = true;
     public function gianhap()
     {
-        return $this->belongsTo(gianhapModel::class, 'id_nhacungcap');
+        return $this->hasOne(gianhapModel::class, 'id_nhacungcap');
     }
 }
