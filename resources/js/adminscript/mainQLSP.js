@@ -82,8 +82,8 @@ window.searchProduct = function () {
     const tt = trangthai.value;
     const danhmuc = selectBox.value;
     const data = {
-        'trangthai': tt,
-        'danhmuc': danhmuc,
+        'trangthai': tt ? tt : '',
+        'danhmuc': danhmuc ? danhmuc : '',
         'timkiem': keyword
     }
     fetch("/administrator/loctheoten", {
@@ -102,16 +102,16 @@ window.searchProduct = function () {
 
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Bắt sự kiện click nút "Nhập hàng"
-    document.querySelectorAll('.form_nhap').forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            var idSanPham = this.getAttribute('data-id');
-            document.getElementById('idSanPham').value = idSanPham; // Gán id sản phẩm vào form
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Bắt sự kiện click nút "Nhập hàng"
+//     document.querySelectorAll('.form_nhap').forEach(function (button) {
+//         button.addEventListener('click', function (e) {
+//             e.preventDefault();
+//             var idSanPham = this.getAttribute('data-id');
+//             document.getElementById('idSanPham').value = idSanPham; // Gán id sản phẩm vào form
 
-            var nhapHangModal = new bootstrap.Modal(document.getElementById('nhapHangModal'));
-            nhapHangModal.show();
-        });
-    });
-});
+//             var nhapHangModal = new bootstrap.Modal(document.getElementById('nhapHangModal'));
+//             nhapHangModal.show();
+//         });
+//     });
+// });

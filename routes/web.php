@@ -224,4 +224,10 @@ Route::middleware(['admin.access'])->group(function () {
     Route::delete('/administrator/xoanhacungcap/{id}', [nhacungcapController::class, 'xoanhacungcap']);
     Route::get('/administrator/xemnhacungcap/{id}', [nhacungcapController::class, 'xemnhacungcap']);
     Route::post('/administrator/capnhatnhacungcap/{id}', [nhacungcapController::class, 'capnhatnhacungcap']);
+    // quan lý giá nhập
+    Route::get('/administrator/gianhap/{id}', [nhacungcapController::class, 'tranggianhap']);
+    Route::post('/administrator/themgianhap', [nhacungcapController::class, 'themgianhap']);
+    Route::get('/administrator/xemgianhap/{id}', [nhacungcapController::class, 'xemgianhap']);
+    Route::post('/administrator/suagianhap', [nhacungcapController::class, 'suagianhap']);
+    Route::delete('/administrator/xoagianhap/{id}', [nhacungcapController::class, 'xoagianhap']);
 });

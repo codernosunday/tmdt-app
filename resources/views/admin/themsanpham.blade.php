@@ -54,16 +54,16 @@
 
                 <!-- Cột 2: Thông tin kho và giá -->
                 <div class="form-column">
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="soluong">Số lượng trong kho *</label>
-                        <input type="number" id="soluong" name="soluong" class="form-control" placeholder="0" min="0"
-                            required>
+                        <input type="number" id="soluong" name="soluong" value="0" class="form-control" placeholder="0"
+                            min="0" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="gianhap">Giá nhập (VND) *</label>
-                        <input type="number" id="gianhap" name="gianhap" class="form-control" placeholder="0" min="0"
-                            required>
+                        <input type="number" id="gianhap" name="gianhap" class="form-control" value="1" placeholder="0"
+                            min="0" required>
                     </div>
 
                     <div class="form-group">
