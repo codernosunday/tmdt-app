@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,10 +12,12 @@ class CategoryController extends Controller
 {
     public function show($id_ctdm)
     {
-        // Tìm danh mục theo ID
         $category = Category::findOrFail($id_ctdm);
 
-        $sanpham = SanphamModel::where('id_ctdm', $id_ctdm)->get();
+        // Lọc sản phẩm theo id_ctdm và trạng thái là 'Hiện'
+        $sanpham = SanphamModel::where('id_ctdm', $id_ctdm)
+            ->where('trangthai', 'conhang')
+            ->get();
 
         $thongtinsanpham = $sanpham->map(function ($item) {
             $chitietsanpham = ChitietsanphamModel::where('id_sp', $item['id_sp'])->first();

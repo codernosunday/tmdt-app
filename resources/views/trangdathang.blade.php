@@ -188,7 +188,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="payment-method">
+                        {{-- <div class="payment-method">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="payment" id="banking">
                                 <label class="form-check-label fw-bold" for="banking">
@@ -200,7 +200,7 @@
                                 <p class="mb-1">Số tài khoản: 123456789</p>
                                 <p class="mb-0">Chủ tài khoản: CÔNG TY TNHH ABC</p>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="payment-method">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="payment" id="vnpay">
@@ -208,21 +208,14 @@
                                     Ví điện tử VNPAY
                                 </label>
                                 <!-- <form action="/trangthanhtoan" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
-                                        toán VNPAY</button>
-                                </form> -->
+                                        @csrf
+                                        <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
+                                            toán VNPAY</button>
+                                    </form> -->
                             </div>
-                            <div 
-                                class="m-0 p-0 "
-                                style="display: flex; justify-content: center; align-items: center;"
-                            >
-                                <img 
-                                    src="https://cdn.brandfetch.io/idV02t6WJs/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" 
-                                    alt="VnPay" 
-                                    class="img-fluid"
-                                    style="width: 200px; height: 200px;"
-                                >
+                            <div class="m-0 p-0 " style="display: flex; justify-content: center; align-items: center;">
+                                <img src="https://cdn.brandfetch.io/idV02t6WJs/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
+                                    alt="VnPay" class="img-fluid" style="width: 200px; height: 200px;">
                             </div>
                         </div>
                     </div>
@@ -276,12 +269,12 @@
             id_ctgh: {{ $soluong['id_ctgh'] ?? 'null' }},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-        };
+            };
 
         const listItem = document.querySelectorAll(".payment-method");
-        listItem.forEach(item=> {
-            item.addEventListener("click", function() {
-                listItem.forEach(item=> {
+        listItem.forEach(item => {
+            item.addEventListener("click", function () {
+                listItem.forEach(item => {
                     item.classList.remove('selected');
                 });
                 item.querySelector('.form-check-input').checked = true;

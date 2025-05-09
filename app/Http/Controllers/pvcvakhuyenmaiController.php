@@ -12,6 +12,7 @@ use App\Models\giasaleModel;
 use App\Models\vanchuyenModel;
 use App\Models\hoadonModel;
 use App\Models\cthoadonModel;
+use App\Models\DanhmucconModel;
 use App\Models\thanhtoanModel;
 use App\Models\ThuoctinhspModel;
 
@@ -83,7 +84,8 @@ class pvcvakhuyenmaiController extends Controller
     public function trangsale()
     {
         $giasales = giasaleModel::all();
-        return view('admin.qlsale', compact('giasales'));
+        $danhmuc = DanhmucconModel::where('trangthai', 'Hiện')->get();
+        return view('admin.qlsale', compact('giasales', 'danhmuc'));
     }
 
     public function themgiasale(Request $request)

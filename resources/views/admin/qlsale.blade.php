@@ -62,6 +62,12 @@
                             <label for="ten" class="form-label">Tên chương trình</label>
                             <input type="text" class="form-control" id="ten" name="ten" required>
                         </div>
+                        <select class="form-control" id="id_ctdm" name="id_ctdm" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            @foreach ($danhmuc as $dmc )
+                            <option value="{{$dmc->id_ctdm}}">{{$dmc->ten}}</option>
+                            @endforeach
+                        </select>
                         <div class="mb-3">
                             <label for="magiamgia" class="form-label">Mã giảm giá</label>
                             <input type="text" class="form-control" id="magiamgia" name="magiamgia" required>
@@ -104,6 +110,14 @@
                         <div class="mb-3">
                             <label for="edit_ten" class="form-label">Tên chương trình</label>
                             <input type="text" class="form-control" id="edit_ten" name="ten" required>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-control" id="edit_ctdm" name="id_ctdm" required>
+                                <option value="">-- Chọn danh mục --</option>
+                                @foreach ($danhmuc as $dmc )
+                                <option value="{{$dmc->id_ctdm}}">{{$dmc->ten}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="edit_magiamgia" class="form-label">Mã giảm giá</label>

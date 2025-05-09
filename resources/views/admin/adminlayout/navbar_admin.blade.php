@@ -9,7 +9,7 @@
 
     <div class="sidebar-menu">
         <div class="menu-item">
-            <a href="#">
+            <a href="/administrator/thongkesanpham">
                 <i class="bi bi-house-door"></i>
                 <span>Trang chủ</span>
             </a>

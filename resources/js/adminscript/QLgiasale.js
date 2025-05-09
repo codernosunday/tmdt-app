@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('hoatdong').checked = data.trangthai;
                     document.getElementById('edit_id_giasale').value = data.id_giasale;
                     document.getElementById('edit_ten').value = data.ten;
+                    document.getElementById('edit_ctdm').value = data.id_ctdm;
                     document.getElementById('edit_magiamgia').value = data.magiamgia;
                     document.getElementById('edit_giasale').value = data.giasale;
                     document.getElementById('edit_ketthuc').value = data.ketthuc.substring(0, 10);
