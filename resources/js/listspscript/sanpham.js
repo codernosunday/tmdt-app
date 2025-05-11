@@ -1,28 +1,30 @@
 const soluong = document.getElementById('soluongmua');
 window.themvaogio = function (id_sp) {
     const soluong = document.getElementById('soluongmua')
-    const ctsp = document.getElementById('chonchitiet')
-    const ctgh = {
-        'id_ctsp': ctsp.value,
-        'id_sp': id_sp,
-        'soluong': soluong.value
-    }
-    fetch('/themvaogio', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-        body: JSON.stringify(ctgh),
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            window.location.href = '/cart'
+    if (soluong.value >= 1) {
+        const ctsp = document.getElementById('chonchitiet')
+        const ctgh = {
+            'id_ctsp': ctsp.value,
+            'id_sp': id_sp,
+            'soluong': soluong.value
+        }
+        fetch('/themvaogio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify(ctgh),
         })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.href = '/cart'
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 }
 var selectElement = document.getElementById('chonchitiet');
 selectElement.addEventListener('change', function () {
@@ -53,7 +55,28 @@ selectElement.addEventListener('change', function () {
 
 });
 window.muangay = function (id) {
-    window.location.href = `/trangthanhtoan/${id}/${soluong.value}`;
+    const soluong = document.getElementById('soluongmua')?.value || 1;
+    if (soluong >= 1) {
+        const url = `/trangthanhtoan/${id}/${soluong}`;
+        fetch(url)
+            .then(res => {
+                const type = res.headers.get('Content-Type');
+                if (type && type.includes('application/json')) {
+                    return res.json().then(data => {
+                        alert(data.message || "Lỗi không xác định");
+                    });
+                } else {
+                    window.location.href = url;
+                }
+            })
+            .catch(err => {
+                alert("Đã xảy ra lỗi hệ thống.");
+                console.error(err);
+            });
+    } else {
+        alert("Số lượng không được âm");
+    }
+
 }
 
 const stars = document.querySelectorAll('.rating-input .star');

@@ -9,6 +9,7 @@ use App\Models\ChitietgiohangModel;
 use App\Models\GioHangModel;
 use App\Models\SanphamModel;
 use App\Models\ChitietsanphamModel;
+use App\Models\gianhapModel;
 
 class CartController extends Controller
 {
@@ -70,23 +71,30 @@ class CartController extends Controller
         try {
             $giohang = GiohangModel::where('id_giohang', session("id_giohang"))->first();
             if ($giohang) {
+
                 $ctsp = ChitietsanphamModel::where('id_ctsp', $request->id_ctsp)->first();
                 $chitietgiohang = ChitietgiohangModel::where('id_giohang', $giohang->id_giohang)->where('id_ctsp', $ctsp->id_ctsp)->first();
-
-                if ($ctsp && $chitietgiohang) {
-                    $soluong = $chitietgiohang->soluong >= 1 ? $chitietgiohang->soluong + $request->soluong : 1;
-                    $chitietgiohang::where('id_ctgh', $chitietgiohang->id_ctgh)->update([
-                        'soluong' => $soluong
-                    ]);
+                $gianhap = gianhapModel::where('id_ctsp', $request->id_ctsp)->first();
+                $tonkho = $gianhap->soluong;
+                if ($request->soluong <= $tonkho) {
+                    if ($ctsp && $chitietgiohang) {
+                        $soluong = $chitietgiohang->soluong >= 1 ? $chitietgiohang->soluong + $request->soluong : 1;
+                        $chitietgiohang::where('id_ctgh', $chitietgiohang->id_ctgh)->update([
+                            'soluong' => $soluong
+                        ]);
+                    } else {
+                        ChitietgiohangModel::create([
+                            'id_giohang' => session('id_giohang'),
+                            'id_ctsp' => $request->id_ctsp,
+                            'id_sp' => $request->id_sp,
+                            'soluong' => $request->soluong,
+                        ]);
+                    }
                 } else {
-                    ChitietgiohangModel::create([
-                        'id_giohang' => session('id_giohang'),
-                        'id_ctsp' => $request->id_ctsp,
-                        'id_sp' => $request->id_sp,
-                        'soluong' => 1,
-                    ]);
+                    return response()->json([
+                        'message' => 'Không đủ số lượng',
+                    ], 400);
                 }
-
                 return response()->json([
                     'message' => 'Thêm vào giỏ hàng thành công'
                 ], 200);
@@ -100,5 +108,13 @@ class CartController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+    public function xoagiohang($id)
+    {
+        ChitietgiohangModel::where('id_ctgh', $id)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Đã xoá chi tiết giỏ hàng.'
+        ]);
     }
 }
