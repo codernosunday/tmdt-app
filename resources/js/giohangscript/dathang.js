@@ -62,9 +62,6 @@ window.dathang = function () {
     if (tructiep.checked) {
         hinhthuctt = 'Thanh toán khi nhận hàng'
     }
-    if (banking.checked) {
-        hinhthuctt = 'Thanh toán bằng tài khoản ngân hàng'
-    }
     if (vnpay.checked) {
         hinhthuctt = 'Thanh toán bằng ví vnpay'
     }
@@ -98,7 +95,7 @@ window.dathang = function () {
             .then(data => {
                 if (data.dieukien) {
                     alert(data.message);
-                    if(data.vnpayLink) window.location.href = data.vnpayLink;
+                    if (data.vnpayLink) window.location.href = data.vnpayLink;
                     else window.location.href = "/theodoidonhang";
                 }
             })

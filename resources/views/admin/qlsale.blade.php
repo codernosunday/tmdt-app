@@ -62,7 +62,7 @@
                             <label for="ten" class="form-label">Tên chương trình</label>
                             <input type="text" class="form-control" id="ten" name="ten" required>
                         </div>
-                        <select class="form-control" id="id_ctdm" name="id_ctdm" required>
+                        <select class="form-control" id="id_ctdm" name="id_ctdm">
                             <option value="">-- Chọn danh mục --</option>
                             @foreach ($danhmuc as $dmc )
                             <option value="{{$dmc->id_ctdm}}">{{$dmc->ten}}</option>

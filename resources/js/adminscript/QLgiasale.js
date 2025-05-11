@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => alert('Có lỗi xảy ra!'));
     });
 
-    // Sửa chương trình khuyến mãi
+    // Sửa 
     document.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Cập nhật chương trình khuyến mãi
     const editForm = document.getElementById('editGiasaleForm');
     editForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -78,16 +77,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                     }
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert(data.success);
+                    .then(res => res.json().then(data => ({ status: res.status, body: data })))
+                    .then(({ status, body }) => {
+                        if (status === 200 && body.success) {
+                            alert(body.success);
                             location.reload();
                         } else {
-                            alert(data.error);
+                            console.error('Lỗi từ server:', body);
+                            alert(body.error || 'Có lỗi xảy ra khi xóa.');
                         }
                     })
-                    .catch(error => alert('Có lỗi xảy ra!'));
+                    .catch(error => {
+                        console.error('Lỗi mạng hoặc cú pháp:', error);
+                        alert('Có lỗi xảy ra! Vui lòng kiểm tra Console.');
+                    });
             }
         });
     });

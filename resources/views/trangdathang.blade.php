@@ -208,10 +208,10 @@
                                     Ví điện tử VNPAY
                                 </label>
                                 <!-- <form action="/trangthanhtoan" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
-                                            toán VNPAY</button>
-                                    </form> -->
+                                            @csrf
+                                            <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
+                                                toán VNPAY</button>
+                                        </form> -->
                             </div>
                             <div class="m-0 p-0 " style="display: flex; justify-content: center; align-items: center;">
                                 <img src="https://cdn.brandfetch.io/idV02t6WJs/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
@@ -269,7 +269,7 @@
             id_ctgh: {{ $soluong['id_ctgh'] ?? 'null' }},
             soluong: {{$soluong['soluong']}},
             id_giasale:{{-1}}
-            };
+                };
 
         const listItem = document.querySelectorAll(".payment-method");
         listItem.forEach(item => {

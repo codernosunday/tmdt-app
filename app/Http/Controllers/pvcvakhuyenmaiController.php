@@ -94,6 +94,7 @@ class pvcvakhuyenmaiController extends Controller
             'ten' => 'required|string|max:255',
             'magiamgia' => 'required|string|max:255',
             'giasale' => 'required|numeric|min:0',
+            'id_ctdm' => 'nullable|numeric|min:0',
             'ketthuc' => 'required|date',
             'trangthai' => 'nullable|boolean'
         ]);
@@ -105,8 +106,6 @@ class pvcvakhuyenmaiController extends Controller
 
         return response()->json(['success' => 'Thêm chương trình khuyến mãi thành công']);
     }
-
-
     public function xemgiasale($id)
     {
         $giasale = giasaleModel::findOrFail($id);
@@ -138,15 +137,18 @@ class pvcvakhuyenmaiController extends Controller
 
     public function xoagiasale($id)
     {
-        $giasale = giasaleModel::findOrFail($id);
+        try {
+            $giasale = giasaleModel::findOrFail($id);
 
-        // Kiểm tra xem chương trình khuyến mãi có liên quan đến sản phẩm nào không
-        if ($giasale->giaban()->count() > 0) {
-            return response()->json(['error' => 'Không thể xóa vì có sản phẩm liên quan'], 400);
+            if ($giasale->giaban()->count() > 0) {
+                return response()->json(['error' => 'Không thể xóa vì có sản phẩm liên quan'], 400);
+            }
+            $giasale->delete();
+
+            return response()->json(['success' => 'Xóa chương trình khuyến mãi thành công']);
+        } catch (\Exception $e) {
+            // return response()->json(['error' => 'Đã có lỗi xảy ra: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Không thể xoá đang được sử dụng ở mục khác'], 500);
         }
-
-        $giasale->delete();
-
-        return response()->json(['success' => 'Xóa chương trình khuyến mãi thành công']);
     }
 }

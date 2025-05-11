@@ -61,12 +61,19 @@ class ThanhtoanController extends Controller
                 if ($soluong <= $tonkho && $soluong >= 1) {
                     $thuoctinh = ThuoctinhspModel::where('id_thuoctinh', $ctsp->id_thuoctinh)->first();
                     $sanpham = SanphamModel::where('id_sp', $ctsp->id_sp)->first();
+                    $giasale = giasaleModel::where('id_ctdm', $sanpham->id_ctdm)
+                        ->where('trangthai', 1)
+                        ->first();
                     $giaban = giabanModel::where('id_giaban', $ctsp->id_ctsp)->first();
-                    $tongtien = $soluong * $giaban->giaban;
+                    if ($giasale) {
+                        $tongtien = $soluong * $giaban->giaban - $giasale->giasale * $soluong;
+                    } else {
+                        $tongtien = $soluong * $giaban->giaban;
+                    }
                     $phi = vanchuyenModel::first();
                     $giohang = session("id_giohang");
                     $soluong = [
-                        "tong" => $soluong * $giaban->giaban,
+                        "tong" => $tongtien,
                         "soluong" => $soluong,
                         "id_ctgh" => null
                     ];
@@ -139,7 +146,7 @@ class ThanhtoanController extends Controller
             return response()->json([
                 'dieukien' => true,
                 'message' => 'Đặt hàng thành công mã đơn của bạn là ' . $madonhang . ' hãy lưu nó để theo dõi lịch sử đơn hàng',
-                'vnpayLink' => $request->input('hinhthuctt') == 'Thanh toán bằng ví vnpay' ? $this->vnpay_payment($madonhang, $request->input('tong')):null,
+                'vnpayLink' => $request->input('hinhthuctt') == 'Thanh toán bằng ví vnpay' ? $this->vnpay_payment($madonhang, $request->input('tong')) : null,
             ], 201);
         } catch (Exception $e) {
             return response()->json([
@@ -155,6 +162,7 @@ class ThanhtoanController extends Controller
             $ma = $request->input('magiamgia');
             $magiamgia = giasaleModel::where('magiamgia', $ma)
                 ->where('trangthai', true)
+                ->whereNull('id_ctdm')
                 ->first();
             if ($magiamgia) {
                 return response()->json([
@@ -241,9 +249,9 @@ class ThanhtoanController extends Controller
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "https://localhost/vnpay_php/vnpay_return.php";
-        $vnp_TmnCode = "6CFRV4XK";//Mã website tại VNPAY 
+        $vnp_TmnCode = "6CFRV4XK"; //Mã website tại VNPAY 
         $vnp_HashSecret = "VRUHNR4SR0DI8PUPJPWPIXZMDPP7FL8C"; //Chuỗi bí mật
-        
+
         $vnp_TxnRef = $madonhang;
         $vnp_OrderInfo = "Thanh toán hóa đơn";
         $vnp_OrderType = "shopen";
@@ -265,14 +273,14 @@ class ThanhtoanController extends Controller
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
         );
-        
+
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
         if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
             $inputData['vnp_Bill_State'] = $vnp_Bill_State;
         }
-        
+
         //var_dump($inputData);
         ksort($inputData);
         $query = "";
@@ -287,15 +295,17 @@ class ThanhtoanController extends Controller
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
-        
+
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        $returnData = array('code' => '00'
-            , 'message' => 'success'
-            , 'data' => $vnp_Url);
+        $returnData = array(
+            'code' => '00',
+            'message' => 'success',
+            'data' => $vnp_Url
+        );
         if (isset($_POST['redirect'])) {
             header('Location: ' . $vnp_Url);
             die();

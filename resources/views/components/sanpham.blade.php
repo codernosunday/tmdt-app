@@ -17,16 +17,24 @@
 
                         <p class="product-name">{{ $i->tensp }}</p>
                         <div class="product-details text-center d-flex flex-column align-items-center">
+                            @php
+                                $gia = 0;
+                                if (!empty($sale)) {
+                                    foreach ($sale as $s) {
+                                        if ($s->id_ctdm == $i->id_ctdm) {
+                                            $gia = $i->giaban->giaban - $s->giasale;
+                                        }
+                                    }
+                                }
+                            @endphp
                             <p class="product-price">
-                                {{ isset($i->giaban) ? number_format($i->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}
+                                @if($gia > 0)
+                                    <span>{{ number_format($gia, 0, ',', '.') }} đ <br></span>
+                                    <del class="text-muted small">{{ number_format($i->giaban->giaban, 0, ',', '.') }} đ</del>
+                                @else
+                                    <span>{{ isset($i->giaban) ? number_format($i->giaban->giaban, 0, ',', '.') . ' đ' : 'Liên hệ' }}</span>
+                                @endif
                             </p>
-                            {{-- <form action="addToCart" method="POST">
-                                @csrf
-                                <input type="hidden" name="id_sp" value="{{ $i->id_sp }}">
-                                <button class="btn-cart">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                            </form> --}}
                         </div>
                     </a>
                 </div>

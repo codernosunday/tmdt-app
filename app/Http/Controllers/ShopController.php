@@ -10,6 +10,7 @@ use App\Models\giabanModel;
 // use App\Models\gianhapModel;
 use App\Models\DanhmucconModel;
 use App\Models\DanhmucsanphamModel;
+use App\Models\giasaleModel;
 
 class ShopController extends Controller
 {
@@ -25,6 +26,7 @@ class ShopController extends Controller
     //loc theo danh muc
     public function locSP($danhmuc)
     {
+        $sale = giasaleModel::where('trangthai', 1)->get();
         if ($danhmuc != 0) {
             $sp = SanphamModel::where('id_ctdm', $danhmuc)
                 ->where('trangthai', 'conhang')
@@ -35,11 +37,12 @@ class ShopController extends Controller
                 ->limit(40)
                 ->get();
         }
-        return view('components.sanpham', compact('sp'));
+        return view('components.sanpham', compact('sp', 'sale'));
     }
     public function locnangcao(Request $request)
     {
         try {
+            $sale = giasaleModel::where('trangthai', 1)->get();
             $filters = $request->json()->all();
 
             $query = SanphamModel::with(['giaban', 'chitietsanpham'])
@@ -113,7 +116,7 @@ class ShopController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'data' => view('components.sanpham', compact('sp'))->render()
+                'data' => view('components.sanpham', compact('sp', 'sale'))->render()
             ]);
         } catch (\Exception $e) {
             return response()->json([
