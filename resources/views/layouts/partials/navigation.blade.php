@@ -123,12 +123,12 @@
                 </div>
 
                 <div class="offcanvas-body justify-content-between">
-                    <select class="filter-categories border-0 mb-0 me-5">
+                    {{-- <select class="filter-categories border-0 mb-0 me-5">
                         <option>Shop by Category</option>
                         @foreach ($danhMucSp as $i)
-                            <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
+                        <option value="{{$i->id_dm}}">{{$i->tendanhmuc}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link active">Home</a>

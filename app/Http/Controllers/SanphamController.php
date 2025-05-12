@@ -46,7 +46,6 @@ class SanphamController extends Controller
         // Calculate stats
         $diemTrungBinh = $danhgia->avg('diem') ?? 0;
         $tongDanhGia = $danhgia->count();
-
         return view('trangsanpham', compact(
             'sp',
             'chitiet',

@@ -84,18 +84,22 @@
                         </tr>
                         <tr>
                             <th>Tiêu chuẩn</th>
-                            <td>{{ $chitiet->tieuchuan ?? 'Chưa cập nhật' }}</td>
+                            <td>{{ $chitiet->tieuchuan ?? 'Đang cập nhật' }}</td>
                         </tr>
                         <tr>
-                            <th>Khuyến cáo</th>
-                            <td>{{$sp->tomtatsp}}</td>
+                            <th>Kích thước</th>
+                            <td>{{$chitiet->kichthuoc ?? 'Đang cập nhật'}}</td>
                         </tr>
                     </tbody>
                 </table>
-                {{-- <h3>Tính năng nổi bật</h3>
-                <div>{{$chitiet->tinhnangnoibat}}</div>
-                <h3>Lợi ích</h3>
-                <div>{{$chitiet->loiich}}</div> --}}
+                @if($chitiet->tinhnangnoibat)
+                    <h3>Tính năng nổi bật</h3>
+                    <div>{{$chitiet->tinhnangnoibat}}</div>
+                @endif
+                @if($chitiet->loiich)
+                    <h3>Lợi ích</h3>
+                    <div>{{$chitiet->loiich}}</div>
+                @endif
             </div>
         </div>
         <div class="row">
