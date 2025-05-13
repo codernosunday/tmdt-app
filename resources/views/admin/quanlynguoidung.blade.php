@@ -38,10 +38,10 @@
                                     <form action="xoanguoidung" method="post" class="m-0">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $nguoidung->id_nd }}">
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
+                                        {{-- <button class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
                                             title="Xóa người dùng">
                                             <i class="bi bi-trash3-fill"></i>
-                                        </button>
+                                        </button> --}}
                                     </form>
                                     <button class="btn btn-outline-primary btn-sm"
                                         onclick="openEditModal({{ $nguoidung->id_nd }})" data-bs-toggle="modal"

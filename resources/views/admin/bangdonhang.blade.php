@@ -27,9 +27,9 @@
                     <td>
                         <div class="d-flex align-items-center gap-2">
                             <!-- Nút Xóa -->
-                            <button class="btn btn-outline-danger btn-sm delete_btn" title="Xóa đơn hàng">
+                            {{-- <button class="btn btn-outline-danger btn-sm delete_btn" title="Xóa đơn hàng">
                                 <i class="bi bi-trash3-fill"></i>
-                            </button>
+                            </button> --}}
 
                             <!-- Nút Sửa trạng thái -->
                             <button class="btn btn-outline-primary btn-sm" title="Sửa trạng thái"
