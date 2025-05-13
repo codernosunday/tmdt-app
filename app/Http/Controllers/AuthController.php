@@ -61,10 +61,10 @@ class AuthController extends Controller
 
         $User = NguoidungModel::where('mail', $request->email)->first();
         if ($User) {
-            if ($User->solannhapsai >= 5) {
-                return redirect()->back()
-                    ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
-            }
+            // if ($User->solannhapsai >= 5 && $User->tinhtrantk == 'Đã khóa') {
+            //     return redirect()->back()
+            //         ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
+            // }
             if ($User->tinhtrantk == 'Đã khóa') {
                 return redirect()->back()
                     ->with('error', 'Bạn hiện tại không thể đăng nhập với tài khoản này, tài khoản này đã bị khóa');
@@ -108,7 +108,7 @@ class AuthController extends Controller
 
                 if ($countWrongPass >= 5) {
                     NguoidungModel::where('mail', $request->email)->update([
-                        'tinhtrantk' => "Bị khóa",
+                        'tinhtrantk' => "Đã khóa",
                     ]);
                     return redirect()->back()
                         ->with('error', 'Tài khoản của bạn đã bị khóa do nhập sai mật khẩu quá 5 lần!');

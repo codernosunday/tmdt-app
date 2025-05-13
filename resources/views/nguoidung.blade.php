@@ -43,7 +43,8 @@
             <div class="detail-item">
                 <span class="detail-label">Email:</span>
                 <span class="detail-value" id="email-value">{{ $data["email"] ?? '' }}</span>
-                <button class="btn btn-primary btn-sm" onclick="toggleEditForm('email')"><i class="bi bi-pen"></i></button>
+                {{-- <button class="btn btn-primary btn-sm" onclick="toggleEditForm('email')"><i
+                        class="bi bi-pen"></i></button> --}}
             </div>
             <div class="edit-form" id="email-form">
                 <div class="form-group">
